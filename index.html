@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
  <html lang="de">
  <head>
@@ -24,19 +25,34 @@
              color: #777;
              font-size: 1.1em; /* Slightly larger paragraph text */
          }
+         /* Style for the email address link */
+         a {
+             color: #0066cc; /* Default link color */
+             text-decoration: none; /* Remove underline */
+             font-weight: bold; /* Make the link text bold */
+         }
+         a:hover {
+             text-decoration: underline; /* Add underline on hover */
+         }
+         /* Custom style for the contact message */
+         .contact-message {
+             font-size: 1.5em; /* Make the text bigger */
+             color: #000; /* Change the text color to black */
+         }
      </style>
  </head>
  <body>
-    <style>
-    img {
-        width: 300px;
-        /* You can also use percentage values for responsive design */
-        /* width: 50%; */
-        height: auto; /* 'auto' maintains the aspect ratio */
-    }
-    </style>
+     <style>
+     img {
+         width: 300px;
+         /* You can also use percentage values for responsive design */
+         /* width: 50%; */
+         height: auto; /* 'auto' maintains the aspect ratio */
+     }
+     </style>
      <img src="logo.png" alt="Company Logo">
      <h1>Our website is still under construction.</h1>
-     <p>Please feel free to contact us via email!</p>
+     <p class="contact-message">Please feel free to contact us via email!</p>
+     <p><a href="mailto:info@anora-systems.com">info@anora-systems.com</a></p>
  </body>
  </html>
