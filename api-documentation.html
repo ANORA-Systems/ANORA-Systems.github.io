@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation | Anora Systems</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        anoraBlue: '#0B1E3D',
+                        anoraTeal: '#00A99D',
+                        anoraOrange: '#F7941D',
+                        codeBg: '#1e293b',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Fira Code', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
+        
+        /* Custom Scrollbar for Sidebar */
+        .scrollbar-hide::-webkit-scrollbar {
+            width: 5px;
+        }
+        .scrollbar-hide::-webkit-scrollbar-track {
+            background: #0B1E3D;
+        }
+        .scrollbar-hide::-webkit-scrollbar-thumb {
+            background: #1e3a6e;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-gray-50">
+
+    <div class="md:hidden bg-anoraBlue p-4 flex justify-between items-center text-white sticky top-0 z-50">
+        <span class="font-bold text-lg">SpecScout API v1</span>
+        <a href="index.html" class="text-sm text-gray-400 hover:text-white">Back to Home</a>
+    </div>
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        
+        <aside class="w-full md:w-64 bg-anoraBlue text-gray-300 flex-shrink-0 md:h-screen md:sticky md:top-0 overflow-y-auto scrollbar-hide">
+            <div class="p-6">
+                <a href="index.html" class="block mb-8 group">
+                    <div class="flex items-center gap-2 mb-1">
+                        <img src="logo_white.png" alt="Anora Logo" class="h-8 w-auto opacity-90 group-hover:opacity-100 transition">
+                    </div>
+                    <div class="text-xs text-anoraTeal font-mono font-bold tracking-widest">DEVELOPER HUB</div>
+                </a>
+
+                <nav class="space-y-8 text-sm">
+                    <div>
+                        <h3 class="uppercase tracking-wider text-xs font-bold text-gray-500 mb-3">General</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#intro" class="block hover:text-white hover:translate-x-1 transition">Introduction</a></li>
+                            <li><a href="#auth" class="block hover:text-white hover:translate-x-1 transition">Authentication</a></li>
+                            <li><a href="#health" class="block hover:text-white hover:translate-x-1 transition">Health Check</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="uppercase tracking-wider text-xs font-bold text-gray-500 mb-3">Resources</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#users" class="block hover:text-white hover:translate-x-1 transition">Users</a></li>
+                            <li><a href="#apikeys" class="block hover:text-white hover:translate-x-1 transition">API Keys</a></li>
+                            <li><a href="#specs" class="block hover:text-white hover:translate-x-1 transition">Specifications</a></li>
+                            <li><a href="#categories" class="block hover:text-white hover:translate-x-1 transition">Categories</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="uppercase tracking-wider text-xs font-bold text-anoraOrange mb-3">Core Service</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#search" class="block text-white font-bold hover:text-anoraOrange transition"><i class="fa-solid fa-bolt mr-2"></i>Search / Extract</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </aside>
+
+        <main class="flex-1 p-6 md:p-12 md:max-w-5xl mx-auto w-full">
+            
+            <section id="intro" class="mb-16">
+                <h1 class="text-4xl font-bold text-anoraBlue mb-4">SpecScout API Documentation (v1)</h1>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    Welcome to the SpecScout API. This documentation provides detailed information about endpoints, parameters, and responses to help you integrate automated product data extraction into your e-commerce platform.
+                </p>
+            </section>
+
+            <hr class="border-gray-200 mb-12">
+
+            <section id="auth" class="mb-16">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-4">Authentication</h2>
+                <p class="text-gray-600 mb-4">Authentication is handled via API keys. A client must provide a valid API key with each request to protected endpoints.</p>
+                
+                <div class="bg-blue-50 border-l-4 border-anoraBlue p-4 rounded-r mb-4">
+                    <p class="text-sm text-anoraBlue">
+                        <strong>Header:</strong> <code class="bg-white px-2 py-1 rounded border border-blue-200 font-mono text-sm">Authorization: Bearer &lt;API_KEY&gt;</code>
+                    </p>
+                </div>
+            </section>
+
+            <section id="health" class="mb-16">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-6 flex items-center gap-3">
+                    Health Check
+                    <span class="text-xs font-normal bg-green-100 text-green-800 px-2 py-1 rounded-full border border-green-200">Public</span>
+                </h2>
+                
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-6">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                        <span class="text-gray-600">/api/v1/ready</span>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-4">Checks the operational status of the API.</p>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Response (200 OK)</h4>
+                        <pre class="bg-codeBg text-green-400 p-4 rounded-lg text-sm font-mono overflow-x-auto"><code>{
+  "status": "ready"
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="users" class="mb-16">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-6">Users</h2>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
+                        <span class="text-gray-600">/api/v1/users/register</span>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-4">Registers a new user. Does not require authentication.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
+                                <ul class="text-sm space-y-2 text-gray-600">
+                                    <li><code class="text-anoraBlue font-bold">email</code> (string, required)</li>
+                                    <li><code class="text-anoraBlue font-bold">password</code> (string, required, min 8 chars)</li>
+                                    <li><code class="text-anoraBlue font-bold">full_name</code> (string, optional)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Response (201 Created)</h4>
+                                <pre class="bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto"><code>{
+  "id": "550e84...",
+  "email": "user@example.com",
+  "full_name": "John Doe",
+  "is_active": true,
+  "created_at": "..."
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
+                        <span class="text-gray-600">/api/v1/users/{user_id}</span>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-2">Updates a user's information.</p>
+                        <p class="text-xs text-gray-400 italic mb-4">Authorization: Same user or superuser.</p>
+                        
+                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
+                         <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code>{
+  "email": "new@example.com",
+  "password": "new_password",
+  "full_name": "Jane Doe"
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
+                        <span class="text-gray-600">/api/v1/users/{user_id}</span>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm">Deletes a user. Returns <span class="font-mono text-xs bg-gray-100 px-1">204 No Content</span>.</p>
+                    </div>
+                </div>
+            </section>
+
+             <section id="apikeys" class="mb-16">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-6">API Keys</h2>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
+                        <span class="text-gray-600">/api/v1/users/{user_id}/keys</span>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm mb-4">Creates a new API key. <span class="text-red-500 font-bold">Important:</span> The raw token is returned only once.</p>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Response (201 Created)</h4>
+                        <pre class="bg-codeBg text-green-400 p-4 rounded-lg text-sm font-mono overflow-x-auto"><code>{
+  "token": "sp_user_a1b2c3... (SAVE THIS!)",
+  "key": {
+    "key_id": "sp_user_...",
+    "created_at": "...",
+    "revoked": false
+  }
+}</code></pre>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                        <span class="text-gray-600">/api/v1/users/{user_id}/keys</span>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm">Lists all keys for a user (without secrets).</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="specs" class="mb-16">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-6">Specifications</h2>
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r mb-6 text-sm text-yellow-800">
+                    <h4 class="font-bold mb-1">Best Practices: Garbage In -> Garbage Out</h4>
+                    <p>Each specification must be defined precisely. Use options where possible to ensure data comparability. Set tolerance > 0.1 for string matching.</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
+                        <span class="text-gray-600">/api/v1/specifications</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Object</h4>
+                        <pre class="bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto mb-4"><code>{
+  "name": "CPU Type",
+  "description": "The processor type of the device",
+  "instance": "str",       // "float", "int", "str", "bool", "list"
+  "unit": "",              // e.g. "kg", "GB"
+  "tolerance": 0.15,       // 0-1 (decimal)
+  "options": null,         // Array of allowed strings
+  "sub_values": []
+}</code></pre>
+                        <p class="text-xs text-gray-500">Note: Use <code>options</code> for filters (e.g. material: ["aluminum", "plastic"]).</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 bg-white p-4 rounded border border-gray-200">
+                        <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
+                        <code class="text-sm text-gray-700">/api/v1/specifications</code>
+                        <span class="text-sm text-gray-500 ml-auto">List all specs</span>
+                    </div>
+                    <div class="flex items-center gap-4 bg-white p-4 rounded border border-gray-200">
+                        <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
+                        <code class="text-sm text-gray-700">/api/v1/specifications/{id}</code>
+                        <span class="text-sm text-gray-500 ml-auto">Get single spec</span>
+                    </div>
+                </div>
+            </section>
+
+             <section id="categories" class="mb-16">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-6">Categories</h2>
+                <p class="text-gray-600 mb-6">Categories group specifications in a hierarchical structure.</p>
+
+                <div id="create-category" class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8 scroll-mt-24">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
+                        <span class="text-gray-600">/api/v1/categories</span>
+                    </div>
+                    <div class="p-6">
+                         <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code>{
+  "name": "Electronics/IT-Devices/Laptops",
+  "top_category": "IT-Devices"  // UUID of parent or null
+}</code></pre>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm">Every category name must be unique.</p>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
+                        <span class="text-gray-600">/api/v1/categories/{cat_id}/specs/{spec_id}</span>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm">Associates a specification with a category.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="search" class="mb-24">
+                <div class="flex items-center gap-3 mb-6">
+                    <h2 class="text-3xl font-bold text-anoraBlue">Search</h2>
+                    <span class="bg-anoraOrange text-white text-xs font-bold px-2 py-1 rounded">CORE SERVICE</span>
+                </div>
+                <p class="text-lg text-gray-600 mb-6">
+                    Performs the core SpecScout service: searches the web for product specifications based on a query.
+                </p>
+
+                <div class="bg-white rounded-xl shadow-lg border border-anoraTeal overflow-hidden mb-8">
+                    <div class="bg-anoraTeal/10 px-6 py-4 border-b border-anoraTeal/20 flex items-center gap-3 font-mono text-sm">
+                        <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                        <span class="text-anoraBlue font-bold">/api/v1/search</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Query Parameters</h4>
+                        <ul class="space-y-3 mb-6 text-sm">
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">product_name</span> <span class="text-gray-600">Required. E.g. "MacBook Pro 16 M3 Max"</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">brand</span> <span class="text-gray-600">Optional but use highly recommended. E.g. "Apple".</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">category</span> <span class="text-gray-600">Name of a predefined category (see <a href="#create-category" class="text-anoraTeal hover:underline font-medium">category creation</a>) to indicate which specifications to look for.</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">required_specs</span> <span class="text-gray-600">Optional. JSON array of spec objects. Use to add additional specifications to look for.</span></li>
+                        </ul>
+
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Success Response (200 OK)</h4>
+                        <pre class="bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto"><code>{
+  "status": "ok",
+  "specs": [
+    {
+      "name": "Processor",
+      "value": "Apple M3 Max",
+      "potential_values": [
+        {
+          "value": "Apple M3 Max",
+          "source": "apple.com",
+          "confidence": 0.95
+        }
+      ],
+      "sources": ["https://www.apple.com/..."]
+    }
+  ],
+  "not_found": [],
+  "errors": []
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
