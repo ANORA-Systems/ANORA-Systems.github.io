@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Notice | Anora Systems</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        anoraBlue: '#0B1E3D',
+                        anoraTeal: '#00A99D',
+                        anoraOrange: '#F7941D',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-gray-50 flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-sm p-4 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <img src="../logo.png" alt="Anora Systems Logo" class="h-20 w-auto">
+            </a>
+            <a href="index.html" class="text-sm text-gray-500 hover:text-anoraTeal transition flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
+        
+        <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-8">Legal Notice</h1>
+
+        <div class="bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100">
+            
+            <div class="mb-8">
+                <p class="text-gray-600 leading-relaxed">
+                    Johannes Körner<br>
+                    Briachstraße 10<br>
+                    88250 Weingarten<br>
+                    Germany
+                </p>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-xl font-bold text-anoraBlue mb-3">Contact</h2>
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-phone text-anoraTeal w-5"></i>
+                        <a href="tel:+491759215813" class="hover:text-anoraBlue transition">+49 175 9215813</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-anoraTeal w-5"></i>
+                        <a href="mailto:johannes.koerner@anora-systems.com" class="hover:text-anoraBlue transition">johannes.koerner@anora-systems.com</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="pt-6 border-t border-gray-100">
+                <p class="text-sm text-gray-500">
+                    Source: <a href="https://www.e-recht24.de" target="_blank" rel="noopener noreferrer" class="text-anoraTeal hover:underline">e-recht24.de</a>
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-anoraBlue text-white py-8 text-center mt-auto">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="text-sm opacity-60">&copy; 2025 Anora Systems. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
