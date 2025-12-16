@@ -39,6 +39,8 @@
         }
     </style>
 </head>
+
+
 <body class="font-sans text-slate-800 bg-gray-50">
 
     <div class="md:hidden bg-anoraBlue p-4 flex justify-between items-center text-white sticky top-0 z-50">
@@ -82,6 +84,15 @@
                         <ul class="space-y-2">
                             <li><a href="#search" class="block text-white font-bold hover:text-anoraOrange transition"><i class="fa-solid fa-bolt mr-2"></i>Search / Extract</a></li>
                         </ul>
+                        <div class="mt-4 pl-1 border-l border-gray-700 ml-1">
+                            <ul class="space-y-2 pl-3">
+                                <li>
+                                    <a href="#example" class="block text-gray-400 hover:text-anoraTeal hover:translate-x-1 transition flex items-center gap-2 text-xs">
+                                        <i class="fa-solid fa-code text-anoraTeal"></i> JSON Request-Reply Example
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </nav>
             </div>
@@ -341,6 +352,80 @@
   "errors": []
 }</code></pre>
                     </div>
+                </div>
+            </section>
+
+            <section id="example" class="py-20 bg-gray-50 scroll-mt-28">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold text-anoraBlue mb-4">Example</h2>
+                        <p class="text-gray-600">
+                            This example demonstrates a JSON request to the <code class="font-mono bg-gray-100 px-1 py-0.5 rounded border border-gray-200">/api/v1/search</code> endpoint and the corresponding JSON response.
+                        </p>
+                    </div>
+
+                    <div class="max-w-4xl mx-auto space-y-8">
+                        
+                        <div class="bg-[#1e1e1e] rounded-xl overflow-hidden shadow-lg border border-gray-800 relative z-10">
+                            <div class="bg-[#2d2d2d] px-4 py-2 flex justify-between items-center border-b border-gray-700">
+                                <span class="text-gray-400 text-xs font-mono">POST /api/v1/enrich</span>
+                                <span class="text-xs bg-green-600 text-white px-2 py-0.5 rounded font-mono">REQUEST</span>
+                            </div>
+                            <div class="p-6 overflow-x-auto">
+                                <pre class="font-mono text-sm leading-relaxed text-gray-300"><code>{
+            <span class="text-purple-400">"api_key"</span>: <span class="text-green-400">"sk_live_592..."</span>,
+            <span class="text-purple-400">"product"</span>: {
+                <span class="text-purple-400">"name"</span>: <span class="text-green-400">"Dell Latitude 5420"</span>,
+                <span class="text-purple-400">"brand"</span>: <span class="text-green-400">"Dell"</span>,
+                <span class="text-purple-400">"ean"</span>: <span class="text-green-400">"5397184512345"</span> <span class="text-gray-500">// optional</span>
+            },
+            <span class="text-purple-400">"targets"</span>: [<span class="text-green-400">"screen_size"</span>, <span class="text-green-400">"resolution"</span>, <span class="text-green-400">"weight"</span>]
+            }</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="bg-[#1e1e1e] rounded-xl overflow-hidden shadow-lg border border-anoraTeal/30 relative z-10">
+                            <div class="bg-[#2d2d2d] px-4 py-2 flex justify-between items-center border-b border-gray-700">
+                                <span class="text-gray-400 text-xs font-mono">200 OK</span>
+                                <span class="text-xs bg-anoraTeal text-white px-2 py-0.5 rounded font-mono">RESPONSE</span>
+                            </div>
+                            <div class="p-6 overflow-x-auto">
+                                <pre class="font-mono text-sm leading-relaxed text-gray-300"><code>{
+            <span class="text-purple-400">"status"</span>: <span class="text-green-400">"success"</span>,
+            <span class="text-purple-400">"meta"</span>: {
+                <span class="text-purple-400">"confidence_score"</span>: <span class="text-blue-400">0.98</span>,
+                <span class="text-purple-400">"sources_consulted"</span>: <span class="text-blue-400">3</span>
+            },
+            <span class="text-purple-400">"data"</span>: {
+                <span class="text-purple-400">"screen_size"</span>: {
+                <span class="text-purple-400">"value"</span>: <span class="text-blue-400">14.0</span>,
+                <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"inch"</span>,
+                <span class="text-purple-400">"raw"</span>: <span class="text-green-400">"14 Zoll (35.56 cm)"</span>
+                },
+                <span class="text-purple-400">"resolution"</span>: {
+                <span class="text-purple-400">"width"</span>: <span class="text-blue-400">1920</span>,
+                <span class="text-purple-400">"height"</span>: <span class="text-blue-400">1080</span>,
+                <span class="text-purple-400">"standard"</span>: <span class="text-green-400">"FHD"</span>
+                },
+                <span class="text-purple-400">"weight"</span>: {
+                <span class="text-purple-400">"value"</span>: <span class="text-blue-400">1.37</span>,
+                <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"kg"</span>
+                }
+            }
+            }</code></pre>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-16 text-center">
+                        <p class="text-gray-600 mb-4 font-medium">Convinced?</p>
+                        <a href="index.html#contact" class="inline-block bg-anoraOrange hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
+                            Get your API Key
+                        </a>
+                    </div>
+
                 </div>
             </section>
 
