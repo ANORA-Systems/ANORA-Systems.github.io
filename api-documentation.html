@@ -355,74 +355,204 @@
                 </div>
             </section>
 
-            <section id="example" class="py-20 bg-gray-50 scroll-mt-28">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section id="example" class="py-16 bg-gray-50 scroll-mt-10 border-t border-gray-200">
+                <div class="max-w-7xl px-8"> 
                     
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl font-bold text-anoraBlue mb-4">Example</h2>
-                        <p class="text-gray-600">
-                            This example demonstrates a JSON request to the <code class="font-mono bg-gray-100 px-1 py-0.5 rounded border border-gray-200">/api/v1/search</code> endpoint and the corresponding JSON response.
+                    <div class="mb-10 text-left">
+                        <h2 class="text-3xl font-bold text-anoraBlue mb-4">Example Request & Response</h2>
+                        <p class="text-gray-600 max-w-3xl">
+                            This example demonstrates a standard JSON request to the <code class="font-mono bg-gray-100 px-1 py-0.5 rounded border border-gray-200 text-anoraTeal">/api/v1/search</code> endpoint and the corresponding structured JSON response.
                         </p>
                     </div>
 
-                    <div class="max-w-4xl mx-auto space-y-8">
+                    <div class="max-w-5xl space-y-12">
                         
-                        <div class="bg-[#1e1e1e] rounded-xl overflow-hidden shadow-lg border border-gray-800 relative z-10">
-                            <div class="bg-[#2d2d2d] px-4 py-2 flex justify-between items-center border-b border-gray-700">
-                                <span class="text-gray-400 text-xs font-mono">POST /api/v1/enrich</span>
-                                <span class="text-xs bg-green-600 text-white px-2 py-0.5 rounded font-mono">REQUEST</span>
-                            </div>
-                            <div class="p-6 overflow-x-auto">
-                                <pre class="font-mono text-sm leading-relaxed text-gray-300"><code>{
-            <span class="text-purple-400">"api_key"</span>: <span class="text-green-400">"sk_live_592..."</span>,
-            <span class="text-purple-400">"product"</span>: {
-                <span class="text-purple-400">"name"</span>: <span class="text-green-400">"Dell Latitude 5420"</span>,
-                <span class="text-purple-400">"brand"</span>: <span class="text-green-400">"Dell"</span>,
-                <span class="text-purple-400">"ean"</span>: <span class="text-green-400">"5397184512345"</span> <span class="text-gray-500">// optional</span>
-            },
-            <span class="text-purple-400">"targets"</span>: [<span class="text-green-400">"screen_size"</span>, <span class="text-green-400">"resolution"</span>, <span class="text-green-400">"weight"</span>]
-            }</code></pre>
-                            </div>
-                        </div>
+                       <div class="bg-[#1e1e1e] rounded-xl overflow-hidden shadow-lg border border-gray-800 flex flex-col">
+    <div class="bg-[#2d2d2d] px-4 py-2 flex justify-between items-center border-b border-gray-700 shrink-0">
+        <span class="text-gray-400 text-xs font-mono">POST /api/v1/search</span>
+        <span class="text-xs bg-green-600 text-white px-2 py-0.5 rounded font-mono">REQUEST</span>
+    </div>
+    <div class="p-6 overflow-x-auto">
+        <pre class="font-mono text-sm leading-relaxed text-gray-300"><code>{
+  <span class="text-purple-400">"product_name"</span>: <span class="text-green-400">"iPhone 12 Pro"</span>,
+  <span class="text-purple-400">"brand"</span>: <span class="text-green-400">"Apple"</span>,
+  <span class="text-purple-400">"category"</span>: <span class="text-green-400">"Electronics/IT-Devices/Smartphones"</span>,
+  <span class="text-purple-400">"user_id"</span>: <span class="text-green-400">"03dcb9a1-4d71-40a7-a04a-9a4b93d2b62e"</span>,
+  <span class="text-purple-400">"api-key"</span>: <span class="text-green-400">"sp_user_c64e2c071c4135d5.iKTBaTZFW-QNKUO7NPuhM..."</span>
+}</code></pre>
+    </div>
+</div>
 
-                        <div class="bg-[#1e1e1e] rounded-xl overflow-hidden shadow-lg border border-anoraTeal/30 relative z-10">
-                            <div class="bg-[#2d2d2d] px-4 py-2 flex justify-between items-center border-b border-gray-700">
-                                <span class="text-gray-400 text-xs font-mono">200 OK</span>
-                                <span class="text-xs bg-anoraTeal text-white px-2 py-0.5 rounded font-mono">RESPONSE</span>
-                            </div>
-                            <div class="p-6 overflow-x-auto">
-                                <pre class="font-mono text-sm leading-relaxed text-gray-300"><code>{
-            <span class="text-purple-400">"status"</span>: <span class="text-green-400">"success"</span>,
-            <span class="text-purple-400">"meta"</span>: {
-                <span class="text-purple-400">"confidence_score"</span>: <span class="text-blue-400">0.98</span>,
-                <span class="text-purple-400">"sources_consulted"</span>: <span class="text-blue-400">3</span>
-            },
-            <span class="text-purple-400">"data"</span>: {
-                <span class="text-purple-400">"screen_size"</span>: {
-                <span class="text-purple-400">"value"</span>: <span class="text-blue-400">14.0</span>,
-                <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"inch"</span>,
-                <span class="text-purple-400">"raw"</span>: <span class="text-green-400">"14 Zoll (35.56 cm)"</span>
-                },
-                <span class="text-purple-400">"resolution"</span>: {
-                <span class="text-purple-400">"width"</span>: <span class="text-blue-400">1920</span>,
-                <span class="text-purple-400">"height"</span>: <span class="text-blue-400">1080</span>,
-                <span class="text-purple-400">"standard"</span>: <span class="text-green-400">"FHD"</span>
-                },
-                <span class="text-purple-400">"weight"</span>: {
-                <span class="text-purple-400">"value"</span>: <span class="text-blue-400">1.37</span>,
-                <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"kg"</span>
-                }
-            }
-            }</code></pre>
-                            </div>
-                        </div>
+                        <!-- RESPONSE -->
+                        
+<div class="bg-[#1e1e1e] rounded-xl overflow-hidden shadow-lg border border-anoraTeal/30 flex flex-col">
+    <div class="bg-[#2d2d2d] px-4 py-2 flex justify-between items-center border-b border-gray-700 shrink-0">
+        <span class="text-gray-400 text-xs font-mono">200 OK</span>
+        <span class="text-xs bg-anoraTeal text-white px-2 py-0.5 rounded font-mono">RESPONSE</span>
+    </div>
+    <div class="p-6 overflow-x-auto overflow-y-auto max-h-[600px] scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
+<pre class="font-mono text-sm leading-relaxed text-gray-300"><code>{
+  <span class="text-purple-400">"specs"</span>: [
+    {
+      <span class="text-purple-400">"name"</span>: <span class="text-green-400">"weight"</span>,
+      <span class="text-purple-400">"description"</span>: <span class="text-green-400">"weight of device"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"float"</span>,
+      <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"gram"</span>,
+      <span class="text-purple-400">"tolerance"</span>: <span class="text-blue-400">0.02</span>,
+      <span class="text-purple-400">"options"</span>: <span class="text-blue-400">null</span>,
+      <span class="text-purple-400">"sub_values"</span>: [],
 
-                    </div>
+      <span class="text-purple-400">"value"</span>: <span class="text-blue-400">189</span>,
+      <span class="text-purple-400">"sources"</span>: [
+        <span class="text-green-400">"https://support.apple.com/en-us/111875"</span>,
+        <span class="text-green-400">"https://en.wikipedia.org/wiki/IPhone_12_Pro"</span>,
+        <span class="text-green-400">"https://www.gsmarena.com/apple_iphone_12_pro..."</span>
+      ]
+    },
 
-                    <div class="mt-16 text-center">
-                        <p class="text-gray-600 mb-4 font-medium">Convinced?</p>
-                        <a href="index.html#contact" class="inline-block bg-anoraOrange hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
-                            Get your API Key
+    {
+      <span class="text-purple-400">"name"</span>: <span class="text-green-400">"dimensions"</span>,
+      <span class="text-purple-400">"description"</span>: <span class="text-green-400">"physical dimensions of the device"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"float"</span>,
+      <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"mm"</span>,
+      <span class="text-purple-400">"tolerance"</span>: <span class="text-blue-400">0</span>,
+      <span class="text-purple-400">"options"</span>: <span class="text-blue-400">null</span>,
+      <span class="text-purple-400">"sub_values"</span>: [
+        <span class="text-green-400">"height"</span>,
+        <span class="text-green-400">"width"</span>,
+        <span class="text-green-400">"depth"</span>
+      ],
+
+      <span class="text-purple-400">"value"</span>: [
+        <span class="text-blue-400">7.4</span>,
+        <span class="text-blue-400">71.5</span>,
+        <span class="text-blue-400">146.7</span>
+      ],
+      <span class="text-purple-400">"sources"</span>: [
+        <span class="text-green-400">"https://support.apple.com/en-us/111875"</span>,
+        <span class="text-green-400">"https://en.wikipedia.org/wiki/IPhone_12_Pro"</span>,
+        <span class="text-green-400">"https://www.gsmarena.com/apple_iphone_12_pro..."</span>
+      ]
+    },
+
+    {
+      <span class="text-purple-400">"name"</span>: <span class="text-green-400">"display_size"</span>,
+      <span class="text-purple-400">"description"</span>: <span class="text-green-400">"display diagonal"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"float"</span>,
+      <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"inch"</span>,
+      <span class="text-purple-400">"tolerance"</span>: <span class="text-blue-400">0.02</span>,
+
+      <span class="text-purple-400">"value"</span>: <span class="text-blue-400">6.1</span>,
+      <span class="text-purple-400">"sources"</span>: [
+        <span class="text-green-400">"https://support.apple.com/en-us/111875"</span>,
+        <span class="text-green-400">"https://en.wikipedia.org/wiki/IPhone_12_Pro"</span>,
+        <span class="text-green-400">"https://www.apple.com/newsroom/2020/10..."</span>
+      ]
+    },
+
+    {
+      <span class="text-purple-400">"name"</span>: <span class="text-green-400">"rear_camera_megapixels"</span>,
+      <span class="text-purple-400">"description"</span>: <span class="text-green-400">"rear camera megapixels per lens"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"float"</span>,
+      <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"MP"</span>,
+      <span class="text-purple-400">"sub_values"</span>: [
+        <span class="text-green-400">"wide"</span>,
+        <span class="text-green-400">"ultrawide"</span>,
+        <span class="text-green-400">"telephoto"</span>
+      ],
+
+      <span class="text-purple-400">"value"</span>: [
+        <span class="text-blue-400">12</span>,
+        <span class="text-blue-400">12</span>,
+        <span class="text-blue-400">12</span>
+      ],
+      <span class="text-purple-400">"sources"</span>: [
+        <span class="text-green-400">"https://www.gsmarena.com/apple_iphone_12_pro..."</span>,
+        <span class="text-green-400">"https://en.wikipedia.org/wiki/IPhone_12_Pro"</span>
+      ]
+    },
+
+    {
+      <span class="text-purple-400">"name"</span>: <span class="text-green-400">"color"</span>,
+      <span class="text-purple-400">"description"</span>: <span class="text-green-400">"available colors"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"str"</span>,
+      <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"str"</span>,
+
+      <span class="text-purple-400">"value"</span>: [
+        <span class="text-green-400">"silver"</span>,
+        <span class="text-green-400">"graphite"</span>,
+        <span class="text-green-400">"gold"</span>,
+        <span class="text-green-400">"pacific blue"</span>
+      ],
+      <span class="text-purple-400">"sources"</span>: [
+        <span class="text-green-400">"https://support.apple.com/en-us/111875"</span>,
+        <span class="text-green-400">"https://en.wikipedia.org/wiki/IPhone_12_Pro"</span>
+      ]
+    },
+    {
+      <span class="text-purple-400">"name"</span>: <span class="text-green-400">"battery_capacity"</span>,
+      <span class="text-purple-400">"description"</span>: <span class="text-green-400">"battery capacity"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"int"</span>,
+      <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"mAh"</span>,
+
+      <span class="text-purple-400">"value"</span>: <span class="text-blue-400">2815</span>,
+      <span class="text-purple-400">"sources"</span>: [
+        <span class="text-green-400">"https://www.gsmarena.com/apple_iphone_12_pro..."</span>
+      ]
+    },
+    {
+      <span class="text-purple-400">"name"</span>: <span class="text-green-400">"ram"</span>,
+      <span class="text-purple-400">"description"</span>: <span class="text-green-400">"RAM size"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"int"</span>,
+      <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"GB"</span>,
+
+      <span class="text-purple-400">"value"</span>: <span class="text-blue-400">6</span>,
+      <span class="text-purple-400">"sources"</span>: [
+        <span class="text-green-400">"https://www.gsmarena.com/apple_iphone_12_pro..."</span>
+      ]
+    },
+
+    {
+      <span class="text-purple-400">"name"</span>: <span class="text-green-400">"display_resolution"</span>,
+      <span class="text-purple-400">"description"</span>: <span class="text-green-400">"display resolution"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"int"</span>,
+      <span class="text-purple-400">"sub_values"</span>: <span class="text-green-400">"pixels horizontally and vertically"</span>,
+
+      <span class="text-purple-400">"value"</span>: [
+        <span class="text-blue-400">1170</span>,
+        <span class="text-blue-400">2532</span>
+        ]
+    },
+
+    {
+      <span class="text-purple-400">"name"</span>: <span class="text-green-400">"storage"</span>,
+      <span class="text-purple-400">"description"</span>: <span class="text-green-400">"storage capacity"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"int"</span>,
+      <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"GB"</span>,
+
+      <span class="text-purple-400">"value"</span>: [
+        <span class="text-blue-400">128</span>,
+        <span class="text-blue-400">256</span>,
+        <span class="text-blue-400">512</span>
+        ]
+    }
+  ],
+
+
+  <span class="text-purple-400">"status"</span>: <span class="text-green-400">"ok"</span>,
+
+  <span class="text-purple-400">"not_found"</span>: [],
+
+  <span class="text-purple-400">"errors"</span>: []
+
+}</code></pre>
+    </div>
+</div>
+
+                    <div class="mt-12 text-center">
+                        <p class="text-gray-600 mb-4 font-medium text-center">Ready to get structured data?</p>
+                        <a href="mailto:info@anora-systems.com" class="inline-block bg-anoraOrange hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
+                            Get API Key
                         </a>
                     </div>
 
