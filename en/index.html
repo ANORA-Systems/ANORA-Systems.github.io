@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anora Systems | Automated Product Data for Your Online Store</title>
+    <meta name="description" content="SpecScout by Anora Systems automatically extracts, validates, and structures technical product data. Ideal for e-commerce and re-commerce shops.">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.anora-systems.com/en/">
+    <meta property="og:title" content="Anora Systems | Automated Product Data">
+    <meta property="og:description" content="SpecScout by Anora Systems | Poor filters and manual data entry? SpecScout automatically extracts, validates, and structures technical product data for your online store.">
+    <meta property="og:image" content="https://www.anora-systems.com/social-share.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="anora-systems.com">
+    <meta property="twitter:url" content="https://www.anora-systems.com/en/">
+    <meta name="twitter:title" content="Anora Systems | Automated Product Data">
+    <meta name="twitter:description" content="SpecScout by Anora Systems | Poor filters and manual data entry? SpecScout automatically extracts, validates, and structures technical product data for your online store.">
+    <meta name="twitter:image" content="https://www.anora-systems.com/social-share.jpg">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "SpecScout",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "SpecScout is software by Anora Systems for the automatic extraction, validation, and structuring of technical product data for online stores.",
+        "keywords": "Product Data, E-Commerce, Re-Commerce, Technical Specifications, Product Data Automation, Online Store, PIM, Data Quality",
+        "creator": {
+        "@type": "Organization",
+        "name": "Anora Systems",
+        "url": "https://anora-systems.com",
+        "sameAs": [
+            "https://www.linkedin.com/company/anora-systems"
+        ]
+        },
+        "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR",
+        "description": "Pilot phase - individual pricing upon request",
+        "availability": "https://schema.org/PreOrder"
+        }
+    }
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        anoraBlue: '#0B1E3D',
+                        anoraTeal: '#00A99D',
+                        anoraOrange: '#F7941D',
+                        lightGray: '#F3F4F6'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+    </style>
+</head>
+
+
+<body class="font-sans text-slate-800 antialiased">
+
+    <nav class="bg-white shadow-sm relative md:sticky md:top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-1">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0">
+                        <img src="../logo.png" alt="Anora Systems Logo" class="h-20 w-auto">
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#problem" class="text-gray-600 hover:text-anoraTeal transition">Problem</a>
+                    <a href="#solution" class="text-gray-600 hover:text-anoraTeal transition">Solution</a>
+                    <a href="#recommerce" class="text-gray-600 hover:text-anoraTeal transition">Re-Commerce</a>
+                    <a href="#whyspecscout" class="text-gray-600 hover:text-anoraTeal transition">Why SpecScout?</a>
+                    <a href="#team" class="text-gray-600 hover:text-anoraTeal transition">About Us</a>
+                    <a href="#faq" class="text-gray-600 hover:text-anoraTeal transition">FAQ</a>
+                    <a href="#contact" class="bg-anoraOrange hover:bg-orange-600 text-white px-5 py-2 rounded-md font-medium transition shadow-lg shadow-orange-200">Request Demo</a>
+                    
+                    <!-- LANGUAGE SWITCHER -->
+                    <div class="hidden lg:flex absolute top-1/2 -translate-y-1/2 right-4 z-50 bg-gray-100 rounded p-0.5">
+                    <a href="../index.html" class="px-2 py-0.5 text-gray-400 text-[10px] font-medium hover:text-anoraTeal transition">
+                            DE
+                        </a>
+                        <span class="px-2 py-0.5 bg-white text-anoraBlue text-[10px] font-bold rounded shadow-sm cursor-default">
+                            EN
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-anoraBlue relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-anoraTeal opacity-10 blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+                        Reliable Product Data for Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-anoraTeal to-anoraOrange">Online Store.</span>
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                        SpecScout extracts, validates, and structures technical specifications from the web. Zero manual effort required.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="bg-anoraOrange hover:bg-orange-600 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition shadow-lg shadow-orange-900/50">
+                            Become a Pilot Customer
+                        </a>
+                        <a href="#solution" class="border border-gray-500 hover:border-white text-white text-center px-8 py-4 rounded-md font-medium transition">
+                            How it works
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col">
+                    <div class="relative mb-8">
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 shadow-2xl">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <div class="text-xs text-gray-400">SpecScout API v1.0</div>
+                            </div>
+                            <div class="space-y-3 font-mono text-sm">
+                                <div class="flex">
+                                    <span class="text-anoraTeal w-24">"product":</span>
+                                    <span class="text-white">"iPhone 12 Pro"</span>
+                                </div>
+                                <div class="flex">
+                                    <span class="text-anoraTeal w-24">"status":</span>
+                                    <span class="text-green-400">"success"</span>
+                                </div>
+                                <div class="bg-black/30 p-3 rounded border border-anoraTeal/30 mt-2">
+                                    <p class="text-gray-400 text-xs mb-1">// Extracted Specs</p>
+                                    <div class="flex"><span class="text-purple-400 w-32">"display size":</span> <span class="text-gray-300 mr-2">"6.1"</span><p class="text-gray-400">// inches</p></div>
+                                    <div class="flex"><span class="text-purple-400 w-32">"chip":</span> <span class="text-gray-300">"A14 Bionic"</span></div>
+                                    <div class="flex"><span class="text-purple-400 w-32">"weight":</span> <span class="text-gray-300 mr-2">"189"</span><p class="text-gray-400">// g</p></div>
+                                </div>
+                            </div>
+                        </div>
+                            <a href="#solution" class="absolute -bottom-6 -left-6 bg-white text-anoraBlue px-4 py-2 rounded-lg shadow-xl font-bold flex items-center gap-2 hover:scale-105 hover:shadow-2xl hover:text-anoraTeal transition duration-300 cursor-pointer z-20 group">
+                                <i class="fa-solid fa-bolt text-anoraOrange group-hover:animate-pulse"></i>
+                                AI Powered
+                            </a>
+                    </div>
+                    <div class="text-center md:text-right mt-2">
+                        <a href="../api-documentation.html#example" class="inline-flex items-center gap-2 text-anoraTeal hover:text-white transition-colors text-sm font-semibold group hover:bg-white/5 px-4 py-2 rounded-lg border border-transparent hover:border-white/10">
+                            <i class="fa-solid fa-code"></i>
+                            View Request-Reply JSON Example
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+     <section id="problem" class="scroll-mt-8 py-24 bg-gray-50 relative overflow-hidden">
+               <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-anoraBlue font-bold text-3xl mb-4">Missing data is breaking your sales</h2>
+                <p class="text-gray-600 text-lg">Most online retailers know the problem: Product data is missing, incomplete, or inconsistent.</p>
+                <p class="text-gray-600 text-lg"><span class="font-bold">Manual data maintenance</span> costs time, money, and is prone to errors.</p>
+            </div>
+
+            <div class="relative">
+                <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-red-400 relative group">
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-100 rounded-full flex items-center justify-center text-xl font-bold text-gray-400 shadow-sm">1</div>
+                        <div class="mt-4 text-center">
+                            <div class="w-16 h-16 mx-auto bg-red-50 text-red-500 rounded-full flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-file-circle-xmark"></i>
+                            </div>
+                            <h3 class="font-bold text-xl text-anoraBlue mb-3">Incomplete Data</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Without automation, crucial attributes are missing. Data is inconsistent, incomplete, or simply incorrect.
+                            </p>
+                        </div>
+                        <div class="md:hidden absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-gray-300 text-2xl">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <div class="hidden md:block absolute top-1/2 -right-10 transform -translate-y-1/2 text-gray-300 text-2xl z-20">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-orange-400 relative group">
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-100 rounded-full flex items-center justify-center text-xl font-bold text-gray-400 shadow-sm">2</div>
+                        <div class="mt-4 text-center">
+                            <div class="w-16 h-16 mx-auto bg-orange-50 text-orange-500 rounded-full flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-filter-circle-xmark"></i>
+                            </div>
+                            <h3 class="font-bold text-xl text-anoraBlue mb-3">Poor Search Functionality</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Where there is no data, filters fail. Search and filter functions become unreliable and limited.
+                            </p>
+                        </div>
+                        <div class="md:hidden absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-gray-300 text-2xl">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <div class="hidden md:block absolute top-1/2 -right-10 transform -translate-y-1/2 text-gray-300 text-2xl z-20">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-anoraBlue relative group">
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-anoraBlue text-white border-4 border-gray-100 rounded-full flex items-center justify-center text-xl font-bold shadow-sm">3</div>
+                        <div class="mt-4 text-center">
+                            <div class="w-16 h-16 mx-auto bg-blue-50 text-anoraBlue rounded-full flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-arrow-trend-down"></i>
+                            </div>
+                            <h3 class="font-bold text-xl text-anoraBlue mb-3">Revenue Loss</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Products cannot be found efficiently. Customers get frustrated and switch to competitors; conversion rates drop.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mt-20 bg-white border border-gray-200 rounded-2xl p-8 md:p-10 shadow-sm max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
+                <div class="flex-1 text-center md:text-left">
+                    <p class="text-gray-600 text-center font-bold md:text-lg">
+                        Good products shouldn't be invisible. SpecScout fills the gaps in your database automatically so your customers find exactly what they are looking for.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="solution" class="scroll-mt-8 py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-anoraTeal font-bold tracking-wider uppercase text-sm">The Technology</span>
+                <h2 class="text-anoraBlue font-bold text-3xl mt-2">How SpecScout works</h2>
+            </div>
+
+            <div class="relative">
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-100 -z-10 transform -translate-y-1/2"></div>
+
+                <div class="grid md:grid-cols-4 gap-8 text-center">
+                    <div class="bg-white p-6">
+                        <div class="w-16 h-16 mx-auto bg-anoraBlue text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg border-4 border-white">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">1. Input</h3>
+                        <p class="text-sm text-gray-600">You send us the product name and brand (e.g., "Dell Latitude 5420").</p>
+                    </div>
+
+                    <div class="bg-white p-6">
+                        <div class="w-16 h-16 mx-auto bg-anoraTeal text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg border-4 border-white">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">2. AI-Powered Research</h3>
+                        <p class="text-sm text-gray-600">Our engine searches and analyzes reliable online sources using AI.</p>
+                    </div>
+
+                    <div class="bg-white p-6">
+                        <div class="w-16 h-16 mx-auto bg-anoraTeal text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg border-4 border-white">
+                            <i class="fa-solid fa-check-double"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">3. Validation & Normalization</h3>
+                        <p class="text-sm text-gray-600">Data is verified and normalized according to your specific needs (e.g., "inch" to "mm").</p>
+                    </div>
+
+                    <div class="bg-white p-6">
+                        <div class="w-16 h-16 mx-auto bg-anoraOrange text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg border-4 border-white">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">4. Integration</h3>
+                        <p class="text-sm text-gray-600">You receive structured JSON with the data, ready for your database.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="mt-12 text-center">
+                <a href="../api-documentation.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 text-gray-500 text-sm font-medium hover:text-anoraTeal hover:border-anoraTeal hover:bg-teal-50 transition-all duration-300 group">
+                    <i class="fa-solid fa-code text-gray-400 group-hover:text-anoraTeal transition-colors"></i>
+                    Go to API Documentation
+                    <i class="fa-solid fa-arrow-right opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"></i>
+                </a>
+            </div>
+    </section>
+
+    <section id="recommerce" class="scroll-mt-8 py-20 bg-anoraBlue text-white overflow-hidden relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-anoraBlue to-slate-900"></div>
+        <div class="absolute top-0 right-0 w-64 h-64 bg-anoraTeal rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-anoraOrange rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">We close the data gap in the <br><span class="text-anoraTeal">Circular Economy</span>.</h2>
+                    <p class="text-gray-300 text-lg mb-6">
+                        Used goods are the future. But without data, nobody buys complex tech. SpecScout makes second-hand products just as transparent and filterable as new ones.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-anoraOrange"></i>
+                            <span>Support for Legacy Products (EOL)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-anoraOrange"></i>
+                            <span>Promoting sustainable consumption</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-md">
+                    <div class="text-center">
+                        <div class="text-5xl font-bold text-anoraTeal mb-2">> 100 Mio. <span class="text-4xl text-gray-300">Products</span></div>
+                        <p class="text-base text-gray-400">sold on second-hand platforms in 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="whyspecscout" class="scroll-mt-8 py-20 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-anoraBlue mb-4">Why SpecScout?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    We don't just supply raw data copied from the web. We deliver reliable structures for your shop.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 transition">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-check-double text-anoraBlue text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-anoraBlue mb-3">Verified Data Quality</h3>
+                    <p class="text-gray-600 mb-4 text-sm">
+                        A Google search alone isn't enough. Our algorithm compares multiple sources and validates plausibility.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> Cross-check of multiple sources</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> Multi-stage validation mechanisms</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 transition">
+                    <div class="w-14 h-14 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-ruler-combined text-anoraTeal text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-anoraBlue mb-3">Smart Normalization</h3>
+                    <p class="text-gray-600 mb-4 text-sm">
+                        We standardize units of measurement and formats automatically so your filters work. Fully configurable for your individual data standard.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> "6.1 inch" &rarr; "15.5 cm"</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> Unified notation</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 transition">
+                    <div class="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-plug text-anoraOrange text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-anoraBlue mb-3">Seamless Integration</h3>
+                    <p class="text-gray-600 mb-4 text-sm">
+                        Whether Shopware, Shopify, or a custom build: Our API adapts to your tech stack.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> RESTful JSON API</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> Easy integration into Zapier, n8n, Shopify Flow, Microsoft Power Platform, and many more systems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="scroll-mt-8 py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-anoraBlue font-bold text-3xl mb-4">The Team behind Anora Systems</h2>
+                <p class="text-gray-600">We combine engineering with software development.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-sm flex items-start gap-6">
+                    <div class="w-32 h-32 bg-gray-200 rounded-full flex-shrink-0 overflow-hidden">
+                        <img src="../johannes.png" alt="Johannes Körner" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-anoraBlue">Johannes Körner</h3>
+                        <span class="text-anoraTeal text-sm font-semibold mb-2 block">Co-Founder & Operations</span>
+                        <p class="text-sm text-gray-600">Background in physics and engineering. Responsible for software architecture and management.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm flex items-start gap-6">
+                    <div class="w-32 h-32 bg-gray-200 rounded-full flex-shrink-0 overflow-hidden">
+                         <img src="https://via.placeholder.com/150" alt="Erik Dierkes" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-anoraBlue">Erik Dierkes</h3>
+                        <span class="text-anoraTeal text-sm font-semibold mb-2 block">Co-Founder & Tech Lead</span>
+                        <p class="text-sm text-gray-600">Full-Stack Developer. Expert in API design, web development, and UX.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 bg-white scroll-mt-28">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-4">Frequently Asked Questions</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Everything you need to know about integration, data quality, and our pricing model.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+
+                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                        <span>What are the benefits of being a Pilot Customer?</span>
+                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-gray-600">
+                        As a pilot customer, you're getting access to SpecScout for a heavily discounted price. 
+                        Furthermore, you enjoy VIP status: You have a direct line to our development team and can actively influence the roadmap. 
+                        We prioritize features and integrations that you need for your shop, ensuring SpecScout fits perfectly into your processes.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                        <span>How do I integrate SpecScout into my system?</span>
+                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-gray-600">
+                        SpecScout is primarily an API service. You can retrieve our JSON data directly via a REST interface. 
+                        However, we are continuously working to make integration as easy as possible. 
+                        As a pilot customer, you have the opportunity to request an integration solution tailored to your system.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                        <span>Is SpecScout suitable for full automation?</span>
+                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-gray-600">
+                        In principle, yes. SpecScout can be fully automated within existing processes. 
+                        Optionally, critical fields can be manually checked or approved before publication.
+                        We recommend a brief manual check, especially for products that come in multiple variants (e.g., different storage options for the same smartphone model), to ensure that only the options you actually have in stock are listed.
+                        Even with manual checking, SpecScout saves significant time compared to fully manual data entry.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                        <span>How exactly does SpecScout improve my filters?</span>
+                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-gray-600">
+                        Even the best filter software is useless if the underlying data is incomplete or inconsistent (e.g., a mix of mm, cm, inches).
+                        <br>
+                        SpecScout provides the necessary attributes fully standardized and without gaps. 
+                        This ensures that products are correctly mapped in search results and category filters (faceted search) and do not slip through the cracks.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                        <span>Can I determine which specifications are extracted?</span>
+                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-gray-600">
+                        Yes. You define which attributes are relevant for your shop (e.g., RAM, storage, weight, battery capacity, etc.) and exactly how the data should be output. 
+                        You can choose the relevant specifications 100% freely.
+                        SpecScout delivers only the desired specifications in a structured form.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                        <span>What happens if SpecScout finds no matching data?</span>
+                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-gray-600">
+                        For unusual specifications or very poorly documented products, SpecScout may not find matching data. 
+                        In this case, the relevant specifications are listed transparently under "not_found" in our response.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                        <span>Do you also find data for old devices (EOL) and niche products?</span>
+                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-gray-600">
+                        Yes. Unlike large databases, our algorithm is flexible and not limited to existing entries in a database.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                        <span>Where does the data come from?</span>
+                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-gray-600">
+                        The data comes from various trusted sources on the web. All data is double-verified to ensure the highest quality.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                        <span>How much does SpecScout cost?</span>
+                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-gray-600">
+                        We are currently in the pilot phase, so we offer heavily discounted prices for our pilot customers at the moment. Please request a demo to receive an individual offer.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                        <span>Can I test the data quality?</span>
+                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-gray-600">
+                        Of course. You can receive a temporary API key from us upon request, allowing you to send up to 200 free requests to our API.
+                        Alternatively, you can send us a CSV document with up to 50 test products (name, brand) and the required specifications (exact format on request).
+                        We will then provide you with the results generated by SpecScout as JSON or CSV.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                        <span>How do you ensure the data is correct?</span>
+                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-gray-600">
+                        SpecScout compares technical details from multiple independent sources. We only output data if it has been confirmed by at least two independent sources.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                        <span>You use AI. Can hallucinations occur?</span>
+                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-gray-600">
+                        No. We use AI as a central component of our algorithm, but we have developed guardrails that reliably exclude hallucinations in SpecScout.
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
+                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                        <span>Is my data stored permanently or passed on?</span>
+                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
+                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-gray-600">
+                        No. Your product lists serve exclusively for identification and processing. Customer-specific data is not passed on to third parties and is not stored permanently.
+                        However, in the pilot phase, we use data from failed requests to improve our algorithm and prevent similar errors in the future.
+                    </p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="scroll-mt-8 bg-anoraBlue py-20 text-center relative overflow-hidden">
+         <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full bg-gradient-to-b from-transparent to-black/30"></div>
+        
+        <div class="relative z-10 max-w-3xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to automate your product data?</h2>
+            <p class="text-gray-300 text-lg mb-10">We are looking for innovative online retailers for our pilot program. Secure early access and help shape SpecScout.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="mailto:info@anora-systems.com" class="bg-anoraOrange hover:bg-orange-600 text-white px-8 py-4 rounded-md font-bold text-lg transition shadow-lg shadow-orange-900/50 flex items-center justify-center gap-2">
+                    <i class="fa-regular fa-envelope"></i>
+                    Schedule a Meeting
+                </a>
+            </div>
+
+            <div class="mt-6 text-sm">
+                <span class="text-gray-400">Or email us directly:</span>
+                <a href="mailto:info@anora-systems.com" class="text-white font-medium hover:text-anoraOrange transition border-b border-white/20 hover:border-anoraOrange pb-0.5 ml-2">
+                    info@anora-systems.com
+                </a>
+            </div>
+            
+            <div class="mt-16 pt-8 border-t border-gray-800 text-gray-500 text-sm">
+                <p>&copy; 2025 Anora Systems. All rights reserved.</p>
+                <div class="flex justify-center gap-6 mt-4">
+                    <a href="legal.html" class="hover:text-white">Legal Notice</a>
+                    <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
