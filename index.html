@@ -87,24 +87,33 @@
 <body class="font-sans text-slate-800 antialiased">
 
     <nav class="bg-white shadow-sm relative md:sticky md:top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="w-full mx-auto px-2 md:px-4 lg:px-8">
+            
             <div class="flex justify-between items-center py-1">
-                <div class="flex items-center">
-                    <a href="#" class="flex-shrink-0">
-                        <img src="logo.png" alt="Anora Systems Logo" class="h-20 w-auto">
+                
+                <div class="flex items-center flex-shrink-0" style="margin-left: max(0px, calc(50vw - 40rem));">
+                    <a href="#">
+                        <img src="logo.png" alt="Anora Systems Logo" class="h-12 md:h-14 lg:h-20 w-auto transition-all">
                     </a>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#problem" class="text-gray-600 hover:text-anoraTeal transition">Problem</a>
-                    <a href="#solution" class="text-gray-600 hover:text-anoraTeal transition">Lösung</a>
-                    <a href="#recommerce" class="text-gray-600 hover:text-anoraTeal transition">Re-Commerce</a>
-                    <a href="#whyspecscout" class="text-gray-600 hover:text-anoraTeal transition">Warum SpecScout?</a>
-                    <a href="#team" class="text-gray-600 hover:text-anoraTeal transition">Über uns</a>
-                    <a href="#faq" class="text-gray-600 hover:text-anoraTeal transition">FAQ</a>
-                    <a href="#contact" class="bg-anoraOrange hover:bg-orange-600 text-white px-5 py-2 rounded-md font-medium transition shadow-lg shadow-orange-200">Demo anfragen</a>
 
-                    <!-- LANGUAGE SWITCHER -->
-                    <div class="hidden lg:flex absolute top-1/2 -translate-y-1/2 right-4 z-50 bg-gray-100 rounded p-0.5">
+                <div class="flex items-center gap-2 md:gap-2 lg:gap-8">
+                    
+                    <div class="hidden md:flex items-center space-x-3 lg:space-x-6 xl:space-x-8">
+                        
+                        <a href="#problem" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Problem</a>
+                        <a href="#solution" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Lösung</a>
+                        <a href="#recommerce" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Re-Commerce</a>
+                        <a href="#whyspecscout" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Warum SpecScout?</a>
+                        <a href="#team" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Über uns</a>
+                        <a href="#faq" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">FAQ</a>
+                        
+                        <a href="#contact" class="bg-anoraOrange hover:bg-orange-600 text-white px-3 py-1.5 lg:px-4 lg:py-2 rounded-md text-[0.8rem] lg:text-sm xl:text-base font-medium transition shadow-lg shadow-orange-200 whitespace-nowrap">
+                            Demo anfragen
+                        </a>
+                    </div>
+
+                    <div class="flex bg-gray-100 rounded p-0.5 flex-shrink-0 z-50">
                         <span class="px-2 py-0.5 bg-white text-anoraBlue text-[10px] font-bold rounded shadow-sm cursor-default">
                             DE
                         </span>
@@ -112,6 +121,7 @@
                             EN
                         </a>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -175,7 +185,7 @@
                     <div class="mt-6 text-center md:text-right">
                         <a href="en/api-documentation.html#example" class="inline-flex items-center gap-2 text-anoraTeal hover:text-white transition-colors text-sm font-semibold group bg-white/5 px-4 py-2 rounded-lg border border-white/10 hover:border-anoraTeal/50 hover:bg-white/10">
                             <i class="fa-solid fa-code"></i>
-                            Vollständiges Request-Reply JSON Beispiel
+                            Vollständiges Request-Response JSON Beispiel
                             <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
