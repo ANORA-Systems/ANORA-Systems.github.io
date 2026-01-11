@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpecScout Font Test</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&family=Montserrat:wght@700;800&family=Outfit:wght@700&family=Rajdhani:wght@700&family=Space+Grotesk:wght@700&family=Titillium+Web:wght@700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        anoraBlue: '#0B1E3D',
+                        anoraTeal: '#00A99D',
+                        lightGray: '#F3F4F6'
+                    },
+                    fontFamily: {
+                        // Batch 1
+                        outfit: ['"Outfit"', 'sans-serif'],
+                        rajdhani: ['"Rajdhani"', 'sans-serif'],
+                        montserrat: ['"Montserrat"', 'sans-serif'],
+                        // Batch 2
+                        space: ['"Space Grotesk"', 'sans-serif'],
+                        titillium: ['"Titillium Web"', 'sans-serif'],
+                        code: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 py-10 px-4">
+
+    <div class="max-w-3xl mx-auto space-y-8">
+        <h1 class="text-2xl font-bold text-center text-gray-700 mb-8">Font Comparison: SpecScout</h1>
+
+        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+            <p class="text-xs text-gray-400 font-mono mb-2">1. Outfit (Modern Tech)</p>
+            <div class="flex items-center gap-3">
+                <img src="../logo.png" alt="Logo" class="h-14 w-auto"> <div class="h-10 w-0.5 bg-gray-200"></div>
+                <div class="text-2xl font-bold tracking-tight text-anoraTeal font-outfit">
+                    Spec<span class="text-anoraBlue">Scout</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+            <p class="text-xs text-gray-400 font-mono mb-2">2. Space Grotesk (SaaS / Silicon Valley)</p>
+            <div class="flex items-center gap-3">
+                <img src="../logo.png" alt="Logo" class="h-14 w-auto">
+                <div class="h-10 w-0.5 bg-gray-200"></div>
+                <div class="text-2xl font-bold tracking-tight text-anoraTeal font-space">
+                    Spec<span class="text-anoraBlue">Scout</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+            <p class="text-xs text-gray-400 font-mono mb-2">3. Titillium Web (High-Tech / Sharp)</p>
+            <div class="flex items-center gap-3">
+                <img src="../logo.png" alt="Logo" class="h-14 w-auto">
+                <div class="h-10 w-0.5 bg-gray-200"></div>
+                <div class="text-2xl font-bold tracking-tight text-anoraTeal font-titillium">
+                    Spec<span class="text-anoraBlue">Scout</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+            <p class="text-xs text-gray-400 font-mono mb-2">4. Montserrat (Bold Corporate)</p>
+            <div class="flex items-center gap-3">
+                <img src="../logo.png" alt="Logo" class="h-14 w-auto">
+                <div class="h-10 w-0.5 bg-gray-200"></div>
+                <div class="text-2xl font-extrabold tracking-wide text-anoraTeal font-montserrat">
+                    Spec<span class="text-anoraBlue">Scout</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+            <p class="text-xs text-gray-400 font-mono mb-2">5. JetBrains Mono (Developer / API / Code)</p>
+            <div class="flex items-center gap-3">
+                <img src="../logo.png" alt="Logo" class="h-14 w-auto">
+                <div class="h-10 w-0.5 bg-gray-200"></div>
+                <div class="text-xl font-bold tracking-tighter text-anoraTeal font-code">
+                    Spec<span class="text-anoraBlue">Scout</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

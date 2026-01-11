@@ -28,6 +28,10 @@
     <meta name="twitter:description" content="SpecScout by Anora Systems | Schlechte Filter und manuelle Produktdatenpflege? Wir automatisieren. extrahiert, validiert und strukturiert technische Produktdaten automatisch für Ihren Onlineshop.">
     <meta name="twitter:image" content="https://www.anora-systems.com/social-share.jpg">
 
+    <link rel="alternate" hreflang="de" href="https://www.anora-systems.com/" />
+    <link rel="alternate" hreflang="en" href="https://www.anora-systems.com/en/index.html" />
+    <link rel="alternate" hreflang="x-default" href="https://www.anora-systems.com/en/index.html" />
+
     <!-- JSON LD -->
     <script type="application/ld+json">
     {
@@ -60,6 +64,12 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+
+
     <script>
         tailwind.config = {
             theme: {
@@ -72,44 +82,47 @@
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        outfit: ['"Outfit"', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-    <style>
-        /* Import einer modernen Schriftart */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-    </style>
+
 </head>
 
 
 <body class="font-sans text-slate-800 antialiased">
 
-    <nav class="bg-white shadow-sm relative md:sticky md:top-0 z-50">
+<nav class="bg-white shadow-sm relative md:sticky md:top-0 z-50">
         <div class="w-full mx-auto px-2 md:px-4 lg:px-8">
             
             <div class="flex justify-between items-center py-1">
                 
-                <div class="flex items-center flex-shrink-0" style="margin-left: max(0px, calc(50vw - 40rem));">
+                <div class="flex items-center flex-shrink-0 gap-3" style="margin-left: max(0px, calc(50vw - 40rem));">
                     <a href="#">
                         <img src="logo.png" alt="Anora Systems Logo" class="h-12 md:h-14 lg:h-20 w-auto transition-all">
                     </a>
+                    
+                    <div class="hidden sm:block h-12 w-0.5 bg-gray-200"></div>
+
+                    <div class="hidden sm:block text-xl md:text-2xl tracking-tight text-anoraBlue font-outfit">
+                        Spec<span class="text-anoraTeal">Scout</span>
+                    </div>
                 </div>
 
                 <div class="flex items-center gap-2 md:gap-2 lg:gap-8">
                     
-                    <div class="hidden md:flex items-center space-x-3 lg:space-x-6 xl:space-x-8">
-                        
+                    <div class="hidden xl:flex items-center space-x-3 lg:space-x-6 xl:space-x-8">
                         <a href="#problem" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Problem</a>
                         <a href="#solution" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Lösung</a>
+                        <a href="#whyspecscout" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Vorteile</a>
                         <a href="#recommerce" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Re-Commerce</a>
-                        <a href="#whyspecscout" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Warum SpecScout?</a>
                         <a href="#team" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Über uns</a>
                         <a href="#faq" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">FAQ</a>
                         
                         <a href="#contact" class="bg-anoraOrange hover:bg-orange-600 text-white px-3 py-1.5 lg:px-4 lg:py-2 rounded-md text-[0.8rem] lg:text-sm xl:text-base font-medium transition shadow-lg shadow-orange-200 whitespace-nowrap">
-                            Demo anfragen
+                            Pilotkunde werden
                         </a>
                     </div>
 
@@ -122,10 +135,58 @@
                         </a>
                     </div>
 
+                    <button id="mobile-menu-btn" class="xl:hidden p-2 text-gray-600 hover:text-anoraTeal focus:outline-none ml-1">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#problem" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">Problem</a>
+                <a href="#solution" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">Lösung</a>
+                <a href="#whyspecscout" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">Vorteile</a>
+                <a href="#recommerce" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">Re-Commerce</a>
+                <a href="#team" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">Über uns</a>
+                <a href="#faq" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">FAQ</a>
+                
+                <div class="pt-4">
+                    <a href="#contact" class="block w-full text-center bg-anoraOrange hover:bg-orange-600 text-white px-4 py-3 rounded-md text-base font-medium transition shadow-md" onclick="closeMobileMenu()">
+                        Pilotkunde werden
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        // Toggle Funktion
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            
+            // Icon wechseln (Bars <-> X)
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        });
+
+        // Menü schließen, wenn man auf einen Link klickt
+        function closeMobileMenu() {
+            menu.classList.add('hidden');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+    </script>
 
     <header class="bg-anoraBlue relative overflow-hidden">
         <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-anoraTeal opacity-10 blur-3xl"></div>
@@ -137,7 +198,7 @@
                         Zuverlässige Produktdaten für Ihren <span class="text-transparent bg-clip-text bg-gradient-to-r from-anoraTeal to-anoraOrange">Onlineshop.</span>
                     </h1>
                     <p class="text-xl text-gray-300 mb-8 leading-relaxed">
-                        SpecScout extrahiert, validiert und strukturiert technische Spezifikationen aus dem Web. Ohne manuellen Aufwand.
+                        <strong>SpecScout</strong> extrahiert, validiert und strukturiert technische Spezifikationen aus dem Web. Ohne manuellen Aufwand.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="#contact" class="bg-anoraOrange hover:bg-orange-600 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition shadow-lg shadow-orange-900/50">
@@ -177,10 +238,7 @@
                                 </div>
                             </div>
                         </div>
-                            <a href="#solution" class="absolute -bottom-6 -left-6 bg-white text-anoraBlue px-4 py-2 rounded-lg shadow-xl font-bold flex items-center gap-2 hover:scale-105 hover:shadow-2xl hover:text-anoraTeal transition duration-300 cursor-pointer z-20 group">
-                                <i class="fa-solid fa-bolt text-anoraOrange group-hover:animate-pulse"></i>
-                                AI Powered
-                            </a>
+
                     </div>
                     <div class="mt-6 text-center md:text-right">
                         <a href="en/api-documentation.html#example" class="inline-flex items-center gap-2 text-anoraTeal hover:text-white transition-colors text-sm font-semibold group bg-white/5 px-4 py-2 rounded-lg border border-white/10 hover:border-anoraTeal/50 hover:bg-white/10">
@@ -194,221 +252,554 @@
         </div>
     </header>
 
-     <section id="problem" class="scroll-mt-8 py-24 bg-gray-50 relative overflow-hidden">
-               <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-anoraBlue font-bold text-3xl mb-4">Fehlende Daten bremsen Ihren Umsatz</h2>
-                <p class="text-gray-600 text-lg">Die meisten Onlinehändler kennen das Problem: Produktdaten fehlen oder sind unvollständig und nicht einheitlich.</p>
-                <p class="text-gray-600 text-lg"><span class="font-bold">Manuelle Datenpflege</span> kostet Zeit und Geld und ist fehleranfällig.</p>
+
+    <section id="problem" class="scroll-mt-8 py-20 bg-gray-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-5xl mx-auto mb-16">
+                <h2 class="text-anoraBlue font-bold text-[2.2rem] mb-4 leading-tight">Fehlende Daten bremsen Ihren Umsatz.</h2>
+                <p class="text-gray-600 text-[1.05rem]">Die meisten Onlinehändler kennen das Problem: Produktdaten fehlen oder sind unvollständig und nicht einheitlich.</p>
+                <p class="text-gray-600 text-[1.05rem]"><span class="font-bold">Manuelle Datenpflege</span> kostet Zeit und Geld und ist fehleranfällig.</p>
             </div>
 
             <div class="relative">
-                <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                <div class="grid md:grid-cols-3 gap-y-16 gap-x-8 md:gap-x-12 items-start">
                     
-                    <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-red-400 relative group">
-                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-100 rounded-full flex items-center justify-center text-xl font-bold text-gray-400 shadow-sm">1</div>
-                        <div class="mt-4 text-center">
-                            <div class="w-16 h-16 mx-auto bg-red-50 text-red-500 rounded-full flex items-center justify-center text-2xl mb-6">
+                    <div class="bg-white p-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 border-t-4 border-t-red-400 relative group flex flex-col justify-start z-10 transition-all duration-300 hover:shadow-lg">
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-50 group-hover:border-white transition-colors duration-300 rounded-full flex items-center justify-center text-xl font-bold text-gray-400 shadow-sm z-20">1</div>
+                        
+                        <div class="mt-8 text-center min-h-[100px] flex flex-col justify-start">
+                            <div class="w-12 h-12 mx-auto bg-red-50 text-red-500 rounded-full flex items-center justify-center text-2xl mb-6">
                                 <i class="fa-solid fa-file-circle-xmark"></i>
                             </div>
-                            <h3 class="font-bold text-xl text-anoraBlue mb-3">Unvollständige Daten</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                Ohne Automatisierung fehlen entscheidende Attribute. Die Daten sind inkonsistent, unvollständig oder schlicht falsch.
+                            <h3 class="font-bold text-xl text-anoraBlue mb-2">Unvollständige Daten</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed font-medium mb-4">
+                                Ohne Automatisierung fehlen entscheidende Attribute für den Verkauf.
                             </p>
                         </div>
+
+                        <div class="group/opener mx-[-1.5rem] mb-[-1.5rem] rounded-b-xl border-t border-gray-100 transition-colors duration-300 hover:bg-gray-50 cursor-default overflow-hidden">
+                            
+                            <div class="pt-3 pb-3 text-center text-gray-300 transition-colors duration-300 group-hover/opener:text-red-400">
+                                <div class="text-sm transition-transform duration-500 group-hover/opener:rotate-180">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-rows-[0fr] group-hover/opener:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                                <div class="overflow-hidden">
+                                    <div class="px-6 pb-6 text-xs text-gray-500 text-center leading-relaxed">
+                                        Die Daten sind inkonsistent, unvollständig oder schlicht falsch. Kunden fehlen Informationen für die Kaufentscheidung.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="md:hidden absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-gray-300 text-2xl">
                             <i class="fa-solid fa-arrow-down"></i>
                         </div>
-                        <div class="hidden md:block absolute top-1/2 -right-10 transform -translate-y-1/2 text-gray-300 text-2xl z-20">
+                        <div class="hidden md:block absolute top-[140px] -right-8 lg:-right-10 transform -translate-y-1/2 text-gray-300 text-2xl z-0 pointer-events-none">
                             <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </div>
 
-                    <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-orange-400 relative group">
-                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-100 rounded-full flex items-center justify-center text-xl font-bold text-gray-400 shadow-sm">2</div>
-                        <div class="mt-4 text-center">
-                            <div class="w-16 h-16 mx-auto bg-orange-50 text-orange-500 rounded-full flex items-center justify-center text-2xl mb-6">
+                    <div class="bg-white p-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 border-t-4 border-t-orange-400 relative group flex flex-col justify-start z-10 transition-all duration-300 hover:shadow-lg">
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-50 group-hover:border-white transition-colors duration-300 rounded-full flex items-center justify-center text-xl font-bold text-gray-400 shadow-sm z-20">2</div>
+                        
+                        <div class="mt-8 text-center min-h-[100px] flex flex-col justify-start">
+                            <div class="w-12 h-12 mx-auto bg-orange-50 text-orange-500 rounded-full flex items-center justify-center text-2xl mb-6">
                                 <i class="fa-solid fa-filter-circle-xmark"></i>
                             </div>
-                            <h3 class="font-bold text-xl text-anoraBlue mb-3">Schlechte Suchfunktion</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                Wo keine Daten sind, greift kein Filter. Such- und Filterfunktionen sind unzuverlässig und beschränkt.
+                            <h3 class="font-bold text-xl text-anoraBlue mb-2">Schlechte Suchfunktion</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed font-medium mb-4">
+                                Wo keine einheitlichen Daten sind, greift kein Filter im Onlineshop.
                             </p>
                         </div>
+
+                        <div class="group/opener mx-[-1.5rem] mb-[-1.5rem] rounded-b-xl border-t border-gray-100 transition-colors duration-300 hover:bg-gray-50 cursor-default overflow-hidden">
+                            
+                            <div class="pt-3 pb-3 text-center text-gray-300 transition-colors duration-300 group-hover/opener:text-orange-400">
+                                <div class="text-sm transition-transform duration-500 group-hover/opener:rotate-180">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-rows-[0fr] group-hover/opener:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                                <div class="overflow-hidden">
+                                    <div class="px-6 pb-6 text-xs text-gray-500 text-center leading-relaxed">
+                                        Such- und Filterfunktionen sind unzuverlässig. Kunden haben Schwierigkeiten, geeignete Produkte zu finden.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="md:hidden absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-gray-300 text-2xl">
                             <i class="fa-solid fa-arrow-down"></i>
                         </div>
-                        <div class="hidden md:block absolute top-1/2 -right-10 transform -translate-y-1/2 text-gray-300 text-2xl z-20">
+                        <div class="hidden md:block absolute top-[140px] -right-8 lg:-right-10 transform -translate-y-1/2 text-gray-300 text-2xl z-0 pointer-events-none">
                             <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </div>
 
-                    <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-anoraBlue relative group">
-                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-anoraBlue text-white border-4 border-gray-100 rounded-full flex items-center justify-center text-xl font-bold shadow-sm">3</div>
-                        <div class="mt-4 text-center">
-                            <div class="w-16 h-16 mx-auto bg-blue-50 text-anoraBlue rounded-full flex items-center justify-center text-2xl mb-6">
+                    <div class="bg-white p-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 border-t-4 border-t-anoraBlue relative group flex flex-col justify-start z-10 transition-all duration-300 hover:shadow-lg">
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-anoraBlue text-white border-4 border-gray-50 group-hover:border-white transition-colors duration-300 rounded-full flex items-center justify-center text-xl font-bold shadow-sm z-20">3</div>
+                        
+                        <div class="mt-8 text-center min-h-[100px] flex flex-col justify-start">
+                            <div class="w-12 h-12 mx-auto bg-blue-50 text-anoraBlue rounded-full flex items-center justify-center text-2xl mb-6">
                                 <i class="fa-solid fa-arrow-trend-down"></i>
                             </div>
-                            <h3 class="font-bold text-xl text-anoraBlue mb-3">Umsatzverlust</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                Produkte können nicht effizient gefunden werden. Kunden werden frustriert und wechseln zur Konkurrenz, die Conversion-Rate sinkt.
+                            <h3 class="font-bold text-xl text-anoraBlue mb-2">Umsatzverlust</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed font-medium mb-4">
+                                Produkte können nicht effizient gefunden und verglichen werden. Kunden springen ab.
                             </p>
+                        </div>
+
+                        <div class="group/opener mx-[-1.5rem] mb-[-1.5rem] rounded-b-xl border-t border-gray-100 transition-colors duration-300 hover:bg-gray-50 cursor-default overflow-hidden">
+                            
+                            <div class="pt-3 pb-3 text-center text-gray-300 transition-colors duration-300 group-hover/opener:text-anoraBlue">
+                                <div class="text-sm transition-transform duration-500 group-hover/opener:rotate-180">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-rows-[0fr] group-hover/opener:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                                <div class="overflow-hidden">
+                                    <div class="px-6 pb-6 text-xs text-gray-500 text-center leading-relaxed">
+                                        Kunden werden frustriert und wechseln zur Konkurrenz. Die Conversion-Rate sinkt, Umsatz geht verloren.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                 </div>
             </div>
 
-            <div class="mt-20 bg-white border border-gray-200 rounded-2xl p-8 md:p-10 shadow-sm max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
-                <div class="flex-1 text-center md:text-left">
-                    <p class="text-gray-600 text-center font-bold md:text-lg">
-                        Schlechte Daten machen auch die besten Produkte für Kunden unsichtbar. 
-                        SpecScout hilft und verbessert Sichtbarkeit, Vergleichbarkeit und Orientierung.
-                    </p>
-                </div>
+            <div class="mt-12 text-center max-w-4xl mx-auto px-4">
+                <p class="text-anoraBlue/80 font-medium md:text-lg leading-relaxed">
+                    <span class="font-bold text-anoraBlue">Schlechte Daten machen auch die besten Produkte unsichtbar.</span> <br class="hidden md:block">
+                    SpecScout hilft und verbessert Sichtbarkeit, Vergleichbarkeit und Orientierung.
+                </p>
             </div>
 
         </div>
+        
     </section>
 
-    <section id="solution" class="scroll-mt-8 py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+    <div class="w-full h-px bg-gray-200"></div>
+
+    <section id="solution" class="scroll-mt-8 py-20 bg-slate-100">
+        
+        <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-24">
                 <span class="text-anoraTeal font-bold tracking-wider uppercase text-sm">Die Technologie</span>
                 <h2 class="text-anoraBlue font-bold text-3xl mt-2">So funktioniert SpecScout</h2>
             </div>
 
             <div class="relative">
-                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-100 -z-10 transform -translate-y-1/2"></div>
 
-                <div class="grid md:grid-cols-4 gap-8 text-center">
-                    <div class="bg-white p-6">
-                        <div class="w-16 h-16 mx-auto bg-anoraBlue text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg border-4 border-white">
-                            <i class="fa-solid fa-box-open"></i>
+                <div class="grid md:grid-cols-4 gap-y-16 md:gap-x-10 items-start"> 
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 border-t-4 border-t-indigo-500 relative group flex flex-col justify-start mt-6 md:mt-0 z-10 transition-all duration-300 hover:shadow-lg">
+                        
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-50 group-hover:border-white transition-colors duration-300 rounded-full flex items-center justify-center text-xl font-bold text-indigo-600 shadow-sm z-20">1</div>
+
+                        <div class="mt-6 text-center min-h-[190px] flex flex-col justify-start">
+                            <div class="w-12 h-12 mx-auto bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl mb-4 shadow-lg border-4 border-white">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2 text-anoraBlue">Input</h3>
+                            <p class="text-sm text-gray-600 font-medium leading-relaxed mb-4">
+                                Sie senden uns Produktname und Marke (z.B. "Dell Latitude 5420").
+                            </p>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">1. Input</h3>
-                        <p class="text-sm text-gray-600">Sie senden uns Produktname und Marke (z.B. "Dell Latitude 5420").</p>
+                        
+                        <div class="group/opener mx-[-1.5rem] mb-[-1.5rem] rounded-b-xl border-t border-gray-100 transition-colors duration-300 hover:bg-gray-50 cursor-default overflow-hidden">
+                            
+                            <div class="pt-3 pb-3 text-center text-gray-300 transition-colors duration-300 group-hover/opener:text-indigo-600">
+                                <div class="text-sm transition-transform duration-500 group-hover/opener:rotate-180">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-rows-[0fr] group-hover/opener:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                                <div class="overflow-hidden">
+                                    <div class="px-6 pb-6 text-xs text-gray-500 text-left leading-relaxed">
+                                        Unsere Software ist über eine REST-Schnittstelle erreichbar und ist damit einfach und automatisiert in die meisten Workflows integrierbar.
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hidden md:block absolute top-[110px] -right-8 transform -translate-y-1/2 text-gray-300 text-xl z-0 pointer-events-none">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                        <div class="md:hidden absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-gray-300 text-xl pointer-events-none">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
                     </div>
 
-                    <div class="bg-white p-6">
-                        <div class="w-16 h-16 mx-auto bg-anoraTeal text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg border-4 border-white">
-                            <i class="fa-solid fa-robot"></i>
+                    <div class="bg-white p-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 border-t-4 border-t-anoraBlue relative group flex flex-col justify-start mt-6 md:mt-0 z-10 transition-all duration-300 hover:shadow-lg">
+                        
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-50 group-hover:border-white transition-colors duration-300 rounded-full flex items-center justify-center text-xl font-bold text-anoraBlue shadow-sm z-20">2</div>
+                        
+                        <div class="mt-6 text-center min-h-[190px] flex flex-col justify-start">
+                            <div class="w-12 h-12 mx-auto bg-anoraBlue text-white rounded-full flex items-center justify-center text-xl mb-4 shadow-lg border-4 border-white">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2 text-anoraBlue">KI-Recherche</h3>
+                            <p class="text-sm text-gray-600 font-medium leading-relaxed mb-4">
+                                Unsere Engine durchsucht und analysiert zuverlässige Online-Quellen.
+                            </p>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">2. KI-gestützte Recherche</h3>
-                        <p class="text-sm text-gray-600">Unsere Engine durchsucht und analysiert zuverlässige Online-Quellen mithilfe von KI.</p>
+                        
+                        <div class="group/opener mx-[-1.5rem] mb-[-1.5rem] rounded-b-xl border-t border-gray-100 transition-colors duration-300 hover:bg-gray-50 cursor-default overflow-hidden">
+                            
+                            <div class="pt-3 pb-3 text-center text-gray-300 transition-colors duration-300 group-hover/opener:text-anoraBlue">
+                                <div class="text-sm transition-transform duration-500 group-hover/opener:rotate-180">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-rows-[0fr] group-hover/opener:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                                <div class="overflow-hidden">
+                                    <div class="px-6 pb-6 text-xs text-gray-500 text-left leading-relaxed">
+                                        Unsere Software sucht zuverlässige Datenquellen aus dem Internet. 
+                                        Unsere KI analysiert diese Quellen und extrahiert die relevanten technischen Spezifikationen.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hidden md:block absolute top-[110px] -right-8 transform -translate-y-1/2 text-gray-300 text-xl z-0 pointer-events-none">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                        <div class="md:hidden absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-gray-300 text-xl pointer-events-none">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
                     </div>
 
-                    <div class="bg-white p-6">
-                        <div class="w-16 h-16 mx-auto bg-anoraTeal text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg border-4 border-white">
-                            <i class="fa-solid fa-check-double"></i>
+                    <div class="bg-white p-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 border-t-4 border-t-anoraTeal relative group flex flex-col justify-start mt-6 md:mt-0 z-10 transition-all duration-300 hover:shadow-lg">
+                        
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-50 group-hover:border-white transition-colors duration-300 rounded-full flex items-center justify-center text-xl font-bold text-anoraTeal shadow-sm z-20">3</div>
+                        
+                        <div class="mt-6 text-center min-h-[190px] flex flex-col justify-start">
+                            <div class="w-12 h-12 mx-auto bg-anoraTeal text-white rounded-full flex items-center justify-center text-xl mb-4 shadow-lg border-4 border-white">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2 text-anoraBlue">Validierung</h3>
+                            <p class="text-sm text-gray-600 font-medium leading-relaxed mb-4">
+                                Daten werden geprüft und nach Ihren Bedürfnissen normalisiert.
+                            </p>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">3. Validierung & Normalisierung</h3>
-                        <p class="text-sm text-gray-600">Daten werden geprüft und nach Ihren individuellen Bedürfnissen normalisiert (z.B. "inch" zu "mm")</p>
+                        
+                        <div class="group/opener mx-[-1.5rem] mb-[-1.5rem] rounded-b-xl border-t border-gray-100 transition-colors duration-300 hover:bg-gray-50 cursor-default overflow-hidden">
+                            
+                            <div class="pt-3 pb-3 text-center text-gray-300 transition-colors duration-300 group-hover/opener:text-anoraTeal">
+                                <div class="text-sm transition-transform duration-500 group-hover/opener:rotate-180">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-rows-[0fr] group-hover/opener:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                                <div class="overflow-hidden">
+                                    <div class="px-6 pb-6 text-xs text-gray-500 text-left leading-relaxed">
+                                        Die von der KI gewonnenen Informationen werden <strong>geprüft</strong> und nach Ihren Bedürfnissen <strong>normalisiert</strong>. 
+                                        Fehler (wie Halluzinationen) werden zuverlässig erkannt und korrigiert.
+                                        Einheiten werden ggf. konvertiert (z.B. "inch" zu "cm") und Datenformate auf Ihre Bedürfnisse hin angepasst.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hidden md:block absolute top-[110px] -right-8 transform -translate-y-1/2 text-gray-300 text-xl z-0 pointer-events-none">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                        <div class="md:hidden absolute -bottom-10 left-1/2 transform -translate-x-1/2 text-gray-300 text-xl pointer-events-none">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
                     </div>
 
-                    <div class="bg-white p-6">
-                        <div class="w-16 h-16 mx-auto bg-anoraOrange text-white rounded-full flex items-center justify-center text-2xl mb-4 shadow-lg border-4 border-white">
-                            <i class="fa-solid fa-code"></i>
+                    <div class="bg-white p-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 border-t-4 border-t-anoraOrange relative group flex flex-col justify-start mt-6 md:mt-0 z-10 transition-all duration-300 hover:shadow-lg">
+                        
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-50 group-hover:border-white transition-colors duration-300 rounded-full flex items-center justify-center text-xl font-bold text-anoraOrange shadow-sm z-20">4</div>
+                        
+                        <div class="mt-6 text-center min-h-[190px] flex flex-col justify-start">
+                            <div class="w-12 h-12 mx-auto bg-anoraOrange text-white rounded-full flex items-center justify-center text-xl mb-4 shadow-lg border-4 border-white">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2 text-anoraBlue">Integration</h3>
+                            <p class="text-sm text-gray-600 font-medium leading-relaxed mb-4">
+                                Sie erhalten das strukturierte JSON, direkt bereit für Ihre Datenbank.
+                            </p>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">4. Integration</h3>
-                        <p class="text-sm text-gray-600">Sie erhalten das strukturierte JSON mit den Daten, direkt bereit für Ihre Datenbank.</p>
+                        
+                        <div class="group/opener mx-[-1.5rem] mb-[-1.5rem] rounded-b-xl border-t border-gray-100 transition-colors duration-300 hover:bg-gray-50 cursor-default overflow-hidden">
+                            
+                            <div class="pt-3 pb-3 text-center text-gray-300 transition-colors duration-300 group-hover/opener:text-anoraOrange">
+                                <div class="text-sm transition-transform duration-500 group-hover/opener:rotate-180">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-rows-[0fr] group-hover/opener:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                                <div class="overflow-hidden">
+                                    <div class="px-6 pb-6 text-xs text-gray-500 text-left leading-relaxed">
+                                        Sie erhalten die Daten direkt über unsere API als saubere <strong>JSON</strong> oder <strong>CSV</strong> – perfekt vorbereitet für Ihr PIM, den Onlineshop oder die Weiterverarbeitung in Excel.
+                                        Für die weiteren Integrationsschritte bieten wir Ihnen gerne zusätzliche <strong>Unterstützung</strong> an. Kommen Sie einfach auf uns zu!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
-        </div>
-            <div class="mt-12 text-center">
-                <a href="en/api-documentation.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-300 text-gray-500 text-sm font-medium hover:text-anoraTeal hover:border-anoraTeal hover:bg-teal-50 transition-all duration-300 group">
+            
+            <div class="mt-20 text-center">
+                <a href="en/api-documentation.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-200 text-gray-500 text-sm font-medium bg-white hover:bg-white hover:text-anoraTeal hover:border-anoraTeal transition-all duration-300 group shadow-sm">
                     <i class="fa-solid fa-code text-gray-400 group-hover:text-anoraTeal transition-colors"></i>
                     Zur API Dokumentation (Englisch)
                     <i class="fa-solid fa-arrow-right opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"></i>
                 </a>
             </div>
-    </section>
 
-    <section id="recommerce" class="scroll-mt-8 py-20 bg-anoraBlue text-white overflow-hidden relative">
-        <div class="absolute inset-0 bg-gradient-to-r from-anoraBlue to-slate-900"></div>
-        <div class="absolute top-0 right-0 w-64 h-64 bg-anoraTeal rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-        <div class="absolute bottom-0 left-0 w-64 h-64 bg-anoraOrange rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-3xl font-bold mb-6">Wir schließen die Datenlücke der <br><span class="text-anoraTeal">Circular Economy</span>.</h2>
-                    <p class="text-gray-300 text-lg mb-6">
-                        Gebrauchtware ist die Zukunft. Aber ohne Daten kauft niemand komplexe Technik. SpecScout macht Second-Hand-Produkte genauso transparent und filterbar wie Neuware.
-                    </p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-circle-check text-anoraOrange"></i>
-                            <span>Unterstützung für Legacy-Produkte (EOL)</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-circle-check text-anoraOrange"></i>
-                            <span>Nachhaltigen Konsum fördern</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-md">
-                    <div class="text-center">
-                        <div class="text-5xl font-bold text-anoraTeal mb-2">> 100 Mio. <span class="text-4xl text-gray-300">Produkte</span></div>
-                        <p class="text-base text-gray-400">verkauft auf Gebrauchtplattformen im Jahr 2024</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <section id="whyspecscout" class="scroll-mt-8 py-20 bg-gray-50 border-t border-gray-200">
+    <div class="w-full h-px bg-gray-200"></div>
+
+    <section id="whyspecscout" class="scroll-mt-8 py-24 bg-gray-50 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-anoraBlue mb-4">Warum SpecScout?</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">
+                <span class="text-anoraOrange font-bold tracking-wider uppercase text-sm">Die Technologie</span>
+                <h2 class="text-3xl font-bold text-anoraBlue mt-2 mb-4">Darum SpecScout</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
                     Wir liefern nicht nur aus dem Web kopierte Rohdaten. Wir liefern verlässliche Strukturen für Ihren Shop.
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 transition">
-                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-20">
+                <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6">
                         <i class="fa-solid fa-check-double text-anoraBlue text-2xl"></i>
                     </div>
                     <h3 class="font-bold text-xl text-anoraBlue mb-3">Geprüfte Datenqualität</h3>
-                    <p class="text-gray-600 mb-4 text-sm">
+                    <p class="text-gray-600 mb-6 text-sm leading-relaxed">
                         Eine Google-Suche allein reicht nicht. Unser Algorithmus vergleicht mehrere Quellen und validiert die Plausibilität.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-500">
+                    <ul class="space-y-3 text-sm text-gray-500 border-t border-gray-100 pt-4">
                         <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> Cross-Check mehrerer Quellen</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> Mehrstufige Validierungsmechanismen</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> Mehrstufige Validierung</li>
                     </ul>
                 </div>
 
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 transition">
-                    <div class="w-14 h-14 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+                <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="w-14 h-14 bg-teal-50 rounded-full flex items-center justify-center mb-6">
                         <i class="fa-solid fa-ruler-combined text-anoraTeal text-2xl"></i>
                     </div>
                     <h3 class="font-bold text-xl text-anoraBlue mb-3">Smarte Normalisierung</h3>
-                    <p class="text-gray-600 mb-4 text-sm">
-                        Wir vereinheitlichen Maßeinheiten und Formate automatisch, damit Ihre Filter funktionieren. Vollständig konfigurierbar für Ihren individuellen Datenstandard.
+                    <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                        Wir vereinheitlichen Maßeinheiten und Formate automatisch, damit Ihre Filter funktionieren. Konfigurierbar für Ihren individuellen Datenstandard.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-500">
+                    <ul class="space-y-3 text-sm text-gray-500 border-t border-gray-100 pt-4">
                         <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> "6.1 inch" &rarr; "15,5 cm"</li>
                         <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> Einheitliche Schreibweisen</li>
                     </ul>
                 </div>
 
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 transition">
-                    <div class="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="w-14 h-14 bg-orange-50 rounded-full flex items-center justify-center mb-6">
                         <i class="fa-solid fa-plug text-anoraOrange text-2xl"></i>
                     </div>
                     <h3 class="font-bold text-xl text-anoraBlue mb-3">Nahtlose Integration</h3>
-                    <p class="text-gray-600 mb-4 text-sm">
+                    <p class="text-gray-600 mb-6 text-sm leading-relaxed">
                         Egal ob Shopware, Shopify oder Eigenbau: Unsere API passt sich Ihrem Tech-Stack an.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-500">
+                    <ul class="space-y-3 text-sm text-gray-500 border-t border-gray-100 pt-4">
                         <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> RESTful JSON API</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> Einfache Integration in Zapier, n8n, Shopify Flow, Microsoft Power-Platform und viele weitere Systeme</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-anoraTeal"></i> Einfache Integration (Zapier, n8n, Shopify Flow, Microsoft Power-Platform und viele weitere Systeme)</li>
                     </ul>
                 </div>
+            </div>
+
+            
+
+            <div class="text-center mb-10 opacity-80">
+                <span class="inline-block h-px w-12 bg-gray-400 align-middle mr-2"></span>
+                <span class="text-base font-bold text-gray-500 uppercase tracking-widest align-middle">Der Mehrwert</span>
+                <span class="inline-block h-px w-12 bg-gray-400 align-middle ml-2"></span>
+            </div>
+
+            <div class="flex flex-col gap-8 max-w-6xl mx-auto">
+                
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col md:flex-row">
+                    
+                    <div class="md:w-1/3 bg-slate-50 p-8 flex flex-col justify-center items-center text-center border-b md:border-b-0 md:border-r border-gray-100">
+                        <div class="w-12 h-12 bg-blue-100 text-anoraBlue rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-shopping-cart text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-anoraBlue mb-2">Für Sie als Händler</h3>
+                        <p class="text-gray-500 text-sm font-medium">Zuverlässige Produktdaten ohne manuellen Rechercheaufwand</p>
+                    </div>
+
+                    <div class="md:w-2/3 p-8 bg-white">
+                        <ul class="flex flex-col gap-6">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-anoraBlue mt-1 text-sm shrink-0"></i>
+                                <div>
+                                    <span class="block text-gray-900 font-bold text-sm">Massive Zeitersparnis</span>
+                                    <span class="text-gray-500 text-sm leading-snug">Automatisierte Recherche statt stundenlanger Handarbeit.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-anoraBlue mt-1 text-sm shrink-0"></i>
+                                <div>
+                                    <span class="block text-gray-900 font-bold text-sm">Weniger Retouren</span>
+                                    <span class="text-gray-500 text-sm leading-snug">Präzise Daten verhindern Fehlkäufe und Rückfragen.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-anoraBlue mt-1 text-sm shrink-0"></i>
+                                <div>
+                                    <span class="block text-gray-900 font-bold text-sm">Höhere Conversion</span>
+                                    <span class="text-gray-500 text-sm leading-snug">Daten beantworten Fragen sofort und reduzieren Abbrüche.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-anoraBlue mt-1 text-sm shrink-0"></i>
+                                <div>
+                                    <span class="block text-gray-900 font-bold text-sm">Skalierbarkeit</span>
+                                    <span class="text-gray-500 text-sm leading-snug">Listen Sie hunderte Artikel pro Tag ohne Personalaufbau.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-anoraBlue mt-1 text-sm shrink-0"></i>
+                                <div>
+                                    <span class="block text-gray-900 font-bold text-sm">SEO-Sichtbarkeit</span>
+                                    <span class="text-gray-500 text-sm leading-snug">Google belohnt vollständige technische Datenblätter mit besserem Ranking.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col md:flex-row">
+                    
+                    <div class="md:w-1/3 bg-slate-50 p-8 flex flex-col justify-center items-center text-center border-b md:border-b-0 md:border-r border-gray-100">
+                        <div class="w-12 h-12 bg-teal-100 text-anoraTeal rounded-lg flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-users text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-anoraBlue mb-2">Für Ihre Kunden</h3>
+                        <p class="text-gray-500 text-sm font-medium">Schnell und sicher entscheiden – auch bei komplexen Produkten</p>
+                    </div>
+
+                    <div class="md:w-2/3 p-8 bg-white">
+                        <ul class="flex flex-col gap-6">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-anoraTeal mt-1 text-sm shrink-0"></i>
+                                <div>
+                                    <span class="block text-gray-900 font-bold text-sm">Produkte finden</span>
+                                    <span class="text-gray-500 text-sm leading-snug">Filter funktionieren endlich zuverlässig.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-anoraTeal mt-1 text-sm shrink-0"></i>
+                                <div>
+                                    <span class="block text-gray-900 font-bold text-sm">Vergleichbarkeit</span>
+                                    <span class="text-gray-500 text-sm leading-snug">Technische Daten auf einen Blick vergleichbar.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-anoraTeal mt-1 text-sm shrink-0"></i>
+                                <div>
+                                    <span class="block text-gray-900 font-bold text-sm">Sicherheit</span>
+                                    <span class="text-gray-500 text-sm leading-snug">Keine falschen Erwartungen beim Kauf.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-12 text-center max-w-4xl mx-auto px-4">
+                <p class="text-anoraBlue/80 font-medium md:text-lg leading-relaxed">
+                    <span class="font-bold text-anoraBlue">Gute Produktdaten entlasten Händler – und schaffen Vertrauen bei Kunden.</span> <br class="hidden md:block">
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section id="recommerce" class="scroll-mt-8 py-20 bg-anoraBlue text-white relative overflow-hidden">
+        
+        <div class="absolute top-0 right-0 w-96 h-96 bg-anoraTeal/10 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-anoraOrange/10 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-anoraTeal/10 border border-anoraTeal/20 text-anoraTeal text-xs font-bold uppercase tracking-wider mb-6">
+                        <i class="fa-solid fa-recycle"></i> Re-Commerce
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                        Wir schließen die Datenlücke der <br>
+                        <span class="text-anoraTeal">Circular Economy</span>.
+                    </h2>
+                    
+                    <div class="text-gray-300 text-lg mb-8 space-y-4 leading-relaxed">
+                        <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                        Re-Commerce ist die Zukunft, doch er leidet unter einer gigantischen strukturellen Datenlücke. 
+                        <span class="text-white font-medium">Gebrauchte Ware kommt oft ohne Datenblatt.</span>
+                        <br><br>
+                        SpecScout findet die relevanten Daten vollautomatisch und macht Second-Hand-Produkte genauso <span class="text-white font-medium">transparent, filterbar und verkäuflich</span> wie Neuware.
+                    </p>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="bg-white/5 border border-white/10 rounded-lg p-4 flex items-start gap-3">
+                            <div class="bg-anoraOrange/20 p-2 rounded-md text-anoraOrange shrink-0">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Legacy & EOL Support</h4>
+                                <p class="text-xs text-gray-400 mt-1">Daten auch für alte, nicht mehr gelistete Geräte.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white/5 border border-white/10 rounded-lg p-4 flex items-start gap-3">
+                            <div class="bg-green-500/20 p-2 rounded-md text-green-400 shrink-0">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Nachhaltigkeit</h4>
+                                <p class="text-xs text-gray-400 mt-1">Verlängert den Lebenszyklus von Produkten.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center md:justify-end">
+                    <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl">
+                        <div class="inline-block bg-anoraTeal/20 p-3 rounded-full text-anoraTeal mb-4">
+                            <i class="fa-solid fa-recycle text-2xl"></i>
+                        </div>
+                        <div class="text-5xl font-bold text-white mb-2">
+                            > 100 Mio.
+                        </div>
+                        <div class="text-xl text-gray-300 font-medium mb-4">Produkte</div>
+                        <p class="text-sm text-gray-400 border-t border-white/20 pt-4">
+                            wurden 2024 auf Gebrauchtplattformen verkauft - allein in Deutschland.
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -417,7 +808,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-anoraBlue font-bold text-3xl mb-4">Das Team hinter Anora Systems</h2>
-                <p class="text-gray-600">Wir verbinden Ingenieurskunst mit Softwareentwicklung.</p>
+                <p class="text-gray-600">Wir schaffen die Datenbasis für einen leistungsfähigen, transparenten und nachhaltigen Online-Handel.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -434,7 +825,7 @@
 
                 <div class="bg-white p-6 rounded-xl shadow-sm flex items-start gap-6">
                     <div class="w-32 h-32 bg-gray-200 rounded-full flex-shrink-0 overflow-hidden">
-                         <img src="https://via.placeholder.com/150" alt="Erik Dierkes" class="w-full h-full object-cover">
+                         <img src="erik.jpg" alt="Erik Dierkes" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h3 class="font-bold text-lg text-anoraBlue">Erik Dierkes</h3>
@@ -446,6 +837,8 @@
         </div>
     </section>
 
+    <div class="w-full h-px bg-gray-200"></div>
+
     <section id="faq" class="py-24 bg-white scroll-mt-28">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             
@@ -455,179 +848,359 @@
 
             <div class="space-y-4">
 
-                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
-                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
+                        <span>Wann ist SpecScout für mich geeignet – und wann nicht?</span>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
+                        </span>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <div class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    <p class="mb-4">SpecScout lohnt sich überall dort, wo technische Produktdaten Zeit kosten, unvollständig oder fehleranfällig sind und automatisiert verwaltet werden sollen.</p>
+                                    <p class="font-bold text-anoraBlue mb-2">SpecScout ist geeignet, wenn:</p>
+                                    <ul class="list-disc pl-5 space-y-2 mb-6">
+                                        <li>Sie Produkte mit vielen technischen Spezifikationen (z. B. Elektronik, Maschinen, Geräte) verkaufen.</li>
+                                        <li>Sie regelmäßig eine große Anzahl an Produkten anlegen oder pflegen.</li>
+                                        <li>Produktdaten aktuell aufwändig manuell recherchiert werden.</li>
+                                    </ul>
+                                    <p class="font-bold text-anoraBlue mb-2">SpecScout ist eher nicht geeignet, wenn:</p>
+                                    <ul class="list-disc pl-5 space-y-2 mb-6">
+                                        <li>Ihre Produkte keine oder kaum technische Daten haben (z. B. Mode, Deko).</li>
+                                        <li>Sie nur sehr wenige Produkte pflegen.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
                         <span>Welche Vorteile habe ich als Pilotkunde?</span>
-                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
                         </span>
-                    </summary>
-                    <p class="mt-4 leading-relaxed text-gray-600">
-                        Als Pilotkunde bekommen Sie Zugang zu SpecScout zu einem stark vergünstigten Preis. 
-                        Darüber hinaus haben Sie die Möglichkeit, SpecScout aktiv mitgestalten.
-                        Wir priorisieren Features und Integrationen, die Sie dringend benötigen, und sorgen für ein maßgeschneidertes reibungsloses Onboarding.                         
-                    </p>
-                </details>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    Als Pilotkunde bekommen Sie Zugang zu SpecScout zu einem stark vergünstigten Preis. Darüber hinaus haben Sie die Möglichkeit, SpecScout aktiv mitgestalten. Wir priorisieren Features und Integrationen, die Sie dringend benötigen, und sorgen für ein maßgeschneidertes reibungsloses Onboarding.
+                                </p>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
-                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
                         <span>Wie integriere ich SpecScout in mein System?</span>
-                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
                         </span>
-                    </summary>
-                    <p class="mt-4 leading-relaxed text-gray-600">
-                        SpecScout ist vorerst ein API-Service. Sie können unsere JSON-Daten direkt über eine REST-Schnittstelle abrufen. 
-                        Wir arbeiten jedoch kontinuierlich daran, die Integration für unsere Kunden so einfach wie möglich zu gestalten. 
-                        Als Pilotkunde haben Sie die Möglichkeit, eine auf Ihr System abgestimmte Integrationslösung anzufordern.
-                    </p>
-                </details>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    SpecScout ist vorerst ein API-Service. Sie können unsere JSON-Daten direkt über eine REST-Schnittstelle abrufen. Eine Integration in gängige Shopsysteme wie Zapier, n8n, Shopify Flow, Microsoft Power-Platform und viele weitere Systeme ist damit problemlos möglich. Als Pilotkunde haben Sie zusätzlich die Möglichkeit, eine auf Ihr System abgestimmte Integrationslösung anzufordern.
+                                </p>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
-                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
                         <span>Ist SpecScout für eine vollständige Automatisierung geeignet?</span>
-                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
                         </span>
-                    </summary>
-                    <p class="mt-4 leading-relaxed text-gray-600">
-                        Prinzipiell ja. SpecScout kann vollständig automatisiert in bestehende Prozesse eingebunden werden. 
-                        Optional lassen sich kritische Felder vor der Veröffentlichung manuell prüfen oder freigeben.
-                        Wir empfehlen eine kurze manuelle Kontrolle vor allem bei Produkten, die in mehreren Varianten kommen (z.B. verschiedene Speicherplatzoptionen beim selben Smartphonemodell).
-                    </p>
-                </details>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    Prinzipiell ja. SpecScout kann vollständig automatisiert in bestehende Prozesse eingebunden werden. Optional lassen sich kritische Felder vor der Veröffentlichung manuell prüfen oder freigeben. Wir empfehlen eine kurze manuelle Kontrolle vor allem bei Produkten, die in mehreren Varianten kommen, z.B. verschiedene Speicherplatzoptionen beim selben Smartphonemodell.
+                                </p>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
-                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
                         <span>Wie genau verbessert SpecScout meine Filter?</span>
-                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
                         </span>
-                    </summary>
-                    <p class="mt-4 leading-relaxed text-gray-600">
-                        Die beste Filter-Software nützt nichts, wenn die Datenbasis lückenhaft oder inkonsistent (z.B. Mix aus mm, cm, Zoll etc.) ist. <br>
-                        SpecScout liefert die notwendigen Attribute lückenlos und standardisiert. 
-                        Dadurch wird sichergestellt, dass Produkte in der Suche und in Kategorie-Filtern (Facetten-Suche) korrekt zugeordnet werden und nicht durchs Raster fallen.
-                    </p>
-                </details>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    Die beste Filter-Software nützt nichts, wenn die Datenbasis lückenhaft oder inkonsistent (z.B. Mix aus mm, cm, Zoll) ist. SpecScout liefert die notwendigen Attribute lückenlos und standardisiert. Dadurch wird sichergestellt, dass Produkte in der Suche und in Kategorie-Filtern (Facetten-Suche) korrekt zugeordnet werden.
+                                </p>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
-                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
                         <span>Kann ich bestimmen, welche Spezifikationen extrahiert werden?</span>
-                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
                         </span>
-                    </summary>
-                    <p class="mt-4 leading-relaxed text-gray-600">
-                        Ja. Sie definieren, welche Attribute für Ihren Shop relevant sind (z. B. RAM, Speicher, Gewicht, Akkukapazität, etc. etc.) und wie genau die Daten ausgegeben werden sollen. 
-                        Sie können die für Sie relevanten Spezifikationen hierbei zu 100% frei wählen.
-                        SpecScout liefert ausschließlich die gewünschten Spezifikationen in strukturierter Form.
-                    </p>
-                </details>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    Ja. Sie definieren, welche Attribute für Ihren Shop relevant sind (z. B. RAM, Speicher, Gewicht, Akkukapazität, etc.) und wie genau die Daten ausgegeben werden sollen. Sie können die für Sie relevanten Spezifikationen hierbei zu 100% frei wählen.
+                                </p>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
-                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
                         <span>Was passiert, wenn SpecScout keine passenden Daten findet?</span>
-                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
                         </span>
-                    </summary>
-                    <p class="mt-4 leading-relaxed text-gray-600">
-                        Es kann bei ungewöhnlichen Spezifikationen oder sehr schlecht dokumentierten Produkten vorkommen, dass SpecScout keine passenden Daten findet. 
-                        In diesem Fall sind betreffende Spezifikationen in unserer Antwort transparent unter "not_found" gelistet. (<a href="en/api-documentation.html#search" class="text-anoraTeal hover:underline">Docs</a>)
-                    </p>
-                </details>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    Es kann bei ungewöhnlichen Spezifikationen oder sehr schlecht dokumentierten Produkten vorkommen, dass SpecScout keine passenden Daten findet. In diesem Fall sind betreffende Spezifikationen in unserer Antwort transparent unter "not_found" gelistet. (<a href="en/api-documentation.html#search" class="text-anoraTeal hover:underline">Docs</a>)
+                                </p>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
-                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
                         <span>Findet ihr auch Daten zu alten Geräten (EOL) und Nischenprodukten?</span>
-                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
                         </span>
-                    </summary>
-                    <p class="mt-4 leading-relaxed text-gray-600">
-                        Ja. Im Gegensatz zu großen Datenbanken o.ä. ist unser Algorithmus flexibel und nicht auf in einer Datenbank vorhandene Beiträge beschränkt.
-                    </p>
-                </details>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    Ja. Im Gegensatz zu großen Datenbanken o.ä. ist unser Algorithmus flexibel und nicht auf in einer Datenbank vorhandene Beiträge beschränkt.
+                                </p>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
-                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
                         <span>Woher stammen die Daten?</span>
-                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
                         </span>
-                    </summary>
-                    <p class="mt-4 leading-relaxed text-gray-600">
-                        Die Daten stammen aus verschiedenen vertrauenswürdigen Quellen aus dem Web. Alle Daten werden doppelt verifiziert, um höchste Qualität zu gewährleisten.
-                    </p>
-                </details>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    Die Daten stammen aus verschiedenen vertrauenswürdigen Quellen aus dem Web. Alle Daten werden doppelt verifiziert, um höchste Qualität zu gewährleisten.
+                                </p>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
-                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
                         <span>Was kostet SpecScout?</span>
-                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
                         </span>
-                    </summary>
-                    <p class="mt-4 leading-relaxed text-gray-600">
-                        Wir befinden uns aktuell noch in der Pilotphase, daher bieten wir im Moment für unsere Pilotkunden stark vergünstigte Preise an. Fragen Sie gerne eine Demo an, um ein individuelles Angebot zu erhalten.
-                    </p>
-                </details>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    Wir befinden uns aktuell noch in der Pilotphase, daher bieten wir im Moment für unsere Pilotkunden stark vergünstigte Preise an. Fragen Sie gerne eine Demo an, um ein individuelles Angebot zu erhalten.
+                                </p>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
-                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
                         <span>Kann ich die Datenqualität testen?</span>
-                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
                         </span>
-                    </summary>
-                    <p class="mt-4 leading-relaxed text-gray-600">
-                        Natürlich. Sie können von uns auf Anfrage einen vorläufigen API-Key erhalten, mit dem Sie bis zu 200 kostenlose Anfragen an unsere API senden können.
-                        Alternativ können sie uns auch ein CSV-Dokument mit bis zu 50 Test-Produkten (Name, Marke) und den benötigten Spezifikationen zukommen lassen (genaues Format auf Anfrage).
-                        Wir stellen Ihnen die von SpecScout erzeugten Ergebnisse dann als JSON oder CSV zur Verfügung.
-                    </p>
-                </details>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    Natürlich. Sie können von uns auf Anfrage einen vorläufigen API-Key erhalten, mit dem Sie bis zu 200 kostenlose Anfragen an unsere API senden können. Alternativ können sie uns auch ein CSV-Dokument mit bis zu 50 Test-Produkten (Name, Marke) und den benötigten Spezifikationen zukommen lassen. Wir stellen Ihnen die von SpecScout erzeugten Ergebnisse dann als JSON oder CSV zur Verfügung.
+                                </p>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
-                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
                         <span>Wie stellt ihr sicher, dass die Daten korrekt sind?</span>
-                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
                         </span>
-                    </summary>
-                    <p class="mt-4 leading-relaxed text-gray-600">
-                        SpecScout vergleicht technische Angaben aus mehreren unabhängigen Quellen. Wir geben nur Daten aus, wenn sie von mindestens zwei unabhängigen Quellen bestätigt wurden.
-                    </p>
-                </details>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    SpecScout vergleicht technische Angaben aus mehreren unabhängigen Quellen. Wir geben nur Daten aus, wenn sie von mindestens zwei unabhängigen Quellen bestätigt wurden.
+                                </p>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
-                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
-                        <span> Ihr nutzt doch KI. Kann es nicht zu Halluzinationen kommen?</span>
-                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
+                        <span> Ihr nutzt doch KI. Kann es nicht zu Halluzinationen und ähnlichen Fehlern kommen?</span>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
                         </span>
-                    </summary>
-                    <p class="mt-4 leading-relaxed text-gray-600">
-                        Nein. Wir benutzen KI als zentralen Bestandteil unseres Algorithmus, allerdings haben wir Guardrails entwickelt, die Halluzinationen in SpecScout zuverlässig ausschließen.
-                    </p>
-                </details>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    Nein. Wir benutzen KI als zentralen Bestandteil unseres Algorithmus, allerdings haben wir Guardrails entwickelt, die Halluzinationen in SpecScout zuverlässig ausschließen.
+                                </p>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <details class="group bg-gray-50 rounded-xl p-6 [&_summary::-webkit-details-marker]:hidden border border-gray-100 open:bg-white open:shadow-md open:border-gray-200 transition-all duration-300">
-                    <summary class="flex cursor-pointer items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg list-none">
+                <div class="faq-item group bg-gray-50 rounded-xl border border-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-gray-200 overflow-hidden" data-state="closed">
+                    <div class="p-6 flex items-center justify-between gap-1.5 text-anoraBlue font-bold text-lg cursor-pointer select-none" onclick="toggleFaq(this)">
                         <span>Werden meine Daten dauerhaft gespeichert oder weitergegeben?</span>
-                        <span class="shrink-0 rounded-full bg-white p-1.5 text-anoraTeal sm:p-3 group-open:bg-anoraTeal group-open:text-white transition-colors">
-                            <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform duration-300"></i>
+                        <span class="shrink-0 rounded-full bg-white border border-gray-100 p-1.5 text-anoraTeal sm:p-3 shadow-sm transition-all duration-300 group-data-[state=open]:bg-anoraTeal group-data-[state=open]:text-white group-data-[state=open]:border-transparent">
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-data-[state=open]:rotate-180 group-hover:scale-125"></i>
                         </span>
-                    </summary>
-                    <p class="mt-4 leading-relaxed text-gray-600">
-                        Nein. Ihre Produktlisten dienen ausschließlich zur Identifikation und Verarbeitung. Kundenspezifische Daten werden nicht an Dritte weitergegeben und nicht dauerhaft gespeichert.
-                        In der Pilotphase nutzen wir allerdings die Daten aus fehlgeschlagenen Anfragen, um unseren Algorithmus zu verbessern und ähnliche Fehler zukünftig zu verhindern.
-                    </p>
-                </details>
+                    </div>
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-data-[state=open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 pb-4">
+                                <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
+                                    Nein. Ihre Produktlisten dienen ausschließlich zur Identifikation und Verarbeitung. Kundenspezifische Daten werden nicht an Dritte weitergegeben und nicht dauerhaft gespeichert. In der Pilotphase nutzen wir allerdings die Daten aus fehlgeschlagenen Anfragen, um unseren Algorithmus zu verbessern und ähnliche Fehler zukünftig zu verhindern.
+                                </p>
+                            </div>
+                            <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Schließen">
+                                <div class="w-full flex justify-center items-center py-2 text-anoraTeal hover:text-anoraBlue">
+                                    <i class="fa-solid fa-chevron-up text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
     </section>
+
+    <script>
+        function toggleFaq(headerElement) {
+            const item = headerElement.closest('.faq-item');
+            if (item.dataset.state === 'open') {
+                item.dataset.state = 'closed';
+            } else {
+                item.dataset.state = 'open';
+            }
+        }
+
+        function closeFaq(footerElement) {
+            event.stopPropagation();
+            const item = footerElement.closest('.faq-item');
+            item.dataset.state = 'closed';
+        }
+    </script>
 
     <section id="contact" class="scroll-mt-8 bg-anoraBlue py-20 text-center relative overflow-hidden">
          <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full bg-gradient-to-b from-transparent to-black/30"></div>
@@ -639,12 +1212,12 @@
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="mailto:info@anora-systems.com" class="bg-anoraOrange hover:bg-orange-600 text-white px-8 py-4 rounded-md font-bold text-lg transition shadow-lg shadow-orange-900/50 flex items-center justify-center gap-2">
                     <i class="fa-regular fa-envelope"></i>
-                    Gespräch vereinbaren
+                    Pilotkunde werden
                 </a>
             </div>
 
             <div class="mt-6 text-sm">
-                <span class="text-gray-400">Oder schreiben Sie uns direkt:</span>
+                <!-- <span class="text-gray-400">Oder schreiben Sie uns direkt:</span> -->
                 <a href="mailto:info@anora-systems.com" class="text-white font-medium hover:text-anoraOrange transition border-b border-white/20 hover:border-anoraOrange pb-0.5 ml-2">
                     info@anora-systems.com
                 </a>

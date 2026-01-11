@@ -26,6 +26,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
     </style>
 </head>
+
+
 <body class="font-sans text-slate-800 bg-gray-50 flex flex-col min-h-screen">
 
     <nav class="bg-white shadow-sm p-4 sticky top-0 z-50">
@@ -45,6 +47,19 @@
 
         <div class="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-gray-100 text-gray-700 leading-relaxed space-y-8">
 
+            <div class="bg-blue-50 border-l-4 border-anoraTeal p-4 rounded-r">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fa-solid fa-circle-info text-anoraTeal"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-anoraBlue">
+                            <strong class="font-bold">Legal Note:</strong> This is a translation of the original German "Datenschutzerklärung". It is provided for convenience only. In the event of any discrepancies or legal disputes, the <a href="../datenschutz.html" class="text-anoraTeal hover:underline font-bold">original German version</a> shall prevail and be legally binding.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
             <section>
                 <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">1. Data protection at a glance</h2>
                 
@@ -228,9 +243,13 @@
     </main>
 
     <footer class="bg-anoraBlue text-white py-8 text-center mt-auto">
-        <div class="max-w-4xl mx-auto px-4">
-            <p class="text-sm opacity-60">&copy; 2025 Anora Systems. All rights reserved.</p>
-        </div>
+            <div class="pt-8 border-t border-gray-800 text-gray-500 text-sm">
+                <p>&copy; 2025 Anora Systems. All rights reserved.</p>
+                <div class="flex justify-center gap-6 mt-4">
+                    <a href="legal.html" class="hover:text-white">Imprint</a>
+                    <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
+                </div>
+            </div>
     </footer>
 
 </body>
