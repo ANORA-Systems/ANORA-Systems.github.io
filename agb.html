@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGB | Anora Systems</title>
+
+    <link rel="icon" type="image/png" sizes="512x512" href="https://anora-systems.com/favicon-512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://anora-systems.com/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://anora-systems.com/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://anora-systems.com/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://anora-systems.com/favicon-180.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        anoraBlue: '#0B1E3D',
+                        anoraTeal: '#00A99D',
+                        anoraOrange: '#F7941D',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        .agb-section {
+            margin-bottom: 2rem;
+        }
+        .agb-section p {
+            margin-bottom: 0.75rem;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-gray-50 flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-sm p-4 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <img src="logo.png" alt="Anora Systems Logo" class="h-20 w-auto">
+            </a>
+            <a href="index.html" class="text-sm text-gray-500 hover:text-anoraTeal transition flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Zurück zur Startseite
+            </a>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
+        
+        <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-8">Allgemeine Geschäftsbedingungen</h1>
+
+        <div class="bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100">
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-100 pb-6 mb-8 gap-4">
+                <div>
+                    <span class="text-sm font-semibold text-anoraTeal uppercase tracking-wider">Stand: 01. Februar 2026</span>
+                    <p class="text-gray-500 text-sm mt-1">Für Geschäftskunden (B2B)</p>
+                </div>
+                <button onclick="window.print()" class="text-sm text-gray-500 hover:text-anoraBlue transition flex items-center gap-2 border border-gray-200 px-4 py-2 rounded-lg hover:border-anoraBlue">
+                    <i class="fa-solid fa-print"></i> Drucken / PDF speichern
+                </button>
+            </div>
+
+            <div class="text-gray-600 leading-relaxed text-sm md:text-base">
+
+                <div class="agb-section" id="section-1">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">1. Geltungsbereich</h2>
+                    <p>(1) Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen Anora Systems (nachfolgend „Anbieter“) und ihren Kunden (nachfolgend „Kunde“) über die Nutzung der Software „SpecScout“ sowie damit verbundene Dienstleistungen.</p>
+                    <p>(2) Das Angebot richtet sich ausschließlich an Unternehmer im Sinne des § 14 BGB, juristische Personen des öffentlichen Rechts oder öffentlich-rechtliche Sondervermögen. Ein Vertragsschluss mit Verbrauchern ist ausgeschlossen.</p>
+                    <p>(3) Abweichende, entgegenstehende oder ergänzende Allgemeine Geschäftsbedingungen des Kunden werden nur dann und insoweit Vertragsbestandteil, als der Anbieter ihrer Geltung ausdrücklich schriftlich zugestimmt hat.</p>
+                </div>
+
+                <div class="agb-section" id="section-2">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">2. Leistungsgegenstand und Vertragstyp</h2>
+                    <p>(1) Der Anbieter stellt dem Kunden mit SpecScout eine Software-Lösung zur automatisierten Identifikation, Recherche, Extraktion und Strukturierung technischer Produktdaten zur Verfügung (Software-as-a-Service).</p>
+                    <p>(2) Die Bereitstellung der Daten erfolgt auf Basis öffentlich zugänglicher Quellen sowie unter Einsatz automatisierter Verfahren.</p>
+                    <p>(3) Der Anbieter erbringt seine Leistungen im Rahmen eines Dienstvertrages. Trotz implementierter Maßnahmen zur Qualitätssicherung kann – insbesondere aufgrund der Abhängigkeit von externen Datenquellen – keine Gewähr für die vollständige Richtigkeit, Aktualität und Vollständigkeit der extrahierten Daten übernommen werden.</p>
+                    <p>(4) Der konkrete Leistungsumfang (z. B. Anzahl der Requests, Datenformate, Support-Level) ergibt sich aus dem jeweiligen Einzelvertrag oder Angebot.</p>
+                </div>
+
+                <div class="agb-section" id="section-3">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">3. Pilotphase und „Beta“-Status</h2>
+                    <p>(1) Sofern im Angebot als „Pilotphase“, „Beta“ oder „Prototyp“ gekennzeichnet, befindet sich die Software noch in der Entwicklung.</p>
+                    <p>(2) Der Kunde nimmt ausdrücklich zur Kenntnis, dass:</p>
+                    <ul class="list-disc pl-5 mb-3 space-y-1">
+                        <li>Funktionen eingeschränkt sein oder kurzfristig geändert werden können,</li>
+                        <li>die Verfügbarkeit unterbrochen sein kann,</li>
+                    </ul>
+                    <p>(3) Eine Gewährleistung für die technische Fehlerfreiheit wird während der Pilotphase ausgeschlossen, soweit gesetzlich zulässig.</p>
+                    <p>(4) Während der Pilotphase besteht kein Anspruch auf die dauerhafte Verfügbarkeit bestimmter Funktionen, auf Weiterentwicklung der Software oder auf Übernahme einzelner Funktionen in eine spätere Produktversion. Der Anbieter ist berechtigt, Funktionen jederzeit anzupassen, zu entfernen oder einzustellen.</p>
+                </div>
+
+                <div class="agb-section" id="section-4">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">4. Vertragsschluss</h2>
+                    <p>(1) Der Vertrag kommt durch Unterzeichnung eines Angebots, schriftliche Auftragsbestätigung oder durch die Bereitstellung des Zugangs zur Software zustande.</p>
+                    <p>(2) Der Anbieter ist berechtigt, den Vertragsschluss ohne Angabe von Gründen abzulehnen.</p>
+                </div>
+
+                <div class="agb-section" id="section-5">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">5. Mitwirkungspflichten und Rechtmäßigkeit</h2>
+                    <p>(1) Der Kunde stellt alle für die Leistungserbringung erforderlichen Informationen im vereinbarten Format bereit.</p>
+                    <p>(2) Der Kunde stellt sicher, dass die Nutzung der gelieferten Daten in seinem jeweiligen Anwendungsbereich rechtlich zulässig ist. Der Anbieter übernimmt insbesondere keine Prüfungspflicht (z.B. im Hinblick auf Urheber-, Marken-, Wettbewerbs-, Produktkennzeichnungs- oder Verbraucherschutzrecht).</p>
+                </div>
+
+                <div class="agb-section" id="section-6">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">6. Nutzungsrechte</h2>
+                    <p>(1) Der Anbieter räumt dem Kunden ein einfaches, nicht ausschließliches, zeitlich auf die Vertragslaufzeit beschränktes Recht ein, die Software SpecScout zu nutzen.</p>
+                    <p>(2) An den gelieferten Datensätzen (Output) räumt der Anbieter dem Kunden – soweit rechtlich möglich – ein dauerhaftes, einfaches Nutzungsrecht zur Verwendung im eigenen Geschäftsbetrieb (insb. E-Commerce) ein.</p>
+                    <p>(3) Jede Art des Reverse Engineering, systematischen Auslesens der API über das vertragliche Maß hinaus oder der Missbrauch der Dienste zur Entwicklung konkurrierender Produkte ist untersagt.</p>
+                    <p>(4) Der Anbieter ist berechtigt, anonymisierte und aggregierte Nutzungs- und Outputdaten zur Verbesserung der Software, zu statistischen Zwecken sowie zur Weiterentwicklung der eigenen Systeme zu verwenden.</p>
+                    <p>(5) Eine Herausgabe von internen Funktionsweisen, Modellen oder Bewertungsmechanismen ist ausgeschlossen.</p>
+                </div>
+
+                <div class="agb-section" id="section-7">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">7. Vergütung</h2>
+                    <p>(1) Die Vergütung richtet sich nach dem jeweiligen Einzelvertrag. Alle Preise verstehen sich in Euro und zuzüglich der jeweils geltenden gesetzlichen Umsatzsteuer.</p>
+                    <p>(2) Rechnungen sind, sofern nicht anders vereinbart, innerhalb von 14 Tagen nach Rechnungsstellung ohne Abzug zahlbar.</p>
+                </div>
+
+                <div class="agb-section" id="section-8">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">8. Haftung und Freistellung</h2>
+                    <p>(1) Der Anbieter haftet unbeschränkt bei Vorsatz, grober Fahrlässigkeit sowie bei Verletzung von Leben, Körper oder Gesundheit.</p>
+                    <p>(2) Bei leichter Fahrlässigkeit haftet der Anbieter nur bei Verletzung wesentlicher Vertragspflichten (Kardinalpflichten). In diesem Fall ist die Haftung der Höhe nach auf den bei Vertragsschluss vorhersehbaren und vertragstypischen Schaden begrenzt.</p>
+                    <p>(3) Die verschuldensunabhängige Haftung für anfängliche Mängel (§ 536a BGB) wird ausgeschlossen.</p>
+                    <p>(4) Der Anbieter haftet ferner nicht für:</p>
+                    <ul class="list-disc pl-5 mb-3 space-y-1">
+                        <li>die inhaltliche Richtigkeit, Vollständigkeit oder Aktualität der automatisch recherchierten Produktdaten,</li>
+                        <li>Schäden, die darauf beruhen, dass der Kunde seiner Prüfungspflicht nicht nachgekommen ist,</li>
+                        <li>wirtschaftliche Entscheidungen oder Maßnahmen, die der Kunde auf Grundlage der bereitgestellten Daten trifft (z. B. Listungsentscheidungen, Pricing, Marketingaussagen).</li>
+                    </ul>
+                    <p>(5) Die Haftung für entgangenen Gewinn, ausgebliebene Einsparungen oder sonstige mittelbare Folgeschäden ist ausgeschlossen.</p>
+                    <p>(6) Freistellung: Der Kunde stellt den Anbieter von allen Ansprüchen Dritter frei, die diese aufgrund einer rechtswidrigen oder vertragswidrigen Verwendung der bereitgestellten Daten durch den Kunden gegen den Anbieter geltend machen. Dies umfasst auch die angemessenen Kosten der Rechtsverteidigung.</p>
+                    <p>(7) Die Haftungsbeschränkungen gelten auch zugunsten der gesetzlichen Vertreter, Mitarbeiter und Erfüllungsgehilfen des Anbieters.</p>
+                </div>
+
+                <div class="agb-section" id="section-9">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">9. Verfügbarkeit und Wartung</h2>
+                    <p>(1) Der Anbieter strebt eine hohe Verfügbarkeit an, schuldet jedoch keine unterbrechungsfreie Erreichbarkeit.</p>
+                    <p>(2) Der Anbieter ist berechtigt, Wartungsarbeiten durchzuführen, die zu vorübergehenden Einschränkungen führen können.</p>
+                </div>
+
+                <div class="agb-section" id="section-10">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">10. Datenschutz und Geheimhaltung</h2>
+                    <p>(1) Die Parteien verpflichten sich zur Einhaltung der geltenden Datenschutzbestimmungen (DSGVO). Sofern der Anbieter personenbezogene Daten im Auftrag verarbeitet, schließen die Parteien eine gesonderte Auftragsverarbeitungsvereinbarung (AVV).</p>
+                    <p>(2) Beide Parteien verpflichten sich, alle als vertraulich gekennzeichneten oder offensichtlich vertraulichen Informationen der jeweils anderen Partei geheim zu halten. Diese Pflicht besteht auch über das Vertragsende hinaus fort.</p>
+                </div>
+
+                <div class="agb-section" id="section-11">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">11. Laufzeit und Kündigung</h2>
+                    <p>(1) Die Vertragslaufzeit und Kündigungsfristen ergeben sich aus dem Einzelvertrag.</p>
+                    <p>(2) Das Recht zur außerordentlichen Kündigung aus wichtigem Grund bleibt unberührt.</p>
+                </div>
+
+                <div class="agb-section" id="section-12">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">12. Änderung der AGB</h2>
+                    <p>(1) Der Anbieter ist berechtigt, diese AGB aus sachlichen Gründen (z. B. Gesetzesänderungen, technische Weiterentwicklungen, Anpassung des Leistungsumfangs) mit Wirkung für die Zukunft zu ändern.</p>
+                    <p>(2) Änderungen werden dem Kunden mindestens sechs Wochen vor Inkrafttreten in Textform mitgeteilt.</p>
+                    <p>(3) Widerspricht der Kunde nicht innerhalb dieser Frist, gelten die Änderungen als angenommen. Widerspricht der Kunde, ist der Anbieter berechtigt, den Vertrag zum Änderungszeitpunkt ordentlich zu kündigen.</p>
+                </div>
+
+                <div class="agb-section" id="section-13">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">13. Schlussbestimmungen</h2>
+                    <p>(1) Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts.</p>
+                    <p>(2) Ausschließlicher Gerichtsstand für alle Streitigkeiten ist der Geschäftssitz des Anbieters, sofern der Kunde Kaufmann ist.</p>
+                    <p>(3) Sollte eine Bestimmung dieses Vertrages ganz oder teilweise unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. Die Parteien verpflichten sich, die unwirksame Bestimmung durch eine wirksame Regelung zu ersetzen, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-anoraBlue text-white py-8 text-center mt-auto">
+        <div class="pt-8 border-t border-gray-800 text-gray-500 text-sm">
+            <p>&copy; 2025 Anora Systems. Alle Rechte vorbehalten.</p>
+            <div class="flex justify-center gap-6 mt-4">
+                <a href="impressum.html" class="hover:text-white">Impressum</a>
+                <a href="datenschutz.html" class="hover:text-white">Datenschutz</a>
+                <a href="agb.html" class="hover:text-white">AGB</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
