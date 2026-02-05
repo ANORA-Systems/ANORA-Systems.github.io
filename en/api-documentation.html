@@ -257,7 +257,7 @@
                         <span class="text-gray-600">/api/v1/specifications</span>
                     </div>
                     <div class="p-6">
-                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Object</h4>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Specification Object</h4>
                         <pre class="bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto mb-4"><code>{
   "name": "CPU Type",
   "description": "The processor type of the device",
@@ -265,7 +265,7 @@
   "unit": "",              // e.g. "kg", "GB"
   "tolerance": 0.15,       // 0-1 (decimal)
   "options": null,         // Array of allowed strings
-  "sub_values": []
+  "sub_values": []         // For nested specs (e.g. dimensions -> length, width, height)
 }</code></pre>
                         <p class="text-xs text-gray-500">Note: Use <code>options</code> for filters (e.g. material: ["aluminum", "plastic"]).</p>
                     </div>
