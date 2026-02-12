@@ -59,32 +59,34 @@
 </head>
 
 
-<body class="font-sans text-slate-800 bg-gray-50 antialiased">
+<body class="font-sans text-slate-800 bg-slate-50 antialiased selection:bg-anoraTeal/20">
 
-    <div class="md:hidden bg-white/95 backdrop-blur border-b border-gray-200 p-4 flex justify-between items-center sticky top-0 z-50 shadow-sm">
-        <span class="font-outfit font-bold text-anoraBlue text-lg tracking-tight">SpecScout API v1</span>
-        <a href="index.html" class="text-sm text-gray-500 hover:text-anoraTeal transition">Back to Home</a>
-    </div>
-
-    <div class="fixed top-20 right-12 w-80 h-80 rounded-full bg-anoraTeal/10 blur-3xl pointer-events-none hidden xl:block"></div>
-    <div class="fixed bottom-0 left-0 w-72 h-72 rounded-full bg-anoraOrange/10 blur-3xl pointer-events-none hidden xl:block"></div>
-
-    <div class="relative flex flex-col md:flex-row min-h-screen">
-        
-        <aside class="w-full md:w-80 md:h-screen md:sticky md:top-0 overflow-y-auto scrollbar-hide p-4 md:p-6 lg:p-8">
-            <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
-                <div class="block mb-8 group">
-                <a href="index.html" >
-                    <div class="flex items-center gap-3 mb-2">
-                        <img src="../logo.png" alt="Anora Logo" class="h-10 w-auto transition">
-                        <div class="hidden sm:block h-8 w-px bg-gray-200"></div>
-                        <span class="font-outfit text-xl tracking-tight text-anoraBlue">Spec<span class="text-anoraTeal">Scout</span></span>
-                    </div>
-                    
+    <nav class="bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between gap-4">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="../logo.png" alt="Anora Logo" class="h-10 w-auto">
+                <div class="hidden sm:block h-8 w-px bg-gray-200"></div>
+                <span class="font-outfit text-xl tracking-tight text-anoraBlue">Spec<span class="text-anoraTeal">Scout</span></span>
+            </a>
+            <div class="flex items-center gap-3">
+                <span class="hidden md:inline-block text-xs font-bold uppercase tracking-[0.2em] text-gray-400">Developer Hub</span>
+                <a href="index.html" class="inline-flex items-center gap-2 bg-anoraOrange hover:bg-orange-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition shadow-md shadow-orange-200">
+                    <i class="fa-solid fa-arrow-left text-xs"></i>
+                    Back to Home
                 </a>
-                <div class="text-xs text-gray-500 font-bold tracking-[0.2em] uppercase">Developer Hub</div>
-                </div>
+            </div>
+        </div>
+    </nav>
 
+    <div class="fixed top-20 right-12 w-80 h-80 rounded-full bg-anoraTeal/15 blur-3xl pointer-events-none hidden xl:block"></div>
+    <div class="fixed bottom-0 left-0 w-72 h-72 rounded-full bg-anoraOrange/15 blur-3xl pointer-events-none hidden xl:block"></div>
+    <div class="fixed top-1/3 left-1/3 w-80 h-80 rounded-full bg-anoraBlue/5 blur-3xl pointer-events-none hidden xl:block"></div>
+
+    <div class="relative flex flex-col md:flex-row min-h-[calc(100vh-73px)]">
+        
+        <aside class="w-full md:w-80 md:h-[calc(100vh-73px)] md:sticky md:top-[73px] overflow-y-auto scrollbar-hide p-4 md:p-6 lg:p-8">
+            <div class="bg-white/90 backdrop-blur border border-gray-200 rounded-3xl shadow-lg shadow-slate-200/70 p-6">
+                <div class="block mb-8 group">
                 <nav class="space-y-8 text-sm">
                     <div>
                         <h3 class="uppercase tracking-wider text-xs font-bold text-anoraOrange mb-3">Core Service</h3>
@@ -105,18 +107,18 @@
                     <div>
                         <h3 class="uppercase tracking-wider text-xs font-bold text-gray-400 mb-3">General</h3>
                         <ul class="space-y-2">
-                            <li><a href="#intro" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-anoraBlue transition">Introduction</a></li>
-                            <li><a href="#auth" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-anoraBlue transition">Authentication</a></li>
+                            <li><a href="#intro" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Introduction</a></li>
+                            <li><a href="#auth" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Authentication</a></li>
                         </ul>
                     </div>
 
                     <div>
                         <h3 class="uppercase tracking-wider text-xs font-bold text-gray-400 mb-3">Resources</h3>
                         <ul class="space-y-2">
-                            <li><a href="#users" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-anoraBlue transition">Users</a></li>
-                            <li><a href="#apikeys" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-anoraBlue transition">API Keys</a></li>
-                            <li><a href="#specs" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-anoraBlue transition">Specifications</a></li>
-                            <li><a href="#categories" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-gray-50 hover:text-anoraBlue transition">Categories</a></li>
+                            <li><a href="#users" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Users</a></li>
+                            <li><a href="#apikeys" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">API Keys</a></li>
+                            <li><a href="#specs" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Specifications</a></li>
+                            <li><a href="#categories" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Categories</a></li>
                         </ul>
                     </div>
 
@@ -125,15 +127,12 @@
         </aside>
 
         <main class="relative z-10 flex-1 w-full max-w-6xl mx-auto p-6 md:p-10 lg:p-12">
-            
-            <section id="intro" class="mb-12 md:mb-14">
-                <h1 class="text-4xl md:text-5xl font-outfit font-bold tracking-tight text-anoraBlue mb-4">SpecScout API Documentation (v1)</h1>
-                <p class="text-lg text-gray-600 leading-relaxed max-w-4xl">
+            <section id="intro" class="mb-10 md:mb-12 rounded-3xl bg-gradient-to-r from-anoraBlue to-[#132a53] text-white p-7 md:p-9 shadow-xl shadow-anoraBlue/20 border border-white/10">
+                <h1 class="text-4xl md:text-5xl font-outfit font-bold tracking-tight mb-4">SpecScout API Documentation (v1)</h1>
+                <p class="text-lg text-gray-200 leading-relaxed max-w-4xl">
                     Welcome to the SpecScout API. This documentation provides detailed information about endpoints, parameters, and responses to help you integrate automated product data extraction into your e-commerce platform.
                 </p>
             </section>
-
-            <hr class="border-gray-200 mb-10 md:mb-12">
 
             <section id="search" class="mb-10 rounded-3xl border border-anoraTeal/35 bg-gradient-to-br from-white to-anoraTeal/10 p-6 md:p-8 shadow-sm">
                 <div class="flex items-center gap-3 mb-6">
@@ -143,9 +142,13 @@
                 <p class="text-lg text-gray-600 mb-6">
                     Performs the core SpecScout service: searches the web for product specifications based on a query.
                 </p>
+                <a href="#example" class="inline-flex items-center gap-2 bg-anoraOrange hover:bg-orange-600 text-white font-semibold text-sm px-4 py-2 rounded-md shadow-md shadow-orange-200 transition mb-6">
+                    <i class="fa-solid fa-code"></i>
+                    Jump to Request-Reply Example
+                </a>
 
                 <div class="bg-white rounded-2xl shadow-lg border border-anoraTeal/30 overflow-hidden mb-5">
-                    <div class="bg-gradient-to-r from-anoraTeal/10 to-white px-6 py-4 border-b border-anoraTeal/20 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gradient-to-r from-anoraTeal/20 via-white to-slate-50 px-6 py-4 border-b border-anoraTeal/20 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                         <span class="text-anoraBlue font-bold">/api/v1/search</span>
                     </div>
@@ -173,8 +176,8 @@
   "not_found": [],
   "errors": []
 }</code></pre>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -200,7 +203,7 @@
                 </div>
             </section>
 
-            <section id="auth" class="mb-10 rounded-3xl border border-gray-300 bg-white p-6 md:p-8 shadow-sm">
+            <section id="auth" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
                 <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-4">Authentication</h2>
                 <p class="text-gray-600 mb-5">Authentication is handled via API keys. A client must provide a valid API key with each request to protected endpoints.</p>
                 
@@ -211,11 +214,11 @@
                 </div>
             </section>
 
-            <section id="users" class="mb-10 rounded-3xl border border-gray-300 bg-white p-6 md:p-8 shadow-sm">
+            <section id="users" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
                 <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-6">Users</h2>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                         <span class="text-gray-600">/api/v1/users/register</span>
                     </div>
@@ -240,8 +243,8 @@
   "is_active": true,
   "created_at": "..."
 }</code></pre>
-                                <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                                    <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                                <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                    <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                         <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                         <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                                     </summary>
@@ -263,14 +266,14 @@
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                         <span class="text-gray-600">/api/v1/users/me</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Get your account information.</p>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -293,7 +296,7 @@
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
                         <span class="text-gray-600">/api/v1/users/me</span>
                     </div>
@@ -305,8 +308,8 @@
   "full_name": "Jane Doe",
   "email": "new@example.com"
 }</code></pre>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -335,7 +338,7 @@
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
                         <span class="text-gray-600">/api/v1/users/me/password</span>
                     </div>
@@ -347,8 +350,8 @@
   "current_password": "old_password",
   "new_password": "new_secure_password"
 }</code></pre>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -368,14 +371,14 @@
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
                         <span class="text-gray-600">/api/v1/users/me</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Delete your account. Returns <span class="font-mono text-xs bg-gray-100 px-1">204 No Content</span>.</p>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -389,11 +392,11 @@
                 </div>
             </section>
 
-             <section id="apikeys" class="mb-10 rounded-3xl border border-gray-300 bg-white p-6 md:p-8 shadow-sm">
+             <section id="apikeys" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
                 <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-6">API Keys</h2>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                         <span class="text-gray-600">/api/v1/users/keys</span>
                     </div>
@@ -409,8 +412,8 @@
     "revoked": false
   }
 }</code></pre>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -440,14 +443,14 @@
                     </div>
                 </div>
                  <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                         <span class="text-gray-600">/api/v1/users/keys</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Lists all keys for a user (without secrets).</p>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -476,14 +479,14 @@
                     </div>
                 </div>
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
                         <span class="text-gray-600">/api/v1/users/keys/{key_id}</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Revoke an API key.</p>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -503,7 +506,7 @@
                 </div>
             </section>
 
-            <section id="specs" class="mb-10 rounded-3xl border border-gray-300 bg-white p-6 md:p-8 shadow-sm">
+            <section id="specs" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
                 <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-6">Specifications</h2>
                 <details class="group mb-6 rounded-2xl border border-yellow-300 bg-yellow-50/80 overflow-hidden">
                     <summary class="list-none cursor-pointer p-4 md:p-5 flex items-center justify-between gap-4">
@@ -556,7 +559,7 @@
                 </details>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                         <span class="text-gray-600">/api/v1/specifications</span>
                     </div>
@@ -577,8 +580,8 @@
                             All other fields are optional and used for fine-tuning. <br/>
                             Note: Use <code>options</code> for filters (e.g. material: ["aluminum", "plastic"]).
                         </p>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -613,14 +616,14 @@
                 </div>
                 
                 <div class="space-y-4">
-                    <div class="bg-white p-4 rounded-xl border border-gray-200/80 shadow-sm">
+                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
                         <div class="flex items-center gap-4">
                             <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
                             <code class="text-sm text-gray-700">/api/v1/specifications</code>
                             <span class="text-sm text-gray-500 ml-auto">List all specs</span>
                         </div>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -640,14 +643,14 @@
                             </div>
                         </details>
                     </div>
-                    <div class="bg-white p-4 rounded-xl border border-gray-200/80 shadow-sm">
+                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
                         <div class="flex items-center gap-4">
                             <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
                             <code class="text-sm text-gray-700">/api/v1/specifications/{id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Get single spec</span>
                         </div>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -679,7 +682,7 @@
                     </div>
                     
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-4">
-                        <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
                             <span class="text-gray-600">/api/v1/specifications/{id}</span>
                         </div>
@@ -699,8 +702,8 @@
                                 For updates, all fields are optional. Send only the fields you want to change.
                                 For creation, <code>name</code>, <code>description</code>, <code>unit</code>, and <code>instance</code> are required.
                             </p>
-                            <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                     <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                     <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                                 </summary>
@@ -732,14 +735,14 @@
                         </div>
                     </div>
 
-                    <div class="bg-white p-4 rounded-xl border border-gray-200/80 shadow-sm">
+                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
                         <div class="flex items-center gap-4">
                             <span class="px-2 py-0.5 rounded bg-red-500 text-white font-bold text-xs w-16 text-center">DELETE</span>
                             <code class="text-sm text-gray-700">/api/v1/specifications/{id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Delete spec</span>
                         </div>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -759,19 +762,19 @@
                 </div>
             </section>
 
-             <section id="categories" class="mb-10 rounded-3xl border border-gray-300 bg-white p-6 md:p-8 shadow-sm">
+             <section id="categories" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
                 <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-6">Categories</h2>
                 <p class="text-gray-600 mb-6">Categories group specifications in a hierarchical structure.</p>
 
                 <div class="space-y-4 mb-5">
-                    <div class="bg-white p-4 rounded-xl border border-gray-200/80 shadow-sm">
+                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
                         <div class="flex items-center gap-4">
                             <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
                             <code class="text-sm text-gray-700">/api/v1/categories</code>
                             <span class="text-sm text-gray-500 ml-auto">List categories</span>
                         </div>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -799,14 +802,14 @@
                             </div>
                         </details>
                     </div>
-                    <div class="bg-white p-4 rounded-xl border border-gray-200/80 shadow-sm">
+                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
                         <div class="flex items-center gap-4">
                             <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
                             <code class="text-sm text-gray-700">/api/v1/categories/{id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Get category</span>
                         </div>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -835,7 +838,7 @@
                 </div>
 
                 <div id="create-category" class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5 scroll-mt-24">
-                    <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                         <span class="text-gray-600">/api/v1/categories</span>
                     </div>
@@ -847,8 +850,8 @@
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Every category name must be unique.</p>
                     </div>
-                    <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                        <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                    <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                        <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                             <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                             <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                         </summary>
@@ -869,7 +872,7 @@
                 
                 <div class="space-y-4 mb-5">
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-4">
-                        <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
                             <span class="text-gray-600">/api/v1/categories/{id}</span>
                         </div>
@@ -880,8 +883,8 @@
   "name": "New Category Name",
   "top_category": "f2a9c3f4-9113-4bc4-ac18-6d07fb3d8ba7" // UUID of parent or don't include top_category
 }</code></pre>
-                            <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                     <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                     <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                                 </summary>
@@ -909,14 +912,14 @@
                         </div>
                     </div>
 
-                    <div class="bg-white p-4 rounded-xl border border-gray-200/80 shadow-sm">
+                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
                         <div class="flex items-center gap-4">
                             <span class="px-2 py-0.5 rounded bg-red-500 text-white font-bold text-xs w-16 text-center">DELETE</span>
                             <code class="text-sm text-gray-700">/api/v1/categories/{id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Delete category</span>
                         </div>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -936,14 +939,14 @@
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                         <span class="text-gray-600">/api/v1/categories/{cat_id}/specs/{spec_id}</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Associates a specification with a category.</p>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -963,14 +966,14 @@
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gradient-to-r from-gray-50 to-white px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
                         <span class="text-gray-600">/api/v1/categories/{cat_id}/specs/{spec_id}</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Removes a specification from a category.</p>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-200 bg-gray-50 shadow-sm hover:shadow-md transition-shadow">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between">
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
                                 <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
                             </summary>
@@ -990,7 +993,7 @@
                 </div>
             </section>
 
-            <section id="example" class="mb-10 rounded-3xl border border-gray-300 bg-white p-6 md:p-8 shadow-sm scroll-mt-10">
+            <section id="example" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60 scroll-mt-10">
                 <div class="max-w-7xl"> 
                     
                     <div class="mb-10 text-left">
@@ -1103,8 +1106,9 @@ x_api_key: sp_user_c64e2c071c4135d5.iKTBaTZFW...</code></pre>
         </main>
     </div>
 
-    <footer class="bg-anoraBlue text-white py-8 text-center mt-auto">
-        <div class="pt-8 border-t border-gray-800 text-gray-400 text-sm">
+    <footer class="bg-anoraBlue text-white py-10 text-center mt-auto relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
+        <div class="relative z-10 pt-8 border-t border-gray-800 text-gray-400 text-sm">
             <p>&copy; 2025 Anora Systems. All rights reserved.</p>
             <div class="flex justify-center gap-6 mt-4">
                 <a href="legal.html" class="hover:text-white">Imprint</a>
