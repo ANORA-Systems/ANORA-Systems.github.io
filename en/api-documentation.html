@@ -835,6 +835,47 @@
                             </div>
                         </details>
                     </div>
+                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
+                        <div class="flex items-center gap-4">
+                            <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
+                            <code class="text-sm text-gray-700">/api/v1/categories/{category_id}/specifications</code>
+                            <span class="text-sm text-gray-500 ml-auto">List category specifications</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mt-4">Get all specifications that are attached to the given category.</p>
+                        <div class="mt-3 text-sm text-gray-600 space-y-2">
+                            <p><span class="font-mono text-anoraBlue font-bold">category_id</span> Path parameter, required UUID.</p>
+                            <p><span class="font-mono text-anoraBlue font-bold">skip</span> Query parameter, optional integer. Default: <code class="font-mono">0</code>.</p>
+                            <p><span class="font-mono text-anoraBlue font-bold">limit</span> Query parameter, optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
+                        </div>
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                            </summary>
+                            <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                <ul class="space-y-2">
+                                    <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">array of #/components/schemas/Specification</code></li>
+                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>[
+  {
+    "id": "uuid",
+    "name": "Screen Size",
+    "description": "Display diagonal size",
+    "instance": "float",
+    "unit": "inch",
+    "created_at": "2026-01-01T00:00:00Z",
+    "updated_at": "2026-01-01T00:00:00Z"
+  }
+]</code></pre>
+                                    <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
+                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+  "detail": [
+    {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
+  ]
+}</code></pre>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
                 </div>
 
                 <div id="create-category" class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5 scroll-mt-24">
