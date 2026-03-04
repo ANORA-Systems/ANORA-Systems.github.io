@@ -51,6 +51,11 @@
             border-radius: 4px;
         }
 
+        /* Keep anchor targets visible below the sticky top bar */
+        main [id] {
+            scroll-margin-top: 90px;
+        }
+
     </style>
 
     <!-- Microanalytics Tracking Script-->
@@ -156,7 +161,7 @@
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Query Parameters</h4>
                         <ul class="space-y-3 mb-6 text-sm">
                             <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">product_name</span> <span class="text-gray-600">Required. E.g. "MacBook Pro 16 M3 Max"</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">brand</span> <span class="text-gray-600">Optional but use highly recommended. E.g. "Apple".</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">brand</span> <span class="text-gray-600">Required. E.g. "Apple".</span></li>
                             <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">category</span> <span class="text-gray-600">Name of a predefined category (see <a href="#create-category" class="text-anoraTeal hover:underline font-medium">category creation</a>) to indicate which specifications to look for.</span></li>
                             <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">required_specs</span> <span class="text-gray-600">Optional. JSON array of spec objects. Use to add additional specifications to look for.</span></li>
                         </ul>
@@ -240,8 +245,10 @@
   "id": "550e84...",
   "email": "user@example.com",
   "full_name": "John Doe",
-  "is_active": true,
-  "created_at": "..."
+  "is_activated": false,
+  "is_superuser": false,
+  "created_at": "...",
+  "updated_at": "..."
 }</code></pre>
                                 <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                                     <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
@@ -402,14 +409,18 @@
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm mb-4">Creates a new API key. <span class="text-red-500 font-bold">Important:</span> The raw token is returned only once.</p>
-                        <p class="text-xs text-gray-500 mb-2">Query Parameters: <code>user_id</code> (required), <code>valid_until</code>, <code>scope</code>.</p>
+                        <p class="text-xs text-gray-500 mb-2">Query Parameters: <code>user_id</code> (required), <code>valid_until</code>, <code>scope</code>, <code>label</code>.</p>
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Response (201 Created)</h4>
                         <pre class="bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code>{
   "token": "sp_user_a1b2c3... (SAVE THIS!)",
   "key": {
     "key_id": "sp_user_...",
+    "scope": "default",
+    "label": "",
+    "revoked": false,
+    "valid_until": null,
     "created_at": "...",
-    "revoked": false
+    "updated_at": "..."
   }
 }</code></pre>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
@@ -425,6 +436,7 @@
   "key": {
     "key_id": "sp_user_...",
     "scope": "default",
+    "label": "",
     "revoked": false,
     "valid_until": null,
     "created_at": "2026-01-01T00:00:00Z",
@@ -456,17 +468,30 @@
                             </summary>
                             <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                 <ul class="space-y-2">
-                                    <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">array of #/components/schemas/APIKeyPublic</code></li>
-                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>[
-  {
-    "key_id": "sp_user_...",
-    "scope": "default",
-    "revoked": false,
-    "valid_until": null,
-    "created_at": "2026-01-01T00:00:00Z",
-    "updated_at": "2026-01-01T00:00:00Z"
+                                    <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/APIKeyListResponse</code></li>
+                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+  "items": [
+    {
+      "key_id": "sp_user_...",
+      "scope": "default",
+      "label": "CI key",
+      "revoked": false,
+      "valid_until": null,
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "pagination": {
+    "total": 1,
+    "skip": 0,
+    "limit": 100,
+    "returned": 1,
+    "has_prev": false,
+    "has_next": false,
+    "next_skip": null,
+    "prev_skip": null
   }
-]</code></pre>
+}</code></pre>
                                     <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
                                     <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
   "detail": [
@@ -646,7 +671,7 @@
                     <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
                         <div class="flex items-center gap-4">
                             <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
-                            <code class="text-sm text-gray-700">/api/v1/specifications/{id}</code>
+                            <code class="text-sm text-gray-700">/api/v1/specifications/{spec_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Get single spec</span>
                         </div>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
@@ -684,23 +709,23 @@
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-4">
                         <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
-                            <span class="text-gray-600">/api/v1/specifications/{id}</span>
+                            <span class="text-gray-600">/api/v1/specifications/{spec_id}</span>
                         </div>
                         <div class="p-6">
                             <p class="text-gray-600 text-sm mb-2">Update a specification.</p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
                             <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
-  "name": "Display Size",                     // optional for update
-  "description": "Diagonal of visible display area", // optional for update
-  "unit": "inch",                             // optional for update
-  "instance": "float",                        // optional for update: "float", "int", "str", "bool", "list"
+  "name": "Display Size",                     // required
+  "description": "Diagonal of visible display area", // required
+  "unit": "inch",                             // required
+  "instance": "float",                        // required: "float", "int", "str", "bool", "list"
   "tolerance": 0.05,                          // optional fine-tuning
   "options": null,                            // optional fine-tuning
   "sub_values": []                            // optional fine-tuning
 }</code></pre>
                             <p class="text-xs text-gray-500">
-                                For updates, all fields are optional. Send only the fields you want to change.
-                                For creation, <code>name</code>, <code>description</code>, <code>unit</code>, and <code>instance</code> are required.
+                                For updates, provide a full specification payload.
+                                <code>name</code>, <code>description</code>, <code>unit</code>, and <code>instance</code> are required.
                             </p>
                             <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                                 <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
@@ -738,7 +763,7 @@
                     <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
                         <div class="flex items-center gap-4">
                             <span class="px-2 py-0.5 rounded bg-red-500 text-white font-bold text-xs w-16 text-center">DELETE</span>
-                            <code class="text-sm text-gray-700">/api/v1/specifications/{id}</code>
+                            <code class="text-sm text-gray-700">/api/v1/specifications/{spec_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Delete spec</span>
                         </div>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
@@ -805,7 +830,7 @@
                     <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
                         <div class="flex items-center gap-4">
                             <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
-                            <code class="text-sm text-gray-700">/api/v1/categories/{id}</code>
+                            <code class="text-sm text-gray-700">/api/v1/categories/{category_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Get category</span>
                         </div>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
@@ -915,7 +940,7 @@
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-4">
                         <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
-                            <span class="text-gray-600">/api/v1/categories/{id}</span>
+                            <span class="text-gray-600">/api/v1/categories/{category_id}</span>
                         </div>
                         <div class="p-6">
                             <p class="text-gray-600 text-sm mb-2">Update a category.</p>
@@ -956,7 +981,7 @@
                     <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
                         <div class="flex items-center gap-4">
                             <span class="px-2 py-0.5 rounded bg-red-500 text-white font-bold text-xs w-16 text-center">DELETE</span>
-                            <code class="text-sm text-gray-700">/api/v1/categories/{id}</code>
+                            <code class="text-sm text-gray-700">/api/v1/categories/{category_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Delete category</span>
                         </div>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
@@ -982,7 +1007,7 @@
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
                     <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
-                        <span class="text-gray-600">/api/v1/categories/{cat_id}/specs/{spec_id}</span>
+                        <span class="text-gray-600">/api/v1/categories/{category_id}/specs/{spec_id}</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Associates a specification with a category.</p>
@@ -1009,7 +1034,7 @@
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
                     <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
-                        <span class="text-gray-600">/api/v1/categories/{cat_id}/specs/{spec_id}</span>
+                        <span class="text-gray-600">/api/v1/categories/{category_id}/specs/{spec_id}</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Removes a specification from a category.</p>
