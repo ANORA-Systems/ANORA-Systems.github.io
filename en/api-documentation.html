@@ -121,7 +121,7 @@
                         <h3 class="uppercase tracking-wider text-xs font-bold text-gray-400 mb-3">Resources</h3>
                         <ul class="space-y-2">
                             <li><a href="#users" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Users</a></li>
-                            <li><a href="#apikeys" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">API Keys</a></li>
+                            <!-- <li><a href="#apikeys" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">API Keys</a></li> -->
                             <li><a href="#specs" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Specifications</a></li>
                             <li><a href="#categories" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Categories</a></li>
                         </ul>
@@ -160,10 +160,10 @@
                     <div class="p-6">
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Query Parameters</h4>
                         <ul class="space-y-3 mb-6 text-sm">
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">product_name</span> <span class="text-gray-600">Required. E.g. "MacBook Pro 16 M3 Max"</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">brand</span> <span class="text-gray-600">Required. E.g. "Apple".</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">category</span> <span class="text-gray-600">Name of a predefined category (see <a href="#create-category" class="text-anoraTeal hover:underline font-medium">category creation</a>) to indicate which specifications to look for.</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">required_specs</span> <span class="text-gray-600">Optional. JSON array of spec objects. Use to add additional specifications to look for.</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">product_name</span> <span class="text-gray-600">Required string. E.g. "MacBook Pro 16 M3 Max".</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">brand</span> <span class="text-gray-600">Required string. E.g. "Apple".</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">required_specs</span> <span class="text-gray-600">Optional string (nullable). Use to pass additional specifications to look for.</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">category</span> <span class="text-gray-600">Optional string. Name of a predefined category (see <a href="#create-category" class="text-anoraTeal hover:underline font-medium">category creation</a>) to indicate which specifications to look for.</span></li>
                         </ul>
 
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Success Response (200 OK)</h4>
@@ -228,7 +228,7 @@
                         <span class="text-gray-600">/api/v1/users/register</span>
                     </div>
                     <div class="p-6">
-                        <p class="text-gray-600 text-sm mb-4">Registers a new user. Does not require authentication.</p>
+                        <p class="text-gray-600 text-sm mb-4">Register a new user. Does not require authentication.</p>
                         
                         <div class="grid md:grid-cols-2 gap-8">
                             <div>
@@ -241,15 +241,7 @@
                             </div>
                             <div>
                                 <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Response (201 Created)</h4>
-                                <pre class="bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code>{
-  "id": "550e84...",
-  "email": "user@example.com",
-  "full_name": "John Doe",
-  "is_activated": false,
-  "is_superuser": false,
-  "created_at": "...",
-  "updated_at": "..."
-}</code></pre>
+                                <pre class="bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code>null</code></pre>
                                 <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                                     <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                         <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -302,13 +294,13 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
+                <!-- <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
                     <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
                         <span class="text-gray-600">/api/v1/users/me</span>
                     </div>
                     <div class="p-6">
-                        <p class="text-gray-600 text-sm mb-2">Update your profile.</p>
+                        <p class="text-gray-600 text-sm mb-2">Update your profile. Session-only; email changes require sudo mode.</p>
                         
                          <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
                          <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code>{
@@ -350,7 +342,7 @@
                         <span class="text-gray-600">/api/v1/users/me/password</span>
                     </div>
                     <div class="p-6">
-                        <p class="text-gray-600 text-sm mb-2">Update your password.</p>
+                        <p class="text-gray-600 text-sm mb-2">Update your password. Session-only, requires sudo mode and current password.</p>
                         
                          <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
                          <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code>{
@@ -383,7 +375,7 @@
                         <span class="text-gray-600">/api/v1/users/me</span>
                     </div>
                     <div class="p-6">
-                        <p class="text-gray-600 text-sm">Delete your account. Returns <span class="font-mono text-xs bg-gray-100 px-1">204 No Content</span>.</p>
+                        <p class="text-gray-600 text-sm">Delete your account. Session-only, requires sudo session. Returns <span class="font-mono text-xs bg-gray-100 px-1">204 No Content</span>.</p>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                             <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -396,10 +388,10 @@
                             </div>
                         </details>
                     </div>
-                </div>
+                </div> -->
             </section>
 
-             <section id="apikeys" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
+             <!-- <section id="apikeys" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
                 <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-6">API Keys</h2>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
@@ -408,8 +400,8 @@
                         <span class="text-gray-600">/api/v1/users/keys</span>
                     </div>
                     <div class="p-6">
-                        <p class="text-gray-600 text-sm mb-4">Creates a new API key. <span class="text-red-500 font-bold">Important:</span> The raw token is returned only once.</p>
-                        <p class="text-xs text-gray-500 mb-2">Query Parameters: <code>user_id</code> (required), <code>valid_until</code>, <code>scope</code>, <code>label</code>.</p>
+                        <p class="text-gray-600 text-sm mb-4">Create a new API key and return the raw token once. Session-only, sudo required. Users can only create their own keys; superusers can create for any user.</p>
+                        <p class="text-xs text-gray-500 mb-2">Query Parameters: <code>user_id</code> (required UUID), <code>valid_until</code> (date-time), <code>scope</code> (default | performance | superuser, default: <code>default</code>), <code>label</code> (string, max 120).</p>
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Response (201 Created)</h4>
                         <pre class="bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code>{
   "token": "sp_user_a1b2c3... (SAVE THIS!)",
@@ -460,7 +452,8 @@
                         <span class="text-gray-600">/api/v1/users/keys</span>
                     </div>
                     <div class="p-6">
-                        <p class="text-gray-600 text-sm">Lists all keys for a user (without secrets).</p>
+                        <p class="text-gray-600 text-sm">List API keys for a user (no secret is returned). Session-only. Users can only view their own keys; superusers can view any user's keys.</p>
+                        <p class="text-xs text-gray-500 mt-2">Query Parameters: <code>search</code> (default: ""), <code>is_revoked</code> (boolean, nullable), <code>scope</code> (default | performance | superuser, nullable), <code>skip</code> (default: 0), <code>limit</code> (max: 1000, default: 100).</p>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                             <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -509,7 +502,7 @@
                         <span class="text-gray-600">/api/v1/users/keys/{key_id}</span>
                     </div>
                     <div class="p-6">
-                        <p class="text-gray-600 text-sm">Revoke an API key.</p>
+                        <p class="text-gray-600 text-sm">Revoke an API key. Session-only, sudo required. Users can only revoke their own keys; superusers can revoke any key.</p>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                             <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -529,7 +522,7 @@
                         </details>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
             <section id="specs" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
                 <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-6">Specifications</h2>
@@ -589,7 +582,8 @@
                         <span class="text-gray-600">/api/v1/specifications</span>
                     </div>
                     <div class="p-6">
-                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Specification Object</h4>
+                        <p class="text-gray-600 text-sm mb-2">Create a new specification for the current user.</p>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
                         <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
   "name": "Display Size",                     // required
   "description": "Diagonal of visible display area", // required
@@ -647,6 +641,15 @@
                             <code class="text-sm text-gray-700">/api/v1/specifications</code>
                             <span class="text-sm text-gray-500 ml-auto">List all specs</span>
                         </div>
+                        <p class="text-gray-600 text-sm mt-3">List all specifications visible to the current user.</p>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
+                        <div class="mt-3 text-sm text-gray-600 space-y-2">
+                            <p><span class="font-mono text-anoraBlue font-bold">search</span> Optional string. Default: <code class="font-mono">""</code>.</p>
+                            <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all</code>. Allowed: <code class="font-mono">all</code>, <code class="font-mono">owned</code>, <code class="font-mono">public</code>.</p>
+                            <p><span class="font-mono text-anoraBlue font-bold">user_id</span> Optional UUID (nullable). Filter by owner.</p>
+                            <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
+                            <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
+                        </div>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                             <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -674,6 +677,7 @@
                             <code class="text-sm text-gray-700">/api/v1/specifications/{spec_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Get single spec</span>
                         </div>
+                        <p class="text-gray-600 text-sm mt-3">Get a single specification by ID.</p>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                             <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -798,6 +802,15 @@
                             <code class="text-sm text-gray-700">/api/v1/categories</code>
                             <span class="text-sm text-gray-500 ml-auto">List categories</span>
                         </div>
+                        <p class="text-gray-600 text-sm mt-3">List categories visible to the current user.</p>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
+                        <div class="mt-3 text-sm text-gray-600 space-y-2">
+                            <p><span class="font-mono text-anoraBlue font-bold">search</span> Optional string. Default: <code class="font-mono">""</code>.</p>
+                            <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all</code>. Allowed: <code class="font-mono">all</code>, <code class="font-mono">owned</code>, <code class="font-mono">public</code>.</p>
+                            <p><span class="font-mono text-anoraBlue font-bold">user_id</span> Optional UUID (nullable). Filter by owner.</p>
+                            <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
+                            <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
+                        </div>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                             <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -833,6 +846,7 @@
                             <code class="text-sm text-gray-700">/api/v1/categories/{category_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Get category</span>
                         </div>
+                        <p class="text-gray-600 text-sm mt-3">Get a single category by ID.</p>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                             <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -867,6 +881,7 @@
                             <span class="text-sm text-gray-500 ml-auto">List category specifications</span>
                         </div>
                         <p class="text-gray-600 text-sm mt-4">Get all specifications that are attached to the given category.</p>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
                         <div class="mt-3 text-sm text-gray-600 space-y-2">
                             <p><span class="font-mono text-anoraBlue font-bold">category_id</span> Path parameter, required UUID.</p>
                             <p><span class="font-mono text-anoraBlue font-bold">skip</span> Query parameter, optional integer. Default: <code class="font-mono">0</code>.</p>
@@ -909,13 +924,12 @@
                         <span class="text-gray-600">/api/v1/categories</span>
                     </div>
                     <div class="p-6">
-                         <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code>{
+                        <p class="text-gray-600 text-sm mb-2">Create a category. Every category name must be unique.</p>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
+                        <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code>{
   "name": "Electronics/IT-Devices/Laptops",
   "top_category": "f2a9c3f4-9113-4bc4-ac18-6d07fb3d8ba7"  // UUID of parent or don't include top_category
 }</code></pre>
-                    <div class="p-6">
-                        <p class="text-gray-600 text-sm">Every category name must be unique.</p>
-                    </div>
                     <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                         <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                             <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -1077,7 +1091,7 @@
         <span class="text-xs bg-green-600 text-white px-2 py-0.5 rounded font-mono">REQUEST</span>
     </div>
     <div class="p-6 overflow-x-auto">
-        <pre class="font-mono text-sm leading-relaxed text-gray-300"><code>GET /api/v1/search?product_name=iPhone%2012%20Pro&brand=Apple&category=Electronics/IT-Devices/Smartphones
+        <pre class="font-mono text-sm leading-relaxed text-gray-300"><code>GET /api/v1/search?product_name=iPhone%2012%20Pro&brand=Apple&category=3fa85f64-5717-4562-b3fc-2c963f66afa6
 
 Headers:
 x_api_key: sp_user_c64e2c071c4135d5.iKTBaTZFW...</code></pre>
