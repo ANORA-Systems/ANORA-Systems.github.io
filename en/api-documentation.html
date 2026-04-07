@@ -121,6 +121,7 @@
                         <h3 class="uppercase tracking-wider text-xs font-bold text-gray-400 mb-3">Resources</h3>
                         <ul class="space-y-2">
                             <li><a href="#users" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Users</a></li>
+                            <li><a href="#quotas" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Quotas</a></li>
                             <!-- <li><a href="#apikeys" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">API Keys</a></li> -->
                             <li><a href="#specs" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Specifications</a></li>
                             <li><a href="#categories" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Categories</a></li>
@@ -228,7 +229,7 @@
                         <span class="text-gray-600">/api/v1/users/register</span>
                     </div>
                     <div class="p-6">
-                        <p class="text-gray-600 text-sm mb-4">Register a new user. Does not require authentication.</p>
+                        <p class="text-gray-600 text-sm mb-4">Register a new user.</p>
                         
                         <div class="grid md:grid-cols-2 gap-8">
                             <div>
@@ -389,6 +390,44 @@
                         </details>
                     </div>
                 </div> -->
+            </section>
+
+            <section id="quotas" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
+                <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-6">Quotas</h2>
+                <p class="text-gray-600 mb-5">Check your quota limits and usage.</p>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                        <span class="text-gray-600">/api/v1/quotas/me</span>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm">Get the current user's quota limits and usage.</p>
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                            </summary>
+                            <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                <ul class="space-y-2">
+                                    <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/UserQuotaResponse</code></li>
+                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+  "quota_key": "requests",
+  "limit": 500,
+  "used": 254,
+  "remaining": 246,
+  "period_start": "2026-04-01T00:00:00Z",
+  "period_end": "2026-05-01T00:00:00Z",
+  "period_type": "monthly",
+  "period_tz": "UTC",
+  "source": "plan",
+  "is_exempt": false
+}</code></pre>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                </div>
             </section>
 
              <!-- <section id="apikeys" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
@@ -579,7 +618,7 @@
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
                     <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
-                        <span class="text-gray-600">/api/v1/specifications</span>
+                        <span class="text-gray-600">/api/<strong>v2</strong>/specifications</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm mb-2">Create a new specification for the current user.</p>
@@ -635,57 +674,72 @@
                 </div>
                 
                 <div class="space-y-4">
-                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
-                        <div class="flex items-center gap-4">
-                            <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
-                            <code class="text-sm text-gray-700">/api/v1/specifications</code>
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                            <code class="text-sm text-gray-700">/api/<strong>v2</strong>/specifications</code>
                             <span class="text-sm text-gray-500 ml-auto">List all specs</span>
                         </div>
-                        <p class="text-gray-600 text-sm mt-3">List all specifications visible to the current user.</p>
-                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
-                        <div class="mt-3 text-sm text-gray-600 space-y-2">
-                            <p><span class="font-mono text-anoraBlue font-bold">search</span> Optional string. Default: <code class="font-mono">""</code>.</p>
-                            <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all</code>. Allowed: <code class="font-mono">all</code>, <code class="font-mono">owned</code>, <code class="font-mono">public</code>.</p>
-                            <p><span class="font-mono text-anoraBlue font-bold">user_id</span> Optional UUID (nullable). Filter by owner.</p>
-                            <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
-                            <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
-                        </div>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
-                                <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
-                                <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                            </summary>
-                            <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
-                                <ul class="space-y-2">
-                                    <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">array of #/components/schemas/Specification</code></li>
-                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>[
-  {"id": "uuid", "name": "Display Size", "description": "...", "instance": "float", "unit": "inch"}
-]</code></pre>
-                                    <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm">List all specifications visible to the current user.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
+                            <div class="mt-3 text-sm text-gray-600 space-y-2">
+                                <p><span class="font-mono text-anoraBlue font-bold">search</span> Optional string. Default: <code class="font-mono">""</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all</code>. Allowed: <code class="font-mono">all</code>, <code class="font-mono">owned</code>, <code class="font-mono">public</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">user_id</span> Optional UUID (nullable). Filter by owner.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
+                            </div>
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/SpecificationListResponse</code></li>
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+  "items": [
+    {"id": "uuid", "name": "Display Size", "description": "...", "instance": "float", "unit": "inch"}
+  ],
+  "pagination": {
+    "total": 128,
+    "skip": 0,
+    "limit": 100,
+    "returned": 1,
+    "has_prev": false,
+    "has_next": true,
+    "next_skip": 100,
+    "prev_skip": null
+  }
+}</code></pre>
+                                        <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
+                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
 }</code></pre>
-                                </ul>
-                            </div>
-                        </details>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
                     </div>
-                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
-                        <div class="flex items-center gap-4">
-                            <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
-                            <code class="text-sm text-gray-700">/api/v1/specifications/{spec_id}</code>
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                            <code class="text-sm text-gray-700">/api/<strong>v2</strong>/specifications/{spec_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Get single spec</span>
                         </div>
-                        <p class="text-gray-600 text-sm mt-3">Get a single specification by ID.</p>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
-                                <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
-                                <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                            </summary>
-                            <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
-                                <ul class="space-y-2">
-                                    <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/Specification</code></li>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm">Get a single specification by ID.</p>
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/Specification</code></li>
                                         <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
   "id": "uuid",
   "name": "Display Size",
@@ -699,21 +753,22 @@
   "potential_values": [],
   "sources": []
 }</code></pre>
-                                    <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                        <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
+                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
 }</code></pre>
-                                </ul>
-                            </div>
-                        </details>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
                     </div>
                     
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-4">
                         <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
-                            <span class="text-gray-600">/api/v1/specifications/{spec_id}</span>
+                            <span class="text-gray-600">/api/<strong>v2</strong>/specifications/{spec_id}</span>
                         </div>
                         <div class="p-6">
                             <p class="text-gray-600 text-sm mb-2">Update a specification.</p>
@@ -764,29 +819,31 @@
                         </div>
                     </div>
 
-                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
-                        <div class="flex items-center gap-4">
-                            <span class="px-2 py-0.5 rounded bg-red-500 text-white font-bold text-xs w-16 text-center">DELETE</span>
-                            <code class="text-sm text-gray-700">/api/v1/specifications/{spec_id}</code>
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
+                            <code class="text-sm text-gray-700">/api/<strong>v2</strong>/specifications/{spec_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Delete spec</span>
                         </div>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
-                                <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
-                                <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                            </summary>
-                            <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
-                                <ul class="space-y-2">
-                                    <li><code class="font-mono">204</code> Successful Response (no content)</li>
-                                    <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                        <div class="p-6">
+                            <details class="faq-item group rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">204</code> Successful Response (no content)</li>
+                                        <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
+                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
 }</code></pre>
-                                </ul>
-                            </div>
-                        </details>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -796,66 +853,81 @@
                 <p class="text-gray-600 mb-6">Categories group specifications in a hierarchical structure.</p>
 
                 <div class="space-y-4 mb-5">
-                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
-                        <div class="flex items-center gap-4">
-                            <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
-                            <code class="text-sm text-gray-700">/api/v1/categories</code>
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                            <code class="text-sm text-gray-700">/api/<strong>v2</strong>/categories</code>
                             <span class="text-sm text-gray-500 ml-auto">List categories</span>
                         </div>
-                        <p class="text-gray-600 text-sm mt-3">List categories visible to the current user.</p>
-                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
-                        <div class="mt-3 text-sm text-gray-600 space-y-2">
-                            <p><span class="font-mono text-anoraBlue font-bold">search</span> Optional string. Default: <code class="font-mono">""</code>.</p>
-                            <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all</code>. Allowed: <code class="font-mono">all</code>, <code class="font-mono">owned</code>, <code class="font-mono">public</code>.</p>
-                            <p><span class="font-mono text-anoraBlue font-bold">user_id</span> Optional UUID (nullable). Filter by owner.</p>
-                            <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
-                            <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
-                        </div>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
-                                <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
-                                <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                            </summary>
-                            <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
-                                <ul class="space-y-2">
-                                    <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">array of #/components/schemas/CategoryPublic</code></li>
-                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>[
-  {
-    "id": "uuid",
-    "name": "Electronics/IT-Devices/Laptops",
-    "user_id": "uuid",
-    "top_category": null,
-    "path": ["Electronics", "IT-Devices", "Laptops"],
-    "created_at": "2026-01-01T00:00:00Z",
-    "updated_at": "2026-01-01T00:00:00Z"
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm">List categories visible to the current user.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
+                            <div class="mt-3 text-sm text-gray-600 space-y-2">
+                                <p><span class="font-mono text-anoraBlue font-bold">search</span> Optional string. Default: <code class="font-mono">""</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all</code>. Allowed: <code class="font-mono">all</code>, <code class="font-mono">owned</code>, <code class="font-mono">public</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">user_id</span> Optional UUID (nullable). Filter by owner.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
+                            </div>
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/CategoryListResponse</code></li>
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+  "items": [
+    {
+      "id": "uuid",
+      "name": "Electronics/IT-Devices/Laptops",
+      "user_id": "uuid",
+      "top_category": null,
+      "path": ["Electronics", "IT-Devices", "Laptops"],
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "pagination": {
+    "total": 42,
+    "skip": 0,
+    "limit": 100,
+    "returned": 1,
+    "has_prev": false,
+    "has_next": false,
+    "next_skip": null,
+    "prev_skip": null
   }
-]</code></pre>
-                                    <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+}</code></pre>
+                                        <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
+                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
 }</code></pre>
-                                </ul>
-                            </div>
-                        </details>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
                     </div>
-                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
-                        <div class="flex items-center gap-4">
-                            <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
-                            <code class="text-sm text-gray-700">/api/v1/categories/{category_id}</code>
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                            <code class="text-sm text-gray-700">/api/<strong>v2</strong>/categories/{category_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Get category</span>
                         </div>
-                        <p class="text-gray-600 text-sm mt-3">Get a single category by ID.</p>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
-                                <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
-                                <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                            </summary>
-                            <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
-                                <ul class="space-y-2">
-                                    <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/CategoryPublic</code></li>
-                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm">Get a single category by ID.</p>
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/CategoryPublic</code></li>
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
   "id": "uuid",
   "name": "Electronics/IT-Devices/Laptops",
   "user_id": "uuid",
@@ -864,64 +936,79 @@
   "created_at": "2026-01-01T00:00:00Z",
   "updated_at": "2026-01-01T00:00:00Z"
 }</code></pre>
-                                    <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                        <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
+                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
 }</code></pre>
-                                </ul>
-                            </div>
-                        </details>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
                     </div>
-                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
-                        <div class="flex items-center gap-4">
-                            <span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs w-16 text-center">GET</span>
-                            <code class="text-sm text-gray-700">/api/v1/categories/{category_id}/specifications</code>
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                            <code class="text-sm text-gray-700">/api/<strong>v2</strong>/categories/{category_id}/specifications</code>
                             <span class="text-sm text-gray-500 ml-auto">List category specifications</span>
                         </div>
-                        <p class="text-gray-600 text-sm mt-4">Get all specifications that are attached to the given category.</p>
-                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
-                        <div class="mt-3 text-sm text-gray-600 space-y-2">
-                            <p><span class="font-mono text-anoraBlue font-bold">category_id</span> Path parameter, required UUID.</p>
-                            <p><span class="font-mono text-anoraBlue font-bold">skip</span> Query parameter, optional integer. Default: <code class="font-mono">0</code>.</p>
-                            <p><span class="font-mono text-anoraBlue font-bold">limit</span> Query parameter, optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
-                        </div>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
-                                <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
-                                <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                            </summary>
-                            <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
-                                <ul class="space-y-2">
-                                    <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">array of #/components/schemas/Specification</code></li>
-                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>[
-  {
-    "id": "uuid",
-    "name": "Screen Size",
-    "description": "Display diagonal size",
-    "instance": "float",
-    "unit": "inch",
-    "created_at": "2026-01-01T00:00:00Z",
-    "updated_at": "2026-01-01T00:00:00Z"
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm">Get all specifications that are attached to the given category.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
+                            <div class="mt-3 text-sm text-gray-600 space-y-2">
+                                <p><span class="font-mono text-anoraBlue font-bold">category_id</span> Path parameter, required UUID.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">skip</span> Query parameter, optional integer. Default: <code class="font-mono">0</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">limit</span> Query parameter, optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
+                            </div>
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/SpecificationListResponse</code></li>
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+  "items": [
+    {
+      "id": "uuid",
+      "name": "Screen Size",
+      "description": "Display diagonal size",
+      "instance": "float",
+      "unit": "inch",
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "pagination": {
+    "total": 12,
+    "skip": 0,
+    "limit": 100,
+    "returned": 1,
+    "has_prev": false,
+    "has_next": false,
+    "next_skip": null,
+    "prev_skip": null
   }
-]</code></pre>
-                                    <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+}</code></pre>
+                                        <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
+                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
 }</code></pre>
-                                </ul>
-                            </div>
-                        </details>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
                     </div>
                 </div>
 
                 <div id="create-category" class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5 scroll-mt-24">
                     <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
-                        <span class="text-gray-600">/api/v1/categories</span>
+                        <span class="text-gray-600">/api/<strong>v2</strong>/categories</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm mb-2">Create a category. Every category name must be unique.</p>
@@ -954,7 +1041,7 @@
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-4">
                         <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
-                            <span class="text-gray-600">/api/v1/categories/{category_id}</span>
+                            <span class="text-gray-600">/api/<strong>v2</strong>/categories/{category_id}</span>
                         </div>
                         <div class="p-6">
                             <p class="text-gray-600 text-sm mb-2">Update a category.</p>
@@ -992,36 +1079,38 @@
                         </div>
                     </div>
 
-                    <div class="bg-white p-4 rounded-xl border border-gray-200/90 shadow-md">
-                        <div class="flex items-center gap-4">
-                            <span class="px-2 py-0.5 rounded bg-red-500 text-white font-bold text-xs w-16 text-center">DELETE</span>
-                            <code class="text-sm text-gray-700">/api/v1/categories/{category_id}</code>
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
+                            <code class="text-sm text-gray-700">/api/<strong>v2</strong>/categories/{category_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Delete category</span>
                         </div>
-                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
-                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
-                                <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
-                                <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                            </summary>
-                            <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
-                                <ul class="space-y-2">
-                                    <li><code class="font-mono">204</code> Successful Response (no content)</li>
-                                    <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                        <div class="p-6">
+                            <details class="faq-item group rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">204</code> Successful Response (no content)</li>
+                                        <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
+                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
 }</code></pre>
-                                </ul>
-                            </div>
-                        </details>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
                     <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
-                        <span class="text-gray-600">/api/v1/categories/{category_id}/specs/{spec_id}</span>
+                        <span class="text-gray-600">/api/<strong>v2</strong>/categories/{category_id}/specs/{spec_id}</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Associates a specification with a category.</p>
@@ -1048,7 +1137,7 @@
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
                     <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
-                        <span class="text-gray-600">/api/v1/categories/{category_id}/specs/{spec_id}</span>
+                        <span class="text-gray-600">/api/<strong>v2</strong>/categories/{category_id}/specs/{spec_id}</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Removes a specification from a category.</p>
