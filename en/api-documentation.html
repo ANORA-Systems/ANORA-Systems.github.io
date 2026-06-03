@@ -123,6 +123,7 @@
                             <li><a href="#users" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Users</a></li>
                             <li><a href="#quotas" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Quotas</a></li>                            <li><a href="#specs" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Specifications</a></li>
                             <li><a href="#categories" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Categories</a></li>
+                            <li><a href="#search-settings" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Search Settings</a></li>
                         </ul>
                     </div>
 
@@ -155,6 +156,7 @@
                     <div class="bg-gradient-to-r from-anoraTeal/20 via-white to-slate-50 px-6 py-4 border-b border-anoraTeal/20 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                         <span class="text-anoraBlue font-bold">/api/v1/search</span>
+                        <span class="text-sm text-gray-500 ml-auto">Search &amp; extract</span>
                     </div>
                     <div class="p-6">
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Query Parameters</h4>
@@ -163,6 +165,8 @@
                             <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">brand</span> <span class="text-gray-600">Required string. E.g. "Apple".</span></li>
                             <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">required_specs</span> <span class="text-gray-600">Optional string (nullable). Use to pass additional specifications to look for.</span></li>
                             <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">category</span> <span class="text-gray-600">Optional string. Name of a predefined category (see <a href="#create-category" class="text-anoraTeal hover:underline font-medium">category creation</a>) to indicate which specifications to look for.</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">include_product_images</span> <span class="text-gray-600">Optional boolean. Default: <code class="font-mono bg-gray-100 px-1 rounded">false</code>. Include product image URLs in the response.</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">blacklist_mode</span> <span class="text-gray-600">Optional string. Default: <code class="font-mono bg-gray-100 px-1 rounded">stored</code>. Allowed: <code class="font-mono bg-gray-100 px-1 rounded">stored</code>, <code class="font-mono bg-gray-100 px-1 rounded">disabled</code>. Controls whether the stored domain blacklist is applied during search.</span></li>
                         </ul>
 
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Success Response (200 OK)</h4>
@@ -178,7 +182,8 @@
     }
   ],
   "not_found": [],
-  "errors": []
+  "errors": [],
+  "image_links": null  // populated when include_product_images=true
 }</code></pre>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                             <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
@@ -192,7 +197,8 @@
   "specs": [{"id": "uuid", "name": "string", "value": "string", "unit": "string", "instance": "string"}],
   "status": "ok",
   "not_found": [{"name": "string", "description": "string", "instance": "string", "unit": "string"}],
-  "errors": ["string"]
+  "errors": ["string"],
+  "image_links": [{"url": "string", "source_page": "string"}]  // null unless include_product_images=true
 }</code></pre>
                                     <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
                                     <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
@@ -225,6 +231,7 @@
                     <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                         <span class="text-gray-600">/api/v1/users/me</span>
+                        <span class="text-sm text-gray-500 ml-auto">Get own account</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Get your account information.</p>
@@ -260,6 +267,7 @@
                     <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                         <span class="text-gray-600">/api/v1/quotas/me</span>
+                        <span class="text-sm text-gray-500 ml-auto">Get own quota</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Get the current user's quota limits and usage.</p>
@@ -346,6 +354,7 @@
                     <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                         <span class="text-gray-600">/api/<strong>v2</strong>/specifications</span>
+                        <span class="text-sm text-gray-500 ml-auto">Create spec</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm mb-2">Create a new specification for the current user.</p>
@@ -416,6 +425,8 @@
                                 <p><span class="font-mono text-anoraBlue font-bold">user_id</span> Optional UUID (nullable). Filter by owner.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">sortBy</span> Optional string. Default: <code class="font-mono">created_at</code>. Allowed: <code class="font-mono">created_at</code>, <code class="font-mono">name</code>, <code class="font-mono">unit</code>, <code class="font-mono">instance</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">sortDir</span> Optional string. Default: <code class="font-mono">desc</code>. Allowed: <code class="font-mono">asc</code>, <code class="font-mono">desc</code>.</p>
                             </div>
                             <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                                 <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
@@ -496,6 +507,7 @@
                         <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
                             <span class="text-gray-600">/api/<strong>v2</strong>/specifications/{spec_id}</span>
+                            <span class="text-sm text-gray-500 ml-auto">Update spec</span>
                         </div>
                         <div class="p-6">
                             <p class="text-gray-600 text-sm mb-2">Update a specification.</p>
@@ -573,6 +585,141 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="space-y-4 mt-4">
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
+                            <code class="text-sm text-gray-700">/api/<strong>v2</strong>/specifications/bulk</code>
+                            <span class="text-sm text-gray-500 ml-auto">Bulk create specs</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm mb-2">Create up to 100 specifications in one request. Use <code class="font-mono">mode</code> to control atomicity.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
+  "mode": "partial",    // "partial" (default) or "atomic" — partial commits valid rows independently
+  "items": [
+    {
+      "client_id": "my-ref-1",   // optional, echoed back in results
+      "specification": {
+        "name": "Display Size",
+        "description": "Diagonal of visible display area",
+        "instance": "float",
+        "unit": "inch"
+      }
+    }
+  ]
+}</code></pre>
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">201</code> Successful Response</li>
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+  "mode": "partial",
+  "summary": {"requested": 1, "created": 1, "attached": 0, "failed": 0},
+  "results": [
+    {
+      "index": 0,
+      "client_id": "my-ref-1",
+      "status": "created",
+      "specification": {"id": "uuid", "name": "Display Size", ...},
+      "attached": null,
+      "error": null
+    }
+  ]
+}</code></pre>
+                                        <li><code class="font-mono">422</code> Validation Error</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
+                            <code class="text-sm text-gray-700">/api/<strong>v2</strong>/specifications/draft</code>
+                            <span class="text-sm text-gray-500 ml-auto">AI-draft a spec</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm mb-2">Use AI to draft a specification from a natural-language prompt. Also returns similar existing specs to prevent duplicates before creating.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
+  "prompt": "battery capacity in milliampere-hours",   // required
+  "category_id": "uuid",                               // optional — for context
+  "language": "en",                                    // optional, default "en"
+  "existing_spec_ids": ["uuid", ...]                   // optional — for context
+}</code></pre>
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">200</code> Successful Response</li>
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+  "draft": {
+    "name": "Battery Capacity",
+    "description": "Rated capacity of the battery cell",
+    "instance": "int",
+    "unit": "mAh",
+    "tolerance": null,
+    "options": null,
+    "sub_values": null
+  },
+  "duplicate_candidates": [
+    {"id": "uuid", "name": "Battery Capacity", "description": "...", "instance": "int", "unit": "mAh"}
+  ],
+  "warnings": []
+}</code></pre>
+                                        <li><code class="font-mono">422</code> Validation Error</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                            <code class="text-sm text-gray-700">/api/<strong>v2</strong>/specifications/{spec_id}/categories</code>
+                            <span class="text-sm text-gray-500 ml-auto">List spec's categories</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm">List all categories the specification is attached to.</p>
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">200</code> Successful Response — array of <code class="font-mono">CategoryPublic</code></li>
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>[
+  {
+    "id": "uuid",
+    "name": "Electronics/IT-Devices/Laptops",
+    "user_id": "uuid",
+    "top_category": null,
+    "path": ["Electronics", "IT-Devices", "Laptops"],
+    "created_at": "2026-01-01T00:00:00Z",
+    "updated_at": "2026-01-01T00:00:00Z"
+  }
+]</code></pre>
+                                        <li><code class="font-mono">422</code> Validation Error</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                </div>
             </section>
 
              <section id="categories" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
@@ -595,6 +742,8 @@
                                 <p><span class="font-mono text-anoraBlue font-bold">user_id</span> Optional UUID (nullable). Filter by owner.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">sortBy</span> Optional string. Default: <code class="font-mono">created_at</code>. Allowed: <code class="font-mono">created_at</code>, <code class="font-mono">updated_at</code>, <code class="font-mono">name</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">sortDir</span> Optional string. Default: <code class="font-mono">desc</code>. Allowed: <code class="font-mono">asc</code>, <code class="font-mono">desc</code>.</p>
                             </div>
                             <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                                 <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
@@ -687,6 +836,8 @@
                                 <p><span class="font-mono text-anoraBlue font-bold">category_id</span> Path parameter, required UUID.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">skip</span> Query parameter, optional integer. Default: <code class="font-mono">0</code>.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">limit</span> Query parameter, optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">sortBy</span> Optional string. Default: <code class="font-mono">created_at</code>. Allowed: <code class="font-mono">created_at</code>, <code class="font-mono">name</code>, <code class="font-mono">unit</code>, <code class="font-mono">instance</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">sortDir</span> Optional string. Default: <code class="font-mono">desc</code>. Allowed: <code class="font-mono">asc</code>, <code class="font-mono">desc</code>.</p>
                             </div>
                             <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                                 <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
@@ -736,6 +887,7 @@
                     <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                         <span class="text-gray-600">/api/<strong>v2</strong>/categories</span>
+                        <span class="text-sm text-gray-500 ml-auto">Create category</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm mb-2">Create a category. Every category name must be unique.</p>
@@ -769,6 +921,7 @@
                         <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
                             <span class="text-gray-600">/api/<strong>v2</strong>/categories/{category_id}</span>
+                            <span class="text-sm text-gray-500 ml-auto">Update category</span>
                         </div>
                         <div class="p-6">
                             <p class="text-gray-600 text-sm mb-2">Update a category.</p>
@@ -838,6 +991,7 @@
                     <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                         <span class="text-gray-600">/api/<strong>v2</strong>/categories/{category_id}/specs/{spec_id}</span>
+                        <span class="text-sm text-gray-500 ml-auto">Attach spec</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Associates a specification with a category.</p>
@@ -865,6 +1019,7 @@
                     <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                         <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
                         <span class="text-gray-600">/api/<strong>v2</strong>/categories/{category_id}/specs/{spec_id}</span>
+                        <span class="text-sm text-gray-500 ml-auto">Detach spec</span>
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Removes a specification from a category.</p>
@@ -886,6 +1041,182 @@
                             </div>
                         </details>
                     </div>
+                </div>
+
+                <div class="space-y-4 mt-4">
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
+                            <code class="text-sm text-gray-700">/api/<strong>v2</strong>/categories/{category_id}/duplicate</code>
+                            <span class="text-sm text-gray-500 ml-auto">Duplicate category</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm">Creates a copy of the category and all its attached specifications. No request body required.</p>
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">201</code> Successful Response — returns <code class="font-mono">CategoryPublic</code> of the new category</li>
+                                        <li><code class="font-mono">422</code> Validation Error</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
+                            <code class="text-sm text-gray-700">/api/<strong>v2</strong>/categories/{category_id}/specifications/bulk</code>
+                            <span class="text-sm text-gray-500 ml-auto">Bulk create &amp; attach specs</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm mb-2">Bulk-creates specifications and attaches them to the category in one request. Same request schema as <code class="font-mono">POST /api/v2/specifications/bulk</code>. The <code class="font-mono">attached</code> field in each result indicates whether the attachment succeeded.</p>
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">201</code> Successful Response — same <code class="font-mono">BulkSpecificationResponse</code> schema; <code class="font-mono">attached: true/false</code> per result row</li>
+                                        <li><code class="font-mono">422</code> Validation Error</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="search-settings" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
+                <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-4">Search Settings</h2>
+                <p class="text-gray-600 mb-6">Manage the domain blacklist — domains excluded from web searches during extraction. The <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">blacklist_mode</code> parameter on <a href="#search" class="text-anoraTeal hover:underline font-medium">Search</a> controls whether the stored list is applied.</p>
+
+                <div class="space-y-4">
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/blacklist</code>
+                            <span class="text-sm text-gray-500 ml-auto">List blacklisted domains</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm">List blacklisted domains for the current user.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
+                            <div class="mt-3 text-sm text-gray-600 space-y-2">
+                                <p><span class="font-mono text-anoraBlue font-bold">search</span> Optional string.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">is_active</span> Optional boolean. Filter by active state.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">sortBy</span> Optional string. Default: <code class="font-mono">created_at</code>. Allowed: <code class="font-mono">created_at</code>, <code class="font-mono">updated_at</code>, <code class="font-mono">domain</code>, <code class="font-mono">is_active</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">sortDir</span> Optional string. Default: <code class="font-mono">desc</code>. Allowed: <code class="font-mono">asc</code>, <code class="font-mono">desc</code>.</p>
+                            </div>
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">200</code> Successful Response</li>
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+  "items": [
+    {
+      "id": "uuid",
+      "user_id": "uuid",
+      "domain": "example.com",
+      "is_active": true,
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    }
+  ],
+  "pagination": {"total": 5, "skip": 0, "limit": 100, "returned": 1, ...}
+}</code></pre>
+                                        <li><code class="font-mono">422</code> Validation Error</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/blacklist</code>
+                            <span class="text-sm text-gray-500 ml-auto">Add domain</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm mb-2">Add a domain to the blacklist.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code>{"domain": "example.com"}  // required, max 2048 chars</code></pre>
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">201</code> Successful Response — returns <code class="font-mono">DomainBlacklistItemPublic</code></li>
+                                        <li><code class="font-mono">422</code> Validation Error</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-yellow-500 text-white font-bold text-xs">PATCH</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/blacklist/{item_id}</code>
+                            <span class="text-sm text-gray-500 ml-auto">Enable / disable item</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm mb-2">Enable or disable a blacklist entry without deleting it.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code>{"is_active": false}  // required boolean</code></pre>
+                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">200</code> Successful Response — returns updated <code class="font-mono">DomainBlacklistItemPublic</code></li>
+                                        <li><code class="font-mono">422</code> Validation Error</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/blacklist/{item_id}</code>
+                            <span class="text-sm text-gray-500 ml-auto">Remove domain</span>
+                        </div>
+                        <div class="p-6">
+                            <details class="faq-item group rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                                </summary>
+                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                    <ul class="space-y-2">
+                                        <li><code class="font-mono">204</code> Successful Response (no content)</li>
+                                        <li><code class="font-mono">422</code> Validation Error</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
