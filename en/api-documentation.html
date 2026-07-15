@@ -751,7 +751,7 @@
                             <p class="text-gray-600 text-sm mb-2">Use AI to draft a specification from a natural-language prompt. Also returns similar existing specs to prevent duplicates before creating.</p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
                             <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
-  "prompt": "battery capacity in milliampere-hours",   // required
+  "prompt": "battery capacity in milliampere-hours",   // required, max length 200 characters
   "category_id": "uuid",                               // optional — for context
   "language": "en",                                    // optional, default "en"
   "existing_spec_ids": ["uuid", ...]                   // optional — for context
