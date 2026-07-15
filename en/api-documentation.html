@@ -133,7 +133,7 @@
 
         <main class="relative z-10 flex-1 w-full max-w-6xl mx-auto p-6 md:p-10 lg:p-12">
             <section id="intro" class="mb-10 md:mb-12 rounded-3xl bg-gradient-to-r from-anoraBlue to-[#132a53] text-white p-7 md:p-9 shadow-xl shadow-anoraBlue/20 border border-white/10">
-                <p class="text-xs text-white/50 mb-3">As of 04.06.2026</p>
+                <p class="text-xs text-white/50 mb-3">As of 15.07.2026</p>
                 <h1 class="text-4xl md:text-5xl font-outfit font-bold tracking-tight mb-4">SpecScout API Documentation</h1>
                 <p class="text-lg text-gray-200 leading-relaxed max-w-4xl">
                     Welcome to the SpecScout API. This documentation provides detailed information about endpoints, parameters, and responses to help you integrate automated product data extraction into your e-commerce platform.
@@ -164,22 +164,31 @@
                         <ul class="space-y-3 mb-6 text-sm">
                             <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">product_name</span> <span class="text-gray-600">Required string. E.g. "MacBook Pro 16 M3 Max".</span></li>
                             <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">brand</span> <span class="text-gray-600">Required string. E.g. "Apple".</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">required_specs</span> <span class="text-gray-600">Optional string (nullable). Use to pass additional specifications to look for.</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">category</span> <span class="text-gray-600">Optional string. Name of a predefined category (see <a href="#create-category" class="text-anoraTeal hover:underline font-medium">category creation</a>) to indicate which specifications to look for.</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">required_specs</span> <span class="text-gray-600">Optional string (nullable). JSON-encoded <strong>array</strong> of specification objects to look for, using the same fields as <a href="#specs" class="text-anoraTeal hover:underline font-medium">specification creation</a>, e.g. <code class="font-mono bg-gray-100 px-1 rounded text-xs">[{"name": "Battery Capacity", "description": "Rated capacity of the battery", "instance": "int", "unit": "mAh"}]</code>. Invalid JSON is rejected with <code class="font-mono bg-gray-100 px-1 rounded">400</code>.</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">category</span> <span class="text-gray-600">Optional string. <strong>ID (UUID)</strong> of a predefined category (see <a href="#create-category" class="text-anoraTeal hover:underline font-medium">category creation</a>) whose attached specifications should be looked for — not the category name. Values that are not valid UUIDs are rejected with <code class="font-mono bg-gray-100 px-1 rounded">400</code>.</span></li>
                             <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">include_product_images</span> <span class="text-gray-600">Optional boolean. Default: <code class="font-mono bg-gray-100 px-1 rounded">false</code>. Include product image URLs in the response.</span></li>
                             <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">blacklist_mode</span> <span class="text-gray-600">Optional string. Default: <code class="font-mono bg-gray-100 px-1 rounded">stored</code>. Allowed: <code class="font-mono bg-gray-100 px-1 rounded">stored</code>, <code class="font-mono bg-gray-100 px-1 rounded">disabled</code>. Controls whether the stored domain blacklist is applied during search.</span></li>
                         </ul>
 
+                        <p class="text-xs text-gray-500 mb-4">Rate limit: 200 requests per minute.</p>
+
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Success Response (200 OK)</h4>
                         <pre class="bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code>{
-  "status": "ok",
+  "status": "success",
   "specs": [
     {
       "id": "3fa85f64-...",
       "name": "Processor",
       "instance": "str",
-      "value": "Apple M3 Max",
-      "unit": null
+      "value": [
+        {
+          "value": "Apple M3 Max",
+          "unit": null,
+          "sources": ["https://www.apple.com/macbook-pro/specs/"],
+          "confidence": 0.95
+        }
+      ],
+      "unit": ""
     }
   ],
   "not_found": [],
@@ -195,9 +204,17 @@
                                 <ul class="space-y-2">
                                     <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/ServiceResponsePublic</code></li>
                                     <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
-  "specs": [{"id": "uuid", "name": "string", "value": "string", "unit": "string", "instance": "string"}],
-  "status": "ok",
-  "not_found": [{"name": "string", "description": "string", "instance": "string", "unit": "string"}],
+  "specs": [{
+    "id": "uuid",
+    "name": "string",
+    "instance": "string",
+    "unit": "string",
+    "value": [  // one entry per verified value
+      {"value": "string | number | boolean | array", "unit": "string | null", "sources": ["url"], "confidence": 0.95}
+    ]
+  }],
+  "status": "success",  // "success" or "fail"
+  "not_found": [{"name": "string", "description": "string", "instance": "string", "unit": "string", ...}],  // full specification objects that could not be verified
   "errors": ["string"],
   "image_links": [{"url": "string", "source_page": "string"}]  // null unless include_product_images=true
 }</code></pre>
@@ -223,6 +240,39 @@
                         <strong>Header:</strong> <code class="bg-white px-2 py-1 rounded border border-blue-200 font-mono text-sm">x_api_key: &lt;API_KEY&gt;</code>
                     </p>
                 </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
+                        <span class="text-gray-600">/api/v1/auth/validate_api_key</span>
+                        <span class="text-sm text-gray-500 ml-auto">Validate API key</span>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm">Validate the API key sent in the <code class="font-mono bg-gray-100 px-1 rounded">x_api_key</code> header and return its metadata. No request body — useful to test your integration.</p>
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                            </summary>
+                            <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                <ul class="space-y-2">
+                                    <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/ValidateAPIKeySuccessResponse</code></li>
+                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+  "valid": true,
+  "key_id": "uuid",
+  "key_type": "user",
+  "expires_at": null,
+  "capabilities": {
+    "search": true,
+    "categories_read": true,
+    "categories_write": true
+  }
+}</code></pre>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                </div>
             </section>
 
             <section id="users" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
@@ -246,7 +296,7 @@
                                     <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/UserPublic</code></li>
                                     <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
   "id": "uuid",
-  "email": "user.com",
+  "email": "jane.doe@example.com",
   "full_name": "Jane Doe",
   "is_activated": false,
   "is_superuser": false,
@@ -281,7 +331,7 @@
                                 <ul class="space-y-2">
                                     <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/UserQuotaResponse</code></li>
                                     <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
-  "quota_key": "requests",
+  "quota_key": "search",
   "limit": 500,
   "used": 254,
   "remaining": 246,
@@ -297,6 +347,48 @@
                         </details>
                     </div>
                 </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
+                    <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                        <span class="text-gray-600">/api/v1/quotas/monthly</span>
+                        <span class="text-sm text-gray-500 ml-auto">Get monthly usage history</span>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm">Get your monthly search usage history, paginated.</p>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
+                        <div class="mt-3 text-sm text-gray-600 space-y-2">
+                            <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
+                            <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">12</code>, max: <code class="font-mono">120</code>.</p>
+                            <p><span class="font-mono text-anoraBlue font-bold">sortDir</span> Optional string. Default: <code class="font-mono">desc</code>. Allowed: <code class="font-mono">asc</code>, <code class="font-mono">desc</code>.</p>
+                        </div>
+                        <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                            <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                                <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                                <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                            </summary>
+                            <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                                <ul class="space-y-2">
+                                    <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/MonthlySearchUsageListResponse</code></li>
+                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+  "items": [
+    {
+      "period_start": "2026-06-01T00:00:00Z",
+      "period_end": "2026-07-01T00:00:00Z",
+      "regular_count": 254,
+      "demo_count": 0,
+      "total_count": 254,
+      "last_search_at": "2026-06-28T14:31:07Z"
+    }
+  ],
+  "pagination": {"total": 6, "skip": 0, "limit": 12, "returned": 6, ...}
+}</code></pre>
+                                    <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                </div>
             </section>
 
             <section id="specs" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
@@ -304,8 +396,7 @@
                 <details class="group mb-6 rounded-2xl border border-yellow-300 bg-yellow-50/80 overflow-hidden">
                     <summary class="list-none cursor-pointer p-4 md:p-5 flex items-center justify-between gap-4">
                         <div>
-                            <h4 class="font-bold text-yellow-900">Best Practices: Garbage In -> Garbage Out</h4>
-                            <p class="text-sm text-yellow-800 mt-1">Open for concrete good/bad examples and validation rules.</p>
+                            <h4 class="font-bold text-yellow-900">Best Practices</h4>
                         </div>
                         <i class="fa-solid fa-chevron-down text-yellow-700 transition-transform group-open:rotate-180"></i>
                     </summary>
@@ -323,7 +414,7 @@
                                     <ul class="space-y-1 text-red-900">
                                         <li><code class="font-mono">name: "Size"</code> (too vague)</li>
                                         <li><code class="font-mono">description: "display size in inches"</code> while <code class="font-mono">unit: "inch"</code> is already set</li>
-                                        <li><code class="font-mono">instance: "number"</code> (not allowed)</li>
+                                        <li><code class="font-mono">instance: "list"</code> (not allowed — use <code class="font-mono">sub_values</code> for multi-value specs)</li>
                                     </ul>
                                 </div>
                                 <div class="rounded-xl border border-emerald-300 bg-emerald-50 p-3">
@@ -340,7 +431,7 @@
                         <div>
                             <h5 class="font-semibold mb-2">Validation Rules</h5>
                             <ul class="space-y-1">
-                                <li><strong>Allowed instance values only:</strong> <code class="font-mono">"float"</code>, <code class="font-mono">"int"</code>, <code class="font-mono">"str"</code>, <code class="font-mono">"bool"</code>, <code class="font-mono">"list"</code>.</li>
+                                <li><strong>Allowed instance values only:</strong> <code class="font-mono">"float"</code>, <code class="font-mono">"int"</code>, <code class="font-mono">"str"</code>, <code class="font-mono">"bool"</code>. Common aliases (<code class="font-mono">"number"</code>, <code class="font-mono">"double"</code>, <code class="font-mono">"integer"</code>, <code class="font-mono">"string"</code>, <code class="font-mono">"text"</code>, <code class="font-mono">"boolean"</code>) are accepted and normalized. There is no <code class="font-mono">"list"</code> instance — define <code class="font-mono">sub_values</code> when a spec has multiple values.</li>
                                 <li><strong>No duplicated semantics:</strong> if <code class="font-mono">unit</code> is set, avoid repeating it in the description.</li>
                                 <li><strong>Prefer specific names:</strong> e.g. <code class="font-mono">Battery Capacity</code> instead of <code class="font-mono">Battery</code>.</li>
                                 <li><strong>Use options for closed vocabularies:</strong> e.g. material, color class, connector type.</li>
@@ -364,7 +455,7 @@
   "name": "Display Size",                     // required
   "description": "Diagonal of visible display area", // required
   "unit": "inch",                             // required
-  "instance": "float",                        // required: "float", "int", "str", "bool", "list"
+  "instance": "float",                        // required: "float", "int", "str", "bool"
 
   "tolerance": 0.05,                          // optional fine-tuning
   "options": null,                            // optional fine-tuning (array of allowed values)
@@ -382,19 +473,17 @@
                             </summary>
                             <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                 <ul class="space-y-2">
-                                    <li><code class="font-mono">201</code> Successful Response, schema: <code class="font-mono">#/components/schemas/Specification</code></li>
+                                    <li><code class="font-mono">201</code> Successful Response, schema: <code class="font-mono">#/components/schemas/SpecificationPublic</code></li>
                                     <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
   "id": "uuid",
   "name": "Display Size",
   "description": "Diagonal of visible display area",
   "instance": "float",
   "unit": "inch",
-  "value": null,
   "tolerance": 0.05,
   "options": null,
-  "sub_values": [],
-  "potential_values": [],
-  "sources": [],
+  "sub_values": null,
+  "user_id": "uuid",
   "created_at": "2026-01-01T00:00:00Z",
   "updated_at": "2026-01-01T00:00:00Z"
 }</code></pre>
@@ -428,6 +517,12 @@
                                 <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">sortBy</span> Optional string. Default: <code class="font-mono">created_at</code>. Allowed: <code class="font-mono">created_at</code>, <code class="font-mono">name</code>, <code class="font-mono">unit</code>, <code class="font-mono">instance</code>.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">sortDir</span> Optional string. Default: <code class="font-mono">desc</code>. Allowed: <code class="font-mono">asc</code>, <code class="font-mono">desc</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">exclude_category_id</span> Optional UUID (nullable). Exclude specifications that are attached to this category.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">instance</span> Optional, repeatable. Only specifications with one of the given instance types, e.g. <code class="font-mono">instance=float&amp;instance=int</code>. Invalid values are rejected with <code class="font-mono">422</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">unit</span> Optional string (nullable). Only specifications with exactly this unit.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">has_options</span> Optional boolean (nullable). <code class="font-mono">true</code>: only specifications with options; <code class="font-mono">false</code>: only ones without.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">has_sub_values</span> Optional boolean (nullable). <code class="font-mono">true</code>: only specifications with sub_values; <code class="font-mono">false</code>: only ones without.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">no_category</span> Optional boolean (nullable). <code class="font-mono">true</code>: only specifications not attached to any category; <code class="font-mono">false</code>: only attached ones.</p>
                             </div>
                             <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                                 <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
@@ -478,19 +573,19 @@
                                 </summary>
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
-                                        <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/Specification</code></li>
+                                        <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/SpecificationPublic</code></li>
                                         <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
   "id": "uuid",
   "name": "Display Size",
   "description": "Diagonal of visible display area",
   "instance": "float",
   "unit": "inch",
-  "value": "6.1",
   "tolerance": 0.05,
   "options": null,
-  "sub_values": [],
-  "potential_values": [],
-  "sources": []
+  "sub_values": null,
+  "user_id": "uuid",
+  "created_at": "2026-01-01T00:00:00Z",
+  "updated_at": "2026-01-01T00:00:00Z"
 }</code></pre>
                                         <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
                                         <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
@@ -517,15 +612,20 @@
   "name": "Display Size",                     // required
   "description": "Diagonal of visible display area", // required
   "unit": "inch",                             // required
-  "instance": "float",                        // required: "float", "int", "str", "bool", "list"
+  "instance": "float",                        // required: "float", "int", "str", "bool"
   "tolerance": 0.05,                          // optional fine-tuning
   "options": null,                            // optional fine-tuning
   "sub_values": []                            // optional fine-tuning
 }</code></pre>
-                            <p class="text-xs text-gray-500">
+                            <p class="text-xs text-gray-500 mb-4">
                                 For updates, provide a full specification payload.
                                 <code>name</code>, <code>description</code>, <code>unit</code>, and <code>instance</code> are required.
                             </p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Query Parameters</h4>
+                            <div class="text-sm text-gray-600 space-y-2">
+                                <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all_categories</code>. Allowed: <code class="font-mono">all_categories</code>, <code class="font-mono">this_category</code>. With <code class="font-mono">all_categories</code> the specification is updated in place, affecting every category it is attached to. With <code class="font-mono">this_category</code> the change applies only to the category given in <code class="font-mono">category_id</code>: if the specification is attached to other categories as well, it is detached from that category and an edited copy is created and attached in its place — the original remains unchanged everywhere else.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">category_id</span> Optional UUID. Required when <code class="font-mono">scope=this_category</code> (otherwise <code class="font-mono">422</code>).</p>
+                            </div>
                             <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                                 <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                     <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -533,19 +633,19 @@
                                 </summary>
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
-                                        <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/Specification</code></li>
+                                        <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/SpecificationPublic</code></li>
                                         <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
   "id": "uuid",
   "name": "Display Size",
   "description": "Diagonal of visible display area",
   "instance": "float",
   "unit": "inch",
-  "value": "6.1",
   "tolerance": 0.05,
   "options": null,
-  "sub_values": [],
-  "potential_values": [],
-  "sources": []
+  "sub_values": null,
+  "user_id": "uuid",
+  "created_at": "2026-01-01T00:00:00Z",
+  "updated_at": "2026-01-01T00:00:00Z"
 }</code></pre>
                                         <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
                                     <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
@@ -679,6 +779,10 @@
   ],
   "warnings": []
 }</code></pre>
+                                        <li><code class="font-mono">400</code> Invalid prompt</li>
+                                        <li><code class="font-mono">403</code> Forbidden category access</li>
+                                        <li><code class="font-mono">404</code> Category not found</li>
+                                        <li><code class="font-mono">502</code> AI draft generation failed</li>
                                         <li><code class="font-mono">422</code> Validation Error</li>
                                     </ul>
                                 </div>
@@ -1114,7 +1218,7 @@
                                 <p><span class="font-mono text-anoraBlue font-bold">search</span> Optional string.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">is_active</span> Optional boolean. Filter by active state.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
-                                <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">sortBy</span> Optional string. Default: <code class="font-mono">created_at</code>. Allowed: <code class="font-mono">created_at</code>, <code class="font-mono">updated_at</code>, <code class="font-mono">domain</code>, <code class="font-mono">is_active</code>.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">sortDir</span> Optional string. Default: <code class="font-mono">desc</code>. Allowed: <code class="font-mono">asc</code>, <code class="font-mono">desc</code>.</p>
                             </div>
@@ -1259,63 +1363,116 @@ x_api_key: sp_user_c64e2c071c4135d5.iKTBaTZFW...</code></pre>
     {
       <span class="text-purple-400">"id"</span>: <span class="text-green-400">"3fa85f64-..."</span>,
       <span class="text-purple-400">"name"</span>: <span class="text-green-400">"weight"</span>,
-      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"float"</span>,
-      <span class="text-purple-400">"value"</span>: <span class="text-green-400">"189"</span>,
+      <span class="text-purple-400">"value"</span>: [
+        {
+          <span class="text-purple-400">"value"</span>: <span class="text-blue-400">189.0</span>,
+          <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"gram"</span>,
+          <span class="text-purple-400">"sources"</span>: [<span class="text-green-400">"https://www.apple.com/iphone-12-pro/specs/"</span>, <span class="text-green-400">"https://www.gsmarena.com/apple_iphone_12_pro-10508.php"</span>],
+          <span class="text-purple-400">"confidence"</span>: <span class="text-blue-400">1.0</span>
+        }
+      ],
       <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"gram"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"float"</span>
     },
 
     {
       <span class="text-purple-400">"id"</span>: <span class="text-green-400">"4fa85f64-..."</span>,
       <span class="text-purple-400">"name"</span>: <span class="text-green-400">"dimensions"</span>,
-      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"list"</span>,
-      <span class="text-purple-400">"value"</span>: <span class="text-green-400">"7.4 x 71.5 x 146.7"</span>,
+      <span class="text-purple-400">"value"</span>: [
+        {
+          <span class="text-purple-400">"value"</span>: [<span class="text-blue-400">7.4</span>, <span class="text-blue-400">71.5</span>, <span class="text-blue-400">146.7</span>],
+          <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"mm"</span>,
+          <span class="text-purple-400">"sources"</span>: [<span class="text-green-400">"https://www.gsmarena.com/apple_iphone_12_pro-10508.php"</span>],
+          <span class="text-purple-400">"confidence"</span>: <span class="text-blue-400">0.95</span>
+        }
+      ],
       <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"mm"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"float"</span>
     },
 
     {
       <span class="text-purple-400">"id"</span>: <span class="text-green-400">"5fa85f64-..."</span>,
       <span class="text-purple-400">"name"</span>: <span class="text-green-400">"display_size"</span>,
-      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"float"</span>,
-      <span class="text-purple-400">"value"</span>: <span class="text-green-400">"6.1"</span>,
+      <span class="text-purple-400">"value"</span>: [
+        {
+          <span class="text-purple-400">"value"</span>: <span class="text-blue-400">6.1</span>,
+          <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"inch"</span>,
+          <span class="text-purple-400">"sources"</span>: [<span class="text-green-400">"https://www.apple.com/iphone-12-pro/specs/"</span>],
+          <span class="text-purple-400">"confidence"</span>: <span class="text-blue-400">1.0</span>
+        }
+      ],
       <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"inch"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"float"</span>
     },
 
     {
       <span class="text-purple-400">"id"</span>: <span class="text-green-400">"6fa85f64-..."</span>,
       <span class="text-purple-400">"name"</span>: <span class="text-green-400">"color"</span>,
-      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"str"</span>,
-      <span class="text-purple-400">"value"</span>: <span class="text-green-400">"['silver', 'graphite', 'gold', 'pacific blue']"</span>,
-      <span class="text-purple-400">"unit"</span>: <span class="text-blue-400">null</span>,
+      <span class="text-purple-400">"value"</span>: [
+        {
+          <span class="text-purple-400">"value"</span>: [<span class="text-green-400">"silver"</span>, <span class="text-green-400">"graphite"</span>, <span class="text-green-400">"gold"</span>, <span class="text-green-400">"pacific blue"</span>],
+          <span class="text-purple-400">"unit"</span>: <span class="text-blue-400">null</span>,
+          <span class="text-purple-400">"sources"</span>: [<span class="text-green-400">"https://www.apple.com/iphone-12-pro/specs/"</span>],
+          <span class="text-purple-400">"confidence"</span>: <span class="text-blue-400">0.9</span>
+        }
+      ],
+      <span class="text-purple-400">"unit"</span>: <span class="text-green-400">""</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"str"</span>
     },
+
     {
       <span class="text-purple-400">"id"</span>: <span class="text-green-400">"7fa85f64-..."</span>,
       <span class="text-purple-400">"name"</span>: <span class="text-green-400">"battery_capacity"</span>,
-      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"int"</span>,
-      <span class="text-purple-400">"value"</span>: <span class="text-green-400">"2815"</span>,
+      <span class="text-purple-400">"value"</span>: [
+        {
+          <span class="text-purple-400">"value"</span>: <span class="text-blue-400">2815</span>,
+          <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"mAh"</span>,
+          <span class="text-purple-400">"sources"</span>: [<span class="text-green-400">"https://www.gsmarena.com/apple_iphone_12_pro-10508.php"</span>],
+          <span class="text-purple-400">"confidence"</span>: <span class="text-blue-400">0.9</span>
+        }
+      ],
       <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"mAh"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"int"</span>
     },
+
     {
       <span class="text-purple-400">"id"</span>: <span class="text-green-400">"8fa85f64-..."</span>,
       <span class="text-purple-400">"name"</span>: <span class="text-green-400">"ram"</span>,
-      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"int"</span>,
-      <span class="text-purple-400">"value"</span>: <span class="text-green-400">"6"</span>,
+      <span class="text-purple-400">"value"</span>: [
+        {
+          <span class="text-purple-400">"value"</span>: <span class="text-blue-400">6</span>,
+          <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"GB"</span>,
+          <span class="text-purple-400">"sources"</span>: [<span class="text-green-400">"https://www.gsmarena.com/apple_iphone_12_pro-10508.php"</span>],
+          <span class="text-purple-400">"confidence"</span>: <span class="text-blue-400">0.9</span>
+        }
+      ],
       <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"GB"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"int"</span>
     },
+
     {
       <span class="text-purple-400">"id"</span>: <span class="text-green-400">"9fa85f64-..."</span>,
       <span class="text-purple-400">"name"</span>: <span class="text-green-400">"storage"</span>,
-      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"list"</span>,
-      <span class="text-purple-400">"value"</span>: <span class="text-green-400">"128, 256, 512"</span>,
+      <span class="text-purple-400">"value"</span>: [
+        {
+          <span class="text-purple-400">"value"</span>: [<span class="text-blue-400">128</span>, <span class="text-blue-400">256</span>, <span class="text-blue-400">512</span>],
+          <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"GB"</span>,
+          <span class="text-purple-400">"sources"</span>: [<span class="text-green-400">"https://www.apple.com/iphone-12-pro/specs/"</span>],
+          <span class="text-purple-400">"confidence"</span>: <span class="text-blue-400">0.95</span>
+        }
+      ],
       <span class="text-purple-400">"unit"</span>: <span class="text-green-400">"GB"</span>,
+      <span class="text-purple-400">"instance"</span>: <span class="text-green-400">"int"</span>
     }
   ],
 
-
-  <span class="text-purple-400">"status"</span>: <span class="text-green-400">"ok"</span>,
+  <span class="text-purple-400">"status"</span>: <span class="text-green-400">"success"</span>,
 
   <span class="text-purple-400">"not_found"</span>: [],
 
-  <span class="text-purple-400">"errors"</span>: []
+  <span class="text-purple-400">"errors"</span>: [],
+
+  <span class="text-purple-400">"image_links"</span>: <span class="text-blue-400">null</span>
 
 }</code></pre>
     </div>
