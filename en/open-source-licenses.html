@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Source Licenses | Anora Systems</title>
 
-    <link rel="icon" type="image/png" sizes="512x512" href="https://anora-systems.com/favicon-512.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://anora-systems.com/favicon-192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://anora-systems.com/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://anora-systems.com/favicon-16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://anora-systems.com/favicon-180.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="https://anora-systems.com/media/favicon-512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://anora-systems.com/media/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://anora-systems.com/media/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://anora-systems.com/media/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://anora-systems.com/media/favicon-180.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -41,7 +41,7 @@
     <nav class="bg-white shadow-sm p-4 sticky top-0 z-50">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
             <a href="index.html" class="flex items-center gap-2 group">
-                <img src="../logo.png" alt="Anora Systems Logo" class="h-20 w-auto">
+                <img src="../media/logo.png" alt="Anora Systems Logo" class="h-20 w-auto">
             </a>
             <a href="index.html" class="text-sm text-gray-500 hover:text-anoraTeal transition flex items-center gap-2">
                 <i class="fa-solid fa-arrow-left"></i> Back to Home
@@ -62,7 +62,7 @@
 
     <footer class="bg-anoraBlue text-white py-8 text-center mt-auto">
         <div class="pt-8 border-t border-gray-800 text-gray-400 text-sm">
-            <p>&copy; 2025 Anora Systems. All rights reserved.</p>
+            <p>&copy; 2026 Anora Systems. All rights reserved.</p>
             <div class="flex justify-center gap-6 mt-4">
                 <a href="legal.html" class="hover:text-white">Imprint</a>
                 <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
@@ -71,7 +71,6 @@
         </div>
     </footer>
 
-    <script src="../opensource/_sbom_compact.js"></script>
     <script>
     function escapeHtml(str) {
         if (!str) return '';
@@ -101,17 +100,17 @@
         var container = document.getElementById('sbom-content');
         container.innerHTML = '';
 
-        var docName = (data.name || 'SBOM').replace(/_/g, ' ');
+        var docName = data.product || 'Dependencies';
         var section = document.createElement('div');
         section.className = 'bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100';
 
         var header = '<h2 class="text-xl font-bold text-anoraBlue mb-2">' + escapeHtml(docName) + '</h2>';
-        if (data.created) {
-            header += '<p class="text-sm text-gray-500 mb-2">Last updated: ' + escapeHtml(data.created) + '</p>';
+        if (data.generated) {
+            header += '<p class="text-sm text-gray-500 mb-2">Last updated: ' + escapeHtml(data.generated) + '</p>';
         }
         header += '<p class="text-sm text-gray-500 mb-6"><a href="../opensource/specscout-dependencies.json" class="text-anoraTeal hover:underline" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download mr-1"></i>Download dependency list (JSON)</a></p>';
 
-        var pkgs = data.pkgs || [];
+        var pkgs = data.dependencies || [];
 
         var table = '<div class="overflow-x-auto"><table class="w-full text-sm">';
         table += '<thead><tr class="border-b-2 border-gray-200">';
@@ -123,11 +122,11 @@
 
         for (var i = 0; i < pkgs.length; i++) {
             var pkg = pkgs[i];
-            var name = pkg.n || '';
-            var version = pkg.v || '';
-            var license = friendlyLicense(pkg.l);
-            var copyright = pkg.c || '';
-            var link = purlToLink(pkg.u);
+            var name = pkg.name || '';
+            var version = pkg.version || '';
+            var license = friendlyLicense(pkg.license);
+            var copyright = pkg.copyright || '';
+            var link = purlToLink(pkg.purl);
 
             var nameHtml = link ? '<a href="' + escapeHtml(link) + '" target="_blank" rel="noopener noreferrer" class="text-anoraTeal hover:underline">' + escapeHtml(name) + '</a>' : escapeHtml(name);
             var bgClass = i % 2 === 0 ? 'bg-gray-50' : 'bg-white';
@@ -146,11 +145,12 @@
         container.appendChild(section);
     }
 
-    if (typeof SBOM_DATA !== 'undefined') {
-        renderSBOM(SBOM_DATA);
-    } else {
-        document.getElementById('sbom-content').innerHTML = '<div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100"><p class="text-red-500">Failed to load license data.</p><p class="text-sm text-gray-500 mt-2">You can download the dependency list directly: <a href="../opensource/specscout-dependencies.json" class="text-anoraTeal hover:underline">specscout-dependencies.json</a></p></div>';
-    }
+    fetch('../opensource/specscout-dependencies.json')
+        .then(function (r) { if (!r.ok) { throw new Error('HTTP ' + r.status); } return r.json(); })
+        .then(renderSBOM)
+        .catch(function () {
+            document.getElementById('sbom-content').innerHTML = '<div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100"><p class="text-red-500">Failed to load license data.</p><p class="text-sm text-gray-500 mt-2">You can download the dependency list directly: <a href="../opensource/specscout-dependencies.json" class="text-anoraTeal hover:underline">specscout-dependencies.json</a></p></div>';
+        });
     </script>
 
 </body>

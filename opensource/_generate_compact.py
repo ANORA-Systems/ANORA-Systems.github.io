@@ -4,10 +4,9 @@ Usage: python _generate_compact.py [path-to-sbom-export.json]
 
 Without an argument, the newest *SBOM*.json in this directory is used.
 Full SBOM exports stay in this directory but are gitignored — they must
-never be committed to this (public) repo. Derives the two public files:
-
-  _sbom_compact.js            data rendered by the license pages
-  specscout-dependencies.json downloadable dependency list (readable keys)
+never be committed to this (public) repo. Derives the single public file
+specscout-dependencies.json, which the license pages fetch and render
+and which also serves as the download link target.
 
 Keeps only third-party PyPI packages with a concrete version (drops the
 root repo package, first-party packages, GitHub Actions entries, and
@@ -68,10 +67,6 @@ pkgs.sort(key=lambda e: e["n"].lower())
 
 created = doc["creationInfo"]["created"][:10]
 
-compact = {"name": DISPLAY_NAME, "created": created, "pkgs": pkgs}
-payload = json.dumps(compact, ensure_ascii=False, separators=(",", ":"))
-(HERE / "_sbom_compact.js").write_text("var SBOM_DATA=" + payload + ";", encoding="utf-8")
-
 download = {
     "product": DISPLAY_NAME,
     "generated": created,
@@ -89,4 +84,4 @@ download = {
 (HERE / "specscout-dependencies.json").write_text(
     json.dumps(download, ensure_ascii=False, indent=1), encoding="utf-8")
 
-print(f"{len(pkgs)} packages written to _sbom_compact.js and specscout-dependencies.json")
+print(f"{len(pkgs)} packages written to specscout-dependencies.json")
