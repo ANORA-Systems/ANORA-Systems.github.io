@@ -1,2 +1,6 @@
 open_api_scheme.json
 CLAUDE.md
+
+# Full SPDX SBOM exports must stay private (archive: Local/Anora_Code/SBOMs/)
+opensource/*SBOM*.json
+opensource/ANORA-Systems_SpecScout_API_*.json

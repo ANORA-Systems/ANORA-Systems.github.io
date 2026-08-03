@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open-Source-Lizenzen | Anora Systems</title>
+
+    <link rel="icon" type="image/png" sizes="512x512" href="https://anora-systems.com/favicon-512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://anora-systems.com/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://anora-systems.com/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://anora-systems.com/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://anora-systems.com/favicon-180.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        anoraBlue: '#0B1E3D',
+                        anoraTeal: '#00A99D',
+                        anoraOrange: '#F7941D',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+    </style>
+
+    <script data-host="https://app.microanalytics.io" data-dnt="false" src="https://app.microanalytics.io/js/script.js" id="ZwSg9rf6GA" async defer></script>
+
+</head>
+
+<body class="font-sans text-slate-800 bg-gray-50 flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-sm p-4 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <img src="logo.png" alt="Anora Systems Logo" class="h-20 w-auto">
+            </a>
+            <a href="index.html" class="text-sm text-gray-500 hover:text-anoraTeal transition flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Zurück zur Startseite
+            </a>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
+
+        <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-4">Open-Source-Lizenzen</h1>
+        <p class="text-gray-600 mb-8 leading-relaxed">
+            Diese Seite listet die Open-Source-Softwarekomponenten auf, die in Produkten von Anora Systems verwendet werden, zusammen mit den zugehörigen Lizenzinformationen, wie in den jeweiligen Lizenzbedingungen gefordert.
+        </p>
+
+        <div id="sbom-content" class="space-y-8"></div>
+
+    </main>
+
+    <footer class="bg-anoraBlue text-white py-8 text-center mt-auto">
+        <div class="pt-8 border-t border-gray-800 text-gray-400 text-sm">
+            <p>&copy; 2025 Anora Systems. Alle Rechte vorbehalten.</p>
+            <div class="flex justify-center gap-6 mt-4">
+                <a href="impressum.html" class="hover:text-white transition-colors">Impressum</a>
+                <a href="datenschutz.html" class="hover:text-white transition-colors">Datenschutz</a>
+                <a href="agb.html" class="hover:text-white transition-colors">AGB</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="opensource/_sbom_compact.js"></script>
+    <script>
+    function escapeHtml(str) {
+        if (!str) return '';
+        var d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+
+    function friendlyLicense(spdx) {
+        if (!spdx || spdx === 'undefined' || spdx === 'NOASSERTION') return 'Nicht angegeben';
+        return spdx.replace(/ AND /g, ' + ').replace(/ OR /g, ' / ').replace(/LicenseRef-scancode-/g, '');
+    }
+
+    function purlToLink(purl) {
+        if (!purl) return '';
+        if (purl.indexOf('pkg:pypi/') === 0) {
+            var nameVer = purl.replace('pkg:pypi/', '');
+            var atIdx = nameVer.indexOf('@');
+            if (atIdx > 0) {
+                return 'https://pypi.org/project/' + nameVer.substring(0, atIdx) + '/';
+            }
+        }
+        return '';
+    }
+
+    function renderSBOM(data) {
+        var container = document.getElementById('sbom-content');
+        container.innerHTML = '';
+
+        var docName = (data.name || 'SBOM').replace(/_/g, ' ');
+        var section = document.createElement('div');
+        section.className = 'bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100';
+
+        var header = '<h2 class="text-xl font-bold text-anoraBlue mb-2">' + escapeHtml(docName) + '</h2>';
+        if (data.created) {
+            header += '<p class="text-sm text-gray-500 mb-2">Stand: ' + escapeHtml(data.created) + '</p>';
+        }
+        header += '<p class="text-sm text-gray-500 mb-6"><a href="opensource/specscout-dependencies.json" class="text-anoraTeal hover:underline" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download mr-1"></i>Abh&auml;ngigkeitsliste herunterladen (JSON)</a></p>';
+
+        var pkgs = data.pkgs || [];
+
+        var table = '<div class="overflow-x-auto"><table class="w-full text-sm">';
+        table += '<thead><tr class="border-b-2 border-gray-200">';
+        table += '<th class="text-left py-3 px-2 font-semibold text-anoraBlue">Paket</th>';
+        table += '<th class="text-left py-3 px-2 font-semibold text-anoraBlue">Version</th>';
+        table += '<th class="text-left py-3 px-2 font-semibold text-anoraBlue">Lizenz</th>';
+        table += '<th class="text-left py-3 px-2 font-semibold text-anoraBlue">Urheberrecht</th>';
+        table += '</tr></thead><tbody>';
+
+        for (var i = 0; i < pkgs.length; i++) {
+            var pkg = pkgs[i];
+            var name = pkg.n || '';
+            var version = pkg.v || '';
+            var license = friendlyLicense(pkg.l);
+            var copyright = pkg.c || '';
+            var link = purlToLink(pkg.u);
+
+            var nameHtml = link ? '<a href="' + escapeHtml(link) + '" target="_blank" rel="noopener noreferrer" class="text-anoraTeal hover:underline">' + escapeHtml(name) + '</a>' : escapeHtml(name);
+            var bgClass = i % 2 === 0 ? 'bg-gray-50' : 'bg-white';
+            var shortCopyright = copyright.length > 120 ? copyright.substring(0, 120) + '...' : copyright;
+
+            table += '<tr class="' + bgClass + '">';
+            table += '<td class="py-2 px-2 font-medium">' + nameHtml + '</td>';
+            table += '<td class="py-2 px-2 text-gray-600">' + escapeHtml(version) + '</td>';
+            table += '<td class="py-2 px-2"><span class="inline-block bg-anoraBlue/5 text-anoraBlue text-xs font-medium px-2 py-0.5 rounded">' + escapeHtml(license) + '</span></td>';
+            table += '<td class="py-2 px-2 text-gray-500 text-xs max-w-xs" title="' + escapeHtml(copyright) + '">' + escapeHtml(shortCopyright) + '</td>';
+            table += '</tr>';
+        }
+
+        table += '</tbody></table></div>';
+        section.innerHTML = header + table;
+        container.appendChild(section);
+    }
+
+    if (typeof SBOM_DATA !== 'undefined') {
+        renderSBOM(SBOM_DATA);
+    } else {
+        document.getElementById('sbom-content').innerHTML = '<div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100"><p class="text-red-500">Lizenzdaten konnten nicht geladen werden.</p><p class="text-sm text-gray-500 mt-2">Die Abh&auml;ngigkeitsliste kann direkt heruntergeladen werden: <a href="opensource/specscout-dependencies.json" class="text-anoraTeal hover:underline">specscout-dependencies.json</a></p></div>';
+    }
+    </script>
+
+</body>
+</html>
