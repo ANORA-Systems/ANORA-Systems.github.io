@@ -1,9 +1,10 @@
 """Generate the public dependency data from a full SPDX SBOM export.
 
-Usage: python _generate_compact.py <path-to-sbom-export.json>
+Usage: python _generate_compact.py [path-to-sbom-export.json]
 
-The full SBOM export must NOT be committed to this (public) repo — keep it
-in Local/Anora_Code/SBOMs/. This script derives the two public files:
+Without an argument, the newest *SBOM*.json in this directory is used.
+Full SBOM exports stay in this directory but are gitignored — they must
+never be committed to this (public) repo. Derives the two public files:
 
   _sbom_compact.js            data rendered by the license pages
   specscout-dependencies.json downloadable dependency list (readable keys)
@@ -21,11 +22,17 @@ HERE = Path(__file__).parent
 DISPLAY_NAME = "SpecScout API"
 FIRST_PARTY = {"specscout"}
 
-if len(sys.argv) < 2:
-    sys.exit("Usage: python _generate_compact.py <path-to-sbom-export.json>\n"
-             "(full SBOM exports live in Local/Anora_Code/SBOMs/, not in this repo)")
+if len(sys.argv) > 1:
+    sbom_path = Path(sys.argv[1])
+else:
+    exports = sorted(HERE.glob("*SBOM*.json"), key=lambda p: p.stat().st_mtime)
+    if not exports:
+        sys.exit("No *SBOM*.json export found in this directory.\n"
+                 "Usage: python _generate_compact.py [path-to-sbom-export.json]")
+    sbom_path = exports[-1]
+    print(f"Using {sbom_path.name}")
 
-doc = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+doc = json.loads(sbom_path.read_text(encoding="utf-8"))
 if "sbom" in doc:  # API export wraps the document, UI export does not
     doc = doc["sbom"]
 
