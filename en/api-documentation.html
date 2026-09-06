@@ -114,6 +114,7 @@
                         <ul class="space-y-2">
                             <li><a href="#intro" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Introduction</a></li>
                             <li><a href="#auth" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Authentication</a></li>
+                            <li><a href="#errors" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Errors &amp; Status Codes</a></li>
                         </ul>
                     </div>
 
@@ -123,7 +124,7 @@
                             <li><a href="#users" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Users</a></li>
                             <li><a href="#quotas" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Quotas</a></li>                            <li><a href="#specs" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Specifications</a></li>
                             <li><a href="#categories" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Categories</a></li>
-                            <li><a href="#search-settings" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Search Settings</a></li>
+                            <li><a href="#search-settings" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Domain Rules (Black-/Whitelist)</a></li>
                         </ul>
                     </div>
 
@@ -133,7 +134,7 @@
 
         <main class="relative z-10 flex-1 w-full max-w-6xl mx-auto p-6 md:p-10 lg:p-12">
             <section id="intro" class="mb-10 md:mb-12 rounded-3xl bg-gradient-to-r from-anoraBlue to-[#132a53] text-white p-7 md:p-9 shadow-xl shadow-anoraBlue/20 border border-white/10">
-                <p class="text-xs text-white/50 mb-3">As of 15.07.2026</p>
+                <p class="text-xs text-white/50 mb-3">As of 07.09.2026</p>
                 <h1 class="text-4xl md:text-5xl font-outfit font-bold tracking-tight mb-4">SpecScout API Documentation</h1>
                 <p class="text-lg text-gray-200 leading-relaxed max-w-4xl">
                     Welcome to the SpecScout API. This documentation provides detailed information about endpoints, parameters, and responses to help you integrate automated product data extraction into your e-commerce platform.
@@ -162,13 +163,27 @@
                     <div class="p-6">
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Query Parameters</h4>
                         <ul class="space-y-3 mb-6 text-sm">
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">product_name</span> <span class="text-gray-600">Required string. E.g. "MacBook Pro 16 M3 Max".</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">brand</span> <span class="text-gray-600">Required string. E.g. "Apple".</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">required_specs</span> <span class="text-gray-600">Optional string (nullable). JSON-encoded <strong>array</strong> of specification objects to look for, using the same fields as <a href="#specs" class="text-anoraTeal hover:underline font-medium">specification creation</a>, e.g. <code class="font-mono bg-gray-100 px-1 rounded text-xs">[{"name": "Battery Capacity", "description": "Rated capacity of the battery", "instance": "int", "unit": "mAh"}]</code>. Invalid JSON is rejected with <code class="font-mono bg-gray-100 px-1 rounded">400</code>.</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-32 shrink-0">category</span> <span class="text-gray-600">Optional string. <strong>ID (UUID)</strong> of a predefined category (see <a href="#create-category" class="text-anoraTeal hover:underline font-medium">category creation</a>) whose attached specifications should be looked for — not the category name. Values that are not valid UUIDs are rejected with <code class="font-mono bg-gray-100 px-1 rounded">400</code>.</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">product_name</span> <span class="text-gray-600">Required string. E.g. "MacBook Pro 16 M3 Max".</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">brand</span> <span class="text-gray-600">Required string. E.g. "Apple". Also activates saved <a href="#search-settings" class="text-anoraTeal hover:underline font-medium">domain rules</a> scoped to this brand.</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">required_specs</span> <span class="text-gray-600">Optional string (nullable). JSON-encoded <strong>array</strong> of specification objects to look for, using the same fields as <a href="#specs" class="text-anoraTeal hover:underline font-medium">specification creation</a> (including <code class="font-mono bg-gray-100 px-1 rounded text-xs">sub_values</code>, <code class="font-mono bg-gray-100 px-1 rounded text-xs">options</code>, <code class="font-mono bg-gray-100 px-1 rounded text-xs">tolerance</code>), e.g. <code class="font-mono bg-gray-100 px-1 rounded text-xs">[{"name": "Battery Capacity", "description": "Rated capacity of the battery", "instance": "int", "unit": "mAh"}]</code>. Invalid JSON or a non-array is rejected with <code class="font-mono bg-gray-100 px-1 rounded">400</code>; an entry that fails validation with <code class="font-mono bg-gray-100 px-1 rounded">422</code> (<code class="font-mono bg-gray-100 px-1 rounded">{"index": n, "errors": [...]}</code>).</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">category</span> <span class="text-gray-600"><span class="text-gray-600">Optional string. <strong>ID (UUID)</strong> of a predefined category (see <a href="#create-category" class="text-anoraTeal hover:underline font-medium">category creation</a>) whose attached specifications should be looked for. Not the category name. Values that are not valid UUIDs are rejected with <code class="font-mono bg-gray-100 px-1 rounded">400</code>; an unknown or inaccessible category with <code class="font-mono bg-gray-100 px-1 rounded">404</code>. At least one specification must result from <code class="font-mono bg-gray-100 px-1 rounded">required_specs</code> and/or <code class="font-mono bg-gray-100 px-1 rounded">category</code>, otherwise <code class="font-mono bg-gray-100 px-1 rounded">400</code>.</span></span></li>
                             <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">include_product_images</span> <span class="text-gray-600">Optional boolean. Default: <code class="font-mono bg-gray-100 px-1 rounded">false</code>. Include product image URLs in the response.</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">blacklist_mode</span> <span class="text-gray-600">Optional string. Default: <code class="font-mono bg-gray-100 px-1 rounded">stored</code>. Allowed: <code class="font-mono bg-gray-100 px-1 rounded">stored</code>, <code class="font-mono bg-gray-100 px-1 rounded">disabled</code>. Controls whether the stored domain blacklist is applied during search.</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">blacklist_sources</span> <span class="text-gray-600">Optional, repeatable. Which pools feed the effective domain <strong>blacklist</strong> for this request: <code class="font-mono bg-gray-100 px-1 rounded">stored</code> (your global saved rules), <code class="font-mono bg-gray-100 px-1 rounded">category</code> (saved rules scoped to the searched category), <code class="font-mono bg-gray-100 px-1 rounded">brand</code> (saved rules scoped to the searched brand), <code class="font-mono bg-gray-100 px-1 rounded">provided</code> (the <code class="font-mono bg-gray-100 px-1 rounded">blacklist_domains</code> list below), <code class="font-mono bg-gray-100 px-1 rounded">none</code> (disable the blacklist; must be the only value). Default when absent: all four real sources. E.g. <code class="font-mono bg-gray-100 px-1 rounded">?blacklist_sources=stored&amp;blacklist_sources=provided</code>.</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">whitelist_sources</span> <span class="text-gray-600">Optional, repeatable. Same values and default as <code class="font-mono bg-gray-100 px-1 rounded">blacklist_sources</code>, for the effective domain <strong>whitelist</strong>.</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">whitelist_exclusive</span> <span class="text-gray-600">Optional boolean. Default: <code class="font-mono bg-gray-100 px-1 rounded">false</code>. When <code class="font-mono bg-gray-100 px-1 rounded">true</code>, the <strong>entire search run</strong> is restricted to whitelisted domains (all web searches are site-restricted, other URLs are dropped before scraping). Without it the whitelist only adds and boosts sources. Requires a non-empty effective whitelist.</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">blacklist_domains</span> <span class="text-gray-600">Optional string. JSON-encoded array of domains to exclude for this request only, e.g. <code class="font-mono bg-gray-100 px-1 rounded">["ebay.com", "amazon.de"]</code>. Requires <code class="font-mono bg-gray-100 px-1 rounded">provided</code> in <code class="font-mono bg-gray-100 px-1 rounded">blacklist_sources</code> (it is by default).</span></li>
+                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">whitelist_domains</span> <span class="text-gray-600">Optional string. JSON-encoded array of objects for this request only, e.g. <code class="font-mono bg-gray-100 px-1 rounded">[{"domain": "bosch.com", "trust": "authoritative"}]</code>. <code class="font-mono bg-gray-100 px-1 rounded">trust</code> is optional: <code class="font-mono bg-gray-100 px-1 rounded">normal</code> (default), <code class="font-mono bg-gray-100 px-1 rounded">trusted</code>, <code class="font-mono bg-gray-100 px-1 rounded">authoritative</code> (see the trust ladder under <a href="#search-settings" class="text-anoraTeal hover:underline font-medium">Domain Rules</a>). Requires <code class="font-mono bg-gray-100 px-1 rounded">provided</code> in <code class="font-mono bg-gray-100 px-1 rounded">whitelist_sources</code>. Provided entries win over saved rules for the same domain.</span></li>
                         </ul>
+
+                        <div class="rounded-xl border border-anoraTeal/30 bg-anoraTeal/5 p-4 text-xs text-gray-700 mb-4">
+                            <p class="font-bold text-anoraBlue mb-1">Domain-rule validation (422, <code class="font-mono">code: "validation_error"</code>)</p>
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li><code class="font-mono bg-gray-100 px-1 rounded">none</code> combined with any other value in the same <code class="font-mono bg-gray-100 px-1 rounded">*_sources</code> list.</li>
+                                <li><code class="font-mono bg-gray-100 px-1 rounded">whitelist_exclusive=true</code> together with <code class="font-mono bg-gray-100 px-1 rounded">whitelist_sources=none</code>, or with an empty effective whitelist (no saved rule matched and no <code class="font-mono bg-gray-100 px-1 rounded">whitelist_domains</code> given).</li>
+                                <li><code class="font-mono bg-gray-100 px-1 rounded">blacklist_domains</code> / <code class="font-mono bg-gray-100 px-1 rounded">whitelist_domains</code> supplied while <code class="font-mono bg-gray-100 px-1 rounded">provided</code> is not in that list's sources.</li>
+                            </ul>
+                            <p class="mt-2">Duplicate source values are tolerated. Malformed JSON in a domain list is <code class="font-mono bg-gray-100 px-1 rounded">400</code>; an invalid entry (non-string domain, unknown <code class="font-mono bg-gray-100 px-1 rounded">trust</code>) is <code class="font-mono bg-gray-100 px-1 rounded">422</code> with <code class="font-mono bg-gray-100 px-1 rounded">{"index": n, "error": "..."}</code>.</p>
+                        </div>
 
                         <p class="text-xs text-gray-500 mb-4">Rate limit: 200 requests per minute.</p>
 
@@ -204,26 +219,36 @@
                                 <ul class="space-y-2">
                                     <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/ServiceResponsePublic</code></li>
                                     <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
-  "specs": [{
+  "specs": [{                       // SpecificationLite: one entry per specification with at least one verified value
     "id": "uuid",
     "name": "string",
-    "instance": "string",
-    "unit": "string",
-    "value": [  // one entry per verified value
-      {"value": "string | number | boolean | array", "unit": "string | null", "sources": ["url"], "confidence": 0.95}
+    "instance": "string",           // "float" | "int" | "str" | "bool"
+    "unit": "string | null",
+    "value": [                      // one entry per verified value
+      {
+        "value": "string | number | boolean | array",   // array for sub_values specs or multiple valid values
+        "unit": "string | null",
+        "sources": ["url"],         // pages that cite this value, sorted
+        "confidence": 0.95          // per-value trust score 0-1 (source trust + cross-source agreement)
+      }
     ]
   }],
-  "status": "success",  // "success" or "fail"
-  "not_found": [{"name": "string", "description": "string", "instance": "string", "unit": "string", ...}],  // full specification objects that could not be verified
+  "status": "success",              // "success" or "fail" (fail: no consistent specifications found)
+  "not_found": [                    // same SpecificationLite shape as specs, always with an empty value list
+    {"id": "uuid", "name": "string", "instance": "string", "unit": "string | null", "value": []}
+  ],
   "errors": ["string"],
   "image_links": [{"url": "string", "source_page": "string"}]  // null unless include_product_images=true
 }</code></pre>
-                                    <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
+                                    <li><code class="font-mono">400</code> Bad Request: malformed <code class="font-mono">required_specs</code> / domain-list JSON, <code class="font-mono">category</code> not a UUID, or no specification to search for</li>
+                                    <li><code class="font-mono">404</code> Category not found (or not accessible)</li>
+                                    <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code>, or the <code class="font-mono">{"detail", "code"}</code> shape for the domain-rule rules above</li>
                                     <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
 }</code></pre>
+                                    <li><code class="font-mono">429</code> Rate limit or quota exceeded (see <a href="#quotas" class="text-anoraTeal hover:underline">Quotas</a>)</li>
                                 </ul>
                             </div>
                         </details>
@@ -275,6 +300,43 @@
                 </div>
             </section>
 
+            <section id="errors" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
+                <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-4">Errors &amp; Status Codes</h2>
+                <p class="text-gray-600 mb-5">Errors raised by the API's own validation and business rules return a human-readable <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">detail</code> plus a stable, machine-readable <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">code</code>. Branch on <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">code</code>, not on the text. Request-schema violations caught before the endpoint runs (missing required field, wrong type, unknown enum value) use FastAPI's standard <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">{"detail": [...]}</code> list shape without a <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">code</code>.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-5">
+                    <div>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Business / validation error</h4>
+                        <pre class="bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+  "detail": "a specification named 'Weight' is already attached to category ...",
+  "code": "specification_name_conflict_in_category"
+}</code></pre>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Internal error (500)</h4>
+                        <pre class="bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+  "detail": "internal server error",
+  "code": "internal_server_error",
+  "correlation_id": "3f9c..."   // also sent as X-Correlation-ID header; quote it when reporting a problem
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto"><table class="text-sm text-gray-700 border border-gray-200 rounded-lg min-w-full">
+                    <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide"><tr><th class="px-3 py-2 text-left">Status</th><th class="px-3 py-2 text-left">Meaning</th><th class="px-3 py-2 text-left">Typical codes</th></tr></thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr><td class="px-3 py-2 font-mono">400</td><td class="px-3 py-2">Malformed input that is not a schema violation (invalid JSON in a query parameter, non-UUID category, nothing to search for)</td><td class="px-3 py-2 font-mono text-xs">–</td></tr>
+                        <tr><td class="px-3 py-2 font-mono">401</td><td class="px-3 py-2">Missing, invalid, expired or revoked API key</td><td class="px-3 py-2 font-mono text-xs">invalid_or_missing_api_key, invalid_api_key</td></tr>
+                        <tr><td class="px-3 py-2 font-mono">403</td><td class="px-3 py-2">Key valid but not allowed: account not activated or blocked, key scope insufficient, foreign private resource</td><td class="px-3 py-2 font-mono text-xs">account_not_activated, account_blocked, api_key_scope_insufficient, insufficient_privileges</td></tr>
+                        <tr><td class="px-3 py-2 font-mono">404</td><td class="px-3 py-2">Resource does not exist or is not visible to you</td><td class="px-3 py-2 font-mono text-xs">category_not_found, domain_blacklist_item_not_found, scope_term_not_found, ...</td></tr>
+                        <tr><td class="px-3 py-2 font-mono">409</td><td class="px-3 py-2">Conflict with existing data or a cap</td><td class="px-3 py-2 font-mono text-xs">specification_name_conflict_in_category, domain_whitelist_item_duplicate, scope_term_duplicate, scope_term_limit_exceeded, scope_term_last_undeletable</td></tr>
+                        <tr><td class="px-3 py-2 font-mono">422</td><td class="px-3 py-2">Request understood but semantically invalid</td><td class="px-3 py-2 font-mono text-xs">validation_error, invalid_scope_term, invalid_brand, or FastAPI's <code class="font-mono">{"detail": [...]}</code></td></tr>
+                        <tr><td class="px-3 py-2 font-mono">429</td><td class="px-3 py-2">Per-endpoint rate limit or monthly search quota exceeded</td><td class="px-3 py-2 font-mono text-xs">–</td></tr>
+                        <tr><td class="px-3 py-2 font-mono">500</td><td class="px-3 py-2">Unexpected failure; nothing about the cause is exposed</td><td class="px-3 py-2 font-mono text-xs">internal_server_error (+ correlation_id)</td></tr>
+                    </tbody>
+                </table></div>
+            </section>
+
             <section id="users" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
                 <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-6">Users</h2>
 
@@ -286,6 +348,7 @@
                     </div>
                     <div class="p-6">
                         <p class="text-gray-600 text-sm">Get your account information.</p>
+                        <p class="text-xs text-gray-500 mt-2">Rate limit: 20 requests per minute.</p>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                             <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -360,6 +423,7 @@
                         <div class="mt-3 text-sm text-gray-600 space-y-2">
                             <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
                             <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">12</code>, max: <code class="font-mono">120</code>.</p>
+                            <p><span class="font-mono text-anoraBlue font-bold">sortBy</span> Optional string. Default: <code class="font-mono">period_start</code>. Allowed: <code class="font-mono">period_start</code>, <code class="font-mono">search_count</code>, <code class="font-mono">last_search_at</code>.</p>
                             <p><span class="font-mono text-anoraBlue font-bold">sortDir</span> Optional string. Default: <code class="font-mono">desc</code>. Allowed: <code class="font-mono">asc</code>, <code class="font-mono">desc</code>.</p>
                         </div>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
@@ -431,12 +495,15 @@
                         <div>
                             <h5 class="font-semibold mb-2">Validation Rules</h5>
                             <ul class="space-y-1">
-                                <li><strong>Allowed instance values only:</strong> <code class="font-mono">"float"</code>, <code class="font-mono">"int"</code>, <code class="font-mono">"str"</code>, <code class="font-mono">"bool"</code>. Common aliases (<code class="font-mono">"number"</code>, <code class="font-mono">"double"</code>, <code class="font-mono">"integer"</code>, <code class="font-mono">"string"</code>, <code class="font-mono">"text"</code>, <code class="font-mono">"boolean"</code>) are accepted and normalized. There is no <code class="font-mono">"list"</code> instance — define <code class="font-mono">sub_values</code> when a spec has multiple values.</li>
-                                <li><strong>No duplicated semantics:</strong> if <code class="font-mono">unit</code> is set, avoid repeating it in the description.</li>
-                                <li><strong>Prefer specific names:</strong> e.g. <code class="font-mono">Battery Capacity</code> instead of <code class="font-mono">Battery</code>.</li>
-                                <li><strong>Use options for closed vocabularies:</strong> e.g. material, color class, connector type.</li>
-                                <li><strong>Set realistic tolerance:</strong> use low tolerance for exact numbers, higher only for fuzzy text matching.</li>
-                                <li><strong>Keep one meaning per spec:</strong> do not combine multiple attributes in one field.</li>
+                                <li><strong>Allowed instance values only:</strong> <code class="font-mono">"float"</code>, <code class="font-mono">"int"</code>, <code class="font-mono">"str"</code>, <code class="font-mono">"bool"</code>. Common aliases (<code class="font-mono">"number"</code>, <code class="font-mono">"double"</code>, <code class="font-mono">"integer"</code>, <code class="font-mono">"string"</code>, <code class="font-mono">"text"</code>, <code class="font-mono">"boolean"</code>) are accepted and normalized. There is no <code class="font-mono">"list"</code> instance; define <code class="font-mono">sub_values</code> when a spec has multiple values.</li>
+                                <li><strong>Use <code class="font-mono">int</code> only for counts</strong> (cores, gears). Physical quantities (weight, size, clock speed) are <code class="font-mono">float</code>, even if they are usually listed as whole numbers.</li>
+                                <li><strong><code class="font-mono">unit</code> is optional.</strong> Leave it out for values without a unit; it reads back as <code class="font-mono">null</code>. Unit conversion only happens for <code class="font-mono">int</code>/<code class="font-mono">float</code>; on a <code class="font-mono">str</code> spec a unit acts as a format hint, on <code class="font-mono">bool</code> it does nothing.</li>
+                                <li><strong>No duplicated semantics:</strong> if <code class="font-mono">unit</code> is set, do not repeat it in the description. Avoid plausible example values in the description; they bias the extraction.</li>
+                                <li><strong>Multi-part values use <code class="font-mono">sub_values</code>:</strong> either an <strong>array</strong> of at least two per-element descriptions (e.g. <code class="font-mono">["width", "height", "depth"]</code>; <code class="font-mono">subvalue_elements</code> is derived from the length), or a <strong>string</strong> describing the whole collection when the elements cannot be enumerated (e.g. <code class="font-mono">"the materials of the fabric with their share"</code>; <code class="font-mono">subvalue_elements</code> stays <code class="font-mono">null</code> for a variable count or states a fixed count ≥ 2). <code class="font-mono">subvalues_ordered</code> says whether each position has a fixed meaning; it defaults to <code class="font-mono">true</code> for the array form and <code class="font-mono">false</code> for the string form, and <code class="font-mono">true</code> with a string is rejected. All elements share one instance, unit, tolerance and options. Sub-values are verified as a unit: sources must agree on every element.</li>
+                                <li><strong>Tolerance defaults by instance:</strong> <code class="font-mono">float</code> 0.02, <code class="font-mono">int</code> 0, <code class="font-mono">str</code> 0.15 (recommended to keep near that), <code class="font-mono">bool</code> ignored. Value is a fraction (0.05 = 5%).</li>
+                                <li><strong>Use options for closed vocabularies:</strong> e.g. material, connector type. Keep them on one abstraction level, exhaustive for the domain, in one language.</li>
+                                <li><strong>Prefer specific names and keep one meaning per spec:</strong> e.g. <code class="font-mono">Battery Capacity</code> instead of <code class="font-mono">Battery</code>; do not combine multiple attributes in one field. Two specs that overlap should each exclude the other's domain in their description.</li>
+                                <li><strong>Names are unique per category</strong> (case-insensitive). Attaching or renaming a spec so that two specs in one category share a name is rejected with <code class="font-mono">409 specification_name_conflict_in_category</code>.</li>
                             </ul>
                         </div>
                     </div>
@@ -454,16 +521,18 @@
                         <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
   "name": "Display Size",                     // required
   "description": "Diagonal of visible display area", // required
-  "unit": "inch",                             // required
   "instance": "float",                        // required: "float", "int", "str", "bool"
+  "unit": "inch",                             // optional; omit for values without a unit
 
-  "tolerance": 0.05,                          // optional fine-tuning
-  "options": null,                            // optional fine-tuning (array of allowed values)
-  "sub_values": []                            // optional fine-tuning (nested attributes)
+  "tolerance": 0.05,                          // optional; default depends on instance (float 0.02, int 0, str 0.15)
+  "options": null,                            // optional: array of allowed values (closed vocabulary)
+  "sub_values": null,                         // optional: array of >= 2 element descriptions, or a string describing the collection
+  "subvalue_elements": null,                  // optional: expected element count (derived from an array sub_values)
+  "subvalues_ordered": true                   // optional: whether positions have a fixed meaning (default: true for array, false for string)
 }</code></pre>
                         <p class="text-xs text-gray-500">
-                            Required for creation: <code>name</code>, <code>description</code>, <code>unit</code>, <code>instance</code>.
-                            All other fields are optional and used for fine-tuning. <br/>
+                            Required for creation: <code>name</code>, <code>description</code>, <code>instance</code>.
+                            All other fields are optional and used for fine-tuning; see the best practices above for the <code>sub_values</code> contract. <br/>
                             Note: Use <code>options</code> for filters (e.g. material: ["aluminum", "plastic"]).
                         </p>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
@@ -483,6 +552,8 @@
   "tolerance": 0.05,
   "options": null,
   "sub_values": null,
+  "subvalue_elements": null,
+  "subvalues_ordered": true,
   "user_id": "uuid",
   "created_at": "2026-01-01T00:00:00Z",
   "updated_at": "2026-01-01T00:00:00Z"
@@ -511,7 +582,7 @@
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
                             <div class="mt-3 text-sm text-gray-600 space-y-2">
                                 <p><span class="font-mono text-anoraBlue font-bold">search</span> Optional string. Default: <code class="font-mono">""</code>.</p>
-                                <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all</code>. Allowed: <code class="font-mono">all</code>, <code class="font-mono">owned</code>, <code class="font-mono">public</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all</code>. Allowed: <code class="font-mono">all</code> (own + public), <code class="font-mono">owned</code>, <code class="font-mono">public</code>, <code class="font-mono">mine</code>; <code class="font-mono">foreign</code> is superuser-only.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">user_id</span> Optional UUID (nullable). Filter by owner.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
@@ -522,6 +593,8 @@
                                 <p><span class="font-mono text-anoraBlue font-bold">unit</span> Optional string (nullable). Only specifications with exactly this unit.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">has_options</span> Optional boolean (nullable). <code class="font-mono">true</code>: only specifications with options; <code class="font-mono">false</code>: only ones without.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">has_sub_values</span> Optional boolean (nullable). <code class="font-mono">true</code>: only specifications with sub_values; <code class="font-mono">false</code>: only ones without.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">subvalues_ordered</span> Optional boolean (nullable). Among sub-value specs only: filter by whether element order carries meaning. Plain specs never match either value.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">has_subvalue_elements</span> Optional boolean (nullable). Among sub-value specs only: <code class="font-mono">true</code> = element count is declared, <code class="font-mono">false</code> = count varies per product.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">no_category</span> Optional boolean (nullable). <code class="font-mono">true</code>: only specifications not attached to any category; <code class="font-mono">false</code>: only attached ones.</p>
                             </div>
                             <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
@@ -583,6 +656,8 @@
   "tolerance": 0.05,
   "options": null,
   "sub_values": null,
+  "subvalue_elements": null,
+  "subvalues_ordered": true,
   "user_id": "uuid",
   "created_at": "2026-01-01T00:00:00Z",
   "updated_at": "2026-01-01T00:00:00Z"
@@ -611,20 +686,23 @@
                             <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
   "name": "Display Size",                     // required
   "description": "Diagonal of visible display area", // required
-  "unit": "inch",                             // required
   "instance": "float",                        // required: "float", "int", "str", "bool"
-  "tolerance": 0.05,                          // optional fine-tuning
-  "options": null,                            // optional fine-tuning
-  "sub_values": []                            // optional fine-tuning
+  "unit": "inch",                             // optional
+  "tolerance": 0.05,                          // optional
+  "options": null,                            // optional
+  "sub_values": null,                         // optional (array or string, see best practices)
+  "subvalue_elements": null,                  // optional
+  "subvalues_ordered": true                   // optional
 }</code></pre>
                             <p class="text-xs text-gray-500 mb-4">
                                 For updates, provide a full specification payload.
-                                <code>name</code>, <code>description</code>, <code>unit</code>, and <code>instance</code> are required.
+                                <code>name</code>, <code>description</code> and <code>instance</code> are required; omitted optional fields are reset to their defaults.
                             </p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Query Parameters</h4>
                             <div class="text-sm text-gray-600 space-y-2">
                                 <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all_categories</code>. Allowed: <code class="font-mono">all_categories</code>, <code class="font-mono">this_category</code>. With <code class="font-mono">all_categories</code> the specification is updated in place, affecting every category it is attached to. With <code class="font-mono">this_category</code> the change applies only to the category given in <code class="font-mono">category_id</code>: if the specification is attached to other categories as well, it is detached from that category and an edited copy is created and attached in its place — the original remains unchanged everywhere else.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">category_id</span> Optional UUID. Required when <code class="font-mono">scope=this_category</code> (otherwise <code class="font-mono">422</code>).</p>
+                                <p class="text-xs text-gray-500">Conflicts: renaming a spec to a name another spec in one of its categories already carries is <code class="font-mono">409 specification_name_conflict_in_category</code>. With <code class="font-mono">scope=this_category</code>, forking inside a <em>public</em> category is refused with <code class="font-mono">409 specification_fork_into_public_category</code> (duplicate the category first).</p>
                             </div>
                             <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                                 <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
@@ -643,6 +721,8 @@
   "tolerance": 0.05,
   "options": null,
   "sub_values": null,
+  "subvalue_elements": null,
+  "subvalues_ordered": true,
   "user_id": "uuid",
   "created_at": "2026-01-01T00:00:00Z",
   "updated_at": "2026-01-01T00:00:00Z"
@@ -696,7 +776,7 @@
                             <span class="text-sm text-gray-500 ml-auto">Bulk create specs</span>
                         </div>
                         <div class="p-6">
-                            <p class="text-gray-600 text-sm mb-2">Create up to 100 specifications in one request. Use <code class="font-mono">mode</code> to control atomicity.</p>
+                            <p class="text-gray-600 text-sm mb-2">Create up to 100 specifications in one request. Use <code class="font-mono">mode</code> to control atomicity: <code class="font-mono">partial</code> commits every valid row and reports failed rows individually; <code class="font-mono">atomic</code> creates all rows or none.</p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
                             <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
   "mode": "partial",    // "partial" (default) or "atomic" — partial commits valid rows independently
@@ -719,7 +799,8 @@
                                 </summary>
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
-                                        <li><code class="font-mono">201</code> Successful Response</li>
+                                        <li><code class="font-mono">201</code> Successful Response, every row created</li>
+                                        <li><code class="font-mono">200</code> Partial success (<code class="font-mono">mode: partial</code> only): at least one row failed; <code class="font-mono">summary.failed</code> is greater than 0 and the failed rows carry an <code class="font-mono">error</code>. Check the summary, not just the status code.</li>
                                         <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
   "mode": "partial",
   "summary": {"requested": 1, "created": 1, "attached": 0, "failed": 0},
@@ -730,11 +811,12 @@
       "status": "created",
       "specification": {"id": "uuid", "name": "Display Size", ...},
       "attached": null,
-      "error": null
+      "error": null              // on "failed": {"code": "specification_create_failed" | "category_attach_failed" | "validation_error", "message": "..."}
     }
   ]
 }</code></pre>
-                                        <li><code class="font-mono">422</code> Validation Error</li>
+                                        <li><code class="font-mono">422</code> <code class="font-mono">validation_error</code> in <code class="font-mono">atomic</code> mode if any item is invalid: nothing is created. Also the standard Validation Error for a malformed request (e.g. more than 100 items).</li>
+                                        <li><code class="font-mono">409</code> <code class="font-mono">atomic</code> mode only: a conflict on any row fails the whole request and nothing is created. In <code class="font-mono">partial</code> mode the same conflict only fails that row (<code class="font-mono">error.code</code> is <code class="font-mono">specification_create_failed</code>, the cause is in <code class="font-mono">error.message</code>).</li>
                                     </ul>
                                 </div>
                             </details>
@@ -777,7 +859,7 @@
   "duplicate_candidates": [
     {"id": "uuid", "name": "Battery Capacity", "description": "...", "instance": "int", "unit": "mAh"}
   ],
-  "warnings": []
+  "warnings": []   // advisory codes: needs_manual_review, high_similarity_existing_spec, missing_unit_guess, unit_on_non_numeric_spec, subvalues_order_dropped
 }</code></pre>
                                         <li><code class="font-mono">400</code> Invalid prompt</li>
                                         <li><code class="font-mono">403</code> Forbidden category access</li>
@@ -843,7 +925,7 @@
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
                             <div class="mt-3 text-sm text-gray-600 space-y-2">
                                 <p><span class="font-mono text-anoraBlue font-bold">search</span> Optional string. Default: <code class="font-mono">""</code>.</p>
-                                <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all</code>. Allowed: <code class="font-mono">all</code>, <code class="font-mono">owned</code>, <code class="font-mono">public</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all</code>. Allowed: <code class="font-mono">all</code> (own + public), <code class="font-mono">owned</code>, <code class="font-mono">public</code>, <code class="font-mono">mine</code>; <code class="font-mono">foreign</code> is superuser-only.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">user_id</span> Optional UUID (nullable). Filter by owner.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
@@ -995,7 +1077,7 @@
                         <span class="text-sm text-gray-500 ml-auto">Create category</span>
                     </div>
                     <div class="p-6">
-                        <p class="text-gray-600 text-sm mb-2">Create a category. Every category name must be unique.</p>
+                        <p class="text-gray-600 text-sm mb-2">Create a category. Keep category names unique; the API does not enforce this, but duplicate names make categories hard to tell apart.</p>
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
                         <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code>{
   "name": "Electronics/IT-Devices/Laptops",
@@ -1099,7 +1181,7 @@
                         <span class="text-sm text-gray-500 ml-auto">Attach spec</span>
                     </div>
                     <div class="p-6">
-                        <p class="text-gray-600 text-sm">Associates a specification with a category.</p>
+                        <p class="text-gray-600 text-sm">Associates a specification with a category. Specification names must be unique within a category (case-insensitive). Attaching an already attached specification is a no-op.</p>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                             <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -1107,7 +1189,10 @@
                             </summary>
                             <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                 <ul class="space-y-2">
-                                    <li><code class="font-mono">201</code> Successful Response (no JSON schema)</li>
+                                    <li><code class="font-mono">201</code> Successful Response: <code class="font-mono">{"detail": "attached"}</code></li>
+                                    <li><code class="font-mono">403</code> Forbidden: foreign private category, or a public/foreign spec into a public category</li>
+                                    <li><code class="font-mono">404</code> Category or specification not found</li>
+                                    <li><code class="font-mono">409</code> <code class="font-mono">specification_name_conflict_in_category</code>: another spec with the same name is already attached</li>
                                     <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
                                     <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
   "detail": [
@@ -1180,7 +1265,7 @@
                             <span class="text-sm text-gray-500 ml-auto">Bulk create &amp; attach specs</span>
                         </div>
                         <div class="p-6">
-                            <p class="text-gray-600 text-sm mb-2">Bulk-creates specifications and attaches them to the category in one request. Same request schema as <code class="font-mono">POST /api/v2/specifications/bulk</code>. The <code class="font-mono">attached</code> field in each result indicates whether the attachment succeeded.</p>
+                            <p class="text-gray-600 text-sm mb-2">Bulk-creates specifications and attaches them to the category in one request. Same request schema as <code class="font-mono">POST /api/v2/specifications/bulk</code>. The <code class="font-mono">attached</code> field in each result indicates whether the attachment succeeded. In <code class="font-mono">partial</code> mode a name clash inside the category fails only that row: <code class="font-mono">error.code</code> is <code class="font-mono">category_attach_failed</code> and <code class="font-mono">error.message</code> names the conflict.</p>
                             <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                                 <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                     <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -1189,7 +1274,11 @@
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
                                         <li><code class="font-mono">201</code> Successful Response — same <code class="font-mono">BulkSpecificationResponse</code> schema; <code class="font-mono">attached: true/false</code> per result row</li>
-                                        <li><code class="font-mono">422</code> Validation Error</li>
+                                        <li><code class="font-mono">200</code> Partial success (<code class="font-mono">mode: partial</code> only): at least one row failed, see <code class="font-mono">summary.failed</code> and the per-row <code class="font-mono">error</code></li>
+                                        <li><code class="font-mono">403</code> Forbidden: foreign private category</li>
+                                        <li><code class="font-mono">404</code> Category not found</li>
+                                        <li><code class="font-mono">409</code> <code class="font-mono">specification_name_conflict_in_category</code>, <code class="font-mono">atomic</code> mode only: the whole request fails and nothing is created</li>
+                                        <li><code class="font-mono">422</code> <code class="font-mono">validation_error</code> in <code class="font-mono">atomic</code> mode if any item is invalid (nothing created); otherwise the standard Validation Error</li>
                                     </ul>
                                 </div>
                             </details>
@@ -1200,128 +1289,452 @@
             </section>
 
             <section id="search-settings" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
-                <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-4">Search Settings</h2>
-                <p class="text-gray-600 mb-6">Manage the domain blacklist — domains excluded from web searches during extraction. The <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">blacklist_mode</code> parameter on <a href="#search" class="text-anoraTeal hover:underline font-medium">Search</a> controls whether the stored list is applied.</p>
+                <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-4">Domain Rules (Blacklist &amp; Whitelist)</h2>
+                <p class="text-gray-600 mb-4">Saved domain rules steer which websites a search uses. The <strong>blacklist</strong> excludes domains from web searches and scraping; the <strong>whitelist</strong> adds domains as sources and can declare how much to trust them. Each user holds at most one rule per domain per list. Every route below exists for both lists; <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">{list}</code> stands for <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">blacklist</code> or <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">whitelist</code>.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="rounded-2xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700">
+                        <h4 class="font-bold text-anoraBlue mb-2">Global vs. scoped rules</h4>
+                        <ul class="space-y-1 list-disc pl-4">
+                            <li>A rule with <strong>no scope terms</strong> is <strong>global</strong> and applies to every search (source <code class="font-mono">stored</code>).</li>
+                            <li>A <strong>scope term</strong> is one situation the rule applies in: <code class="font-mono">{"category_id": ..., "brand": ...}</code> with at least one part set. The parts of one term <strong>AND</strong> together; a rule's terms <strong>OR</strong> together.</li>
+                            <li>A search activates a term only if its <code class="font-mono">category</code> / <code class="font-mono">brand</code> parameters match the term's parts. A missing part is never a wildcard.</li>
+                            <li>Brands are normalized (trim, collapse whitespace, lowercase, max 128 chars). Responses carry both <code class="font-mono">brand</code> (identity) and <code class="font-mono">brand_display</code> (as entered).</li>
+                            <li>Max 100 scope terms per rule.</li>
+                        </ul>
+                    </div>
+                    <div class="rounded-2xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700">
+                        <h4 class="font-bold text-anoraBlue mb-2">Trust ladder (whitelist only)</h4>
+                        <ul class="space-y-1 list-disc pl-4">
+                            <li><code class="font-mono">normal</code> — include the domain as a source, no further claim.</li>
+                            <li><code class="font-mono">trusted</code> — strong prior: values from this domain get a high per-value confidence and the domain is ranked higher. Values are still cross-source verified.</li>
+                            <li><code class="font-mono">authoritative</code> — the product's own source (e.g. the manufacturer). Everything <code class="font-mono">trusted</code> does, plus its pages get a second, independent extraction so specs only this source publishes can still be confirmed.</li>
+                        </ul>
+                        <p class="mt-2">A rule has a base <code class="font-mono">trust</code>; a scope term may override it for its own situation (<code class="font-mono">effective_trust</code>). <code class="font-mono">globally_active: true</code> puts a scoped whitelist rule into the <code class="font-mono">stored</code> pool at its base trust while its terms keep acting as overrides.</p>
+                        <p class="mt-2"><code class="font-mono">source_kind</code> (<code class="font-mono">manufacturer</code> | <code class="font-mono">comparison_portal</code>) is a purely descriptive label available on both lists.</p>
+                    </div>
+                </div>
+
+                <p class="text-gray-600 mb-6 text-sm">How a search picks rules up is controlled per request by <code class="font-mono bg-gray-100 px-1 rounded border border-gray-200">blacklist_sources</code> / <code class="font-mono bg-gray-100 px-1 rounded border border-gray-200">whitelist_sources</code> on <a href="#search" class="text-anoraTeal hover:underline font-medium">Search</a>. Error responses from this family carry a machine-readable <code class="font-mono bg-gray-100 px-1 rounded border border-gray-200">code</code> (see <a href="#errors" class="text-anoraTeal hover:underline font-medium">Errors</a>).</p>
 
                 <div class="space-y-4">
-
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
                         <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                             <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
-                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/blacklist</code>
-                            <span class="text-sm text-gray-500 ml-auto">List blacklisted domains</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}</code>
+                            <span class="text-sm text-gray-500 ml-auto">List rules</span>
                         </div>
                         <div class="p-6">
-                            <p class="text-gray-600 text-sm">List blacklisted domains for the current user.</p>
+                            <p class="text-gray-600 text-sm mb-2">List the current user's saved rules for one list. Without <code class="font-mono">sources</code> this is a plain listing. With <code class="font-mono">sources</code> it becomes the <strong>effective-set view</strong>: only rules that a search with the given <code class="font-mono">category_id</code> / <code class="font-mono">brand</code> context would pick up from those pools, each with its activation reason in <code class="font-mono">source</code> and a <code class="font-mono">probe</code>. Add <code class="font-mono">is_active=true</code> to preview exactly what a search would use.</p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
                             <div class="mt-3 text-sm text-gray-600 space-y-2">
-                                <p><span class="font-mono text-anoraBlue font-bold">search</span> Optional string.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">search</span> Optional string. Substring match on the domain.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">is_active</span> Optional boolean. Filter by active state.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">category_id</span> Optional UUID. Rules with a scope term naming this category. Also the category context for the effective-set view.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">brand</span> Optional string. Rules with a scope term naming this brand (normalized server-side). Also the brand context for the effective-set view.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">sources</span> Optional, repeatable. Turns on the effective-set view. Allowed: <code class="font-mono">stored</code>, <code class="font-mono">category</code>, <code class="font-mono">brand</code> (e.g. <code class="font-mono">?sources=stored&amp;sources=category&amp;sources=brand</code>). <code class="font-mono">provided</code> and <code class="font-mono">none</code> are rejected with <code class="font-mono">422</code>. Requesting only scoped sources with no <code class="font-mono">category_id</code>/<code class="font-mono">brand</code> context is a <code class="font-mono">422</code> (guaranteed-empty view).</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">source_kind</span> Optional string. Allowed: <code class="font-mono">manufacturer</code>, <code class="font-mono">comparison_portal</code>, <code class="font-mono">unset</code> (rules without a classification).</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">trust</span> Optional string, <strong>whitelist only</strong>. Exact match on the rule's base trust: <code class="font-mono">normal</code>, <code class="font-mono">trusted</code>, <code class="font-mono">authoritative</code>.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
-                                <p><span class="font-mono text-anoraBlue font-bold">sortBy</span> Optional string. Default: <code class="font-mono">created_at</code>. Allowed: <code class="font-mono">created_at</code>, <code class="font-mono">updated_at</code>, <code class="font-mono">domain</code>, <code class="font-mono">is_active</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">sortBy</span> Optional string. Default: <code class="font-mono">created_at</code>. Allowed: <code class="font-mono">created_at</code>, <code class="font-mono">updated_at</code>, <code class="font-mono">domain</code>, <code class="font-mono">is_active</code>; whitelist additionally <code class="font-mono">trust</code> (ordered by ladder rank, not alphabetically).</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">sortDir</span> Optional string. Default: <code class="font-mono">desc</code>. Allowed: <code class="font-mono">asc</code>, <code class="font-mono">desc</code>.</p>
                             </div>
-                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
-                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
-                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
-                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                                </summary>
-                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
-                                    <ul class="space-y-2">
-                                        <li><code class="font-mono">200</code> Successful Response</li>
-                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                    <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                        <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                            <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                            <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                            <ul class="space-y-2">
+
+                                <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">DomainBlacklistItemListResponse</code> / <code class="font-mono">DomainWhitelistItemListResponse</code></li>
+                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
   "items": [
     {
       "id": "uuid",
       "user_id": "uuid",
-      "domain": "example.com",
+      "domain": "bosch.com",
+      "trust": "trusted",                 // whitelist only: "normal" | "trusted" | "authoritative"
+      "source_kind": "manufacturer",      // both lists: "manufacturer" | "comparison_portal" | null
+      "globally_active": false,           // whitelist only
       "is_active": true,
       "created_at": "2026-01-01T00:00:00Z",
-      "updated_at": "2026-01-01T00:00:00Z"
+      "updated_at": "2026-01-01T00:00:00Z",
+      "category_count": 1,                // distinct categories across the rule's scope terms
+      "brand_count": 1,                   // distinct brands across the rule's scope terms
+      "scope_term_count": 2,              // number of scope terms; 0 = global rule
+      "source": null,                     // only set in the sources= view: "stored" | "category" | "brand" | "category_and_brand"
+      "probe": null                       // only set when probing (see single-rule detail)
     }
   ],
-  "pagination": {"total": 5, "skip": 0, "limit": 100, "returned": 1, ...}
+  "pagination": {"total": 5, "skip": 0, "limit": 100, "returned": 1, "has_prev": false, "has_next": false, "next_skip": null, "prev_skip": null}
 }</code></pre>
-                                        <li><code class="font-mono">422</code> Validation Error</li>
-                                    </ul>
-                                </div>
-                            </details>
+                                <li><code class="font-mono">422</code> Validation Error</li>
+                            </ul>
+                        </div>
+                    </details>
+
                         </div>
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
                         <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
-                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/blacklist</code>
-                            <span class="text-sm text-gray-500 ml-auto">Add domain</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}</code>
+                            <span class="text-sm text-gray-500 ml-auto">Create rule</span>
                         </div>
                         <div class="p-6">
-                            <p class="text-gray-600 text-sm mb-2">Add a domain to the blacklist.</p>
-                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
-                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code>{"domain": "example.com"}  // required, max 2048 chars</code></pre>
-                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
-                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
-                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
-                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                                </summary>
-                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
-                                    <ul class="space-y-2">
-                                        <li><code class="font-mono">201</code> Successful Response — returns <code class="font-mono">DomainBlacklistItemPublic</code></li>
-                                        <li><code class="font-mono">422</code> Validation Error</li>
-                                    </ul>
-                                </div>
-                            </details>
+                            <p class="text-gray-600 text-sm mb-2">Create a rule for a domain. Without <code class="font-mono">scopes</code> the rule is <strong>global</strong>; each <code class="font-mono">scopes</code> entry becomes one scope term. Creating a domain that already has a rule on this list is always a <code class="font-mono">409</code>. There is no upsert; use <a href="#ensure" class="text-anoraTeal hover:underline font-medium">ensure</a> for an idempotent "make sure this domain is covered" call.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-4 mb-2">Request Body</h4>
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
+  "domain": "bosch.com",                       // required, 1-2048 chars
+  "source_kind": "manufacturer",               // optional, both lists: "manufacturer" | "comparison_portal"
+  "trust": "trusted",                          // whitelist only, optional, default "normal"
+  "globally_active": false,                    // whitelist only, optional; true requires at least one scope entry
+  "scopes": [                                  // optional, max 100 entries; omit or [] for a global rule
+    {"category_id": "uuid"},                   // applies to searches in this category
+    {"brand": "Bosch", "trust": "authoritative"},  // applies to searches for this brand; per-term trust is whitelist only
+    {"category_id": "uuid", "brand": "Bosch"}  // both parts must match (AND)
+  ]
+}</code></pre>
+                            <p class="text-xs text-gray-500 mb-2">Sending <code>trust</code> inside a scope entry or <code>globally_active</code> on a <strong>blacklist</strong> rule is rejected with <code>422</code>.</p>
+                    <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                        <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                            <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                            <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                            <ul class="space-y-2">
+
+                                <li><code class="font-mono">201</code> Successful Response, schema: <code class="font-mono">DomainBlacklistItemPublic</code> / <code class="font-mono">DomainWhitelistItemPublic</code> (see list example above)</li>
+                                <li><code class="font-mono">404</code> <code class="font-mono">category_not_found</code> for an unknown <code class="font-mono">category_id</code> in <code class="font-mono">scopes</code></li>
+                                <li><code class="font-mono">409</code> <code class="font-mono">domain_blacklist_item_duplicate</code> / <code class="font-mono">domain_whitelist_item_duplicate</code> if the domain already has a rule; <code class="font-mono">domain_blacklist_limit_exceeded</code> / <code class="font-mono">domain_whitelist_limit_exceeded</code> at the per-user rule cap</li>
+                                <li><code class="font-mono">422</code> <code class="font-mono">invalid_scope_term</code> for an empty scope entry; <code class="font-mono">validation_error</code> for a blacklist <code class="font-mono">globally_active</code> or <code class="font-mono">globally_active: true</code> without scopes; <code class="font-mono">invalid_domain_blacklist_entry</code> / <code class="font-mono">invalid_domain_whitelist_entry</code> for an invalid domain</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}</code>
+                            <span class="text-sm text-gray-500 ml-auto">Get rule (with scope terms)</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm mb-2">Single rule with its scope terms embedded. <code class="font-mono">scopes</code> is the authoritative list; <code class="font-mono">categories</code> and <code class="font-mono">brands</code> are derived per-dimension views of the same terms. Pass <code class="font-mono">sources</code> to additionally <strong>probe</strong> the rule: "would a search with this context see this rule, and at which trust?" (computed with the same logic the search uses).</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
+                            <div class="mt-3 text-sm text-gray-600 space-y-2">
+                                <p><span class="font-mono text-anoraBlue font-bold">item_id</span> Path parameter, required UUID.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">sources</span> Optional, repeatable. Same values as on the list route. Turns probing on; without it <code class="font-mono">probe</code> is <code class="font-mono">null</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">category_id</span> Optional UUID. Probe context. Only allowed together with <code class="font-mono">sources</code> (<code class="font-mono">422</code> otherwise); unknown category is <code class="font-mono">404</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">brand</span> Optional string. Probe context. Only allowed together with <code class="font-mono">sources</code>.</p>
+                            </div>
+                    <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                        <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                            <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                            <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                            <ul class="space-y-2">
+
+                                <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">DomainBlacklistItemDetail</code> / <code class="font-mono">DomainWhitelistItemDetail</code>. Blacklist responses carry no trust fields at all.</li>
+                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+  "id": "uuid", "user_id": "uuid", "domain": "bosch.com",
+  "trust": "trusted", "source_kind": "manufacturer", "globally_active": false, "is_active": true,
+  "created_at": "2026-01-01T00:00:00Z", "updated_at": "2026-01-01T00:00:00Z",
+  "category_count": 1, "brand_count": 1, "scope_term_count": 2, "source": null,
+  "scopes": [                          // authoritative list of scope terms; "id" is what DELETE .../scopes/{term_id} takes
+    {"id": "uuid", "category_id": "uuid", "category_name": "Power Tools", "brand": null, "brand_display": null,
+     "trust": null, "effective_trust": "trusted", "attached_at": "2026-01-01T00:00:00Z"},
+    {"id": "uuid", "category_id": null, "category_name": null, "brand": "bosch", "brand_display": "Bosch",
+     "trust": "authoritative", "effective_trust": "authoritative", "attached_at": "2026-01-01T00:00:00Z"}
+  ],
+  "categories": [{"category_id": "uuid", "category_name": "Power Tools", "attached_at": "2026-01-01T00:00:00Z"}],
+  "brands": [{"brand": "bosch", "brand_display": "Bosch", "attached_at": "2026-01-01T00:00:00Z"}],
+  "probe": {                           // only when ?sources=... was given, otherwise null
+    "activated": true,
+    "effective_trust": "authoritative", // whitelist only; null when not activated
+    "matched_term_ids": ["uuid"],
+    "deciding_term_id": "uuid"          // whitelist only
+  }
+}</code></pre>
+                                <li><code class="font-mono">404</code> <code class="font-mono">domain_blacklist_item_not_found</code> / <code class="font-mono">domain_whitelist_item_not_found</code></li>
+                                <li><code class="font-mono">422</code> Validation Error</li>
+                            </ul>
+                        </div>
+                    </details>
+
                         </div>
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
                         <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                             <span class="px-2.5 py-0.5 rounded bg-yellow-500 text-white font-bold text-xs">PATCH</span>
-                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/blacklist/{item_id}</code>
-                            <span class="text-sm text-gray-500 ml-auto">Enable / disable item</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}</code>
+                            <span class="text-sm text-gray-500 ml-auto">Update rule</span>
                         </div>
                         <div class="p-6">
-                            <p class="text-gray-600 text-sm mb-2">Enable or disable a blacklist entry without deleting it.</p>
-                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
-                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code>{"is_active": false}  // required boolean</code></pre>
-                            <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
-                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
-                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
-                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                                </summary>
-                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
-                                    <ul class="space-y-2">
-                                        <li><code class="font-mono">200</code> Successful Response — returns updated <code class="font-mono">DomainBlacklistItemPublic</code></li>
-                                        <li><code class="font-mono">422</code> Validation Error</li>
-                                    </ul>
-                                </div>
-                            </details>
+                            <p class="text-gray-600 text-sm mb-2">Partial update: an omitted key leaves the stored value untouched. Scope terms are managed through the term routes below, not here.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-4 mb-2">Request Body</h4>
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
+  "is_active": false,           // optional: disable/enable without deleting
+  "trust": "authoritative",     // whitelist only, optional: raises or lowers the rule's base trust (null = no-op)
+  "source_kind": null,          // optional, both lists; explicit null clears the classification
+  "globally_active": true       // whitelist only, optional; true requires at least one stored scope term
+}</code></pre>
+                    <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                        <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                            <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                            <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                            <ul class="space-y-2">
+
+                                <li><code class="font-mono">200</code> Successful Response, returns the updated <code class="font-mono">DomainBlacklistItemPublic</code> / <code class="font-mono">DomainWhitelistItemPublic</code></li>
+                                <li><code class="font-mono">404</code> <code class="font-mono">domain_blacklist_item_not_found</code> / <code class="font-mono">domain_whitelist_item_not_found</code></li>
+                                <li><code class="font-mono">422</code> <code class="font-mono">validation_error</code> for <code class="font-mono">globally_active</code> on a blacklist rule or on a rule without scope terms</li>
+                            </ul>
+                        </div>
+                    </details>
+
                         </div>
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
                         <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
                             <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
-                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/blacklist/{item_id}</code>
-                            <span class="text-sm text-gray-500 ml-auto">Remove domain</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}</code>
+                            <span class="text-sm text-gray-500 ml-auto">Delete rule</span>
                         </div>
                         <div class="p-6">
-                            <details class="faq-item group rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
-                                <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
-                                    <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
-                                    <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
-                                </summary>
-                                <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
-                                    <ul class="space-y-2">
-                                        <li><code class="font-mono">204</code> Successful Response (no content)</li>
-                                        <li><code class="font-mono">422</code> Validation Error</li>
-                                    </ul>
-                                </div>
-                            </details>
+                            <p class="text-gray-600 text-sm mb-2">Deletes the rule together with all its scope terms.</p>
+                    <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                        <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                            <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                            <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                            <ul class="space-y-2">
+
+                                <li><code class="font-mono">204</code> Successful Response (no content)</li>
+                                <li><code class="font-mono">404</code> <code class="font-mono">domain_blacklist_item_not_found</code> / <code class="font-mono">domain_whitelist_item_not_found</code></li>
+                                <li><code class="font-mono">422</code> Validation Error</li>
+                            </ul>
+                        </div>
+                    </details>
+
                         </div>
                     </div>
 
+                    <div id="ensure" class="scroll-mt-24">
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/ensure</code>
+                            <span class="text-sm text-gray-500 ml-auto">Ensure rule covers a scope (idempotent)</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm mb-2">Goal-directed "block this source" / "trust this source" call. After it returns, a rule for the domain exists, is active, and covers <strong>at least</strong> the requested scope (or the whole domain if no scope is given). It never narrows an existing rule and never lowers trust. At most one scope per call.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-4 mb-2">Request Body</h4>
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{"domain": "annoying-shop.de", "category_id": "uuid"}                 // scope: one category
+{"domain": "annoying-shop.de", "brand": "Sony"}                       // scope: one brand
+{"domain": "annoying-shop.de", "category_id": "uuid", "brand": "Sony"} // scope: category AND brand
+{"domain": "annoying-shop.de"}                                        // global: covers every search
+
+{"domain": "good-source.de", "brand": "Sony"}                         // whitelist: trust omitted => "trusted"
+{"domain": "good-source.de", "brand": "Sony", "trust": "normal"}      // whitelist: include only, no confidence boost</code></pre>
+                            <p class="text-xs text-gray-500 mb-2"><strong>Whitelist only:</strong> <code>trust</code> is optional and defaults to <code>trusted</code> here (unlike create, where the default is <code>normal</code>). Ensure raises the covering term's or the rule's trust to the requested rung if it is lower. The blacklist request body has no <code>trust</code> field; sending one is <code>422</code>.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-4 mb-2">Outcomes</h4>
+                            <div class="overflow-x-auto"><table class="text-xs text-gray-700 border border-gray-200 rounded-lg mb-2 min-w-full">
+                                <thead class="bg-gray-50 text-gray-500 uppercase tracking-wide"><tr><th class="px-3 py-2 text-left">Rule before</th><th class="px-3 py-2 text-left">Request</th><th class="px-3 py-2 text-left">Effect</th><th class="px-3 py-2 text-left"><code class="font-mono normal-case">outcome</code></th></tr></thead>
+                                <tbody class="divide-y divide-gray-100">
+                                    <tr><td class="px-3 py-2">missing</td><td class="px-3 py-2">global or scoped</td><td class="px-3 py-2">rule created</td><td class="px-3 py-2"><code class="font-mono">created</code></td></tr>
+                                    <tr><td class="px-3 py-2">global</td><td class="px-3 py-2">anything</td><td class="px-3 py-2">no scope change (already covers everything)</td><td class="px-3 py-2"><code class="font-mono">already_global</code></td></tr>
+                                    <tr><td class="px-3 py-2">scoped</td><td class="px-3 py-2">scope already covered by an existing term</td><td class="px-3 py-2">no scope change</td><td class="px-3 py-2"><code class="font-mono">already_covered</code></td></tr>
+                                    <tr><td class="px-3 py-2">scoped</td><td class="px-3 py-2">new scope</td><td class="px-3 py-2">term appended</td><td class="px-3 py-2"><code class="font-mono">scope_added</code></td></tr>
+                                    <tr><td class="px-3 py-2">scoped</td><td class="px-3 py-2">global</td><td class="px-3 py-2">all terms deleted, returned in <code class="font-mono">removed_scopes</code></td><td class="px-3 py-2"><code class="font-mono">promoted_to_global</code></td></tr>
+                                </tbody>
+                            </table></div>
+                            <p class="text-xs text-gray-500 mb-2">An inactive rule is reactivated by any ensure call (<code>reactivated: true</code>). A <code>409 scope_term_limit_exceeded</code> can therefore still have reactivated the rule; re-read the rule after a 409.</p>
+                    <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                        <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                            <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                            <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                            <ul class="space-y-2">
+
+                                <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">DomainBlacklistEnsureResponse</code> / <code class="font-mono">DomainWhitelistEnsureResponse</code></li>
+                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+  ...single-rule detail fields (see GET /{list}/{item_id})...,
+  "outcome": "scope_added",     // "created" | "scope_added" | "already_covered" | "already_global" | "promoted_to_global"
+  "reactivated": false,         // true if the rule was inactive and this call switched it back on
+  "trust_raised": false,        // whitelist only: true if this call raised a term's or the rule's trust
+  "removed_scopes": []          // only on "promoted_to_global": the scope terms that were deleted
+}</code></pre>
+                                <li><code class="font-mono">404</code> <code class="font-mono">category_not_found</code></li>
+                                <li><code class="font-mono">409</code> <code class="font-mono">scope_term_limit_exceeded</code> (100 terms per rule); <code class="font-mono">domain_blacklist_limit_exceeded</code> / <code class="font-mono">domain_whitelist_limit_exceeded</code> on create</li>
+                                <li><code class="font-mono">422</code> <code class="font-mono">invalid_scope_term</code>; Validation Error</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}/scopes</code>
+                            <span class="text-sm text-gray-500 ml-auto">Add scope term</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm mb-2">Add one scope term to a rule. At least one of <code class="font-mono">category_id</code> / <code class="font-mono">brand</code> is required. Adding a term to a global rule scopes it down (explicit narrowing).</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-4 mb-2">Request Body</h4>
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
+  "category_id": "uuid",     // optional
+  "brand": "Bosch",          // optional; normalized (trim, collapse whitespace, lowercase, max 128 chars)
+  "trust": "authoritative"   // whitelist only, optional: overrides the rule's trust when this term matches
+}</code></pre>
+                    <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                        <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                            <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                            <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                            <ul class="space-y-2">
+
+                                <li><code class="font-mono">201</code> Successful Response, schema: <code class="font-mono">RuleScopeTermPublic</code> (whitelist) / <code class="font-mono">BlacklistRuleScopeTermPublic</code> (blacklist, without the two trust fields)</li>
+                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+  "id": "uuid",
+  "category_id": "uuid",
+  "category_name": "Power Tools",
+  "brand": "bosch",                 // normalized identity
+  "brand_display": "Bosch",         // as entered
+  "trust": null,                    // whitelist only: this term's own override, null = inherits the rule's trust
+  "effective_trust": "trusted",     // whitelist only
+  "attached_at": "2026-01-01T00:00:00Z"
+}</code></pre>
+                                <li><code class="font-mono">404</code> <code class="font-mono">domain_blacklist_item_not_found</code> / <code class="font-mono">domain_whitelist_item_not_found</code>; <code class="font-mono">category_not_found</code></li>
+                                <li><code class="font-mono">409</code> <code class="font-mono">scope_term_duplicate</code>; <code class="font-mono">scope_term_limit_exceeded</code> (100 terms per rule)</li>
+                                <li><code class="font-mono">422</code> <code class="font-mono">invalid_scope_term</code> (empty term, or <code class="font-mono">trust</code> on a blacklist term); <code class="font-mono">invalid_brand</code></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}/scopes</code>
+                            <span class="text-sm text-gray-500 ml-auto">List scope terms</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm mb-2">Paginated list of the rule's scope terms, newest first.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
+                            <div class="mt-3 text-sm text-gray-600 space-y-2">
+                                <p><span class="font-mono text-anoraBlue font-bold">skip</span> Optional integer. Default: <code class="font-mono">0</code>.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">100</code>, max: <code class="font-mono">1000</code>.</p>
+                            </div>
+                    <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                        <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                            <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                            <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                            <ul class="space-y-2">
+
+                                <li><code class="font-mono">200</code> Successful Response: <code class="font-mono">{"items": [...scope terms...], "pagination": {...}}</code></li>
+                                <li><code class="font-mono">404</code> <code class="font-mono">domain_blacklist_item_not_found</code> / <code class="font-mono">domain_whitelist_item_not_found</code></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}/scopes/{term_id}</code>
+                            <span class="text-sm text-gray-500 ml-auto">Remove scope term</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm mb-2">Remove one scope term. A rule's <strong>last</strong> term cannot be deleted (that would silently turn a scoped rule into a global one); use <a href="#ensure" class="text-anoraTeal hover:underline font-medium">ensure</a> without a scope to promote the rule to global explicitly, or delete the rule.</p>
+                    <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                        <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                            <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                            <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                            <ul class="space-y-2">
+
+                                <li><code class="font-mono">204</code> Successful Response (no content)</li>
+                                <li><code class="font-mono">404</code> <code class="font-mono">scope_term_not_found</code>; <code class="font-mono">domain_blacklist_item_not_found</code> / <code class="font-mono">domain_whitelist_item_not_found</code></li>
+                                <li><code class="font-mono">409</code> <code class="font-mono">scope_term_last_undeletable</code> (exception: the last term of a whitelist rule flagged <code class="font-mono">globally_active</code> may be deleted; the flag is cleared)</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-gray-500 text-white font-bold text-xs">SHORTCUTS</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}/categories | /brands</code>
+                            <span class="text-sm text-gray-500 ml-auto">Single-part scope terms</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm mb-3">Convenience routes for scope terms that name <em>only</em> a category or <em>only</em> a brand. They map onto the term routes above and return the same error codes. A two-part term (category AND brand) can only be added via <code class="font-mono bg-gray-100 px-1 rounded">POST .../scopes</code>.</p>
+                            <div class="text-sm text-gray-600 space-y-2">
+                                <p><span class="px-2 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs font-mono">POST</span> <code class="font-mono">.../categories/{category_id}</code> — add the term <code class="font-mono">(category, -)</code>. <code class="font-mono">201 {"detail": "attached"}</code>; <code class="font-mono">409 scope_term_duplicate</code>.</p>
+                                <p><span class="px-2 py-0.5 rounded bg-red-500 text-white font-bold text-xs font-mono">DELETE</span> <code class="font-mono">.../categories/{category_id}</code> — remove <em>only</em> the term <code class="font-mono">(category, -)</code>. <code class="font-mono">204</code>; <code class="font-mono">404 scope_term_not_found</code> if the category is referenced only inside a two-part term; <code class="font-mono">409 scope_term_last_undeletable</code>.</p>
+                                <p><span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs font-mono">GET</span> <code class="font-mono">.../categories?skip=&amp;limit=</code> — distinct categories across all of the rule's terms: <code class="font-mono">{"items": [{"category_id", "category_name", "attached_at"}], "pagination": {...}}</code>.</p>
+                                <p><span class="px-2 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs font-mono">POST</span> <code class="font-mono">.../brands/{brand}</code> — add the term <code class="font-mono">(-, brand)</code>. The path segment is URL-encoded and normalized server-side. <code class="font-mono">201 {"detail": "attached"}</code>; <code class="font-mono">409 scope_term_duplicate</code>; <code class="font-mono">422 invalid_brand</code> (empty or longer than 128 characters).</p>
+                                <p><span class="px-2 py-0.5 rounded bg-red-500 text-white font-bold text-xs font-mono">DELETE</span> <code class="font-mono">.../brands/{brand}</code> — remove <em>only</em> the term <code class="font-mono">(-, brand)</code>. Same errors as the category variant.</p>
+                                <p><span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs font-mono">GET</span> <code class="font-mono">.../brands?skip=&amp;limit=</code> — distinct brands across all of the rule's terms: <code class="font-mono">{"items": [{"brand", "brand_display", "attached_at"}], "pagination": {...}}</code>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+                        <div class="bg-gradient-to-r from-slate-50 via-white to-anoraTeal/10 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                            <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
+                            <code class="text-sm text-gray-700">/api/v1/users/search-settings/brands</code>
+                            <span class="text-sm text-gray-500 ml-auto">Brand autocomplete</span>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 text-sm mb-2">Distinct brands the current user has attached to any rule on either list, in display form, for autocomplete inputs.</p>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-3 mb-2">Parameters</h4>
+                            <div class="mt-3 text-sm text-gray-600 space-y-2">
+                                <p><span class="font-mono text-anoraBlue font-bold">search</span> Optional string. Case-insensitive substring filter.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">limit</span> Optional integer. Default: <code class="font-mono">50</code>, range 1-<code class="font-mono">200</code>.</p>
+                            </div>
+                    <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
+                        <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
+                            <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
+                            <i class="fa-solid fa-chevron-down text-gray-500 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
+                            <ul class="space-y-2">
+
+                                <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">BrandSuggestResponse</code></li>
+                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{"items": ["Bosch", "Bosch Professional", "Sony"]}</code></pre>
+                                <li><code class="font-mono">422</code> Validation Error</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -1343,10 +1756,15 @@
         <span class="text-xs bg-green-600 text-white px-2 py-0.5 rounded font-mono">REQUEST</span>
     </div>
     <div class="p-6 overflow-x-auto">
-        <pre class="font-mono text-sm leading-relaxed text-gray-300"><code>GET /api/v1/search?product_name=iPhone%2012%20Pro&brand=Apple&category=3fa85f64-5717-4562-b3fc-2c963f66afa6
+        <pre class="font-mono text-sm leading-relaxed text-gray-300"><code>GET /api/v1/search?product_name=iPhone%2012%20Pro&amp;brand=Apple&amp;category=3fa85f64-5717-4562-b3fc-2c963f66afa6
 
 Headers:
-x_api_key: sp_user_c64e2c071c4135d5.iKTBaTZFW...</code></pre>
+x_api_key: sp_user_c64e2c071c4135d5.iKTBaTZFW...
+
+<span class="text-gray-500"># optional: steer sources for this request only
+#   &amp;blacklist_domains=["ebay.com"]
+#   &amp;whitelist_domains=[{"domain":"apple.com","trust":"authoritative"}]
+#   &amp;whitelist_exclusive=true</span></code></pre>
     </div>
 </div>
 
