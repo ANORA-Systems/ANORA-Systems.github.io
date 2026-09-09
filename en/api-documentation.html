@@ -114,6 +114,7 @@
                         <ul class="space-y-2">
                             <li><a href="#intro" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Introduction</a></li>
                             <li><a href="#auth" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Authentication</a></li>
+                            <li><a href="#requests" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Making Requests</a></li>
                             <li><a href="#errors" class="block rounded-lg px-3 py-2 text-gray-600 hover:bg-anoraTeal/10 hover:text-anoraBlue transition">Errors &amp; Status Codes</a></li>
                         </ul>
                     </div>
@@ -296,6 +297,41 @@
                                 </ul>
                             </div>
                         </details>
+                    </div>
+                </div>
+            </section>
+
+            <section id="requests" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
+                <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-4">Making Requests</h2>
+                <p class="text-gray-600 mb-5">Every request that carries a body must send a JSON <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">Content-Type</code>. The API rejects a JSON body sent under any other media type &mdash; including a missing header &mdash; with <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">422 Unprocessable Entity</code>, before the endpoint runs.</p>
+
+                <div class="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm mb-4">
+                    <p class="text-sm text-anoraBlue">
+                        <strong>Header:</strong> <code class="bg-white px-2 py-1 rounded border border-blue-200 font-mono text-sm">Content-Type: application/json</code>
+                    </p>
+                </div>
+
+                <p class="text-gray-600 mb-5">A <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">charset</code> parameter is accepted, so <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">application/json; charset=utf-8</code> is fine. Requests without a body &mdash; most <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">DELETE</code>s, and <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">POST</code>s that take their input from the path or query string &mdash; do not need the header.</p>
+
+                <div class="rounded-2xl border border-amber-200 bg-amber-50 p-5 mb-5">
+                    <h4 class="text-xs font-bold text-amber-700 uppercase tracking-wide mb-2">Common mistake</h4>
+                    <p class="text-sm text-amber-900">Browser <code class="font-mono text-xs bg-white px-1 rounded border border-amber-200">fetch()</code> sends <code class="font-mono text-xs bg-white px-1 rounded border border-amber-200">text/plain;charset=UTF-8</code> when given a JSON string body without an explicit header, which this API refuses. Set the header explicitly.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Accepted</h4>
+                        <pre class="bg-emerald-50 text-emerald-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-emerald-200"><code>POST /api/v1/auth/login
+Content-Type: application/json
+
+{"email": "...", "password": "..."}</code></pre>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Rejected &mdash; 422</h4>
+                        <pre class="bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>POST /api/v1/auth/login
+Content-Type: text/plain
+
+{"email": "...", "password": "..."}</code></pre>
                     </div>
                 </div>
             </section>
