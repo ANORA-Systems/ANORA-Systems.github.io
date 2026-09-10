@@ -274,7 +274,7 @@
                         <span class="text-sm text-gray-500 ml-auto">Validate API key</span>
                     </div>
                     <div class="p-6">
-                        <p class="text-gray-600 text-sm">Validate the API key sent in the <code class="font-mono bg-gray-100 px-1 rounded">x_api_key</code> header and return its metadata. No request body — useful to test your integration.</p>
+                        <p class="text-gray-600 text-sm">Validate the API key sent in the <code class="font-mono bg-gray-100 px-1 rounded">x_api_key</code> header and return its metadata. No request body - useful to test your integration.</p>
                         <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                             <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
                                 <span class="text-xs font-bold uppercase tracking-wide text-gray-600">Responses</span>
@@ -513,7 +513,7 @@ Content-Type: text/plain
                                     <ul class="space-y-1 text-red-900">
                                         <li><code class="font-mono">name: "Size"</code> (too vague)</li>
                                         <li><code class="font-mono">description: "display size in inches"</code> while <code class="font-mono">unit: "inch"</code> is already set</li>
-                                        <li><code class="font-mono">instance: "list"</code> (not allowed — use <code class="font-mono">sub_values</code> for multi-value specs)</li>
+                                        <li><code class="font-mono">instance: "list"</code> (not allowed - use <code class="font-mono">sub_values</code> for multi-value specs)</li>
                                     </ul>
                                 </div>
                                 <div class="rounded-xl border border-emerald-300 bg-emerald-50 p-3">
@@ -735,7 +735,7 @@ Content-Type: text/plain
                             </p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Query Parameters</h4>
                             <div class="text-sm text-gray-600 space-y-2">
-                                <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all_categories</code>. Allowed: <code class="font-mono">all_categories</code>, <code class="font-mono">this_category</code>. With <code class="font-mono">all_categories</code> the specification is updated in place, affecting every category it is attached to. With <code class="font-mono">this_category</code> the change applies only to the category given in <code class="font-mono">category_id</code>: if the specification is attached to other categories as well, it is detached from that category and an edited copy is created and attached in its place — the original remains unchanged everywhere else.</p>
+                                <p><span class="font-mono text-anoraBlue font-bold">scope</span> Optional string. Default: <code class="font-mono">all_categories</code>. Allowed: <code class="font-mono">all_categories</code>, <code class="font-mono">this_category</code>. With <code class="font-mono">all_categories</code> the specification is updated in place, affecting every category it is attached to. With <code class="font-mono">this_category</code> the change applies only to the category given in <code class="font-mono">category_id</code>: if the specification is attached to other categories as well, it is detached from that category and an edited copy is created and attached in its place - the original remains unchanged everywhere else.</p>
                                 <p><span class="font-mono text-anoraBlue font-bold">category_id</span> Optional UUID. Required when <code class="font-mono">scope=this_category</code> (otherwise <code class="font-mono">422</code>).</p>
                                 <p class="text-xs text-gray-500">Conflicts: renaming a spec to a name another spec in one of its categories already carries is <code class="font-mono">409 specification_name_conflict_in_category</code>. With <code class="font-mono">scope=this_category</code>, forking inside a <em>public</em> category is refused with <code class="font-mono">409 specification_fork_into_public_category</code> (duplicate the category first).</p>
                             </div>
@@ -814,7 +814,7 @@ Content-Type: text/plain
                             <p class="text-gray-600 text-sm mb-2">Create up to 100 specifications in one request. Use <code class="font-mono">mode</code> to control atomicity: <code class="font-mono">partial</code> commits every valid row and reports failed rows individually; <code class="font-mono">atomic</code> creates all rows or none.</p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
                             <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
-  "mode": "partial",    // "partial" (default) or "atomic" — partial commits valid rows independently
+  "mode": "partial",    // "partial" (default) or "atomic" - partial commits valid rows independently
   "items": [
     {
       "client_id": "my-ref-1",   // optional, echoed back in results
@@ -869,9 +869,9 @@ Content-Type: text/plain
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
                             <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
   "prompt": "battery capacity in milliampere-hours",   // required, max length 200 characters
-  "category_id": "uuid",                               // optional — for context
+  "category_id": "uuid",                               // optional - for context
   "language": "en",                                    // optional, default "en"
-  "existing_spec_ids": ["uuid", ...]                   // optional — for context
+  "existing_spec_ids": ["uuid", ...]                   // optional - for context
 }</code></pre>
                             <details class="faq-item group mt-4 rounded-xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 open:bg-white open:border-gray-200">
                                 <summary class="list-none cursor-pointer px-4 py-3 flex items-center justify-between gap-3">
@@ -922,7 +922,7 @@ Content-Type: text/plain
                                 </summary>
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
-                                        <li><code class="font-mono">200</code> Successful Response — array of <code class="font-mono">CategoryPublic</code></li>
+                                        <li><code class="font-mono">200</code> Successful Response - array of <code class="font-mono">CategoryPublic</code></li>
                                         <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>[
   {
     "id": "uuid",
@@ -1275,7 +1275,7 @@ Content-Type: text/plain
                                 </summary>
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
-                                        <li><code class="font-mono">201</code> Successful Response — returns <code class="font-mono">CategoryPublic</code> of the new category</li>
+                                        <li><code class="font-mono">201</code> Successful Response - returns <code class="font-mono">CategoryPublic</code> of the new category</li>
                                         <li><code class="font-mono">422</code> Validation Error</li>
                                     </ul>
                                 </div>
@@ -1298,7 +1298,7 @@ Content-Type: text/plain
                                 </summary>
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
-                                        <li><code class="font-mono">201</code> Successful Response — same <code class="font-mono">BulkSpecificationResponse</code> schema; <code class="font-mono">attached: true/false</code> per result row</li>
+                                        <li><code class="font-mono">201</code> Successful Response - same <code class="font-mono">BulkSpecificationResponse</code> schema; <code class="font-mono">attached: true/false</code> per result row</li>
                                         <li><code class="font-mono">200</code> Partial success (<code class="font-mono">mode: partial</code> only): at least one row failed, see <code class="font-mono">summary.failed</code> and the per-row <code class="font-mono">error</code></li>
                                         <li><code class="font-mono">403</code> Forbidden: foreign private category</li>
                                         <li><code class="font-mono">404</code> Category not found</li>
@@ -1331,9 +1331,9 @@ Content-Type: text/plain
                     <div class="rounded-2xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700">
                         <h4 class="font-bold text-anoraBlue mb-2">Trust ladder (whitelist only)</h4>
                         <ul class="space-y-1 list-disc pl-4">
-                            <li><code class="font-mono">normal</code> — include the domain as a source, no further claim.</li>
-                            <li><code class="font-mono">trusted</code> — strong prior: values from this domain get a high per-value confidence and the domain is ranked higher. Values are still cross-source verified.</li>
-                            <li><code class="font-mono">authoritative</code> — the product's own source (e.g. the manufacturer). Everything <code class="font-mono">trusted</code> does, plus its pages get a second, independent extraction so specs only this source publishes can still be confirmed.</li>
+                            <li><code class="font-mono">normal</code> - include the domain as a source, no further claim.</li>
+                            <li><code class="font-mono">trusted</code> - strong prior: values from this domain get a high per-value confidence and the domain is ranked higher. Values are still cross-source verified.</li>
+                            <li><code class="font-mono">authoritative</code> - the product's own source (e.g. the manufacturer). Everything <code class="font-mono">trusted</code> does, plus its pages get a second, independent extraction so specs only this source publishes can still be confirmed.</li>
                         </ul>
                         <p class="mt-2">A rule has a base <code class="font-mono">trust</code>; a scope term may override it for its own situation (<code class="font-mono">effective_trust</code>). <code class="font-mono">globally_active: true</code> puts a scoped whitelist rule into the <code class="font-mono">stored</code> pool at its base trust while its terms keep acting as overrides.</p>
                         <p class="mt-2"><code class="font-mono">source_kind</code> (<code class="font-mono">manufacturer</code> | <code class="font-mono">comparison_portal</code>) is a purely descriptive label available on both lists.</p>
@@ -1720,12 +1720,12 @@ Content-Type: text/plain
                         <div class="p-6">
                             <p class="text-gray-600 text-sm mb-3">Convenience routes for scope terms that name <em>only</em> a category or <em>only</em> a brand. They map onto the term routes above and return the same error codes. A two-part term (category AND brand) can only be added via <code class="font-mono bg-gray-100 px-1 rounded">POST .../scopes</code>.</p>
                             <div class="text-sm text-gray-600 space-y-2">
-                                <p><span class="px-2 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs font-mono">POST</span> <code class="font-mono">.../categories/{category_id}</code> — add the term <code class="font-mono">(category, -)</code>. <code class="font-mono">201 {"detail": "attached"}</code>; <code class="font-mono">409 scope_term_duplicate</code>.</p>
-                                <p><span class="px-2 py-0.5 rounded bg-red-500 text-white font-bold text-xs font-mono">DELETE</span> <code class="font-mono">.../categories/{category_id}</code> — remove <em>only</em> the term <code class="font-mono">(category, -)</code>. <code class="font-mono">204</code>; <code class="font-mono">404 scope_term_not_found</code> if the category is referenced only inside a two-part term; <code class="font-mono">409 scope_term_last_undeletable</code>.</p>
-                                <p><span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs font-mono">GET</span> <code class="font-mono">.../categories?skip=&amp;limit=</code> — distinct categories across all of the rule's terms: <code class="font-mono">{"items": [{"category_id", "category_name", "attached_at"}], "pagination": {...}}</code>.</p>
-                                <p><span class="px-2 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs font-mono">POST</span> <code class="font-mono">.../brands/{brand}</code> — add the term <code class="font-mono">(-, brand)</code>. The path segment is URL-encoded and normalized server-side. <code class="font-mono">201 {"detail": "attached"}</code>; <code class="font-mono">409 scope_term_duplicate</code>; <code class="font-mono">422 invalid_brand</code> (empty or longer than 128 characters).</p>
-                                <p><span class="px-2 py-0.5 rounded bg-red-500 text-white font-bold text-xs font-mono">DELETE</span> <code class="font-mono">.../brands/{brand}</code> — remove <em>only</em> the term <code class="font-mono">(-, brand)</code>. Same errors as the category variant.</p>
-                                <p><span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs font-mono">GET</span> <code class="font-mono">.../brands?skip=&amp;limit=</code> — distinct brands across all of the rule's terms: <code class="font-mono">{"items": [{"brand", "brand_display", "attached_at"}], "pagination": {...}}</code>.</p>
+                                <p><span class="px-2 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs font-mono">POST</span> <code class="font-mono">.../categories/{category_id}</code> - add the term <code class="font-mono">(category, -)</code>. <code class="font-mono">201 {"detail": "attached"}</code>; <code class="font-mono">409 scope_term_duplicate</code>.</p>
+                                <p><span class="px-2 py-0.5 rounded bg-red-500 text-white font-bold text-xs font-mono">DELETE</span> <code class="font-mono">.../categories/{category_id}</code> - remove <em>only</em> the term <code class="font-mono">(category, -)</code>. <code class="font-mono">204</code>; <code class="font-mono">404 scope_term_not_found</code> if the category is referenced only inside a two-part term; <code class="font-mono">409 scope_term_last_undeletable</code>.</p>
+                                <p><span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs font-mono">GET</span> <code class="font-mono">.../categories?skip=&amp;limit=</code> - distinct categories across all of the rule's terms: <code class="font-mono">{"items": [{"category_id", "category_name", "attached_at"}], "pagination": {...}}</code>.</p>
+                                <p><span class="px-2 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs font-mono">POST</span> <code class="font-mono">.../brands/{brand}</code> - add the term <code class="font-mono">(-, brand)</code>. The path segment is URL-encoded and normalized server-side. <code class="font-mono">201 {"detail": "attached"}</code>; <code class="font-mono">409 scope_term_duplicate</code>; <code class="font-mono">422 invalid_brand</code> (empty or longer than 128 characters).</p>
+                                <p><span class="px-2 py-0.5 rounded bg-red-500 text-white font-bold text-xs font-mono">DELETE</span> <code class="font-mono">.../brands/{brand}</code> - remove <em>only</em> the term <code class="font-mono">(-, brand)</code>. Same errors as the category variant.</p>
+                                <p><span class="px-2 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs font-mono">GET</span> <code class="font-mono">.../brands?skip=&amp;limit=</code> - distinct brands across all of the rule's terms: <code class="font-mono">{"items": [{"brand", "brand_display", "attached_at"}], "pagination": {...}}</code>.</p>
                             </div>
                         </div>
                     </div>
