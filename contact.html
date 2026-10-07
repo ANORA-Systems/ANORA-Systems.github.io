@@ -155,49 +155,67 @@
                     <h2 id="form-title" class="text-xl font-bold text-anoraBlue">Nachricht schreiben</h2>
                 </div>
 
-                <form id="contact-form" class="space-y-5">
+                <form id="contact-form" data-contact-form class="space-y-5" novalidate>
                     <div class="grid sm:grid-cols-2 gap-5">
                         <div>
                             <label for="cf-name" class="block text-sm font-semibold text-anoraBlue mb-1">Name</label>
-                            <input id="cf-name" type="text" autocomplete="name" required class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
+                            <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="100" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
                         </div>
                         <div>
                             <label for="cf-email" class="block text-sm font-semibold text-anoraBlue mb-1">E-Mail</label>
-                            <input id="cf-email" type="email" autocomplete="email" required class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
+                            <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="254" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
                         </div>
                     </div>
                     <div>
                         <label for="cf-message" class="block text-sm font-semibold text-anoraBlue mb-1">Nachricht</label>
-                        <textarea id="cf-message" rows="5" required class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal"></textarea>
+                        <textarea id="cf-message" name="message" rows="5" required maxlength="4000" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal"></textarea>
                     </div>
                     <fieldset>
                         <legend class="text-sm font-semibold text-gray-500 mb-2">Optional</legend>
                         <div class="grid sm:grid-cols-3 gap-5">
                             <div>
                                 <label for="cf-company" class="block text-sm font-semibold text-anoraBlue mb-1">Unternehmen</label>
-                                <input id="cf-company" type="text" autocomplete="organization" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
+                                <input id="cf-company" name="company" type="text" autocomplete="organization" maxlength="100" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
                             </div>
                             <div>
                                 <label for="cf-shop" class="block text-sm font-semibold text-anoraBlue mb-1">Shopsystem</label>
-                                <input id="cf-shop" type="text" placeholder="z. B. Shopware" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
+                                <input id="cf-shop" name="shop" type="text" placeholder="z. B. Shopware" maxlength="100" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
                             </div>
                             <div>
                                 <label for="cf-catalog" class="block text-sm font-semibold text-anoraBlue mb-1">Katalogumfang</label>
-                                <input id="cf-catalog" type="text" placeholder="z. B. 5.000" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
+                                <input id="cf-catalog" name="catalog" type="text" placeholder="z. B. 5.000" maxlength="100" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
                             </div>
                         </div>
                     </fieldset>
+                    <div class="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
+                        <label for="cf-website">Website</label>
+                        <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+                    </div>
+                    <div class="hidden rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert" data-error>
+                        <p class="flex gap-2"><i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i><span data-error-text="failed">Ihre Nachricht konnte gerade nicht gesendet werden. Bitte versuchen Sie es noch einmal oder schicken Sie sie per E-Mail.</span><span data-error-text="busy" class="hidden">Gerade erreichen uns sehr viele Nachrichten. Bitte schicken Sie Ihre per E-Mail oder versuchen Sie es später noch einmal.</span></p>
+                        <a href="mailto:info@anora-systems.com" data-action="mail" class="inline-block mt-2 ml-6 font-semibold text-red-700 underline hover:text-red-900">Per E-Mail senden</a>
+                    </div>
                     <div>
-                        <button type="submit" class="bg-anoraOrange hover:bg-orange-600 text-white px-6 py-3 rounded-md font-bold transition shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-anoraOrange">
+                        <button type="submit" data-submit class="inline-flex items-center gap-2 bg-anoraOrange hover:bg-orange-600 text-white px-6 py-3 rounded-md font-bold transition shadow-md disabled:opacity-60 disabled:cursor-wait focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-anoraOrange">
                             Nachricht senden
                         </button>
-                        <p class="text-sm text-gray-500 mt-3">Öffnet Ihr E-Mail-Programm mit der fertigen Nachricht an info@anora-systems.com.</p>
-                        <p id="cf-status" class="text-sm font-medium text-anoraBlue mt-2" role="status"></p>
                     </div>
                 </form>
 
+                <div class="hidden text-center py-6" data-done="sent">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-anoraTeal/10 text-anoraTeal flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
+                    <h3 tabindex="-1" data-heading class="text-xl font-bold text-anoraBlue focus:outline-none">Vielen Dank!</h3>
+                    <p class="text-gray-600 leading-relaxed mt-2">Ihre Nachricht ist bei uns. Wir antworten Ihnen per E-Mail an <span class="font-semibold text-anoraBlue" data-done-email></span>.</p>
+                </div>
+                <div class="hidden text-center py-6" data-done="mail">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-anoraTeal/10 text-anoraTeal flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div>
+                    <h3 tabindex="-1" data-heading class="text-xl font-bold text-anoraBlue focus:outline-none">Fast geschafft</h3>
+                    <p class="text-gray-600 leading-relaxed mt-2">Ihr E-Mail-Programm öffnet sich mit Ihrer Nachricht. Senden Sie die E-Mail ab, dann melden wir uns bei Ihnen.</p>
+                    <p class="text-sm text-gray-500 mt-3">Falls sich nichts öffnet, schreiben Sie uns an info@anora-systems.com.</p>
+                </div>
+
                 <p class="text-xs text-gray-500 leading-relaxed mt-6 pt-6 border-t border-gray-100">
-                    Ihre Angaben erreichen uns als E-Mail. Wir nutzen sie nur, um Ihre Anfrage zu beantworten. Mehr dazu in unserer <a href="datenschutz.html" class="text-anoraTeal hover:underline">Datenschutzerklärung</a>.
+                    Wir nutzen Ihre Angaben nur, um Ihre Anfrage zu beantworten. Mehr dazu in unserer <a href="datenschutz.html" class="text-anoraTeal hover:underline">Datenschutzerklärung</a>.
                 </p>
             </section>
 
@@ -240,21 +258,7 @@
         </div>
     </footer>
 
-    <script>
-        // Bis es einen Server dafür gibt, öffnet das Formular das E-Mail-Programm mit der fertigen Nachricht.
-        document.getElementById('contact-form').addEventListener('submit', function (event) {
-            event.preventDefault();
-            function value(id) { return document.getElementById(id).value.trim(); }
-            var lines = [value('cf-message'), '', '--', 'Name: ' + value('cf-name'), 'E-Mail: ' + value('cf-email')];
-            [['cf-company', 'Unternehmen'], ['cf-shop', 'Shopsystem'], ['cf-catalog', 'Katalogumfang']].forEach(function (field) {
-                if (value(field[0])) { lines.push(field[1] + ': ' + value(field[0])); }
-            });
-            window.location.href = 'mailto:info@anora-systems.com'
-                + '?subject=' + encodeURIComponent('Anfrage über anora-systems.com')
-                + '&body=' + encodeURIComponent(lines.join('\r\n'));
-            document.getElementById('cf-status').textContent = "Ihr E-Mail-Programm sollte sich jetzt öffnen. Falls nicht, schreiben Sie uns direkt an info@anora-systems.com.";
-        });
-    </script>
+    <script src="js/contact-form.js"></script>
     <script src="js/call-scheduler.js"></script>
 
 </body>

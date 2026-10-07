@@ -4,38 +4,27 @@
 //
 // Slots come from the office hours in OFFICE, not from a calendar lookup.
 // They are shown in the visitor's time zone (detected by the browser).
-// The page trusts the visitor's clock, so the backend should check the same
-// rules (office hours, lunch, booking cutoff) and reject anything else.
+// The page trusts the visitor's clock and the backend does not check the
+// slots, so whoever confirms the call checks them against our calendar.
 //
-// Submitting POSTs JSON to ENDPOINT; any 2xx counts as success. While ENDPOINT
-// is empty, submitting opens the visitor's email program instead, pre-filled
-// to info@. Request body:
+// Submitting POSTs JSON to the SpecScout backend's contact endpoint (the same
+// one js/contact-form.js uses), which mails it to us with the visitor's address
+// as Reply-To. The endpoint takes plain text only, so the slots, the visitor's
+// time zone and details go into the message, written as in mailText():
 //   {
-//     "type": "call_request",
-//     "name": "Jane Doe",
-//     "email": "jane@example.com",
-//     "company": "Example GmbH" | null,
-//     "phone": "+1 212 555 0100" | null,
-//     "message": "..." | null,
-//     "slots": [                                   // 1 to 3 call starts, sorted
-//       {
-//         "start": "2026-10-14T07:00:00.000Z",     // UTC
-//         "visitor_time": "2026-10-14T03:00:00-04:00", // as the visitor saw it
-//         "office_time": "2026-10-14T09:00:00+02:00"   // German time
-//       }
-//     ],
-//     "duration_minutes": 20,
-//     "timezone": "America/New_York" | null,       // visitor's zone
-//     "timezone_name": "Eastern Time",             // as shown to the visitor, in the page language
-//     "language": "de" | "en",
+//     "subject": "Gesprächsanfrage (20 Minuten): Jane Doe",  // max 200 chars, mailed with a "[Contact request]" prefix
+//     "message": "Hallo Anora-Team, ...\n- Mi., 14.10.2026, 03:00 Uhr (09:00 Uhr deutscher Zeit)\n...",  // max 5000 chars
+//     "sender_email": "jane@example.com",
 //     "website": ""                                // honeypot, bots fill it in
 //   }
-// The confirmation email to us should show both times, e.g.
-// "Wed 14 Oct, 03:00 Eastern Time (America/New_York) = 09:00 German time".
+// Each slot shows the visitor's time and, if the visitor's clock differs from
+// ours, the German time. 204 on success. 429 means the hourly limit is used up;
+// on that and every other failure the dialog offers the same text by email.
 (function () {
     'use strict';
 
-    const ENDPOINT = '';
+    const ENDPOINT = 'https://api.anora-systems.com/api/v1/contact';
+    const SUBJECT_MAX_LENGTH = 200;
     const EMAIL = 'info@anora-systems.com';
     const MAX_PICKS = 3;
     const DAY = 86400000;
@@ -54,7 +43,6 @@
 
     const TEXT = {
         de: {
-            lang: 'de',
             locale: 'de-DE',
             eyebrow: 'Anora Systems',
             title: 'Gespräch vereinbaren',
@@ -97,6 +85,7 @@
             submit: 'Anfrage senden',
             sending: 'Wird gesendet …',
             error: 'Ihre Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es noch einmal oder schicken Sie sie per E-Mail.',
+            busy: 'Gerade erreichen uns sehr viele Anfragen. Bitte schicken Sie Ihre per E-Mail oder versuchen Sie es später noch einmal.',
             errorMail: 'Per E-Mail senden',
             doneTitle: 'Vielen Dank!',
             doneText: (email) => `Ihre Anfrage ist bei uns. Wir bestätigen einen Ihrer Termine per E-Mail an ${email}.`,
@@ -109,7 +98,6 @@
             mailZone: (zone) => `Meine Zeitzone: ${zone}`,
         },
         en: {
-            lang: 'en',
             locale: 'en-GB',
             eyebrow: 'Anora Systems',
             title: 'Book a call',
@@ -152,6 +140,7 @@
             submit: 'Send request',
             sending: 'Sending …',
             error: 'Your request could not be sent just now. Please try again or send it by email.',
+            busy: 'We are receiving a lot of requests right now. Please send yours by email or try again later.',
             errorMail: 'Send by email',
             doneTitle: 'Thank you!',
             doneText: (email) => `We have your request and will confirm one of your times by email to ${email}.`,
@@ -262,24 +251,6 @@
     // For our email: "Eastern Time (America/New_York)".
     const zoneLabel = visitorZone && zone !== visitorZone.replace(/_/g, ' ') ? `${zone} (${visitorZone})` : zone;
 
-    // "2026-10-14T03:00:00-04:00": wall-clock fields plus their UTC offset.
-    function isoLocal(c, offset) {
-        const minutes = Math.round(offset / 60000);
-        const abs = Math.abs(minutes);
-        const sign = minutes < 0 ? '-' : '+';
-        return `${c.year}-${pad(c.month)}-${pad(c.day)}T${pad(c.hour)}:${pad(c.minute)}:00${sign}${pad(Math.floor(abs / 60))}:${pad(abs % 60)}`;
-    }
-
-    function slotTimes(ts) {
-        const d = new Date(ts);
-        const visitor = { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate(), hour: d.getHours(), minute: d.getMinutes() };
-        return {
-            start: d.toISOString(),
-            visitor_time: isoLocal(visitor, -d.getTimezoneOffset() * 60000),
-            office_time: isoLocal(officeClock(ts), officeOffset(ts)),
-        };
-    }
-
     function slotLabel(ts) { return `${fmtShort.format(ts)} · ${fmtTime.format(ts)}`; }
     function slotRange(ts) { return `${fmtTime.format(ts)}–${fmtTime.format(ts + OFFICE.duration * 60000)}${t.timeSuffix}`; }
 
@@ -367,14 +338,14 @@
                 </div>
                 <form id="cs-form" class="mt-5 space-y-4" novalidate>
                     <div class="grid sm:grid-cols-2 gap-4">
-                        ${field('cs-name', 'name', t.name, 'text', 'autocomplete="name" required', false)}
-                        ${field('cs-email', 'email', t.email, 'email', 'autocomplete="email" required', false)}
-                        ${field('cs-company', 'company', t.company, 'text', 'autocomplete="organization"', true)}
-                        ${field('cs-phone', 'phone', t.phone, 'tel', 'autocomplete="tel"', true)}
+                        ${field('cs-name', 'name', t.name, 'text', 'autocomplete="name" required maxlength="100"', false)}
+                        ${field('cs-email', 'email', t.email, 'email', 'autocomplete="email" required maxlength="254"', false)}
+                        ${field('cs-company', 'company', t.company, 'text', 'autocomplete="organization" maxlength="100"', true)}
+                        ${field('cs-phone', 'phone', t.phone, 'tel', 'autocomplete="tel" maxlength="50"', true)}
                     </div>
                     <div>
                         <label for="cs-message" class="block text-sm font-semibold text-anoraBlue mb-1">${t.message} <span class="font-normal text-gray-400">(${t.optional})</span></label>
-                        <textarea id="cs-message" name="message" rows="3" placeholder="${t.messageHint}" class="${inputClass}"></textarea>
+                        <textarea id="cs-message" name="message" rows="3" maxlength="4000" placeholder="${t.messageHint}" class="${inputClass}"></textarea>
                     </div>
                     <div class="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
                         <label for="cs-website">Website</label>
@@ -382,7 +353,7 @@
                     </div>
                     <p class="text-xs text-gray-500 leading-relaxed">${t.privacy}</p>
                     <div class="hidden rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert" data-error>
-                        <p class="flex gap-2"><i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i><span>${t.error}</span></p>
+                        <p class="flex gap-2"><i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i><span data-error-text>${t.error}</span></p>
                         <a href="mailto:${EMAIL}" data-action="mail" class="inline-block mt-2 ml-6 font-semibold text-red-700 underline hover:text-red-900">${t.errorMail}</a>
                     </div>
                 </form>
@@ -438,6 +409,7 @@
         form: $('#cs-form'),
         submit: $('[data-submit]'),
         error: $('[data-error]'),
+        errorText: $('[data-error-text]'),
         errorMail: $('[data-action="mail"]'),
         doneTitle: $('[data-done-title]'),
         doneText: $('[data-done-text]'),
@@ -688,7 +660,8 @@
         return data;
     }
 
-    function mailto(data) {
+    // The request as text: picked times, time zone, then the visitor's details.
+    function mailLines(data) {
         const lines = t.mailIntro.slice();
         picks.forEach((ts) => {
             let line = `- ${fmtMail.format(ts)}${t.timeSuffix}`;
@@ -704,7 +677,11 @@
         if (data.company) lines.push(`${t.company}: ${data.company}`);
         if (data.phone) lines.push(`${t.phone}: ${data.phone}`);
         if (data.message) lines.push('', data.message);
-        return `mailto:${EMAIL}?subject=${encodeURIComponent(t.mailSubject)}&body=${encodeURIComponent(lines.join('\r\n'))}`;
+        return lines;
+    }
+
+    function mailto(data) {
+        return `mailto:${EMAIL}?subject=${encodeURIComponent(t.mailSubject)}&body=${encodeURIComponent(mailLines(data).join('\r\n'))}`;
     }
 
     function finish(byMail, data) {
@@ -730,43 +707,37 @@
         if (!el.form.reportValidity()) return;
         const data = formData();
         el.error.classList.add('hidden');
-        if (!ENDPOINT) {
-            window.location.href = mailto(data);
-            finish(true, data);
-            return;
-        }
         setSending(true);
         const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), 15000);
+        // The backend sends the mail while the request waits.
+        const timer = setTimeout(() => controller.abort(), 20000);
+        let busy = false;
         try {
             const response = await fetch(ENDPOINT, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    type: 'call_request',
-                    name: data.name,
-                    email: data.email,
-                    company: data.company || null,
-                    phone: data.phone || null,
-                    message: data.message || null,
-                    slots: picks.map(slotTimes),
-                    duration_minutes: OFFICE.duration,
-                    timezone: visitorZone || null,
-                    timezone_name: zone,
-                    language: t.lang,
+                    subject: `${t.mailSubject}: ${data.name}`.slice(0, SUBJECT_MAX_LENGTH),
+                    message: mailLines(data).join('\n'),
+                    sender_email: data.email,
                     website: data.website || '',
                 }),
                 signal: controller.signal,
             });
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            finish(false, data);
+            if (response.ok) {
+                finish(false, data);
+                return;
+            }
+            busy = response.status === 429;
         } catch (error) {
-            el.errorMail.href = mailto(data);
-            el.error.classList.remove('hidden');
+            // Offline, blocked or timed out: handled below like a refused request.
         } finally {
             clearTimeout(timer);
             setSending(false);
         }
+        el.errorText.textContent = busy ? t.busy : t.error;
+        el.errorMail.href = mailto(data);
+        el.error.classList.remove('hidden');
     }
 
     // ---- Events -------------------------------------------------------------
