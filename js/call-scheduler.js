@@ -4,6 +4,8 @@
 //
 // Slots come from the office hours in OFFICE, not from a calendar lookup.
 // They are shown in the visitor's time zone (detected by the browser).
+// The page trusts the visitor's clock, so the backend should check the same
+// rules (office hours, lunch, booking cutoff) and reject anything else.
 //
 // Submitting POSTs JSON to ENDPOINT; any 2xx counts as success. While ENDPOINT
 // is empty, submitting opens the visitor's email program instead, pre-filled
@@ -46,7 +48,8 @@
         step: 30,
         duration: 20,
         lunch: [12 * 60, 13 * 60],  // no call may overlap this
-        daysAhead: 21,
+        cutoff: 17 * 60 + 30,       // tomorrow can be booked until this time today
+        daysAhead: 42,
     };
 
     const TEXT = {
@@ -228,8 +231,9 @@
     function buildSlots() {
         const today = officeClock(Date.now());
         const closed = new Set(closedDays(today.year).concat(closedDays(today.year + 1)));
+        const first = today.hour * 60 + today.minute < OFFICE.cutoff ? 1 : 2;
         const byDay = new Map();
-        for (let i = 1; i <= OFFICE.daysAhead; i++) {
+        for (let i = first; i <= OFFICE.daysAhead; i++) {
             const date = new Date(Date.UTC(today.year, today.month - 1, today.day + i));
             const weekday = date.getUTCDay();
             if (weekday === 0 || weekday === 6 || closed.has(utcKey(date.getTime()))) continue;
