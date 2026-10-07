@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Anora Systems</title>
+    <link rel="canonical" href="https://anora-systems.com/en/contact.html">
+    <link rel="alternate" hreflang="de" href="https://anora-systems.com/contact.html">
+    <link rel="alternate" hreflang="en" href="https://anora-systems.com/en/contact.html">
+    <link rel="alternate" hreflang="x-default" href="https://anora-systems.com/en/contact.html">
+    <meta name="description" content="Contact Anora Systems: questions about SpecScout, the pilot program and larger catalogs.">
+
+    <!-- Favicons (shown on the browser tab) -->
+    <link rel="icon" type="image/png" sizes="512x512" href="https://anora-systems.com/media/favicon-512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://anora-systems.com/media/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://anora-systems.com/media/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://anora-systems.com/media/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://anora-systems.com/media/favicon-180.png">
+
+    <script src="../assets/tailwind/tailwindcss-play-3.4.17.js"></script>
+    <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets/fonts/fonts.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        anoraBlue: '#0B1E3D',
+                        anoraTeal: '#00A99D',
+                        anoraOrange: '#F7941D',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['"Outfit"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-sans text-slate-800 bg-gray-50 flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-sm relative md:sticky md:top-0 z-50">
+        <div class="w-full mx-auto px-2 md:px-4 lg:px-8">
+            
+            <div class="flex justify-between items-center py-1">
+                
+                <div class="flex items-center flex-shrink-0 gap-3" style="margin-left: max(0px, calc(50vw - 40rem));">
+                    <a href="index.html">
+                        <img src="../media/logo.png" alt="Anora Systems Logo" class="h-12 md:h-14 lg:h-20 w-auto transition-all">
+                    </a>
+                    
+                    <div class="hidden sm:block h-12 w-0.5 bg-gray-200"></div>
+
+                    <a href="index.html#solution" class="hidden sm:block text-xl md:text-2xl tracking-tight text-anoraBlue font-outfit">
+                        Spec<span class="text-anoraTeal">Scout</span>
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-2 md:gap-2 lg:gap-8">
+                    
+                    <div class="hidden xl:flex items-center space-x-3 lg:space-x-6 xl:space-x-6 2xl:space-x-8">
+                        <a href="index.html#problem" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Problem</a>
+                        <a href="index.html#solution" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Solution</a>
+                        <a href="index.html#whyspecscout" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Benefits</a>
+                        <a href="index.html#recommerce" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Re-Commerce</a>
+                        <a href="index.html#team" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">About Us</a>
+                        <a href="index.html#faq" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">FAQ</a>
+                        <a href="contact.html" aria-current="page" class="text-[0.85rem] lg:text-sm xl:text-base text-anoraTeal hover:text-anoraTeal transition whitespace-nowrap">Contact</a>
+
+                        <a href="https://specscout.anora-systems.com/access" class="bg-anoraOrange hover:bg-orange-600 text-white px-3 py-1.5 lg:px-4 lg:py-2 rounded-md text-[0.8rem] lg:text-sm xl:text-base font-medium transition shadow-lg shadow-orange-200 whitespace-nowrap">
+                            Start free
+                        </a>
+                    </div>
+
+                    <div class="flex bg-gray-100 rounded p-0.5 flex-shrink-0 z-50">
+                        <a href="../contact.html" class="px-2 py-0.5 text-gray-400 text-[10px] font-medium hover:text-anoraTeal transition">
+                            DE
+                        </a>
+                        <span class="px-2 py-0.5 bg-white text-anoraBlue text-[10px] font-bold rounded shadow-sm cursor-default">
+                            EN
+                        </span>
+                    </div>
+
+                    <button id="mobile-menu-btn" class="xl:hidden p-2 text-gray-600 hover:text-anoraTeal focus:outline-none ml-1">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="index.html#problem" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">Problem</a>
+                <a href="index.html#solution" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">Solution</a>
+                <a href="index.html#whyspecscout" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">Benefits</a>
+                <a href="index.html#recommerce" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">Re-Commerce</a>
+                <a href="index.html#team" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">About Us</a>
+                <a href="index.html#faq" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">FAQ</a>
+                <a href="contact.html" aria-current="page" class="block py-2 text-base font-medium text-anoraTeal hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">Contact</a>
+
+                <div class="pt-4">
+                    <a href="https://specscout.anora-systems.com/access" class="block w-full text-center bg-anoraOrange hover:bg-orange-600 text-white px-4 py-3 rounded-md text-base font-medium transition shadow-md" onclick="closeMobileMenu()">
+                        Start free
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        // Toggle Function
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            
+            // Toggle Icon (Bars <-> X)
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        });
+
+        // Close menu when a link is clicked
+        function closeMobileMenu() {
+            menu.classList.add('hidden');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+    </script>
+
+    <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+
+        <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-4">Contact</h1>
+        <p class="text-gray-600 leading-relaxed mb-8 max-w-3xl">
+            Questions about SpecScout, a larger catalog to process, or interested in becoming a pilot customer? Write to us, book a short call, or email us directly at <a href="mailto:info@anora-systems.com" class="font-semibold text-anoraBlue hover:text-anoraTeal transition">info@anora-systems.com</a>.
+        </p>
+
+        <div class="grid lg:grid-cols-5 gap-8 items-start">
+
+            <section class="lg:col-span-3 bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100" aria-labelledby="form-title">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-anoraTeal/10 text-anoraTeal rounded-lg flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    </div>
+                    <h2 id="form-title" class="text-xl font-bold text-anoraBlue">Write to us</h2>
+                </div>
+
+                <form id="contact-form" data-contact-form class="space-y-5" novalidate>
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <div>
+                            <label for="cf-name" class="block text-sm font-semibold text-anoraBlue mb-1">Name</label>
+                            <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="100" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
+                        </div>
+                        <div>
+                            <label for="cf-email" class="block text-sm font-semibold text-anoraBlue mb-1">Email</label>
+                            <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="254" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="cf-message" class="block text-sm font-semibold text-anoraBlue mb-1">Message</label>
+                        <textarea id="cf-message" name="message" rows="5" required maxlength="4000" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal"></textarea>
+                    </div>
+                    <fieldset>
+                        <legend class="text-sm font-semibold text-gray-500 mb-2">Optional</legend>
+                        <div class="grid sm:grid-cols-3 gap-5">
+                            <div>
+                                <label for="cf-company" class="block text-sm font-semibold text-anoraBlue mb-1">Company</label>
+                                <input id="cf-company" name="company" type="text" autocomplete="organization" maxlength="100" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
+                            </div>
+                            <div>
+                                <label for="cf-shop" class="block text-sm font-semibold text-anoraBlue mb-1">Shop system</label>
+                                <input id="cf-shop" name="shop" type="text" placeholder="e.g. Shopware" maxlength="100" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
+                            </div>
+                            <div>
+                                <label for="cf-catalog" class="block text-sm font-semibold text-anoraBlue mb-1">Catalog size</label>
+                                <input id="cf-catalog" name="catalog" type="text" placeholder="e.g. 5,000" maxlength="100" class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
+                        <label for="cf-website">Website</label>
+                        <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+                    </div>
+                    <div class="hidden rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert" data-error>
+                        <p class="flex gap-2"><i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i><span data-error-text="failed">Your message could not be sent just now. Please try again or send it by email.</span><span data-error-text="busy" class="hidden">We are receiving a lot of messages right now. Please send yours by email or try again later.</span></p>
+                        <a href="mailto:info@anora-systems.com" data-action="mail" class="inline-block mt-2 ml-6 font-semibold text-red-700 underline hover:text-red-900">Send by email</a>
+                    </div>
+                    <div>
+                        <button type="submit" data-submit class="inline-flex items-center gap-2 bg-anoraOrange hover:bg-orange-600 text-white px-6 py-3 rounded-md font-bold transition shadow-md disabled:opacity-60 disabled:cursor-wait focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-anoraOrange">
+                            Send message
+                        </button>
+                    </div>
+                </form>
+
+                <div class="hidden text-center py-6" data-done="sent">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-anoraTeal/10 text-anoraTeal flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
+                    <h3 tabindex="-1" data-heading class="text-xl font-bold text-anoraBlue focus:outline-none">Thank you!</h3>
+                    <p class="text-gray-600 leading-relaxed mt-2">We have your message and will answer by email to <span class="font-semibold text-anoraBlue" data-done-email></span>.</p>
+                </div>
+                <div class="hidden text-center py-6" data-done="mail">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-anoraTeal/10 text-anoraTeal flex items-center justify-center text-xl mb-4"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div>
+                    <h3 tabindex="-1" data-heading class="text-xl font-bold text-anoraBlue focus:outline-none">Almost done</h3>
+                    <p class="text-gray-600 leading-relaxed mt-2">Your email program opens with your message. Send the email and we will get back to you.</p>
+                    <p class="text-sm text-gray-500 mt-3">If nothing opens, write to us at info@anora-systems.com.</p>
+                </div>
+
+                <p class="text-xs text-gray-500 leading-relaxed mt-6 pt-6 border-t border-gray-100">
+                    We use your details only to answer your request. More in our <a href="privacy.html" class="text-anoraTeal hover:underline">privacy policy</a>.
+                </p>
+            </section>
+
+            <section class="lg:col-span-2 bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100" aria-labelledby="call-title">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-anoraBlue/10 text-anoraBlue rounded-lg flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    </div>
+                    <h2 id="call-title" class="text-xl font-bold text-anoraBlue">Book a call</h2>
+                </div>
+                <p class="text-gray-600 leading-relaxed mb-4">In 20 minutes we answer your questions and look together at whether SpecScout fits your catalog.</p>
+                <p class="text-gray-600 leading-relaxed mb-6">Send us two or three times that suit you. We confirm one of them by email.</p>
+                <a href="mailto:info@anora-systems.com?subject=Call%20request%20%2820%20minutes%29&amp;body=Hello%20Anora%20team%2C%0D%0A%0D%0AI%27d%20like%20to%20book%20a%2020-minute%20call%20about%20SpecScout.%20These%20times%20suit%20me%3A%0D%0A%0D%0A-%20%0D%0A-%20%0D%0A-%20%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0A" data-call-scheduler aria-haspopup="dialog" class="inline-flex items-center gap-2 bg-anoraBlue hover:bg-anoraTeal text-white px-6 py-3 rounded-md font-bold transition shadow-md">
+                    Request a call
+                </a>
+                <p class="text-sm text-gray-500 mt-3">Opens a calendar to pick the times that suit you.</p>
+            </section>
+
+        </div>
+
+        <p class="text-sm text-gray-500 leading-relaxed mt-8">
+            Our address and company details are in the <a href="legal.html" class="text-anoraTeal hover:underline">legal notice</a>.
+        </p>
+    </main>
+
+    <footer class="bg-anoraBlue py-12 text-center mt-auto">
+        <div class="max-w-3xl mx-auto px-4 text-gray-400 text-sm">
+            <div class="flex justify-center gap-4 mb-6">
+                <a href="https://www.linkedin.com/company/anora-systems" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#0077b5] hover:text-white transition-all duration-300 border border-white/10" aria-label="Anora Systems on LinkedIn">
+                    <i class="fa-brands fa-linkedin-in text-lg"></i>
+                </a>
+            </div>
+            <p>&copy; 2026 Anora Systems. All rights reserved.</p>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-4">
+                <a href="contact.html" class="hover:text-white">Contact</a>
+                <a href="legal.html" class="hover:text-white">Imprint</a>
+                <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-white">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/contact-form.js"></script>
+    <script src="../js/call-scheduler.js"></script>
+
+</body>
+</html>
