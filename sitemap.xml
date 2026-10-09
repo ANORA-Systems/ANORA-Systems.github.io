@@ -27,7 +27,7 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://anora-systems.com/contact.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://anora-systems.com/en/contact.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://anora-systems.com/en/contact.html"/>
-        <lastmod>2026-10-08</lastmod>
+        <lastmod>2026-10-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
@@ -37,7 +37,7 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://anora-systems.com/contact.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://anora-systems.com/en/contact.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://anora-systems.com/en/contact.html"/>
-        <lastmod>2026-10-08</lastmod>
+        <lastmod>2026-10-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
@@ -67,7 +67,7 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://anora-systems.com/datenschutz.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://anora-systems.com/en/privacy.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://anora-systems.com/en/privacy.html"/>
-        <lastmod>2026-10-06</lastmod>
+        <lastmod>2026-10-09</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
@@ -77,7 +77,7 @@
         <xhtml:link rel="alternate" hreflang="de" href="https://anora-systems.com/datenschutz.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://anora-systems.com/en/privacy.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://anora-systems.com/en/privacy.html"/>
-        <lastmod>2026-10-06</lastmod>
+        <lastmod>2026-10-09</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
@@ -124,7 +124,7 @@
 
     <url>
         <loc>https://anora-systems.com/en/api-documentation.html</loc>
-        <lastmod>2026-10-06</lastmod>
+        <lastmod>2026-10-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
