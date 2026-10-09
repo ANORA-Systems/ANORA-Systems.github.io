@@ -10,16 +10,18 @@
 // Submitting POSTs JSON to the SpecScout backend's contact endpoint (the same
 // one js/contact-form.js uses), which mails it to us with the visitor's address
 // as Reply-To. The endpoint takes plain text only, so the slots, the visitor's
-// time zone and details go into the message, written as in mailText():
+// time zone and details go into the message, a notice to our team built by
+// teamLines(): always in English, times in German time.
 //   {
-//     "subject": "Gesprächsanfrage (20 Minuten): Jane Doe",  // max 200 chars, mailed with a "[Contact request]" prefix
-//     "message": "Hallo Anora-Team, ...\n- Mi., 14.10.2026, 03:00 Uhr (09:00 Uhr deutscher Zeit)\n...",  // max 5000 chars
+//     "subject": "Call request from Jane Doe",     // max 200 chars, mailed with a "[Contact request]" prefix
+//     "message": "You've received a call request from Jane Doe.\n\nProposed times, ...\n- Wed 14 Oct 2026, 09:00 (03:00 their time)\n...",  // max 5000 chars
 //     "sender_email": "jane@example.com",
 //     "website": ""                                // honeypot, bots fill it in
 //   }
-// Each slot shows the visitor's time and, if the visitor's clock differs from
-// ours, the German time. 204 on success. 429 means the hourly limit is used up;
-// on that and every other failure the dialog offers the same text by email.
+// "their time" appears only when the visitor's clock differs from ours.
+// 204 on success. 429 means the hourly limit is used up; on that and every
+// other failure the dialog offers to send the request by email instead, in
+// the visitor's words and page language (mailLines()).
 (function () {
     'use strict';
 
@@ -93,6 +95,7 @@
             mailText: 'Ihr E-Mail-Programm öffnet sich mit Ihrer Anfrage. Senden Sie die E-Mail ab, dann bestätigen wir einen Ihrer Termine.',
             mailNote: 'Falls sich nichts öffnet, schreiben Sie uns an info@anora-systems.com.',
             mailSubject: 'Gesprächsanfrage (20 Minuten)',
+            teamLanguage: 'German',
             mailIntro: ['Hallo Anora-Team,', '', 'ich möchte ein 20-minütiges Gespräch zu SpecScout vereinbaren. Diese Termine passen mir:', ''],
             mailOffice: (time) => `(${time} Uhr deutscher Zeit)`,
             mailZone: (zone) => `Meine Zeitzone: ${zone}`,
@@ -148,6 +151,7 @@
             mailText: 'Your email program opens with your request. Send the email and we will confirm one of your times.',
             mailNote: 'If nothing opens, write to us at info@anora-systems.com.',
             mailSubject: 'Call request (20 minutes)',
+            teamLanguage: 'English',
             mailIntro: ['Hello Anora team,', '', "I'd like to book a 20-minute call about SpecScout. These times suit me:", ''],
             mailOffice: (time) => `(${time} German time)`,
             mailZone: (zone) => `My time zone: ${zone}`,
@@ -167,6 +171,11 @@
     const fmtMail = format({ weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
     const fmtMailOffice = format({ hour: '2-digit', minute: '2-digit', timeZone: OFFICE.timeZone });
     const fmtMailOfficeDate = format({ weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: OFFICE.timeZone });
+    // The notice to our team is in English and German time, whatever the page language.
+    const fmtTeamDay = new Intl.DateTimeFormat('en-GB', { timeZone: OFFICE.timeZone, weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+    const fmtTeamTime = new Intl.DateTimeFormat('en-GB', { timeZone: OFFICE.timeZone, hour: '2-digit', minute: '2-digit' });
+    const fmtTheirDay = new Intl.DateTimeFormat('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+    const fmtTheirTime = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit' });
     const fmtOffice = new Intl.DateTimeFormat('en-US', {
         timeZone: OFFICE.timeZone, hourCycle: 'h23',
         year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric',
@@ -237,9 +246,9 @@
         return byDay;
     }
 
-    function zoneName() {
+    function zoneName(locale) {
         try {
-            const part = format({ timeZoneName: 'longGeneric' }).formatToParts(new Date()).find((p) => p.type === 'timeZoneName');
+            const part = new Intl.DateTimeFormat(locale, { timeZoneName: 'longGeneric' }).formatToParts(new Date()).find((p) => p.type === 'timeZoneName');
             if (part) return part.value;
         } catch (error) {
             // Older browsers do not know "longGeneric".
@@ -247,9 +256,14 @@
         return visitorZone.replace(/_/g, ' ');
     }
 
-    const zone = zoneName();
-    // For our email: "Eastern Time (America/New_York)".
-    const zoneLabel = visitorZone && zone !== visitorZone.replace(/_/g, ' ') ? `${zone} (${visitorZone})` : zone;
+    // For emails: "Eastern Time (America/New_York)".
+    function zoneWithId(name) {
+        return visitorZone && name !== visitorZone.replace(/_/g, ' ') ? `${name} (${visitorZone})` : name;
+    }
+
+    const zone = zoneName(t.locale);
+    const zoneLabel = zoneWithId(zone);
+    const teamZoneLabel = zoneWithId(zoneName('en-GB'));
 
     function slotLabel(ts) { return `${fmtShort.format(ts)} · ${fmtTime.format(ts)}`; }
     function slotRange(ts) { return `${fmtTime.format(ts)}–${fmtTime.format(ts + OFFICE.duration * 60000)}${t.timeSuffix}`; }
@@ -660,7 +674,27 @@
         return data;
     }
 
-    // The request as text: picked times, time zone, then the visitor's details.
+    // The request as our team reads it: who asked, when, their message, then their details.
+    function teamLines(data) {
+        const lines = [`You've received a call request from ${data.name}.`, '', `Proposed times, ${OFFICE.duration} minutes each, in German time:`];
+        picks.forEach((ts) => {
+            let line = `- ${fmtTeamDay.format(ts)}, ${fmtTeamTime.format(ts)}`;
+            if (!sameClockAsOffice) {
+                // The visitor's date only when it differs from the German one.
+                const sameDay = officeClock(ts).day === new Date(ts).getDate();
+                line += ` (${sameDay ? '' : `${fmtTheirDay.format(ts)}, `}${fmtTheirTime.format(ts)} their time)`;
+            }
+            lines.push(line);
+        });
+        if (data.message) lines.push('', "Here's the message they sent:", data.message);
+        lines.push('', `Email: ${data.email}`);
+        if (data.company) lines.push(`Company: ${data.company}`);
+        if (data.phone) lines.push(`Phone: ${data.phone}`);
+        lines.push(`Their time zone: ${teamZoneLabel}`, `They used the ${t.teamLanguage} version of the site.`);
+        return lines;
+    }
+
+    // The request in the visitor's words, for the email fallback.
     function mailLines(data) {
         const lines = t.mailIntro.slice();
         picks.forEach((ts) => {
@@ -717,8 +751,8 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    subject: `${t.mailSubject}: ${data.name}`.slice(0, SUBJECT_MAX_LENGTH),
-                    message: mailLines(data).join('\n'),
+                    subject: `Call request from ${data.name}`.slice(0, SUBJECT_MAX_LENGTH),
+                    message: teamLines(data).join('\n'),
                     sender_email: data.email,
                     website: data.website || '',
                 }),

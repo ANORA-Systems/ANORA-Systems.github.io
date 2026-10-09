@@ -106,7 +106,7 @@
 
                 <div class="flex items-center gap-2 md:gap-2 lg:gap-8">
                     
-                    <div class="hidden xl:flex items-center space-x-3 lg:space-x-6 xl:space-x-6 2xl:space-x-8">
+                    <div data-nav-menu class="hidden xl:flex items-center space-x-3 lg:space-x-6 xl:space-x-6 2xl:space-x-8">
                         <a href="#problem" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Problem</a>
                         <a href="#solution" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Solution</a>
                         <a href="#whyspecscout" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Benefits</a>
@@ -115,7 +115,7 @@
                         <a href="#faq" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">FAQ</a>
                         <a href="contact.html" class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap">Contact</a>
 
-                        <a href="https://specscout.anora-systems.com/access" class="bg-anoraOrange hover:bg-orange-600 text-white px-3 py-1.5 lg:px-4 lg:py-2 rounded-md text-[0.8rem] lg:text-sm xl:text-base font-medium transition shadow-lg shadow-orange-200 whitespace-nowrap">
+                        <a href="https://specscout.anora-systems.com/access" target="_blank" rel="noopener" class="bg-anoraOrange hover:bg-orange-600 text-white px-3 py-1.5 lg:px-4 lg:py-2 rounded-md text-[0.8rem] lg:text-sm xl:text-base font-medium transition shadow-lg shadow-orange-200 whitespace-nowrap">
                             Start free
                         </a>
                     </div>
@@ -137,7 +137,7 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg">
+        <div id="mobile-menu" data-nav-menu class="hidden xl:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg">
             <div class="px-4 pt-2 pb-6 space-y-2">
                 <a href="#problem" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">Problem</a>
                 <a href="#solution" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">Solution</a>
@@ -148,7 +148,7 @@
                 <a href="contact.html" class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2" onclick="closeMobileMenu()">Contact</a>
 
                 <div class="pt-4">
-                    <a href="https://specscout.anora-systems.com/access" class="block w-full text-center bg-anoraOrange hover:bg-orange-600 text-white px-4 py-3 rounded-md text-base font-medium transition shadow-md" onclick="closeMobileMenu()">
+                    <a href="https://specscout.anora-systems.com/access" target="_blank" rel="noopener" class="block w-full text-center bg-anoraOrange hover:bg-orange-600 text-white px-4 py-3 rounded-md text-base font-medium transition shadow-md" onclick="closeMobileMenu()">
                         Start free
                     </a>
                 </div>
@@ -196,7 +196,7 @@
                         <strong>SpecScout</strong> automatically extracts, validates, and structures technical specifications from the web. Hours of research, done in minutes.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="https://specscout.anora-systems.com/access" class="bg-anoraOrange hover:bg-orange-600 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition shadow-lg shadow-orange-900/50">
+                        <a href="https://specscout.anora-systems.com/access" target="_blank" rel="noopener" class="bg-anoraOrange hover:bg-orange-600 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition shadow-lg shadow-orange-900/50">
                             Start free
                         </a>
                         <a href="#solution" class="border border-gray-500 hover:border-white text-white text-center px-8 py-4 rounded-md font-medium transition">
@@ -1114,7 +1114,7 @@
                         <div class="overflow-hidden">
                             <div class="px-6 pb-4">
                                 <p class="leading-relaxed text-gray-600 opacity-0 group-data-[state=open]:opacity-100 transition-opacity duration-500 delay-100">
-                                    Of course. You can test SpecScout with 20 free searches a month: <a href="https://specscout.anora-systems.com/access" class="text-anoraTeal hover:underline">Start free</a>. If you need more searches for your evaluation, <a href="contact.html" class="text-anoraTeal hover:underline">contact us</a>.
+                                    Of course. You can test SpecScout with 20 free searches a month: <a href="https://specscout.anora-systems.com/access" target="_blank" rel="noopener" class="text-anoraTeal hover:underline">Start free</a>. If you need more searches for your evaluation, <a href="contact.html" class="text-anoraTeal hover:underline">contact us</a>.
                                 </p>
                             </div>
                             <div class="border-t border-gray-100 bg-gray-50/50 hover:bg-gray-100 cursor-pointer transition-colors opacity-0 group-data-[state=open]:opacity-100 duration-500 delay-200" onclick="closeFaq(this)" title="Close">
@@ -1224,7 +1224,7 @@
             <p class="text-gray-300 text-lg mb-10">Test SpecScout with 20 free searches a month. For larger catalogs and our pilot program, talk to us: we are looking for online retailers who want to help shape SpecScout.</p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://specscout.anora-systems.com/access" class="bg-anoraOrange hover:bg-orange-600 text-white px-8 py-4 rounded-md font-bold text-lg transition shadow-lg shadow-orange-900/50 flex items-center justify-center gap-2">
+                <a href="https://specscout.anora-systems.com/access" target="_blank" rel="noopener" class="bg-anoraOrange hover:bg-orange-600 text-white px-8 py-4 rounded-md font-bold text-lg transition shadow-lg shadow-orange-900/50 flex items-center justify-center gap-2">
                     Start free
                 </a>
                 <a href="contact.html" class="border border-gray-500 hover:border-white text-white px-8 py-4 rounded-md font-medium text-lg transition flex items-center justify-center gap-2">
@@ -1258,5 +1258,6 @@
         </div>
     </section>
 
+    <script src="../js/nav-scrollspy.js"></script>
 </body>
 </html>
