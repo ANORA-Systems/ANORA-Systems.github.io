@@ -1,4 +1,4 @@
-// Call scheduler for the contact pages. A link with data-call-scheduler opens
+// Call scheduler for the contact pages. A button with data-call-scheduler opens
 // a dialog where visitors pick up to three 20-minute slots and leave their
 // details; we confirm one of the slots by email.
 //
@@ -83,7 +83,7 @@
             optional: 'optional',
             messageHint: 'z. B. Fragen zum Pilotprogramm',
             invalidEmail: 'Ungültige E-Mail-Adresse',
-            privacy: 'Wir nutzen Ihre Angaben nur, um das Gespräch mit Ihnen abzustimmen. Mehr dazu in unserer <a href="datenschutz.html" class="text-anoraTeal hover:underline">Datenschutzerklärung</a>.',
+            privacy: 'Wir nutzen Ihre Angaben nur, um das Gespräch mit Ihnen abzustimmen. Mehr dazu in unserer <a href="datenschutz.html#website" class="text-anoraTeal hover:underline">Datenschutzerklärung</a>.',
             submit: 'Anfrage senden',
             sending: 'Wird gesendet …',
             error: 'Ihre Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es noch einmal oder schicken Sie sie per E-Mail.',
@@ -139,7 +139,7 @@
             optional: 'optional',
             messageHint: 'e.g. questions about the pilot program',
             invalidEmail: 'Invalid email',
-            privacy: 'We use your details only to arrange the call. More in our <a href="privacy.html" class="text-anoraTeal hover:underline">privacy policy</a>.',
+            privacy: 'We use your details only to arrange the call. More in our <a href="privacy.html#website" class="text-anoraTeal hover:underline">privacy policy</a>.',
             submit: 'Send request',
             sending: 'Sending …',
             error: 'Your request could not be sent just now. Please try again or send it by email.',
