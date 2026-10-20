@@ -1,0 +1,40 @@
+#!/bin/sh
+# Runs the website's test suites before every commit (README.md, "Tests") and
+# blocks the commit when one fails. Enable it once per clone:
+#
+#     git config core.hooksPath .githooks
+#
+# Fix the cause of a failure, not the test. `git commit --no-verify` skips the
+# hook; use it only for a failure you understand and that the commit does not
+# touch, and say so in the commit message.
+#
+# The suites check the working tree, so unstaged edits count too.
+
+cd "$(git rev-parse --show-toplevel)" || exit 1
+
+python=""
+for candidate in python3 python py; do
+    if "$candidate" -c "import sys; sys.exit(sys.version_info < (3, 8))" >/dev/null 2>&1; then
+        python="$candidate"
+        break
+    fi
+done
+if [ -z "$python" ]; then
+    echo "pre-commit: Python 3.8+ not found, so the asset tests cannot run. Commit blocked." >&2
+    exit 1
+fi
+if ! node -e "process.exit(Number(process.versions.node.split('.')[0]) >= 20 ? 0 : 1)" >/dev/null 2>&1; then
+    echo "pre-commit: Node 20+ not found, so the scheduler tests cannot run. Commit blocked." >&2
+    exit 1
+fi
+
+echo "pre-commit: running the website tests (README.md, Tests)"
+if ! "$python" -m unittest discover -s _tests -q; then
+    echo "pre-commit: self-hosted asset tests failed. Commit blocked." >&2
+    exit 1
+fi
+if ! node --test --test-reporter=dot; then
+    echo "pre-commit: call scheduler tests failed. Commit blocked." >&2
+    exit 1
+fi
+echo "pre-commit: all tests passed"

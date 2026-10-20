@@ -1,0 +1,2 @@
+# Git hooks are shell scripts: with CRLF line endings /bin/sh fails on Linux and macOS.
+.githooks/* text eol=lf
