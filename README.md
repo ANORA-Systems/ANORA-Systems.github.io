@@ -17,6 +17,16 @@ Every page links `assets/tailwind/tailwindcss-play-3.4.17.js`, `assets/fontaweso
 
 The one exception is the contact form and the call request, which send what the visitor typed to our own API at `api.anora-systems.com` when they submit it.
 
+## Clean URLs
+
+Pages are files like `contact.html`, but every URL we write leaves out the extension: `https://anora-systems.com/contact`, `en/privacy`. GitHub Pages serves `contact.html` at both addresses. Links, `<link rel="canonical">`, `hreflang` alternates and `sitemap.xml` all use the clean form; a homepage is its folder (`./`, `../`, `en/`, never `index.html`). A link to `contact.html` would still work, but it shows the extension in the address bar and Google reports the page as a duplicate.
+
+Clean links do not work from a page opened from disk (`file://`), nor through plain `python -m http.server`. To click through the site locally, run the preview server, which resolves them like GitHub Pages:
+
+```bash
+python _tools/serve.py   # then open http://localhost:8000
+```
+
 ## Tests
 
 **Run both suites after every change that could break something**: any change to a page, stylesheet, script, font, icon or image, and any move or rename of a file. Only pure text edits inside one page need no extra run while you work.
@@ -39,6 +49,7 @@ node --test                                # Node 20+: call scheduler slots
 | Test | Checks |
 |---|---|
 | `_tests/test_self_hosted_assets.py` | No page, stylesheet or script loads anything from another server, and every local file a page points at exists. |
+| `_tests/test_clean_urls.py` | Links between our pages, canonical and `hreflang` URLs and the sitemap use clean URLs without `.html`, and each one points at a page that exists. |
 | `_tests/call-slots.test.js` | The call scheduler (`js/call-slots.js`) offers only valid times: weekdays 9:00 to 16:30 Berlin time without lunch, no public holidays, next-day bookings until 17:30, at most six weeks ahead, correct across the clock changes and in the visitor's time zone. |
 
-Folders starting with `_` are not published by GitHub Pages. The contact form and call request also have a manual check: after changing `js/contact-form.js`, `js/call-scheduler.js` or the contact pages, open `contact.html` and `en/contact.html`, open the scheduler, pick a time and step through the form. Sending only works from https://anora-systems.com, so a local copy always ends on the email fallback.
+Folders starting with `_` are not published by GitHub Pages. The contact form and call request also have a manual check: after changing `js/contact-form.js`, `js/call-scheduler.js` or the contact pages, open `/contact` and `/en/contact` in the preview server, open the scheduler, pick a time and step through the form. Sending only works from https://anora-systems.com, so a local copy always ends on the email fallback.
