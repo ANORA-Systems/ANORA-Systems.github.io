@@ -8,11 +8,11 @@
     <link rel="alternate" hreflang="de" href="https://anora-systems.com/datenschutz">
     <link rel="alternate" hreflang="en" href="https://anora-systems.com/en/privacy">
     <link rel="alternate" hreflang="x-default" href="https://anora-systems.com/en/privacy">
-    
+
     <script src="../assets/tailwind/tailwindcss-play-3.4.17.js"></script>
     <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../assets/fonts/fonts.css">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -27,8 +27,22 @@
             }
         }
     </script>
+    <style>
+        @media print {
+            @page { size: A4; margin: 16mm 18mm; }
+            body { background: #fff !important; font-size: 10.5pt; }
+            body > nav { position: static !important; box-shadow: none !important; padding: 0 0 6mm !important; }
+            body > nav img { height: 12mm !important; }
+            body > nav a + a, footer, .print-hide { display: none !important; }
+            main { padding: 0 !important; max-width: none !important; }
+            main > div { box-shadow: none !important; border: 0 !important; border-radius: 0 !important; padding: 0 !important; }
+            h1, h2, h3 { break-after: avoid; }
+            p, li { orphans: 3; widows: 3; }
+            main p, main li { color: #1f2937 !important; }
+            a { color: inherit !important; text-decoration: none !important; }
+        }
+    </style>
 </head>
-
 
 <body class="font-sans text-slate-800 bg-gray-50 flex flex-col min-h-screen">
 
@@ -44,10 +58,11 @@
     </nav>
 
     <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
-        
-        <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-8">Privacy Policy</h1>
 
-        <div class="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-gray-100 text-gray-700 leading-relaxed space-y-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-2">Privacy Policy</h1>
+        <p class="text-sm font-semibold text-anoraTeal uppercase tracking-wider mb-8">As of: October 21, 2026</p>
+
+        <div class="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-gray-100 text-gray-700 leading-relaxed space-y-10">
 
             <div class="bg-blue-50 border-l-4 border-anoraTeal p-4 rounded-r">
                 <div class="flex">
@@ -61,199 +76,283 @@
                     </div>
                 </div>
             </div>
-            
-            <section>
-                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">1. Data protection at a glance</h2>
-                
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">General Notes</h3>
+
+            <nav aria-label="Contents" class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                <p class="font-bold text-anoraBlue mb-3">Contents</p>
+                <ul class="space-y-2">
+                    <li><a href="#general" class="text-anoraTeal hover:underline font-semibold">Part A: General information</a> <span class="text-gray-500">– controller, legal bases, service providers, logs, your rights</span></li>
+                    <li><a href="#website" class="text-anoraTeal hover:underline font-semibold">Part B: Website anora-systems.com</a> <span class="text-gray-500">– hosting, contact form, call request</span></li>
+                    <li><a href="#specscout" class="text-anoraTeal hover:underline font-semibold">Part C: SpecScout</a> <span class="text-gray-500">– search app, dashboard and API</span></li>
+                </ul>
+            </nav>
+
+            <section id="general" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">Part A: General information</h2>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.1 What this policy covers</h3>
                 <p class="mb-4">
-                    The following notes provide a simple overview of what happens to your personal data when you visit this website. Personal data is all data with which you can be personally identified. Detailed information on the subject of data protection can be found in our privacy policy listed below this text.
+                    This privacy policy explains which personal data we process when you visit our website anora-systems.com (Part B) and when you use SpecScout, that is the search app at specscout.anora-systems.com, the dashboard at dashboard.anora-systems.com and the SpecScout API at api.anora-systems.com (Part C). Part A applies to both. Personal data is any information relating to an identified or identifiable person, for example a name, an email address or an IP address.
                 </p>
 
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Data collection on this website</h3>
-                
-                <h4 class="font-bold text-gray-900 mt-4">Who is responsible for data collection on this website?</h4>
-                <p class="mb-4">
-                    The data processing on this website is carried out by the website operator. You can find their contact details in the section "Information on the Responsible Party" in this privacy policy.
-                </p>
-
-                <h4 class="font-bold text-gray-900 mt-4">How do we collect your data?</h4>
-                <p class="mb-4">
-                    On the one hand, your data is collected when you communicate it to us. This may be data that you enter in a contact form, for example.
-                </p>
-                <p class="mb-4">
-                    Other data is collected automatically or after your consent when visiting the website by our IT systems. This is primarily technical data (e.g., internet browser, operating system, or time of the page view). This data is collected automatically as soon as you enter this website.
-                </p>
-
-                <h4 class="font-bold text-gray-900 mt-4">What do we use your data for?</h4>
-                <p class="mb-4">
-                    Part of the data is collected to ensure the error-free provision of the website. Other data may be used to analyze your user behavior. If contracts can be concluded or initiated via the website, the transmitted data will also be processed for contract offers, orders, or other order inquiries.
-                </p>
-
-                <h4 class="font-bold text-gray-900 mt-4">What rights do you have regarding your data?</h4>
-                <p class="mb-4">
-                    You have the right at any time to receive information free of charge about the origin, recipient, and purpose of your stored personal data. You also have the right to request the correction or deletion of this data. If you have given your consent to data processing, you can revoke this consent at any time for the future. Furthermore, you have the right to request the restriction of the processing of your personal data under certain circumstances. You also have the right to lodge a complaint with the competent supervisory authority.
-                </p>
-                <p class="mb-4">
-                    You can contact us at any time regarding this and other questions on the subject of data protection.
-                </p>
-            </section>
-
-            <section>
-                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">2. Hosting</h2>
-                <p class="mb-4">We host the content of our website with the following provider:</p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">External Hosting</h3>
-                <p class="mb-4">
-                    This website is hosted externally. The personal data collected on this website is stored on the servers of the hoster(s). This may include IP addresses, contact requests, meta and communication data, contract data, contact details, names, website access, and other data generated via a website.
-                </p>
-                <p class="mb-4">
-                    External hosting is carried out for the purpose of contract fulfillment vis-à-vis our potential and existing customers (Art. 6 para. 1 lit. b GDPR) and in the interest of a secure, fast, and efficient provision of our online offer by a professional provider (Art. 6 para. 1 lit. f GDPR). If a corresponding consent has been requested, the processing is carried out exclusively on the basis of Art. 6 para. 1 lit. a GDPR and § 25 para. 1 TDDDG, insofar as the consent includes the storage of cookies or access to information in the user's terminal device (e.g., device fingerprinting) within the meaning of the TDDDG. The consent can be revoked at any time.
-                </p>
-                <p class="mb-4">
-                    Our hoster(s) will only process your data to the extent necessary to fulfill their performance obligations and will follow our instructions regarding this data.
-                </p>
-                <p class="mb-4">
-                    We use the following hoster(s):
-                </p>
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.2 Controller</h3>
+                <p class="mb-4">The controller responsible for data processing is:</p>
                 <div class="bg-gray-50 p-4 rounded border border-gray-200 text-sm mb-4">
-                    Microsoft Corporation<br>
-                    One Microsoft Way<br>
-                    Redmond, WA 98052-6399<br>
-                    USA
-                </div>
-                <div class="bg-gray-50 p-4 rounded border border-gray-200 text-sm mb-4">
-                    Hetzner Online GmbH <br>
-                    Industriestraße 25<br>
-                    91710 Gunzenhausen  <br>
-                    Germany
-                </div>
-            </section>
-
-            <section>
-                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">3. General information and mandatory information</h2>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Data Protection</h3>
-                <p class="mb-4">
-                    The operators of these pages take the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with the statutory data protection regulations and this privacy policy.
-                </p>
-                <p class="mb-4">
-                    When you use this website, various personal data is collected. Personal data is data with which you can be personally identified. This privacy policy explains what data we collect and what we use it for. It also explains how and for what purpose this happens.
-                </p>
-                <p class="mb-4">
-                    We would like to point out that data transmission over the Internet (e.g., when communicating by e-mail) may have security gaps. Complete protection of data against access by third parties is not possible.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Information on the Responsible Party (Controller)</h3>
-                <p class="mb-4">The responsible party for data processing on this website is:</p>
-                <div class="bg-gray-50 p-4 rounded border border-gray-200 text-sm mb-4">
+                    Anora Systems<br>
                     Johannes Körner<br>
-                    Briachstr. 10<br>
+                    Briachstraße 10<br>
                     88250 Weingarten<br>
                     Germany<br>
                     <br>
-                    Phone: <a href="tel:+491759215813" class="text-anoraTeal hover:underline">+49 175 9215813</a><br>
-                    Email: <a href="mailto:johannes.koerner@anora-systems.com" class="text-anoraTeal hover:underline">johannes.koerner@anora-systems.com</a>
+                    Phone: <a href="tel:+4915679785206" class="text-anoraTeal hover:underline">+49 15679 785206</a><br>
+                    Email: <a href="mailto:info@anora-systems.com" class="text-anoraTeal hover:underline">info@anora-systems.com</a>
                 </div>
                 <p class="mb-4">
-                    The responsible party is the natural or legal person who alone or jointly with others decides on the purposes and means of processing personal data (e.g., names, email addresses, etc.).
+                    We have not appointed a data protection officer because we are not legally required to. Please send questions about data protection to the contact details above.
                 </p>
 
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Storage duration</h3>
-                <p class="mb-4">
-                    Unless a more specific storage period has been specified within this privacy policy, your personal data will remain with us until the purpose for data processing no longer applies. If you assert a justified request for deletion or revoke consent to data processing, your data will be deleted unless we have other legally permissible reasons for storing your personal data (e.g., tax or commercial law retention periods); in the latter case, the deletion will take place after these reasons cease to apply.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">General information on the legal basis for data processing on this website</h3>
-                <p class="mb-4">
-                    If you have consented to data processing, we process your personal data on the basis of Art. 6 para. 1 lit. a GDPR or Art. 9 para. 2 lit. a GDPR, if special categories of data are processed according to Art. 9 para. 1 GDPR. In the event of explicit consent to the transfer of personal data to third countries, data processing is also carried out on the basis of Art. 49 para. 1 lit. a GDPR. If you have consented to the storage of cookies or to access to information in your terminal device (e.g., via device fingerprinting), data processing is additionally carried out on the basis of § 25 para. 1 TDDDG. The consent can be revoked at any time. If your data is required for the fulfillment of a contract or for the implementation of pre-contractual measures, we process your data on the basis of Art. 6 para. 1 lit. b GDPR. Furthermore, we process your data if this is necessary to fulfill a legal obligation on the basis of Art. 6 para. 1 lit. c GDPR. Data processing may also be carried out on the basis of our legitimate interest in accordance with Art. 6 para. 1 lit. f GDPR. Information on the relevant legal bases in each individual case is provided in the following paragraphs of this privacy policy.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Recipients of personal data</h3>
-                <p class="mb-4">
-                    As part of our business activities, we work with various external bodies. In some cases, it is also necessary to transfer personal data to these external bodies. We only pass on personal data to external bodies if this is necessary within the framework of contract fulfillment, if we are legally obliged to do so (e.g., passing on data to tax authorities), if we have a legitimate interest in passing it on pursuant to Art. 6 para. 1 lit. f GDPR, or if another legal basis permits the transfer of data. When using processors, we only pass on personal data of our customers on the basis of a valid contract on data processing. In the case of joint processing, a joint processing agreement is concluded.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Revocation of your consent to data processing</h3>
-                <p class="mb-4">
-                    Many data processing operations are only possible with your express consent. You can revoke consent you have already given at any time. The legality of the data processing carried out until the revocation remains unaffected by the revocation.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Right to object to data collection in special cases and to direct advertising (Art. 21 GDPR)</h3>
-                <div class="bg-gray-100 p-4 border-l-4 border-anoraBlue text-sm mb-4">
-                    <p class="uppercase font-semibold">
-                        IF DATA PROCESSING IS CARRIED OUT ON THE BASIS OF ART. 6 PARA. 1 LIT. E OR F GDPR, YOU HAVE THE RIGHT TO OBJECT TO THE PROCESSING OF YOUR PERSONAL DATA AT ANY TIME FOR REASONS ARISING FROM YOUR PARTICULAR SITUATION; THIS ALSO APPLIES TO PROFILING BASED ON THESE PROVISIONS. THE RESPECTIVE LEGAL BASIS ON WHICH PROCESSING IS BASED CAN BE FOUND IN THIS PRIVACY POLICY. IF YOU OBJECT, WE WILL NO LONGER PROCESS YOUR CONCERNED PERSONAL DATA UNLESS WE CAN PROVE COMPELLING LEGITIMATE GROUNDS FOR THE PROCESSING THAT OUTWEIGH YOUR INTERESTS, RIGHTS, AND FREEDOMS OR THE PROCESSING SERVES THE ASSERTION, EXERCISE, OR DEFENSE OF LEGAL CLAIMS (OBJECTION UNDER ART. 21 PARA. 1 GDPR).
-                    </p>
-                    <p class="uppercase font-semibold mt-4">
-                        IF YOUR PERSONAL DATA IS PROCESSED TO OPERATE DIRECT ADVERTISING, YOU HAVE THE RIGHT TO OBJECT AT ANY TIME TO THE PROCESSING OF PERSONAL DATA CONCERNING YOU FOR THE PURPOSE OF SUCH ADVERTISING; THIS ALSO APPLIES TO PROFILING INSOFAR AS IT IS CONNECTED TO SUCH DIRECT ADVERTISING. IF YOU OBJECT, YOUR PERSONAL DATA WILL SUBSEQUENTLY NO LONGER BE USED FOR THE PURPOSE OF DIRECT ADVERTISING (OBJECTION UNDER ART. 21 PARA. 2 GDPR).
-                    </p>
-                </div>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Right to lodge a complaint with the competent supervisory authority</h3>
-                <p class="mb-4">
-                    In the event of infringements of the GDPR, those affected have a right to lodge a complaint with a supervisory authority, in particular in the member state of their habitual residence, their place of work, or the place of the alleged infringement. The right to lodge a complaint exists without prejudice to other administrative or judicial remedies.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Right to data portability</h3>
-                <p class="mb-4">
-                    You have the right to have data that we process automatically on the basis of your consent or in fulfillment of a contract handed over to you or to a third party in a common, machine-readable format. If you request the direct transfer of the data to another controller, this will only take place if it is technically feasible.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Information, correction, and deletion</h3>
-                <p class="mb-4">
-                    Within the framework of the applicable legal provisions, you have the right at any time to free information about your stored personal data, its origin and recipient and the purpose of the data processing and, if applicable, a right to correction or deletion of this data. You can contact us at any time regarding this and other questions on the subject of personal data.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Right to restriction of processing</h3>
-                <p class="mb-4">
-                    You have the right to request the restriction of the processing of your personal data. You can contact us at any time regarding this. The right to restriction of processing exists in the following cases:
-                </p>
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.3 Legal bases</h3>
+                <p class="mb-4">We process personal data only where one of the following legal bases applies. We state which one applies with each processing activity.</p>
                 <ul class="list-disc pl-5 mb-4 space-y-2">
-                    <li>If you dispute the accuracy of your personal data stored by us, we usually need time to check this. For the duration of the check, you have the right to request the restriction of the processing of your personal data.</li>
-                    <li>If the processing of your personal data happened/is happening unlawfully, you can request the restriction of data processing instead of deletion.</li>
-                    <li>If we no longer need your personal data, but you need it to exercise, defend or assert legal claims, you have the right to request the restriction of the processing of your personal data instead of deletion.</li>
-                    <li>If you have lodged an objection under Art. 21 para. 1 GDPR, a balance must be struck between your interests and ours. As long as it has not yet been determined whose interests prevail, you have the right to request the restriction of the processing of your personal data.</li>
+                    <li><strong>Consent</strong> (Art. 6(1)(a) GDPR). You can withdraw consent at any time with effect for the future.</li>
+                    <li><strong>Contract and pre-contractual steps</strong> (Art. 6(1)(b) GDPR), for example when you use SpecScout or ask for a quote.</li>
+                    <li><strong>Legal obligation</strong> (Art. 6(1)(c) GDPR), for example retention duties under tax and commercial law.</li>
+                    <li><strong>Legitimate interests</strong> (Art. 6(1)(f) GDPR). We name the interest with each processing activity.</li>
                 </ul>
                 <p class="mb-4">
-                    If you have restricted the processing of your personal data, this data – apart from its storage – may only be processed with your consent or for the assertion, exercise or defense of legal claims or for the protection of the rights of another natural or legal person or for reasons of important public interest of the European Union or a Member State.
+                    Storing information on your device and accessing it, for example through cookies, is also governed by Section 25 of the German Telecommunications Digital Services Data Protection Act (TDDDG). What is stored on your device is described in Part B (website) and Part C (SpecScout).
                 </p>
 
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">SSL or TLS encryption</h3>
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.4 Service providers and other recipients</h3>
                 <p class="mb-4">
-                    For security reasons and to protect the transmission of confidential content, such as orders or inquiries that you send to us as the site operator, this site uses SSL or TLS encryption. You can recognize an encrypted connection by the fact that the address line of the browser changes from "http://" to "https://" and by the lock symbol in your browser line.
+                    We use service providers. Most of them process data on our behalf (processors under Art. 28 GDPR) and may use it only on our instructions and to provide their service. Some providers also process data under their own responsibility; we point this out with the service concerned (B.1, C.7). We use service providers for the following tasks:
                 </p>
+                <ul class="list-disc pl-5 mb-4 space-y-2">
+                    <li>servers in Germany for SpecScout and for handling contact and call requests from the website (C.1),</li>
+                    <li>email mailboxes and the sending of all emails, including SpecScout's automatic emails (A.8, C.9),</li>
+                    <li>error and performance monitoring of our server (A.5),</li>
+                    <li>delivering the website (B.1),</li>
+                    <li>web search and AI models for searches and AI drafts in SpecScout (C.6).</li>
+                </ul>
                 <p class="mb-4">
-                    If SSL or TLS encryption is activated, the data you transmit to us cannot be read by third parties.
+                    Which providers these are, with their seat, where they process data and the basis for any transfer to countries outside the EU, is set out in our <a href="service-providers" class="text-anoraTeal hover:underline">list of service providers</a>. We keep it up to date. Beyond that, we disclose personal data only where we are legally required to (for example to tax authorities) or where it is necessary to establish, exercise or defend legal claims. We do not sell personal data.
                 </p>
 
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Objection to advertising e-mails</h3>
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.5 Server logs and error monitoring</h3>
                 <p class="mb-4">
-                    The use of contact data published within the scope of the imprint obligation for sending unsolicited advertising and information materials is hereby objected to. The operators of the pages expressly reserve the right to take legal action in the event of the unsolicited sending of advertising information, such as spam e-mails.
+                    Our server api.anora-systems.com runs SpecScout and receives the contact and call requests from the website. It logs every request with IP address, time, the address called including its parameters (for searches, the search terms) and the result. Some events we log with your user identifier or email address, for example a registration or the sending of an email. We delete the server logs after 30 days at the latest.
+                </p>
+                <p class="mb-4">
+                    For error and performance monitoring we use Sentry (A.4). Sentry receives technical details of requests to this server, that is the address called with its parameters, the browser identification (user agent), response times and error messages, as well as our log messages. These details can include the content of your request, such as search terms, the text of a form or email addresses. We do not deliberately send your IP address to Sentry. Sentry is certified under the EU-U.S. Data Privacy Framework (A.6) and deletes the data after at most 90 days.
+                </p>
+                <p class="mb-4">
+                    The legal basis for both is our legitimate interest in detecting errors quickly, investigating abuse and running the service securely and reliably (Art. 6(1)(f) GDPR).
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.6 Transfers to countries outside the EU</h3>
+                <p class="mb-4">
+                    Some service providers are based in the USA or other countries outside the EU, or process data there. We transfer personal data to such a third country only where the requirements of Art. 44 et seq. GDPR are met: on the basis of the European Commission's adequacy decision for the EU-U.S. Data Privacy Framework (Art. 45 GDPR) where the recipient is certified under it, and otherwise on the basis of the European Commission's standard contractual clauses (Art. 46(2)(c) GDPR). You can obtain a copy of the standard contractual clauses on request (A.2). The providers concerned and the basis used are set out in the <a href="service-providers" class="text-anoraTeal hover:underline">list of service providers</a>.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.7 Retention</h3>
+                <p class="mb-4">
+                    We keep personal data only as long as needed for the purpose concerned. Where we have fixed periods, we state them with each processing activity. Statutory retention duties remain unaffected: depending on their type, we keep business letters and tax-relevant records for six to ten years (Section 257 German Commercial Code, Section 147 German Fiscal Code). During that time we restrict the data and use it only to meet the retention duty.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.8 Contact by email or phone</h3>
+                <p class="mb-4">
+                    If you contact us by email or phone, we process your details (for example name, contact details and the content of your request) to handle your request. The legal basis is Art. 6(1)(b) GDPR if your request relates to a contract or its preparation, otherwise our legitimate interest in answering inquiries (Art. 6(1)(f) GDPR). We keep emails in our mailboxes at IONOS. We delete your request once it has been fully dealt with, unless a retention duty under A.7 applies.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.9 Your rights</h3>
+                <p class="mb-4">You have the following rights towards us regarding your personal data:</p>
+                <ul class="list-disc pl-5 mb-4 space-y-2">
+                    <li><strong>Access</strong> to the data we process about you (Art. 15 GDPR),</li>
+                    <li><strong>Rectification</strong> of inaccurate data (Art. 16 GDPR),</li>
+                    <li><strong>Erasure</strong> (Art. 17 GDPR),</li>
+                    <li><strong>Restriction of processing</strong> (Art. 18 GDPR),</li>
+                    <li><strong>Data portability</strong>, that is receiving the data you provided to us in a common, machine-readable format (Art. 20 GDPR),</li>
+                    <li><strong>Withdrawal</strong> of consent with effect for the future (Art. 7(3) GDPR),</li>
+                    <li><strong>Objection</strong> to processing based on legitimate interests (Art. 21 GDPR, see below).</li>
+                </ul>
+                <p class="mb-4">An informal message to the postal or email address in A.2 is enough for any of these requests.</p>
+                <div class="bg-gray-100 p-4 border-l-4 border-anoraBlue text-sm mb-4">
+                    <h4 class="font-bold mb-2">Right to object under Art. 21 GDPR</h4>
+                    <p>
+                        Where we process your data on the basis of legitimate interests (Art. 6(1)(f) GDPR), you may object to this processing at any time on grounds relating to your particular situation. We will then stop processing the data unless we can demonstrate compelling legitimate grounds that override your interests, rights and freedoms, or the processing serves to establish, exercise or defend legal claims. You may object to the processing of your data for direct marketing at any time without giving reasons.
+                    </p>
+                </div>
+                <p class="mb-4">
+                    You also have the right to lodge a complaint with a data protection supervisory authority (Art. 77 GDPR), in particular in the member state of your habitual residence, your place of work or the place of the alleged infringement. The authority responsible for us is:
+                </p>
+                <div class="bg-gray-50 p-4 rounded border border-gray-200 text-sm mb-4">
+                    Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg<br>
+                    Postfach 10 29 32<br>
+                    70025 Stuttgart, Germany<br>
+                    <a href="https://www.baden-wuerttemberg.datenschutz.de" class="text-anoraTeal hover:underline" target="_blank" rel="noopener noreferrer">www.baden-wuerttemberg.datenschutz.de</a>
+                </div>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.10 No obligation to provide data, no automated decisions</h3>
+                <p class="mb-4">
+                    You are under no legal or contractual obligation to provide personal data to us. Without the details marked as required, however, we cannot answer a request or give you access to SpecScout. We do not make automated individual decisions, including profiling (Art. 22 GDPR).
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.11 Encryption</h3>
+                <p class="mb-4">
+                    The website and SpecScout can only be reached over encrypted connections (TLS); unencrypted requests are redirected to encrypted ones. You can recognize this by "https://" in the address bar and the lock icon in your browser.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.12 Changes to this privacy policy</h3>
+                <p class="mb-4">
+                    We update this privacy policy when our data processing or the law changes. The version published here applies; its date is shown below the title.
                 </p>
             </section>
 
-            <section>
-                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">4. Data collection on this website</h2>
+            <section id="website" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">Part B: Website anora-systems.com</h2>
 
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Request by e-mail, telephone, or fax</h3>
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">B.1 Hosting on GitHub Pages</h3>
                 <p class="mb-4">
-                    If you contact us by e-mail, telephone, or fax, your request including all resulting personal data (name, request) will be stored and processed by us for the purpose of processing your request. We do not pass on this data without your consent.
+                    The website is delivered through GitHub Pages, a service of GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. When you open the website, GitHub processes the data technically needed to deliver it, in particular your IP address, the page requested and the time. GitHub logs visitors' IP addresses for security purposes. GitHub processes these logs under its own responsibility and sets their retention period; we have no access to them. The legal basis is our legitimate interest in delivering the website securely and reliably (Art. 6(1)(f) GDPR). GitHub is certified under the EU-U.S. Data Privacy Framework (A.6). More in <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" class="text-anoraTeal hover:underline" target="_blank" rel="noopener noreferrer">GitHub's privacy statement</a>.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">B.2 No cookies, no analytics, no third-party content</h3>
+                <p class="mb-4">
+                    The website sets no cookies, stores nothing in your browser and uses no analytics or tracking tools. We serve fonts, icons and scripts ourselves; when you open the website, your browser loads no content from other servers. Your browser connects to our own server api.anora-systems.com only when you send the contact form or a call request (B.3, B.4).
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">B.3 Contact form</h3>
+                <p class="mb-4">
+                    You can send us a message through the contact form. Name, email address and message are required; company, shop system and catalog size are optional. Your browser sends the details to our server api.anora-systems.com at Hetzner in Germany. The server forwards them by email through IONOS to our team's mailboxes, with your email address as the reply address. We do not store the content of your request on the server. Like every request to this server, our server logs record your IP address, the time and the address called, but not the content of your message. Technical details of the request, which can include its content, reach Sentry, our error and performance monitoring service (A.5).
                 </p>
                 <p class="mb-4">
-                    The processing of this data is based on Art. 6 para. 1 lit. b GDPR, provided that your request is related to the fulfillment of a contract or is necessary for the implementation of pre-contractual measures. In all other cases, the processing is based on our legitimate interest in the effective processing of the requests addressed to us (Art. 6 para. 1 lit. f GDPR) or on your consent (Art. 6 para. 1 lit. a GDPR) if this has been requested; the consent can be revoked at any time.
+                    To prevent abuse, the server checks which page the request comes from and processes your IP address: it accepts at most five requests per IP address per hour and only a limited number per hour overall. The counters are held in memory only and expire after one hour. The form also contains a field that is invisible to people. If it is filled in, we assume an automated sender: the message is then not forwarded as a request; instead we receive a warning email with the message and the IP address, so that we can still answer a genuine request that was blocked by mistake. If the overall number for an hour is reached, we receive a notice with the IP address of the first rejected request.
                 </p>
                 <p class="mb-4">
-                    The data you send to us via contact requests will remain with us until you request us to delete it, revoke your consent to storage, or the purpose for data storage no longer applies (e.g., after your request has been processed). Mandatory statutory provisions – in particular statutory retention periods – remain unaffected.
+                    The legal basis for handling your request is Art. 6(1)(b) GDPR if it relates to a contract or its preparation, otherwise our legitimate interest in answering inquiries (Art. 6(1)(f) GDPR). Abuse prevention is based on our legitimate interest in protecting the form and our server from spam and overload (Art. 6(1)(f) GDPR). We delete the emails as described in A.8, and warning emails once we have checked them.
                 </p>
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Uploading user-created datasets</h3>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">B.4 Call request</h3>
                 <p class="mb-4">
-                    If you create and upload user-created datasets in our program (in particular specifications and categories), this data is transmitted to our server and stored there.
+                    With the call request on the contact page you suggest up to three time slots for a 20-minute call. For this we process your name, your email address and the slots you picked and, if given, your company, phone number and message. If your browser's time zone differs from German time, the request also states the slots in your local time. Technically, the request is handled exactly like a message sent through the contact form (B.3), with the same safeguards, legal bases and deletion periods. Your browser calculates the available slots from our office hours; we do not use a calendar service for this. We confirm one of the slots by email or suggest another one.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">B.5 Links to SpecScout</h3>
+                <p class="mb-4">
+                    Links such as "Start free" lead to SpecScout at specscout.anora-systems.com. Part C describes what happens to your data there.
+                </p>
+            </section>
+
+            <section id="specscout" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">Part C: SpecScout</h2>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.1 Overview and hosting</h3>
+                <p class="mb-4">
+                    SpecScout consists of the search app at specscout.anora-systems.com, the dashboard at dashboard.anora-systems.com and the SpecScout API at api.anora-systems.com. All three run, together with their database, on our server at Hetzner in Germany (A.4). The search app and the dashboard pass your input to the API through their own server and include your IP address, so that the API can secure sessions, limit abuse and log access.
                 </p>
                 <p class="mb-4">
-                    Administrators can view uploaded specifications and categories to review, manage, and process them as part of operating the system.
+                    We process your data in SpecScout to provide the service to you (Art. 6(1)(b) GDPR). If your user account belongs to a customer's contract, for example your employer's, that customer is our contracting party; we then process your data on the basis of our legitimate interest in performing the contract with the customer and giving you access to SpecScout for it (Art. 6(1)(f) GDPR). Security measures such as logs and access limits are based on our legitimate interest in operating securely (Art. 6(1)(f) GDPR). Any other legal basis is stated with the processing concerned. A.5 applies to server logs and error monitoring.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.2 Trial and free access</h3>
+                <p class="mb-4">
+                    With "Start free" you enter only your email address on the search app's access page. We use it to create a trial account, with which you can run a few searches right away, and an API key through which the search app searches for you. We send a confirmation link to your address that is valid for 24 hours. Once you confirm it, the account becomes free access with a monthly search quota, and we receive an internal email with your email address and your access level. You don't need a password: later you sign in with a link that we send you by email (C.3).
                 </p>
                 <p class="mb-4">
-                    Processing is carried out to provide and administer our services and to perform contractual or pre-contractual measures (Art. 6 para. 1 lit. b GDPR), as well as on the basis of our legitimate interest in secure and orderly operation (Art. 6 para. 1 lit. f GDPR).
+                    We automatically delete accounts whose email address is not confirmed within 7 days, together with their data; the trial's API key expires at the same time. We use your IP address to create at most five trial accounts per IP address per hour; the counters are held in memory only. The legal basis is providing the service (Art. 6(1)(b) GDPR) and, for the limit, our legitimate interest in preventing abuse (Art. 6(1)(f) GDPR).
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.3 User account and signing in</h3>
+                <p class="mb-4">
+                    In the dashboard you register with an email address and a password; your name is optional. We store the password only as a cryptographic hash. Here, too, you confirm your email address through a link that is valid for 24 hours; after that you have free access, and we receive the same internal email as in C.2. We delete unconfirmed accounts after 7 days, as in C.2. We grant extended access by hand on request and let you know by email. If someone tries to register again with an address that is already registered, its owner receives a notice by email.
+                </p>
+                <p class="mb-4">
+                    You can sign in with your email address and password, with a sign-in link by email that is valid for 15 minutes and works only once, or in the search app with an API key (C.4). We store the links in our emails only as hashes. After five failed password attempts we block signing in with a password for 15 minutes; for this we store the number and time of failed attempts. If you wish, you can protect your account with a second factor (one-time codes from an authenticator app); we store the secret key this requires in encrypted form and the recovery codes only as hashes. Before sensitive actions, such as exporting or deleting your account, you confirm your identity again, with your password or a link by email that is valid for 15 minutes. A link to reset your password is valid for one hour.
+                </p>
+                <p class="mb-4">
+                    For every login we store a session with your IP address, your browser identification and the timestamps. A session ends after at most 30 days, when you log out or when you change your password, and is then deleted.
+                </p>
+                <p class="mb-4">
+                    In the dashboard you can change your name, email address and password, export your data as a file and delete your account yourself; with an account from the search app, you sign in there with a sign-in link. When you delete it, we remove your account together with its sessions, API keys, your own specifications and categories, search settings and quota counters. Entries in the access log (C.4) remain, without a link to your account, until they are deleted after 30 days. Entries in the server logs and at Sentry (A.5) and the internal registration email in our mailbox (A.8) also remain for a limited time. We keep account data as long as the account exists; we delete unconfirmed accounts after 7 days (C.2). User accounts connected to a contract for a paid plan, including custom specifications, categories and search settings, are deleted 30 days after the contract ends, unless statutory retention obligations apply.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.4 API keys and access log</h3>
+                <p class="mb-4">
+                    You create API keys in the dashboard, with a label and an optional expiry date. We show the key only once and store it only as a hash. Expired or revoked keys remain stored until you delete them or your account. If you log in to the search app with an API key, its server keeps the key in memory for the duration of the session.
+                </p>
+                <p class="mb-4">
+                    For every request made with an API key we store an entry in the access log: key and user identifier, the endpoint called (without search parameters), the result, IP address and browser identification. This serves security and the investigation of abuse (Art. 6(1)(f) GDPR). We delete the entries after 30 days.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.5 Searches</h3>
+                <p class="mb-4">
+                    For a search we process your input: product name, brand, category, requested specifications, options and, where given, domains you prefer or exclude. For every search we store this input together with the values found, the addresses of the source pages and technical measurements, but without a user identifier and without an IP address. After 90 days we condense this data into daily statistics without search content and delete the individual records. For your quota we count searches per account and month, for as long as the account exists. From all searches we also derive figures per website, such as how often a domain yields usable values; they have no link to individual users. The server logs hold the search terms together with the IP address for up to 30 days; for Sentry, see A.5.
+                </p>
+                <p class="mb-4">
+                    To improve SpecScout, we also store a sample for every page an AI model reads for a search: the page's address and text, the model's answer, product name, brand, category and the specification definitions searched for. These samples, too, are stored without a user identifier and without an IP address. We use them to check the quality of the extraction, to compare models and providers and to improve the choice of sources, and we delete them after 24 months. We also use the stored samples to improve our algorithm, in particular to train a ranking algorithm that rates sources and puts them in order. We do not train large language models with them. The page texts can contain personal data of third parties (C.6). The legal basis is Art. 6(1)(f) GDPR; our legitimate interest lies in more accurate extraction, a better choice of sources and thus the data quality of SpecScout.
+                </p>
+                <p class="mb-4">
+                    Searches usually contain only product data. Please do not enter personal data in searches, specifications or categories.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.6 Services used for searches and AI drafts</h3>
+                <p class="mb-4">
+                    For searches and AI drafts we pass content of your request to the following kinds of services; which services these are in detail is set out in the <a href="service-providers" class="text-anoraTeal hover:underline">list of service providers</a>. These services receive no details about you, that is neither your name nor your email address nor your IP address.
+                </p>
+                <ul class="list-disc pl-5 mb-4 space-y-2">
+                    <li><strong>Web search:</strong> web search services receive search terms built from brand, product, category and up to three specification names, plus your domain filters.</li>
+                    <li><strong>Fetching web pages:</strong> our server fetches the public pages found itself. The websites visited see our server's IP address, not yours.</li>
+                    <li><strong>AI models that read the pages:</strong> providers of AI models receive product name, brand, specification definitions and the text of the pages fetched. Which provider answers a request depends on availability and response time; we also keep comparing which models read the pages best. The providers are based in the USA. Providers that forward requests to other providers of the model concerned (such as OpenRouter) are used only so that a request goes exclusively to providers that, according to the forwarding provider, neither store the request data nor use it for training; these may be based in the USA or another country outside the EU.</li>
+                    <li><strong>AI drafts and AI reviews of specifications</strong> in the dashboard: your description and existing specification definitions go, with the same restriction, to providers of AI models.</li>
+                </ul>
+                <p class="mb-4">
+                    We base transfers to third countries on the standard contractual clauses or, for certified providers, on the EU-U.S. Data Privacy Framework (A.6). The web pages fetched can contain personal data of third parties, such as names in reviews. We extract only product information; we store page texts only in the samples described in C.5 and delete them after 24 months. The legal basis is providing the service (Art. 6(1)(b) GDPR); where page texts contain personal data of third parties, it is our legitimate interest in analyzing publicly available product information (Art. 6(1)(f) GDPR).
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.7 Product images</h3>
+                <p class="mb-4">
+                    If you turn on the option "Include product images" in the search app, your browser loads the images found directly from the websites concerned. These websites then receive your IP address, your browser identification and the address of our app. They process this data under their own responsibility, may set their own cookies and may be based outside the EU. Without this option, the search app loads no images from other websites.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.8 Your own specifications, categories and search settings</h3>
+                <p class="mb-4">
+                    We store the specifications, categories and search settings (preferred and excluded domains) that you create, linked to your account, until you delete them or your account. Our administrators can view them to check them, fix errors and keep the service running (Art. 6(1)(b) and (f) GDPR).
+                </p>
+                <p class="mb-4">
+                    Preferred and excluded domains also feed, without a link to your account, into a shared rating of websites once at least two users have set the same rule. The legal basis is our legitimate interest in improving the choice of sources for all users (Art. 6(1)(f) GDPR).
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.9 Emails from SpecScout</h3>
+                <p class="mb-4">
+                    SpecScout only sends you emails about your account or your contract: confirmation and sign-in links, links to confirm sensitive actions and to reset your password, notices that your access level has changed, an invitation when we create an account for you, the notice of a registration attempt with your address, and notices of changes to our GTC. They are sent through IONOS (A.4). We do not send advertising.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.10 Storage in your browser</h3>
+                <p class="mb-4">
+                    For logging in and for your settings, the search app and the dashboard store the following entries in your browser (Section 25(2) no. 2 TDDDG).
+                </p>
+                <div class="overflow-x-auto mb-4">
+                    <table class="w-full text-sm border border-gray-200">
+                        <thead class="bg-gray-50 text-left">
+                            <tr><th scope="col" class="p-2 border-b border-gray-200">Name</th><th scope="col" class="p-2 border-b border-gray-200">Type</th><th scope="col" class="p-2 border-b border-gray-200">Purpose</th><th scope="col" class="p-2 border-b border-gray-200">Duration</th></tr>
+                        </thead>
+                        <tbody class="align-top">
+                            <tr><td class="p-2 border-b border-gray-100"><code>specscout_demo_auth_sid</code></td><td class="p-2 border-b border-gray-100">Cookie, search app</td><td class="p-2 border-b border-gray-100">Login (random session identifier)</td><td class="p-2 border-b border-gray-100">until you close the browser; the server ends the session after 7 days without use, after 30 days at the latest</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>specscout_backend_sid</code></td><td class="p-2 border-b border-gray-100">Cookie, search app</td><td class="p-2 border-b border-gray-100">Session with the API (random identifier)</td><td class="p-2 border-b border-gray-100">up to 30 days</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>session_id</code></td><td class="p-2 border-b border-gray-100">Cookie, dashboard</td><td class="p-2 border-b border-gray-100">Login (random session identifier)</td><td class="p-2 border-b border-gray-100">up to 30 days</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>specscout_mfa_login_token</code>, <code>mfa_login_token</code></td><td class="p-2 border-b border-gray-100">Cookie, both</td><td class="p-2 border-b border-gray-100">Intermediate step when logging in with a second factor</td><td class="p-2 border-b border-gray-100">10 minutes</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>PARAGLIDE_LOCALE</code></td><td class="p-2 border-b border-gray-100">Cookie, both</td><td class="p-2 border-b border-gray-100">Chosen language, only after switching language</td><td class="p-2 border-b border-gray-100">400 days</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>sidebar:state</code></td><td class="p-2 border-b border-gray-100">Cookie, dashboard</td><td class="p-2 border-b border-gray-100">Sidebar expanded or collapsed</td><td class="p-2 border-b border-gray-100">7 days</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>mode-watcher-mode</code>, <code>mode-watcher-theme</code></td><td class="p-2 border-b border-gray-100">Local storage, both</td><td class="p-2 border-b border-gray-100">Display (light, dark or as set in the system); created on the first visit</td><td class="p-2 border-b border-gray-100">until you delete it</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>specscout_verification_resent</code></td><td class="p-2 border-b border-gray-100">Session storage, search app</td><td class="p-2 border-b border-gray-100">Time you last asked for the confirmation link again, for a 10-minute wait</td><td class="p-2 border-b border-gray-100">until you close the tab</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>sveltekit:scroll</code>, <code>sveltekit:snapshot</code></td><td class="p-2 border-b border-gray-100">Session storage, both</td><td class="p-2 border-b border-gray-100">Scroll position and page state when going back and forward</td><td class="p-2 border-b border-gray-100">until you close the tab</td></tr>
+                            <tr><td class="p-2"><code>specscout_demo_user_data</code></td><td class="p-2">Cookie, search app</td><td class="p-2">Own categories and specifications stored by older versions; now only read, no longer set</td><td class="p-2">up to 10 years from when it was set</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.11 No analytics, no third-party content</h3>
+                <p class="mb-4">
+                    The search app and the dashboard use no analytics or tracking tools. They serve fonts and icons themselves; apart from product images (C.7), your browser loads no content from third-party servers in the apps.
                 </p>
             </section>
 
@@ -264,10 +363,9 @@
         <div class="pt-8 border-t border-gray-800 text-gray-400 text-sm">
             <p>&copy; 2026 Anora Systems. All rights reserved.</p>
             <div class="flex justify-center gap-6 mt-4">
-                <a href="legal" class="hover:text-white">Imprint</a>
-                <a href="privacy" class="hover:text-white">Privacy Policy</a>
-                <a href="terms" class="hover:text-white">Terms & Conditions</a>
-
+                <a href="legal" class="hover:text-white transition-colors">Imprint</a>
+                <a href="privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="terms" class="hover:text-white transition-colors">Terms &amp; Conditions</a>
             </div>
         </div>
     </footer>

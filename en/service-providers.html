@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Providers | Anora Systems</title>
+    <link rel="canonical" href="https://anora-systems.com/en/service-providers">
+    <link rel="alternate" hreflang="de" href="https://anora-systems.com/dienstleister">
+    <link rel="alternate" hreflang="en" href="https://anora-systems.com/en/service-providers">
+    <link rel="alternate" hreflang="x-default" href="https://anora-systems.com/en/service-providers">
+
+    <script src="../assets/tailwind/tailwindcss-play-3.4.17.js"></script>
+    <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets/fonts/fonts.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        anoraBlue: '#0B1E3D',
+                        anoraTeal: '#00A99D',
+                        anoraOrange: '#F7941D',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media (max-width: 639px) {
+            .provider-table thead { display: none; }
+            .provider-table, .provider-table tbody, .provider-table tr, .provider-table td { display: block; width: 100%; }
+            .provider-table tr { border-bottom: 1px solid #e5e7eb; padding: 0.25rem 0; }
+            .provider-table tr:last-child { border-bottom: 0; }
+            .provider-table td { border: 0 !important; padding: 0.25rem 0.75rem !important; }
+            .provider-table td[data-label]::before { content: attr(data-label); display: block; font-weight: 600; color: #0B1E3D; }
+        }
+        @media print {
+            @page { size: A4; margin: 16mm 18mm; }
+            body { background: #fff !important; font-size: 10.5pt; }
+            body > nav { position: static !important; box-shadow: none !important; padding: 0 0 6mm !important; }
+            body > nav img { height: 12mm !important; }
+            body > nav a + a, footer, .print-hide { display: none !important; }
+            main { padding: 0 !important; max-width: none !important; }
+            main > div { box-shadow: none !important; border: 0 !important; border-radius: 0 !important; padding: 0 !important; }
+            h1, h2, h3 { break-after: avoid; }
+            p, li { orphans: 3; widows: 3; }
+            main p, main li { color: #1f2937 !important; }
+            a { color: inherit !important; text-decoration: none !important; }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-slate-800 bg-gray-50 flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-sm p-4 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <a href="./" class="flex items-center gap-2 group">
+                <img src="../media/logo.png" alt="Anora Systems Logo" class="h-10 w-auto">
+            </a>
+            <a href="./" class="text-sm text-gray-500 hover:text-anoraTeal transition flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
+
+        <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-2">Service Providers</h1>
+        <p class="text-sm font-semibold text-anoraTeal uppercase tracking-wider mb-8">As of: October 21, 2026</p>
+
+        <div class="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-gray-100 text-gray-700 leading-relaxed space-y-10">
+
+            <section>
+                <p class="mb-4">
+                    This list names the external service providers we use for the website anora-systems.com and for SpecScout. Which data they receive and on which legal basis is described in our <a href="privacy" class="text-anoraTeal hover:underline">privacy policy</a>; clause 11(3) of our <a href="terms" class="text-anoraTeal hover:underline">GTC</a> refers to this list. When a service provider changes, we update the list and the date above.
+                </p>
+                <p class="mb-4">
+                    We base transfers to countries outside the EU on the EU-U.S. Data Privacy Framework (DPF) where the recipient is certified under it, and otherwise on the European Commission's standard contractual clauses (SCC). Details are in section A.6 of the privacy policy.
+                </p>
+            </section>
+
+            <section id="operations" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">Running the website and SpecScout</h2>
+                <div class="overflow-x-auto">
+                    <table class="provider-table w-full text-sm border border-gray-200">
+                        <thead class="bg-gray-50 text-left">
+                            <tr><th scope="col" class="p-2 border-b border-gray-200">Service provider</th><th scope="col" class="p-2 border-b border-gray-200">Task</th><th scope="col" class="p-2 border-b border-gray-200">Location and transfer</th></tr>
+                        </thead>
+                        <tbody class="align-top">
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Hetzner Online GmbH</strong><br>Gunzenhausen, Germany</td><td data-label="Task" class="p-2 border-b border-gray-100">Servers for SpecScout and for contact and call requests from the website</td><td data-label="Location and transfer" class="p-2 border-b border-gray-100">Servers in Germany; no transfer outside the EU</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>IONOS SE</strong><br>Montabaur, Germany</td><td data-label="Task" class="p-2 border-b border-gray-100">Email mailboxes and the sending of all emails, including SpecScout's automatic emails</td><td data-label="Location and transfer" class="p-2 border-b border-gray-100">Based in the EU</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Functional Software, Inc. (Sentry)</strong><br>San Francisco, USA</td><td data-label="Task" class="p-2 border-b border-gray-100">Error and performance monitoring of our server</td><td data-label="Location and transfer" class="p-2 border-b border-gray-100">USA; DPF</td></tr>
+                            <tr><td class="p-2"><strong>GitHub, Inc.</strong><br>San Francisco, USA</td><td data-label="Task" class="p-2">Delivering the website (GitHub Pages); GitHub processes security logs under its own responsibility</td><td data-label="Location and transfer" class="p-2">USA; DPF</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="web-search" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">Web search</h2>
+                <div class="overflow-x-auto">
+                    <table class="provider-table w-full text-sm border border-gray-200">
+                        <thead class="bg-gray-50 text-left">
+                            <tr><th scope="col" class="p-2 border-b border-gray-200">Service provider</th><th scope="col" class="p-2 border-b border-gray-200">Task</th><th scope="col" class="p-2 border-b border-gray-200">Location and transfer</th></tr>
+                        </thead>
+                        <tbody class="align-top">
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Serper</strong> (serper.dev)</td><td data-label="Task" class="p-2 border-b border-gray-100">Web search</td><td data-label="Location and transfer" class="p-2 border-b border-gray-100">Receives only search terms built from product data, no personal data</td></tr>
+                            <tr><td class="p-2"><strong>Google Cloud EMEA Limited</strong><br>Dublin, Ireland</td><td data-label="Task" class="p-2">Web search through the Custom Search JSON API, as a fallback</td><td data-label="Location and transfer" class="p-2">Processing also in the USA by Google LLC; DPF</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="ai-models" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">AI models</h2>
+                <p class="mb-4">
+                    Which provider answers a request depends on availability and response time. "As a fallback" means the provider receives a request only if the providers tried before it do not answer in time.
+                </p>
+                <div class="overflow-x-auto">
+                    <table class="provider-table w-full text-sm border border-gray-200">
+                        <thead class="bg-gray-50 text-left">
+                            <tr><th scope="col" class="p-2 border-b border-gray-200">Service provider</th><th scope="col" class="p-2 border-b border-gray-200">Task</th><th scope="col" class="p-2 border-b border-gray-200">Location and transfer</th></tr>
+                        </thead>
+                        <tbody class="align-top">
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Fireworks.ai, Inc.</strong><br>San Mateo, USA</td><td data-label="Task" class="p-2 border-b border-gray-100">Reading the pages</td><td data-label="Location and transfer" class="p-2 border-b border-gray-100">USA; SCC</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Google Cloud EMEA Limited</strong><br>Dublin, Ireland</td><td data-label="Task" class="p-2 border-b border-gray-100">Gemini API: reading the pages, checking search results and links, selecting page sections</td><td data-label="Location and transfer" class="p-2 border-b border-gray-100">Processing also in the USA by Google LLC; DPF</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Baseten Labs, Inc.</strong><br>San Francisco, USA</td><td data-label="Task" class="p-2 border-b border-gray-100">Reading the pages, as a fallback</td><td data-label="Location and transfer" class="p-2 border-b border-gray-100">USA; SCC</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>OpenAI Ireland Ltd.</strong><br>Dublin, Ireland</td><td data-label="Task" class="p-2 border-b border-gray-100">Reading the pages, as a fallback</td><td data-label="Location and transfer" class="p-2 border-b border-gray-100">Processing also in the USA; SCC</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Cerebras Systems Inc.</strong><br>Sunnyvale, USA</td><td data-label="Task" class="p-2 border-b border-gray-100">Reading the pages, as a fallback</td><td data-label="Location and transfer" class="p-2 border-b border-gray-100">USA</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Groq UK Limited</strong><br>London, United Kingdom</td><td data-label="Task" class="p-2 border-b border-gray-100">Checking search results and links, selecting page sections; as a fallback, reading the pages and AI drafts</td><td data-label="Location and transfer" class="p-2 border-b border-gray-100">United Kingdom: European Commission adequacy decision; processing also in the USA by Groq LLC: SCC</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Together Computer, Inc.</strong> (Together AI)<br>San Francisco, USA</td><td data-label="Task" class="p-2 border-b border-gray-100">Selecting page sections, as a fallback</td><td data-label="Location and transfer" class="p-2 border-b border-gray-100">USA</td></tr>
+                            <tr><td class="p-2"><strong>OpenRouter, Inc.</strong><br>New York, USA</td><td data-label="Task" class="p-2">AI drafts and AI reviews of specifications in the dashboard; forwards requests to models from OpenAI and Google, only to providers that, according to OpenRouter, neither store the request data nor use it for training</td><td data-label="Location and transfer" class="p-2">USA; SCC</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-anoraBlue text-white py-8 text-center mt-auto">
+        <div class="pt-8 border-t border-gray-800 text-gray-400 text-sm">
+            <p>&copy; 2026 Anora Systems. All rights reserved.</p>
+            <div class="flex justify-center gap-6 mt-4">
+                <a href="legal" class="hover:text-white transition-colors">Imprint</a>
+                <a href="privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="terms" class="hover:text-white transition-colors">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -14,11 +14,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://anora-systems.com/media/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://anora-systems.com/media/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://anora-systems.com/media/favicon-180.png">
-    
+
     <script src="assets/tailwind/tailwindcss-play-3.4.17.js"></script>
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -34,12 +34,25 @@
         }
     </script>
     <style>
-        
+
         .agb-section {
             margin-bottom: 2rem;
         }
         .agb-section p {
             margin-bottom: 0.75rem;
+        }
+        @media print {
+            @page { size: A4; margin: 16mm 18mm; }
+            body { background: #fff !important; font-size: 10.5pt; }
+            body > nav { position: static !important; box-shadow: none !important; padding: 0 0 6mm !important; }
+            body > nav img { height: 12mm !important; }
+            body > nav a + a, footer, .print-hide { display: none !important; }
+            main { padding: 0 !important; max-width: none !important; }
+            main > div { box-shadow: none !important; border: 0 !important; border-radius: 0 !important; padding: 0 !important; }
+            h1, h2, h3 { break-after: avoid; }
+            p, li { orphans: 3; widows: 3; }
+            main p, main li { color: #1f2937 !important; }
+            a { color: inherit !important; text-decoration: none !important; }
         }
     </style>
 </head>
@@ -58,123 +71,156 @@
     </nav>
 
     <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
-        
+
         <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-8">Allgemeine Geschäftsbedingungen</h1>
 
         <div class="bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100">
-            
+
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-100 pb-6 mb-8 gap-4">
                 <div>
-                    <span class="text-sm font-semibold text-anoraTeal uppercase tracking-wider">Stand: 01. Februar 2026</span>
-                    <p class="text-gray-500 text-sm mt-1">Für Geschäftskunden (B2B)</p>
+                    <span class="text-sm font-semibold text-anoraTeal uppercase tracking-wider">Stand: [Datum der Veröffentlichung]</span>
                 </div>
-                <button onclick="window.print()" class="text-sm text-gray-500 hover:text-anoraBlue transition flex items-center gap-2 border border-gray-200 px-4 py-2 rounded-lg hover:border-anoraBlue">
-                    <i class="fa-solid fa-print"></i> Drucken / PDF speichern
-                </button>
+                <a href="downloads/agb.pdf" download="Anora-Systems-AGB.pdf" class="print-hide text-sm text-gray-500 hover:text-anoraBlue transition flex items-center gap-2 border border-gray-200 px-4 py-2 rounded-lg hover:border-anoraBlue">
+                    <i class="fa-solid fa-file-pdf"></i> PDF herunterladen
+                </a>
             </div>
 
-            <div class="text-gray-600 leading-relaxed text-sm md:text-base">
+            <div class="bg-blue-50 border-l-4 border-anoraTeal p-4 rounded-r">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fa-solid fa-circle-info text-anoraTeal"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-anoraBlue">
+                            Diese Fassung gilt für Verträge, die ab dem [Datum der Veröffentlichung] geschlossen werden. Für vorher geschlossene Verträge über den kostenlosen Zugang gilt sie ab dem Zeitpunkt, den der Anbieter nach Ziffer 13(3) mitteilt. Die bisherige Fassung vom 01. Februar 2026 ist unter <a href="agb-2026-02" class="text-anoraTeal hover:underline font-bold">anora-systems.com/agb-2026-02</a> abrufbar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-gray-600 leading-relaxed text-sm md:text-base mt-8">
 
                 <div class="agb-section" id="section-1">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">1. Geltungsbereich</h2>
-                    <p>(1) Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen Anora Systems (nachfolgend „Anbieter“) und ihren Kunden (nachfolgend „Kunde“) über die Nutzung der Software „SpecScout“ sowie damit verbundene Dienstleistungen.</p>
-                    <p>(2) Das Angebot richtet sich ausschließlich an Unternehmer im Sinne des § 14 BGB, juristische Personen des öffentlichen Rechts oder öffentlich-rechtliche Sondervermögen. Ein Vertragsschluss mit Verbrauchern ist ausgeschlossen.</p>
-                    <p>(3) Abweichende, entgegenstehende oder ergänzende Allgemeine Geschäftsbedingungen des Kunden werden nur dann und insoweit Vertragsbestandteil, als der Anbieter ihrer Geltung ausdrücklich schriftlich zugestimmt hat.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">1. Geltungsbereich und Anbieter</h2>
+                    <p>(1) Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge über die Nutzung der Software „SpecScout“ (Suchanwendung, Dashboard und Programmierschnittstelle, nachfolgend „API“) und damit verbundene Leistungen zwischen Anora Systems, Inhaber Johannes Körner, Briachstraße 10, 88250 Weingarten (nachfolgend „Anbieter“), und seinen Kunden (nachfolgend „Kunde“). Kunde ist, wer mit dem Anbieter einen solchen Vertrag schließt, auch über den kostenlosen Zugang.</p>
+                    <p>(2) Kostenpflichtige Tarife richten sich ausschließlich an Unternehmer im Sinne des § 14 BGB, juristische Personen des öffentlichen Rechts und öffentlich-rechtliche Sondervermögen. Den kostenlosen Zugang (Ziffer 5) können auch Verbraucher im Sinne des § 13 BGB nutzen.</p>
+                    <p>(3) Abweichende, entgegenstehende oder ergänzende Allgemeine Geschäftsbedingungen des Kunden werden nur Vertragsbestandteil, wenn und soweit der Anbieter ihrer Geltung ausdrücklich schriftlich zugestimmt hat.</p>
+                    <p>(4) Individuelle Vereinbarungen, insbesondere in einem Einzelvertrag oder Angebot, haben Vorrang vor diesen AGB.</p>
                 </div>
 
                 <div class="agb-section" id="section-2">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">2. Leistungsgegenstand und Vertragstyp</h2>
-                    <p>(1) Der Anbieter stellt dem Kunden mit SpecScout eine Software-Lösung zur automatisierten Identifikation, Recherche, Extraktion und Strukturierung technischer Produktdaten zur Verfügung (Software-as-a-Service).</p>
-                    <p>(2) Die Bereitstellung der Daten erfolgt auf Basis öffentlich zugänglicher Quellen sowie unter Einsatz automatisierter Verfahren.</p>
-                    <p>(3) Der Anbieter erbringt seine Leistungen im Rahmen eines Dienstvertrages. Trotz implementierter Maßnahmen zur Qualitätssicherung kann – insbesondere aufgrund der Abhängigkeit von externen Datenquellen – keine Gewähr für die vollständige Richtigkeit, Aktualität und Vollständigkeit der extrahierten Daten übernommen werden.</p>
-                    <p>(4) Der konkrete Leistungsumfang (z. B. Anzahl der Requests, Datenformate, Support-Level) ergibt sich aus dem jeweiligen Einzelvertrag oder Angebot.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">2. Leistungsgegenstand und Tarife</h2>
+                    <p>(1) Mit SpecScout stellt der Anbieter eine Software zur automatisierten Identifikation, Recherche, Extraktion und Strukturierung technischer Produktdaten bereit (Software-as-a-Service).</p>
+                    <p>(2) Die Daten werden aus öffentlich zugänglichen Quellen und mit automatisierten Verfahren ermittelt, darunter KI-Modelle.</p>
+                    <p>(3) SpecScout gibt einen Wert nur aus, wenn mindestens zwei voneinander unabhängige Quellen übereinstimmen oder eine maßgebliche Quelle, insbesondere der Hersteller, ihn bestätigt. Seiten zu einem anderen als dem gesuchten Modell werden ausgefiltert. Ist ein Wert nicht in dieser Weise bestätigt, wird er als „not_found“ ausgegeben statt geschätzt. Zu jedem ausgegebenen Wert werden Links zu seinen Quellen und ein Konfidenzwert angezeigt; der Konfidenzwert ist eine automatisierte Einschätzung der Quellenlage und keine Zusicherung. Diese Leistungsbeschreibung bestimmt die geschuldete Beschaffenheit der Daten. Dass die Daten darüber hinaus richtig, vollständig und aktuell sind, schuldet der Anbieter nicht, insbesondere nicht, wenn übereinstimmende Quellen selbst unrichtig sind.</p>
+                    <p>(4) Der Anbieter bietet an:</p>
+                    <ul class="list-disc pl-5 mb-3 space-y-1">
+                        <li>einen kostenlosen Testzugang, der mit der Anmeldung per E-Mail-Adresse entsteht,</li>
+                        <li>den kostenlosen Free-Tarif, der nach Bestätigung der E-Mail-Adresse gilt,</li>
+                        <li>kostenpflichtige Tarife für Unternehmer nach Einzelvertrag oder Angebot.</li>
+                    </ul>
+                    <p>(5) Kontingente (z. B. die Zahl der Suchen pro Monat) und Funktionen des kostenlosen Zugangs ergeben sich aus der Leistungsbeschreibung auf der Website des Anbieters und der Anzeige im Nutzerkonto, die kostenpflichtiger Tarife aus dem Einzelvertrag oder Angebot. Monatliche Kontingente werden am ersten Tag jedes Kalendermonats (UTC) erneuert; nicht genutzte Suchen verfallen. Auf das Kontingent werden nur abgeschlossene Suchen angerechnet.</p>
+                    <p>(6) Der Anbieter darf die Zahl der Anfragen je Zeiteinheit technisch begrenzen, um den Betrieb zu sichern.</p>
                 </div>
 
                 <div class="agb-section" id="section-3">
                     <h2 class="text-lg font-bold text-anoraBlue mb-3">3. Pilotphase und „Beta“-Status</h2>
-                    <p>(1) Sofern im Angebot als „Pilotphase“, „Beta“ oder „Prototyp“ gekennzeichnet, befindet sich die Software noch in der Entwicklung.</p>
-                    <p>(2) Der Kunde nimmt ausdrücklich zur Kenntnis, dass:</p>
-                    <ul class="list-disc pl-5 mb-3 space-y-1">
-                        <li>Funktionen eingeschränkt sein oder kurzfristig geändert werden können,</li>
-                        <li>die Verfügbarkeit unterbrochen sein kann,</li>
-                    </ul>
-                    <p>(3) Eine Gewährleistung für die technische Fehlerfreiheit wird während der Pilotphase ausgeschlossen, soweit gesetzlich zulässig.</p>
-                    <p>(4) Während der Pilotphase besteht kein Anspruch auf die dauerhafte Verfügbarkeit bestimmter Funktionen, auf Weiterentwicklung der Software oder auf Übernahme einzelner Funktionen in eine spätere Produktversion. Der Anbieter ist berechtigt, Funktionen jederzeit anzupassen, zu entfernen oder einzustellen.</p>
+                    <p>(1) Soweit SpecScout oder einzelne Funktionen als „Pilot“, „Beta“, „experimentell“ oder „Prototyp“ gekennzeichnet sind, befinden sie sich noch in der Entwicklung.</p>
+                    <p>(2) Der Kunde nimmt zur Kenntnis, dass solche Funktionen eingeschränkt sein, sich kurzfristig ändern oder vorübergehend nicht verfügbar sein können. Eine fehlerfreie Funktion schuldet der Anbieter für sie nicht; das gilt nicht für die Leistungsbeschreibung in Ziffer 2(3) und für im Einzelvertrag zugesagte Leistungen. Die Haftung nach Ziffer 9 bleibt unberührt.</p>
+                    <p>(3) Ein Anspruch auf dauerhafte Verfügbarkeit bestimmter Funktionen, auf Weiterentwicklung der Software oder auf Übernahme einzelner Funktionen in eine spätere Version besteht nicht. Der Anbieter darf Funktionen anpassen, ersetzen oder einstellen, wenn dies für den Kunden zumutbar ist; im Einzelvertrag zugesagte Leistungen bleiben unberührt.</p>
                 </div>
 
                 <div class="agb-section" id="section-4">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">4. Vertragsschluss</h2>
-                    <p>(1) Der Vertrag kommt durch Unterzeichnung eines Angebots, schriftliche Auftragsbestätigung oder durch die Bereitstellung des Zugangs zur Software zustande.</p>
-                    <p>(2) Der Anbieter ist berechtigt, den Vertragsschluss ohne Angabe von Gründen abzulehnen.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">4. Vertragsschluss und Nutzerkonto</h2>
+                    <p>(1) Die Darstellung von SpecScout auf der Website ist kein bindendes Angebot. Für den kostenlosen Zugang gibt der Kunde ein Angebot ab, indem er im Anmeldeformular seine E-Mail-Adresse und gegebenenfalls weitere Angaben einträgt und die Schaltfläche zur Anmeldung oder Registrierung betätigt; dabei akzeptiert er diese AGB. Der Vertrag kommt zustande, wenn der Anbieter das Nutzerkonto anlegt.</p>
+                    <p>(2) Verträge über kostenpflichtige Tarife kommen durch Unterzeichnung eines Angebots, durch Auftragsbestätigung in Textform oder durch Freischaltung des vereinbarten Zugangs zustande.</p>
+                    <p>(3) Der Anbieter kann den Abschluss eines Vertrags ohne Angabe von Gründen ablehnen.</p>
+                    <p>(4) Der Kunde muss mindestens 18 Jahre alt sein und bei der Anmeldung wahre Angaben machen. Das Nutzerkonto ist nicht übertragbar. Jede Person darf nur ein kostenloses Nutzerkonto führen.</p>
+                    <p>(5) Eingabefehler kann der Kunde vor dem Absenden des Formulars mit den üblichen Tastatur- und Mausfunktionen berichtigen. Vertragssprache ist Deutsch. Den Vertragstext speichert der Anbieter nicht gesondert. Die geltende und frühere Fassungen dieser AGB sind auf der Website abrufbar und können gespeichert und ausgedruckt werden.</p>
+                    <p>(6) Bei kostenpflichtigen Tarifen kann der Kunde mehrere Nutzerkonten für Personen, die für ihn tätig sind (nachfolgend „Nutzer“), mit seinem Vertrag verbinden. Diese Nutzerkonten gehören zum Vertrag des Kunden; die Nutzer werden dadurch nicht selbst Vertragspartei. Bestehende Nutzerkonten im kostenlosen Zugang können nicht mit dem Vertrag verbunden werden. Der Kunde stellt sicher, dass seine Nutzer diese AGB, insbesondere Ziffer 6, einhalten. Für Handlungen seiner Nutzer bei der Nutzung von SpecScout ist der Kunde wie für eigene Handlungen verantwortlich. Soll ein Nutzer nicht mehr berechtigt sein, entfernt der Kunde ihn unverzüglich aus seinem Vertrag oder teilt dies dem Anbieter in Textform mit.</p>
                 </div>
 
                 <div class="agb-section" id="section-5">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">5. Mitwirkungspflichten und Rechtmäßigkeit</h2>
-                    <p>(1) Der Kunde stellt alle für die Leistungserbringung erforderlichen Informationen im vereinbarten Format bereit.</p>
-                    <p>(2) Der Kunde stellt sicher, dass die Nutzung der gelieferten Daten in seinem jeweiligen Anwendungsbereich rechtlich zulässig ist. Der Anbieter übernimmt insbesondere keine Prüfungspflicht (z.B. im Hinblick auf Urheber-, Marken-, Wettbewerbs-, Produktkennzeichnungs- oder Verbraucherschutzrecht).</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">5. Kostenloser Zugang (Testzugang und Free-Tarif)</h2>
+                    <p>(1) Der Testzugang entsteht mit der Anmeldung per E-Mail-Adresse und umfasst ein kleines Kontingent an Suchen. Bestätigt der Kunde seine E-Mail-Adresse, geht der Testzugang in den Free-Tarif über. Bestätigt er sie nicht innerhalb von 7 Tagen nach der Anmeldung, endet der Vertrag und der Anbieter löscht das Nutzerkonto.</p>
+                    <p>(2) Der kostenlose Zugang dient dem Testen von SpecScout und der privaten Nutzung. Eine fortlaufende gewerbliche Nutzung, etwa die regelmäßige Anreicherung eines Produktkatalogs, erfordert einen kostenpflichtigen Tarif. Kontingente des kostenlosen Zugangs dürfen nicht durch mehrere Nutzerkonten umgangen werden; das gilt auch für mehrere Nutzerkonten, die demselben Kunden zugeordnet sind oder für dasselbe Unternehmen genutzt werden. Bereits erhaltene Ergebnisse darf der Kunde nach Ziffer 7(2) weiter verwenden.</p>
+                    <p>(3) Der Anbieter darf Kontingente und Funktionen des kostenlosen Zugangs aus sachlichem Grund mit Wirkung für die Zukunft ändern, etwa wegen gestiegener Kosten, zur Abwehr von Missbrauch oder wegen einer Weiterentwicklung des Angebots. Verringert er Kontingente oder stellt er wesentliche Funktionen ein, informiert er den Kunden mindestens zwei Wochen vorher in Textform, es sei denn, die Änderung ist zur Abwehr von Missbrauch oder aus Sicherheitsgründen sofort erforderlich. Der Kunde kann den Vertrag jederzeit beenden (Ziffer 12(1)).</p>
+                    <p>(4) Verstößt der Kunde gegen Absatz 2 oder Ziffer 6, kann der Anbieter den kostenlosen Zugang einschränken oder sperren und den Vertrag aus wichtigem Grund ohne Frist kündigen. Das gilt insbesondere für eine fortlaufende gewerbliche Nutzung trotz Hinweis und für mehrere Nutzerkonten zur Umgehung von Kontingenten. In der Regel weist der Anbieter den Kunden vorher auf den Verstoß hin; bei schweren Verstößen ist das entbehrlich.</p>
+                    <p>(5) Persönlicher Support ist im kostenlosen Zugang nicht enthalten. Hinweise, Fehlermeldungen und Feedback nimmt der Anbieter gern unter <a href="mailto:info@anora-systems.com" class="text-anoraTeal hover:underline">info@anora-systems.com</a> entgegen.</p>
                 </div>
 
                 <div class="agb-section" id="section-6">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">6. Nutzungsrechte</h2>
-                    <p>(1) Der Anbieter räumt dem Kunden ein einfaches, nicht ausschließliches, zeitlich auf die Vertragslaufzeit beschränktes Recht ein, die Software SpecScout zu nutzen.</p>
-                    <p>(2) An den gelieferten Datensätzen (Output) räumt der Anbieter dem Kunden – soweit rechtlich möglich – ein dauerhaftes, einfaches Nutzungsrecht zur Verwendung im eigenen Geschäftsbetrieb (insb. E-Commerce) ein.</p>
-                    <p>(3) Jede Art des Reverse Engineering, systematischen Auslesens der API über das vertragliche Maß hinaus oder der Missbrauch der Dienste zur Entwicklung konkurrierender Produkte ist untersagt.</p>
-                    <p>(4) Der Anbieter ist berechtigt, anonymisierte und aggregierte Nutzungs- und Outputdaten zur Verbesserung der Software, zu statistischen Zwecken sowie zur Weiterentwicklung der eigenen Systeme zu verwenden.</p>
-                    <p>(5) Eine Herausgabe von internen Funktionsweisen, Modellen oder Bewertungsmechanismen ist ausgeschlossen.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">6. Pflichten des Kunden und Rechtmäßigkeit</h2>
+                    <p>(1) Der Kunde stellt die für die Leistungserbringung erforderlichen Informationen im vereinbarten Format bereit.</p>
+                    <p>(2) Der Kunde hält Passwörter, Anmeldelinks und API-Schlüssel geheim und schützt sie vor dem Zugriff Unbefugter. Vermutet er einen Missbrauch, informiert er den Anbieter unverzüglich.</p>
+                    <p>(3) SpecScout ist für Produktdaten bestimmt. Der Kunde gibt in Suchanfragen, Spezifikationen und sonstigen Eingaben keine personenbezogenen Daten ein.</p>
+                    <p>(4) Der Kunde nutzt SpecScout nicht missbräuchlich. Er umgeht insbesondere keine Kontingente oder technischen Begrenzungen, belastet die Systeme nicht übermäßig, greift sie nicht an und gibt keine rechtswidrigen Inhalte ein.</p>
+                    <p>(5) Die Daten werden automatisiert ermittelt und können auch nach der Bestätigung nach Ziffer 2(3) fehlerhaft sein. Der Kunde prüft die gelieferten Daten vor ihrer Verwendung in einem Umfang, der ihrem Verwendungszweck und den möglichen Folgen eines Fehlers angemessen ist, insbesondere Werte mit niedrigem Konfidenzwert und Angaben, bei denen ein Fehler erhebliche Folgen haben kann, etwa für die Sicherheit oder die Erfüllung rechtlicher Pflichten. Er stellt sicher, dass ihre Verwendung in seinem Anwendungsbereich rechtlich zulässig ist. Der Anbieter prüft nicht, ob die Verwendung durch den Kunden zulässig ist, etwa nach Urheber-, Marken-, Wettbewerbs-, Produktkennzeichnungs- oder Verbraucherschutzrecht.</p>
                 </div>
 
                 <div class="agb-section" id="section-7">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">7. Vergütung</h2>
-                    <p>(1) Die Vergütung richtet sich nach dem jeweiligen Einzelvertrag. Alle Preise verstehen sich in Euro und zuzüglich der jeweils geltenden gesetzlichen Umsatzsteuer.</p>
-                    <p>(2) Rechnungen sind, sofern nicht anders vereinbart, innerhalb von 14 Tagen nach Rechnungsstellung ohne Abzug zahlbar.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">7. Nutzungsrechte</h2>
+                    <p>(1) Der Anbieter räumt dem Kunden für die Dauer des Vertrags das einfache, nicht übertragbare Recht ein, SpecScout im Rahmen seines Tarifs bestimmungsgemäß zu nutzen.</p>
+                    <p>(2) An den gelieferten Datensätzen (Output) räumt der Anbieter dem Kunden, soweit ihm selbst Rechte daran zustehen, ein dauerhaftes, einfaches Nutzungsrecht für eigene Zwecke ein, Unternehmern insbesondere zur Verwendung im eigenen Geschäftsbetrieb (z. B. im E-Commerce). Das gilt auch für Output aus dem kostenlosen Zugang und über das Vertragsende hinaus.</p>
+                    <p>(3) Untersagt sind Reverse Engineering, das systematische Auslesen der Dienste über den vereinbarten Umfang hinaus und die Nutzung der Dienste zur Entwicklung konkurrierender Produkte.</p>
+                    <p>(4) Der Anbieter speichert Inhalte öffentlich zugänglicher Webseiten, die er für Suchen abruft, die daraus automatisiert gewonnenen Ergebnisse und die zugehörigen Eingaben (z. B. Produktbezeichnungen, Kennungen, gesuchte Spezifikationen und Domain-Einstellungen) ohne Bezug zum Kunden, also ohne Nutzerkennung, API-Schlüssel oder IP-Adresse. Er verwendet sie zur Qualitätssicherung und Weiterentwicklung von SpecScout, einschließlich des Trainings eines eigenen Ranking-Algorithmus für Quellen, und darf sie außerdem nutzen, um künftige Suchen, auch anderer Kunden, schneller zu beantworten (Caching). Eingaben des Kunden gibt er dabei nicht an andere Kunden oder sonstige Dritte heraus. Die gespeicherten Inhalte löscht er spätestens 24 Monate nach ihrer Speicherung; zum Training großer Sprachmodelle (Large Language Models) verwendet er sie nicht. Anonymisierte und aggregierte Nutzungsdaten darf er außerdem für Statistiken verwenden.</p>
+                    <p>(5) Für kostenpflichtige Tarife kann im Einzelvertrag vereinbart werden, dass Suchen des Kunden nicht nach Absatz 4 verwendet werden. Daten, die vor einer solchen Vereinbarung gespeichert wurden, lassen sich mangels Bezug zum Kunden nicht zuordnen und bleiben erhalten.</p>
+                    <p>(6) Ein Anspruch auf Offenlegung interner Funktionsweisen, Modelle oder Bewertungsverfahren besteht nicht.</p>
                 </div>
 
                 <div class="agb-section" id="section-8">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">8. Haftung und Freistellung</h2>
-                    <p>(1) Der Anbieter haftet unbeschränkt bei Vorsatz, grober Fahrlässigkeit sowie bei Verletzung von Leben, Körper oder Gesundheit.</p>
-                    <p>(2) Bei leichter Fahrlässigkeit haftet der Anbieter nur bei Verletzung wesentlicher Vertragspflichten (Kardinalpflichten). In diesem Fall ist die Haftung der Höhe nach auf den bei Vertragsschluss vorhersehbaren und vertragstypischen Schaden begrenzt.</p>
-                    <p>(3) Die verschuldensunabhängige Haftung für anfängliche Mängel (§ 536a BGB) wird ausgeschlossen.</p>
-                    <p>(4) Der Anbieter haftet ferner nicht für:</p>
-                    <ul class="list-disc pl-5 mb-3 space-y-1">
-                        <li>die inhaltliche Richtigkeit, Vollständigkeit oder Aktualität der automatisch recherchierten Produktdaten,</li>
-                        <li>Schäden, die darauf beruhen, dass der Kunde seiner Prüfungspflicht nicht nachgekommen ist,</li>
-                        <li>wirtschaftliche Entscheidungen oder Maßnahmen, die der Kunde auf Grundlage der bereitgestellten Daten trifft (z. B. Listungsentscheidungen, Pricing, Marketingaussagen).</li>
-                    </ul>
-                    <p>(5) Die Haftung für entgangenen Gewinn, ausgebliebene Einsparungen oder sonstige mittelbare Folgeschäden ist ausgeschlossen.</p>
-                    <p>(6) Freistellung: Der Kunde stellt den Anbieter von allen Ansprüchen Dritter frei, die diese aufgrund einer rechtswidrigen oder vertragswidrigen Verwendung der bereitgestellten Daten durch den Kunden gegen den Anbieter geltend machen. Dies umfasst auch die angemessenen Kosten der Rechtsverteidigung.</p>
-                    <p>(7) Die Haftungsbeschränkungen gelten auch zugunsten der gesetzlichen Vertreter, Mitarbeiter und Erfüllungsgehilfen des Anbieters.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">8. Vergütung</h2>
+                    <p>(1) Der Testzugang und der Free-Tarif sind kostenlos. In einen kostenpflichtigen Tarif wechselt der Kunde nur durch gesonderte Vereinbarung.</p>
+                    <p>(2) Die Vergütung für kostenpflichtige Tarife richtet sich nach dem Einzelvertrag oder Angebot. Alle Preise verstehen sich in Euro zuzüglich der gesetzlichen Umsatzsteuer.</p>
+                    <p>(3) Rechnungen sind, sofern nicht anders vereinbart, innerhalb von 14 Tagen nach Rechnungsstellung ohne Abzug zahlbar.</p>
                 </div>
 
                 <div class="agb-section" id="section-9">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">9. Verfügbarkeit und Wartung</h2>
-                    <p>(1) Der Anbieter strebt eine hohe Verfügbarkeit an, schuldet jedoch keine unterbrechungsfreie Erreichbarkeit.</p>
-                    <p>(2) Der Anbieter ist berechtigt, Wartungsarbeiten durchzuführen, die zu vorübergehenden Einschränkungen führen können.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">9. Haftung und Freistellung</h2>
+                    <p>(1) Der Anbieter haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit, für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit, nach dem Produkthaftungsgesetz, bei arglistig verschwiegenen Mängeln und im Umfang einer übernommenen Garantie.</p>
+                    <p>(2) Beim kostenlosen Zugang (Ziffer 5) haftet der Anbieter nur nach Absatz 1; im Übrigen ist seine Haftung ausgeschlossen.</p>
+                    <p>(3) Bei kostenpflichtigen Tarifen haftet der Anbieter bei leichter Fahrlässigkeit nur für die Verletzung wesentlicher Vertragspflichten. Das sind Pflichten, deren Erfüllung die ordnungsgemäße Durchführung des Vertrags erst ermöglicht und auf deren Einhaltung der Kunde regelmäßig vertrauen darf. Die Haftung ist dann auf den bei Vertragsschluss vorhersehbaren, vertragstypischen Schaden begrenzt.</p>
+                    <p>(4) Die verschuldensunabhängige Haftung für Mängel, die bei Vertragsschluss bereits vorhanden waren (§ 536a Abs. 1 Alt. 1 BGB), ist ausgeschlossen.</p>
+                    <p>(5) Die Daten werden automatisiert ermittelt (Ziffer 2(2)). Für ihre Richtigkeit, Vollständigkeit und Aktualität haftet der Anbieter nur nach den Absätzen 1 bis 3. Prüft der Kunde Daten nicht in dem nach Ziffer 6(5) angemessenen Umfang, ist das als Mitverschulden zu berücksichtigen. Entscheidungen, die der Kunde auf Grundlage der Daten trifft, etwa zu Listungen, Preisen oder Werbeaussagen, liegen in seiner Verantwortung.</p>
+                    <p>(6) Der Kunde stellt den Anbieter von Ansprüchen Dritter frei, die diese wegen einer rechtswidrigen oder vertragswidrigen Verwendung der gelieferten Daten durch den Kunden gegen den Anbieter geltend machen, soweit der Kunde dies zu vertreten hat. Die Freistellung umfasst die angemessenen Kosten der Rechtsverteidigung.</p>
+                    <p>(7) Die Haftungsbeschränkungen dieser Ziffer gelten auch zugunsten der gesetzlichen Vertreter, Mitarbeiter und Erfüllungsgehilfen des Anbieters.</p>
                 </div>
 
                 <div class="agb-section" id="section-10">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">10. Datenschutz und Geheimhaltung</h2>
-                    <p>(1) Die Parteien verpflichten sich zur Einhaltung der geltenden Datenschutzbestimmungen (DSGVO). Sofern der Anbieter personenbezogene Daten im Auftrag verarbeitet, schließen die Parteien eine gesonderte Auftragsverarbeitungsvereinbarung (AVV).</p>
-                    <p>(2) Beide Parteien verpflichten sich, alle als vertraulich gekennzeichneten oder offensichtlich vertraulichen Informationen der jeweils anderen Partei geheim zu halten. Diese Pflicht besteht auch über das Vertragsende hinaus fort.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">10. Verfügbarkeit und Wartung</h2>
+                    <p>(1) Der Anbieter strebt eine hohe Verfügbarkeit an, schuldet aber keine ununterbrochene Erreichbarkeit, soweit im Einzelvertrag nichts anderes vereinbart ist.</p>
+                    <p>(2) Der Anbieter darf Wartungsarbeiten durchführen, die vorübergehend zu Einschränkungen führen können. Er legt sie nach Möglichkeit in nutzungsarme Zeiten.</p>
                 </div>
 
                 <div class="agb-section" id="section-11">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">11. Laufzeit und Kündigung</h2>
-                    <p>(1) Die Vertragslaufzeit und Kündigungsfristen ergeben sich aus dem Einzelvertrag.</p>
-                    <p>(2) Das Recht zur außerordentlichen Kündigung aus wichtigem Grund bleibt unberührt.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">11. Datenschutz und Geheimhaltung</h2>
+                    <p>(1) Der Anbieter verarbeitet personenbezogene Daten des Kunden und seiner Nutzer als Verantwortlicher nach Maßgabe seiner <a href="datenschutz#specscout" class="text-anoraTeal hover:underline">Datenschutzerklärung</a>. Daten, die der Kunde oder seine Nutzer für ein Nutzerkonto angeben, verarbeitet der Anbieter ausschließlich, um seine Leistungen zu erbringen und rechtliche Pflichten zu erfüllen.</p>
+                    <p>(2) Eine Verarbeitung personenbezogener Daten im Auftrag des Kunden ist nicht vorgesehen (Ziffer 6(3)).</p>
+                    <p>(3) Beide Parteien halten alle als vertraulich gekennzeichneten oder erkennbar vertraulichen Informationen der anderen Partei geheim, auch über das Vertragsende hinaus. Dies gilt nicht für Informationen, die öffentlich bekannt sind oder ohne Verstoß gegen diese Pflicht werden, die der empfangenden Partei bereits bekannt waren oder von ihr unabhängig erlangt wurden, oder die aufgrund gesetzlicher Pflicht oder behördlicher oder gerichtlicher Anordnung offengelegt werden müssen. Keine Verletzung dieser Pflicht sind die Nutzung nach Ziffer 7(4) und die Übermittlung an Dienstleister, die der Anbieter zur Leistungserbringung einsetzt, insbesondere Anbieter von KI-Modellen und Websuchdiensten, auch mit Sitz in den USA. Die eingesetzten Dienstleister führt der Anbieter auf seiner Website unter <a href="dienstleister" class="text-anoraTeal hover:underline">anora-systems.com/dienstleister</a> auf.</p>
                 </div>
 
                 <div class="agb-section" id="section-12">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">12. Änderung der AGB</h2>
-                    <p>(1) Der Anbieter ist berechtigt, diese AGB aus sachlichen Gründen (z. B. Gesetzesänderungen, technische Weiterentwicklungen, Anpassung des Leistungsumfangs) mit Wirkung für die Zukunft zu ändern.</p>
-                    <p>(2) Änderungen werden dem Kunden mindestens sechs Wochen vor Inkrafttreten in Textform mitgeteilt.</p>
-                    <p>(3) Widerspricht der Kunde nicht innerhalb dieser Frist, gelten die Änderungen als angenommen. Widerspricht der Kunde, ist der Anbieter berechtigt, den Vertrag zum Änderungszeitpunkt ordentlich zu kündigen.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">12. Laufzeit und Kündigung</h2>
+                    <p>(1) Der Vertrag über den kostenlosen Zugang läuft auf unbestimmte Zeit. Der Kunde kann ihn jederzeit ohne Frist beenden, indem er sein Nutzerkonto löscht oder die Kündigung in Textform erklärt, etwa per E-Mail an <a href="mailto:info@anora-systems.com" class="text-anoraTeal hover:underline">info@anora-systems.com</a>. Der Anbieter kann ihn mit einer Frist von vier Wochen in Textform kündigen.</p>
+                    <p>(2) Laufzeit und Kündigungsfristen kostenpflichtiger Tarife ergeben sich aus dem Einzelvertrag. Ist dort nichts vereinbart, läuft der Vertrag auf unbestimmte Zeit und kann von beiden Parteien mit einer Frist von einem Monat zum Ende eines Abrechnungszeitraums in Textform gekündigt werden.</p>
+                    <p>(3) Das Recht beider Parteien zur Kündigung aus wichtigem Grund bleibt unberührt; für den kostenlosen Zugang gilt zudem Ziffer 5(4).</p>
+                    <p>(4) Endet ein Vertrag über einen kostenpflichtigen Tarif, löscht der Anbieter 30 Tage nach Vertragsende die mit dem Vertrag verbundenen Nutzerkonten und die zugehörigen Daten, insbesondere eigene Spezifikationen, Kategorien und Sucheinstellungen; gesetzliche Aufbewahrungspflichten bleiben unberührt. Bis zur Löschung kann der Kunde seine Daten im Dashboard exportieren; einen Anspruch auf weitere Suchen hat er nach Vertragsende nicht. Ein Wechsel in den kostenlosen Zugang findet nicht statt.</p>
+                    <p>(5) Endet ein Vertrag über den kostenlosen Zugang, löscht der Anbieter das Nutzerkonto und die zugehörigen Daten nach Maßgabe der Datenschutzerklärung; gesetzliche Aufbewahrungspflichten bleiben unberührt. Ergebnisse und Daten, die der Kunde behalten möchte, sichert er vor der Löschung.</p>
                 </div>
 
                 <div class="agb-section" id="section-13">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">13. Schlussbestimmungen</h2>
-                    <p>(1) Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts.</p>
-                    <p>(2) Ausschließlicher Gerichtsstand für alle Streitigkeiten ist der Geschäftssitz des Anbieters, sofern der Kunde Kaufmann ist.</p>
-                    <p>(3) Sollte eine Bestimmung dieses Vertrages ganz oder teilweise unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. Die Parteien verpflichten sich, die unwirksame Bestimmung durch eine wirksame Regelung zu ersetzen, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">13. Änderungen dieser AGB</h2>
+                    <p>(1) Bei kostenpflichtigen Tarifen darf der Anbieter diese AGB mit Wirkung für die Zukunft nur ändern, soweit dies erforderlich ist, weil sich Gesetze oder die Rechtsprechung ändern, weil eine Bestimmung unwirksam ist oder wird, wegen behördlicher Vorgaben oder weil ein zur Leistungserbringung eingesetzter Dienstleister seine Bedingungen ändert oder ersetzt werden muss, und dies bei Vertragsschluss nicht vorhersehbar war. Die vereinbarte Vergütung und den vereinbarten Leistungsumfang ändert er auf diesem Weg nicht. Für den kostenlosen Zugang gilt Absatz 3.</p>
+                    <p>(2) Der Anbieter teilt Änderungen nach Absatz 1 mindestens sechs Wochen vor ihrem Inkrafttreten in Textform mit. Widerspricht der Kunde nicht bis zum Inkrafttreten in Textform, gelten die Änderungen als angenommen. Bis zum Inkrafttreten kann der Kunde den Vertrag außerdem ohne Einhaltung einer Frist zum Zeitpunkt des Inkrafttretens kündigen. Auf die Folge seines Schweigens und auf dieses Kündigungsrecht weist der Anbieter in der Mitteilung besonders hin. Widerspricht der Kunde, kann der Anbieter den Vertrag zum Zeitpunkt des Inkrafttretens kündigen.</p>
+                    <p>(3) Beim kostenlosen Zugang teilt der Anbieter Änderungen mindestens sechs Wochen vor ihrem Inkrafttreten in Textform mit. Er kündigt damit den Vertrag zum Zeitpunkt des Inkrafttretens (Ziffer 12(1)) und bietet an, ihn zu den geänderten AGB fortzusetzen. Nutzt der Kunde SpecScout nach diesem Zeitpunkt weiter, nimmt er das Angebot an; auf diese Folge weist der Anbieter in der Mitteilung besonders hin. Nimmt der Kunde die Änderungen nicht an, endet der Vertrag zu diesem Zeitpunkt; er kann ihn auch vorher beenden (Ziffer 12(1)).</p>
+                </div>
+
+                <div class="agb-section" id="section-14">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">14. Schlussbestimmungen</h2>
+                    <p>(1) Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts. Ist der Kunde Verbraucher, gilt diese Rechtswahl nur, soweit ihm dadurch nicht der Schutz zwingender Bestimmungen des Staates entzogen wird, in dem er seinen gewöhnlichen Aufenthalt hat.</p>
+                    <p>(2) Ist der Kunde Unternehmer und hat er keinen allgemeinen Gerichtsstand in Deutschland, sind für alle Streitigkeiten aus diesem Vertrag ausschließlich die für den Sitz des Anbieters in Weingarten zuständigen Gerichte zuständig.</p>
+                    <p>(3) Maßgeblich ist die deutsche Fassung dieser AGB. Die englische Übersetzung dient nur der Information.</p>
+                    <p>(4) Sind einzelne Bestimmungen dieser AGB ganz oder teilweise unwirksam, bleibt der Vertrag im Übrigen wirksam. An die Stelle der unwirksamen Bestimmungen treten die gesetzlichen Vorschriften.</p>
                 </div>
 
             </div>

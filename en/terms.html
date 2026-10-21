@@ -14,11 +14,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://anora-systems.com/media/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://anora-systems.com/media/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://anora-systems.com/media/favicon-180.png">
-    
+
     <script src="../assets/tailwind/tailwindcss-play-3.4.17.js"></script>
     <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../assets/fonts/fonts.css">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -34,12 +34,25 @@
         }
     </script>
     <style>
-        
+
         .agb-section {
             margin-bottom: 2rem;
         }
         .agb-section p {
             margin-bottom: 0.75rem;
+        }
+        @media print {
+            @page { size: A4; margin: 16mm 18mm; }
+            body { background: #fff !important; font-size: 10.5pt; }
+            body > nav { position: static !important; box-shadow: none !important; padding: 0 0 6mm !important; }
+            body > nav img { height: 12mm !important; }
+            body > nav a + a, footer, .print-hide { display: none !important; }
+            main { padding: 0 !important; max-width: none !important; }
+            main > div { box-shadow: none !important; border: 0 !important; border-radius: 0 !important; padding: 0 !important; }
+            h1, h2, h3 { break-after: avoid; }
+            p, li { orphans: 3; widows: 3; }
+            main p, main li { color: #1f2937 !important; }
+            a { color: inherit !important; text-decoration: none !important; }
         }
     </style>
 </head>
@@ -58,19 +71,18 @@
     </nav>
 
     <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
-        
-        <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-8">General Terms and Conditions</h1>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-8">General Terms and Conditions for SpecScout</h1>
 
         <div class="bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100">
-            
+
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-100 pb-6 mb-8 gap-4">
                 <div>
-                    <span class="text-sm font-semibold text-anoraTeal uppercase tracking-wider">As of: February 1, 2026</span>
-                    <p class="text-gray-500 text-sm mt-1">For Business Customers (B2B)</p>
+                    <span class="text-sm font-semibold text-anoraTeal uppercase tracking-wider">Version: [publication date]</span>
                 </div>
-                <button onclick="window.print()" class="text-sm text-gray-500 hover:text-anoraBlue transition flex items-center gap-2 border border-gray-200 px-4 py-2 rounded-lg hover:border-anoraBlue">
-                    <i class="fa-solid fa-print"></i> Print / Save as PDF
-                </button>
+                <a href="../downloads/terms.pdf" download="Anora-Systems-GTC.pdf" class="print-hide text-sm text-gray-500 hover:text-anoraBlue transition flex items-center gap-2 border border-gray-200 px-4 py-2 rounded-lg hover:border-anoraBlue">
+                    <i class="fa-solid fa-file-pdf"></i> Download PDF
+                </a>
             </div>
 
             <div class="bg-blue-50 border-l-4 border-anoraTeal p-4 rounded-r">
@@ -80,7 +92,10 @@
                     </div>
                     <div class="ml-3">
                         <p class="text-sm text-anoraBlue">
-                            <strong class="font-bold">Legal Note:</strong> This is a translation of the original German "Allgemeine Geschäftsbedingungen". It is provided for convenience only. In the event of any discrepancies or legal disputes, the <a href="../agb" class="text-anoraTeal hover:underline font-bold">original German version</a> shall prevail and be legally binding.
+                            <strong class="font-bold">Legal Note:</strong> This is a translation of the German „Allgemeine Geschäftsbedingungen“, provided for convenience only. In the event of any discrepancy, the <a href="../agb" class="text-anoraTeal hover:underline font-bold">German version</a> prevails.
+                        </p>
+                        <p class="text-sm text-anoraBlue mt-2">
+                            This version applies to contracts concluded from [publication date]. For contracts for the free access concluded earlier, it applies from the date the Provider announces under clause 13(3). The previous version of 1 February 2026 is available at <a href="terms-2026-02" class="text-anoraTeal hover:underline font-bold">anora-systems.com/en/terms-2026-02</a>.
                         </p>
                     </div>
                 </div>
@@ -89,105 +104,126 @@
             <div class="text-gray-600 leading-relaxed text-sm md:text-base mt-8">
 
                 <div class="agb-section" id="section-1">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">1. Scope of Application</h2>
-                    <p>(1) These General Terms and Conditions (GTC) apply to all contracts between Anora Systems (hereinafter "Provider") and its customers (hereinafter "Customer") regarding the use of the software "SpecScout" and related services.</p>
-                    <p>(2) The offer is aimed exclusively at Entrepreneurs within the meaning of § 14 of the German Civil Code (BGB), legal entities under public law, or special funds under public law. Conclusion of contracts with consumers is excluded.</p>
-                    <p>(3) Deviating, conflicting, or supplementary terms and conditions of the Customer shall only become part of the contract if and to the extent that the Provider has expressly consented to their validity in writing.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">1. Scope and Provider</h2>
+                    <p>(1) These General Terms and Conditions (GTC) apply to all contracts for the use of the software “SpecScout” (search application, dashboard and application programming interface, hereinafter “API”) and related services between Anora Systems, owner Johannes Körner, Briachstraße 10, 88250 Weingarten, Germany (hereinafter “Provider”), and its customers (hereinafter “Customer”). A Customer is anyone who concludes such a contract with the Provider, including through the free access.</p>
+                    <p>(2) Paid plans are offered exclusively to entrepreneurs within the meaning of § 14 of the German Civil Code (BGB), legal entities under public law and special funds under public law. Consumers within the meaning of § 13 BGB may also use the free access (clause 5).</p>
+                    <p>(3) Deviating, conflicting or supplementary terms and conditions of the Customer only become part of the contract if and to the extent that the Provider has expressly agreed to them in writing.</p>
+                    <p>(4) Individual agreements, in particular in an individual contract or offer, take precedence over these GTC.</p>
                 </div>
 
                 <div class="agb-section" id="section-2">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">2. Subject Matter and Contract Type</h2>
-                    <p>(1) The Provider provides the Customer with SpecScout, a software solution for the automated identification, research, extraction, and structuring of technical product data (Software-as-a-Service).</p>
-                    <p>(2) The data is provided based on publicly available sources and using automated methods.</p>
-                    <p>(3) The Provider performs its services within the framework of a Service Contract (<em>Dienstvertrag</em>). Despite implemented quality assurance measures, no guarantee can be assumed for the complete correctness, timeliness, and completeness of the extracted data – particularly due to the dependence on external data sources.</p>
-                    <p>(4) The concrete scope of services (e.g., number of requests, data formats, support level) results from the respective individual contract or offer.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">2. Subject Matter and Plans</h2>
+                    <p>(1) With SpecScout, the Provider offers software for the automated identification, research, extraction and structuring of technical product data (Software-as-a-Service).</p>
+                    <p>(2) The data is obtained from publicly available sources using automated methods, including AI models.</p>
+                    <p>(3) SpecScout only outputs a value if at least two independent sources agree or an authoritative source, in particular the manufacturer, confirms it. Pages about a model other than the one searched for are filtered out. If a value is not confirmed in this way, it is returned as “not_found” instead of being estimated. Each value output is shown with links to its sources and a confidence score; the confidence score is an automated assessment of the sources and not an assurance. This service description defines the agreed quality of the data. Beyond it, the Provider does not owe that the data is correct, complete and up to date, in particular not where agreeing sources are themselves incorrect.</p>
+                    <p>(4) The Provider offers:</p>
+                    <ul class="list-disc pl-5 mb-3 space-y-1">
+                        <li>a free trial access, created by signing up with an email address,</li>
+                        <li>the Free plan, free of charge, which applies once the email address is confirmed,</li>
+                        <li>paid plans for entrepreneurs under an individual contract or offer.</li>
+                    </ul>
+                    <p>(5) Quotas (e.g. the number of searches per month) and features of the free access are set out in the service description on the Provider's website and shown in the user account; those of paid plans in the individual contract or offer. Monthly quotas renew on the first day of each calendar month (UTC); unused searches expire. Only completed searches count towards the quota.</p>
+                    <p>(6) The Provider may technically limit the number of requests per unit of time to keep the service running.</p>
                 </div>
 
                 <div class="agb-section" id="section-3">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">3. Pilot Phase and "Beta" Status</h2>
-                    <p>(1) Unless otherwise stated, if the software is marked as "Pilot Phase", "Beta", or "Prototype" in the offer, it is still under development.</p>
-                    <p>(2) The Customer expressly acknowledges that:</p>
-                    <ul class="list-disc pl-5 mb-3 space-y-1">
-                        <li>functions may be restricted or changed at short notice,</li>
-                        <li>availability may be interrupted,</li>
-                    </ul>
-                    <p>(3) A warranty for technical freedom from errors is excluded during the Pilot Phase, to the extent permitted by law.</p>
-                    <p>(4) During the Pilot Phase, there is no claim to the permanent availability of certain functions, further development of the software, or the adoption of individual functions into a later product version. The Provider is entitled to adjust, remove, or discontinue functions at any time.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">3. Pilot Phase and “Beta” Status</h2>
+                    <p>(1) Where SpecScout or individual features are labelled “Pilot”, “Beta”, “experimental” or “Prototype”, they are still under development.</p>
+                    <p>(2) The Customer acknowledges that such features may be restricted, change at short notice or be temporarily unavailable. The Provider does not owe error-free operation of such features; this does not apply to the service description in clause 2(3) or to services promised in an individual contract. Liability under clause 9 remains unaffected.</p>
+                    <p>(3) There is no claim to the permanent availability of particular features, to further development of the software, or to the inclusion of individual features in a later version. The Provider may adapt, replace or discontinue features where this is reasonable for the Customer; services promised in an individual contract remain unaffected.</p>
                 </div>
 
                 <div class="agb-section" id="section-4">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">4. Conclusion of Contract</h2>
-                    <p>(1) The contract is concluded by signing an offer, written order confirmation, or by providing access to the software.</p>
-                    <p>(2) The Provider is entitled to refuse the conclusion of a contract without giving reasons.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">4. Conclusion of Contract and User Account</h2>
+                    <p>(1) The presentation of SpecScout on the website is not a binding offer. For the free access, the Customer makes an offer by entering their email address and any further details in the sign-up form and clicking the sign-up or registration button; in doing so, they accept these GTC. The contract is concluded when the Provider creates the user account.</p>
+                    <p>(2) Contracts for paid plans are concluded by signing an offer, by order confirmation in text form, or by activation of the agreed access.</p>
+                    <p>(3) The Provider may refuse to conclude a contract without giving reasons.</p>
+                    <p>(4) The Customer must be at least 18 years old and provide truthful information when signing up. The user account is not transferable. Each person may hold only one free user account.</p>
+                    <p>(5) The Customer can correct input errors with the usual keyboard and mouse functions before submitting the form. The contract language is German. The Provider does not store the contract text separately. The current and earlier versions of these GTC are available on the website and can be saved and printed.</p>
+                    <p>(6) For paid plans, the Customer may connect several user accounts for persons working for it (hereinafter “Users”) to its contract. These user accounts belong to the Customer's contract; the Users do not thereby become contracting parties themselves. Existing user accounts in the free access cannot be connected to the contract. The Customer ensures that its Users comply with these GTC, in particular clause 6. The Customer is responsible for its Users' actions when using SpecScout as for its own actions. If a User is no longer to be authorised, the Customer removes them from its contract without undue delay or informs the Provider in text form.</p>
                 </div>
 
                 <div class="agb-section" id="section-5">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">5. Obligations to Cooperate and Legality</h2>
-                    <p>(1) The Customer shall provide all information required for the provision of services in the agreed format.</p>
-                    <p>(2) The Customer ensures that the use of the delivered data is legally permissible in their respective area of application. The Provider assumes no obligation to examine the legal admissibility of the data use by the Customer (e.g., with regard to copyright, trademark, competition, product labeling, or consumer protection law).</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">5. Free Access (Trial Access and Free Plan)</h2>
+                    <p>(1) The trial access is created when the Customer signs up with an email address and includes a small quota of searches. Once the Customer confirms their email address, the trial access becomes the Free plan. If they do not confirm it within 7 days of signing up, the contract ends and the Provider deletes the user account.</p>
+                    <p>(2) The free access is for testing SpecScout and for private use. Ongoing commercial use, such as regularly enriching a product catalog, requires a paid plan. Quotas of the free access must not be circumvented through several user accounts; this also applies to several user accounts assigned to the same Customer or used for the same company. The Customer may keep using results already received under clause 7(2).</p>
+                    <p>(3) The Provider may change the quotas and features of the free access with effect for the future for an objective reason, for example rising costs, preventing misuse or further development of the offering. If it reduces quotas or discontinues essential features, it informs the Customer in text form at least two weeks in advance, unless the change is required immediately to prevent misuse or for security reasons. The Customer may end the contract at any time (clause 12(1)).</p>
+                    <p>(4) If the Customer breaches paragraph 2 or clause 6, the Provider may restrict or block the free access and terminate the contract for good cause without notice. This applies in particular to ongoing commercial use despite a warning and to multiple user accounts used to circumvent quotas. As a rule, the Provider first points out the breach to the Customer; this is not necessary for serious breaches.</p>
+                    <p>(5) Personal support is not included in the free access. The Provider welcomes notes, error reports and feedback at <a href="mailto:info@anora-systems.com" class="text-anoraTeal hover:underline">info@anora-systems.com</a>.</p>
                 </div>
 
                 <div class="agb-section" id="section-6">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">6. Rights of Use</h2>
-                    <p>(1) The Provider grants the Customer a simple, non-exclusive right, limited in time to the term of the contract, to use the SpecScout software.</p>
-                    <p>(2) Regarding the delivered datasets (Output), the Provider grants the Customer – to the extent legally possible – a permanent, simple right of use for use in their own business operations (esp. E-Commerce).</p>
-                    <p>(3) Any form of reverse engineering, systematic scraping of the API beyond the contractual measure, or misuse of the services to develop competing products is prohibited.</p>
-                    <p>(4) The Provider is entitled to use anonymized and aggregated usage and output data for the improvement of the software, for statistical purposes, and for the further development of its own systems.</p>
-                    <p>(5) Disclosure of internal operating principles, models, or evaluation mechanisms is excluded.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">6. Customer Obligations and Lawful Use</h2>
+                    <p>(1) The Customer provides the information required to perform the services in the agreed format.</p>
+                    <p>(2) The Customer keeps passwords, sign-in links and API keys secret and protects them from unauthorised access. If they suspect misuse, they inform the Provider without undue delay.</p>
+                    <p>(3) SpecScout is intended for product data. The Customer does not enter personal data in searches, specifications or other inputs.</p>
+                    <p>(4) The Customer does not misuse SpecScout. In particular, they do not circumvent quotas or technical limits, overload or attack the systems, or enter unlawful content.</p>
+                    <p>(5) The data is obtained automatically and may be incorrect even after confirmation under clause 2(3). Before using the delivered data, the Customer checks it to an extent appropriate to its intended use and the possible consequences of an error, in particular values with a low confidence score and information where an error can have serious consequences, for example for safety or for meeting legal obligations. They ensure that its use is lawful in their area of application. The Provider does not check whether the Customer's use is lawful, for example under copyright, trademark, competition, product labelling or consumer protection law.</p>
                 </div>
 
                 <div class="agb-section" id="section-7">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">7. Remuneration</h2>
-                    <p>(1) Remuneration is based on the respective individual contract. All prices are in Euro and exclusive of the applicable statutory value-added tax (VAT).</p>
-                    <p>(2) Invoices are payable without deduction within 14 days of the invoice date, unless otherwise agreed.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">7. Rights of Use</h2>
+                    <p>(1) For the term of the contract, the Provider grants the Customer the simple, non-transferable right to use SpecScout as intended within the scope of their plan.</p>
+                    <p>(2) To the extent the Provider itself holds rights in the delivered datasets (output), it grants the Customer a permanent, simple right to use them for their own purposes, for entrepreneurs in particular within their own business (e.g. in e-commerce). This also applies to output from the free access and continues after the contract ends.</p>
+                    <p>(3) Reverse engineering, systematic extraction of the services beyond the agreed scope and use of the services to develop competing products are prohibited.</p>
+                    <p>(4) The Provider stores contents of publicly accessible web pages it retrieves for searches, the results obtained from them automatically and the related inputs (e.g. product names, identifiers, requested specifications and domain settings) without reference to the Customer, that is without a user ID, API key or IP address. It uses them for quality assurance and further development of SpecScout, including training its own ranking algorithm for sources, and may also use them to answer future searches, including those of other customers, faster (caching). It does not disclose the Customer's inputs to other customers or other third parties. It deletes the stored contents no later than 24 months after storing them and does not use them to train large language models. It may also use anonymised and aggregated usage data for statistics.</p>
+                    <p>(5) For paid plans, the individual contract may provide that the Customer's searches are not used under paragraph 4. Data stored before such an agreement carries no reference to the Customer, cannot be attributed to them and is retained.</p>
+                    <p>(6) There is no right to disclosure of internal mechanisms, models or evaluation methods.</p>
                 </div>
 
                 <div class="agb-section" id="section-8">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">8. Liability and Indemnification</h2>
-                    <p>(1) The Provider is liable without limitation for intent, gross negligence, and injury to life, body, or health.</p>
-                    <p>(2) In cases of slight negligence, the Provider is only liable for the breach of essential contractual obligations (cardinal obligations). In this case, liability is limited in amount to the foreseeable damage typical for the contract at the time of conclusion.</p>
-                    <p>(3) Strict liability for initial defects (§ 536a BGB) is excluded.</p>
-                    <p>(4) Furthermore, the Provider is not liable for:</p>
-                    <ul class="list-disc pl-5 mb-3 space-y-1">
-                        <li>the content correctness, completeness, or timeliness of the automatically researched product data,</li>
-                        <li>damages resulting from the Customer's failure to comply with their duty of examination,</li>
-                        <li>economic decisions or measures taken by the Customer based on the provided data (e.g., listing decisions, pricing, marketing statements).</li>
-                    </ul>
-                    <p>(5) Liability for lost profits, missed savings, or other indirect consequential damages is excluded.</p>
-                    <p>(6) <strong>Indemnification:</strong> The Customer shall indemnify and hold the Provider harmless from all claims by third parties asserted against the Provider due to unlawful or contract-breaching use of the provided data by the Customer. This also includes reasonable costs of legal defense.</p>
-                    <p>(7) The limitations of liability also apply in favor of the legal representatives, employees, and vicarious agents of the Provider.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">8. Remuneration</h2>
+                    <p>(1) The trial access and the Free plan are free of charge. The Customer moves to a paid plan only by separate agreement.</p>
+                    <p>(2) Remuneration for paid plans is based on the individual contract or offer. All prices are in euros plus statutory VAT.</p>
+                    <p>(3) Unless otherwise agreed, invoices are payable without deduction within 14 days of the invoice date.</p>
                 </div>
 
                 <div class="agb-section" id="section-9">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">9. Availability and Maintenance</h2>
-                    <p>(1) The Provider strives for high availability but does not owe uninterrupted accessibility.</p>
-                    <p>(2) The Provider is entitled to carry out maintenance work which may lead to temporary restrictions.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">9. Liability and Indemnification</h2>
+                    <p>(1) The Provider is liable without limitation for intent and gross negligence, for damage arising from injury to life, body or health, under the Product Liability Act (Produkthaftungsgesetz), for fraudulently concealed defects and to the extent of any guarantee given.</p>
+                    <p>(2) For the free access (clause 5), the Provider is liable only under paragraph 1; any further liability is excluded.</p>
+                    <p>(3) For paid plans, the Provider is liable for slight negligence only in the event of a breach of essential contractual obligations. These are obligations whose fulfilment makes the proper performance of the contract possible in the first place and on whose fulfilment the Customer may regularly rely. Liability is then limited to the damage foreseeable and typical for the contract at the time of conclusion.</p>
+                    <p>(4) Strict liability for defects that already existed when the contract was concluded (§ 536a(1), first alternative, BGB) is excluded.</p>
+                    <p>(5) The data is obtained automatically (clause 2(2)). The Provider is liable for its correctness, completeness and timeliness only under paragraphs 1 to 3. If the Customer does not check data to the extent appropriate under clause 6(5), this is taken into account as contributory fault. Decisions the Customer takes on the basis of the data, for example on listings, prices or advertising claims, are the Customer's responsibility.</p>
+                    <p>(6) The Customer indemnifies the Provider against third-party claims asserted against the Provider because of unlawful or contract-breaching use of the delivered data by the Customer, to the extent the Customer is responsible for it. The indemnity includes reasonable costs of legal defence.</p>
+                    <p>(7) The limitations of liability in this clause also apply in favour of the Provider's legal representatives, employees and vicarious agents.</p>
                 </div>
 
                 <div class="agb-section" id="section-10">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">10. Data Protection and Confidentiality</h2>
-                    <p>(1) The parties undertake to comply with applicable data protection regulations (GDPR). If the Provider processes personal data on behalf of the Customer, the parties shall conclude a separate Data Processing Agreement (DPA).</p>
-                    <p>(2) Both parties undertake to keep confidential all information marked as confidential or obviously confidential of the respective other party. This obligation continues to exist beyond the end of the contract.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">10. Availability and Maintenance</h2>
+                    <p>(1) The Provider aims for high availability but does not owe uninterrupted accessibility, unless otherwise agreed in the individual contract.</p>
+                    <p>(2) The Provider may carry out maintenance work that can temporarily restrict the service. Where possible, it schedules such work at times of low use.</p>
                 </div>
 
                 <div class="agb-section" id="section-11">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">11. Term and Termination</h2>
-                    <p>(1) The contract term and notice periods result from the individual contract.</p>
-                    <p>(2) The right to extraordinary termination for good cause remains unaffected.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">11. Data Protection and Confidentiality</h2>
+                    <p>(1) The Provider processes personal data of the Customer and its Users as controller in accordance with its <a href="privacy#specscout" class="text-anoraTeal hover:underline">privacy policy</a>. The Provider processes data the Customer or its Users provide for a user account exclusively to provide its services and to meet legal obligations.</p>
+                    <p>(2) Processing of personal data on behalf of the Customer is not intended (clause 6(3)).</p>
+                    <p>(3) Both parties keep confidential all information of the other party that is marked as confidential or recognisably confidential, also after the contract ends. This does not apply to information that is or becomes publicly known without breach of this obligation, that the receiving party already knew or obtained independently, or that must be disclosed under a statutory obligation or an order of an authority or court. Use under clause 7(4) and transfer to service providers the Provider uses to perform its services, in particular providers of AI models and web search services, including those based in the USA, do not breach this obligation. The Provider lists the service providers it uses on its website at <a href="service-providers" class="text-anoraTeal hover:underline">anora-systems.com/en/service-providers</a>.</p>
                 </div>
 
                 <div class="agb-section" id="section-12">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">12. Changes to the GTC</h2>
-                    <p>(1) The Provider is entitled to change these GTC with effect for the future for objective reasons (e.g., changes in law, technical developments, adjustment of the scope of services).</p>
-                    <p>(2) Changes will be communicated to the Customer in text form at least six weeks before they take effect.</p>
-                    <p>(3) If the Customer does not object within this period, the changes are deemed accepted. If the Customer objects, the Provider is entitled to terminate the contract in an orderly manner at the time the changes take effect.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">12. Term and Termination</h2>
+                    <p>(1) The contract for the free access runs for an indefinite period. The Customer can end it at any time without notice by deleting their user account or by declaring termination in text form, for example by email to <a href="mailto:info@anora-systems.com" class="text-anoraTeal hover:underline">info@anora-systems.com</a>. The Provider can terminate it in text form with four weeks' notice.</p>
+                    <p>(2) The term and notice periods of paid plans are set out in the individual contract. If it contains no such provision, the contract runs for an indefinite period and either party may terminate it in text form with one month's notice to the end of a billing period.</p>
+                    <p>(3) Both parties' right to terminate for good cause remains unaffected; for the free access, clause 5(4) also applies.</p>
+                    <p>(4) When a contract for a paid plan ends, the Provider deletes the user accounts connected to the contract and the associated data, in particular custom specifications, categories and search settings, 30 days after the end of the contract; statutory retention obligations remain unaffected. Until deletion, the Customer can export its data in the dashboard; after the contract ends, it has no claim to further searches. There is no move to the free access.</p>
+                    <p>(5) When a contract for the free access ends, the Provider deletes the user account and the associated data in accordance with the privacy policy; statutory retention obligations remain unaffected. The Customer saves any results and data they want to keep before deletion.</p>
                 </div>
 
                 <div class="agb-section" id="section-13">
-                    <h2 class="text-lg font-bold text-anoraBlue mb-3">13. Final Provisions</h2>
-                    <p>(1) The law of the Federal Republic of Germany shall apply, excluding the UN Convention on Contracts for the International Sale of Goods (CISG).</p>
-                    <p>(2) The exclusive place of jurisdiction for all disputes is the registered office of the Provider, provided the Customer is a Merchant (<em>Kaufmann</em>).</p>
-                    <p>(3) Should a provision of this contract be or become invalid in whole or in part, the validity of the remaining provisions shall remain unaffected. The parties undertake to replace the invalid provision with a valid regulation that comes closest to the economic purpose of the invalid provision.</p>
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">13. Changes to these GTC</h2>
+                    <p>(1) For paid plans, the Provider may change these GTC with effect for the future only where this is necessary because laws or case law change, because a provision is or becomes invalid, because of requirements of authorities, or because a service provider used to perform the services changes its terms or has to be replaced, and this was not foreseeable when the contract was concluded. It does not change the agreed remuneration or the agreed scope of services in this way. Paragraph 3 applies to the free access.</p>
+                    <p>(2) The Provider announces changes under paragraph 1 in text form at least six weeks before they take effect. If the Customer does not object in text form before they take effect, the changes are deemed accepted. Until they take effect, the Customer may also terminate the contract without notice as of the date the changes take effect. The Provider points out the consequence of silence and this termination right specifically in its announcement. If the Customer objects, the Provider may terminate the contract as of the date the changes take effect.</p>
+                    <p>(3) For the free access, the Provider announces changes in text form at least six weeks before they take effect. With this announcement it terminates the contract as of the date the changes take effect (clause 12(1)) and offers to continue it under the amended GTC. If the Customer keeps using SpecScout after that date, they accept this offer; the Provider points out this consequence specifically in its announcement. If the Customer does not accept the changes, the contract ends on that date; the Customer may also end it earlier (clause 12(1)).</p>
+                </div>
+
+                <div class="agb-section" id="section-14">
+                    <h2 class="text-lg font-bold text-anoraBlue mb-3">14. Final Provisions</h2>
+                    <p>(1) The law of the Federal Republic of Germany applies, excluding the UN Convention on Contracts for the International Sale of Goods. If the Customer is a consumer, this choice of law applies only insofar as it does not deprive them of the protection of mandatory provisions of the law of the country in which they have their habitual residence.</p>
+                    <p>(2) If the Customer is an entrepreneur and has no general place of jurisdiction in Germany, the courts competent for the Provider's place of business in Weingarten have exclusive jurisdiction for all disputes arising from this contract.</p>
+                    <p>(3) The German version of these GTC is authoritative. The English translation is for information only.</p>
+                    <p>(4) If individual provisions of these GTC are wholly or partly invalid, the remainder of the contract remains valid. The invalid provisions are replaced by the statutory provisions.</p>
                 </div>
 
             </div>

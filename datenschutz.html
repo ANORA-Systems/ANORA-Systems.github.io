@@ -8,11 +8,11 @@
     <link rel="alternate" hreflang="de" href="https://anora-systems.com/datenschutz">
     <link rel="alternate" hreflang="en" href="https://anora-systems.com/en/privacy">
     <link rel="alternate" hreflang="x-default" href="https://anora-systems.com/en/privacy">
-    
+
     <script src="assets/tailwind/tailwindcss-play-3.4.17.js"></script>
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -27,6 +27,21 @@
             }
         }
     </script>
+    <style>
+        @media print {
+            @page { size: A4; margin: 16mm 18mm; }
+            body { background: #fff !important; font-size: 10.5pt; }
+            body > nav { position: static !important; box-shadow: none !important; padding: 0 0 6mm !important; }
+            body > nav img { height: 12mm !important; }
+            body > nav a + a, footer, .print-hide { display: none !important; }
+            main { padding: 0 !important; max-width: none !important; }
+            main > div { box-shadow: none !important; border: 0 !important; border-radius: 0 !important; padding: 0 !important; }
+            h1, h2, h3 { break-after: avoid; }
+            p, li { orphans: 3; widows: 3; }
+            main p, main li { color: #1f2937 !important; }
+            a { color: inherit !important; text-decoration: none !important; }
+        }
+    </style>
 </head>
 
 <body class="font-sans text-slate-800 bg-gray-50 flex flex-col min-h-screen">
@@ -43,202 +58,288 @@
     </nav>
 
     <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
-        
-        <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-8">Datenschutzerklärung</h1>
 
-        <div class="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-gray-100 text-gray-700 leading-relaxed space-y-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-2">Datenschutzerklärung</h1>
+        <p class="text-sm font-semibold text-anoraTeal uppercase tracking-wider mb-8">Stand: 21. Oktober 2026</p>
 
-            <section>
-                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">1. Datenschutz auf einen Blick</h2>
-                
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Allgemeine Hinweise</h3>
-                <p class="mb-4">
-                    Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.
-                </p>
+        <div class="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-gray-100 text-gray-700 leading-relaxed space-y-10">
 
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Datenerfassung auf dieser Website</h3>
-                
-                <h4 class="font-bold text-gray-900 mt-4">Wer ist verantwortlich für die Datenerfassung auf dieser Website?</h4>
-                <p class="mb-4">
-                    Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur Verantwortlichen Stelle“ in dieser Datenschutzerklärung entnehmen.
-                </p>
+            <nav aria-label="Inhalt" class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                <p class="font-bold text-anoraBlue mb-3">Inhalt</p>
+                <ul class="space-y-2">
+                    <li><a href="#allgemein" class="text-anoraTeal hover:underline font-semibold">Teil A: Allgemeine Informationen</a> <span class="text-gray-500">– Verantwortlicher, Rechtsgrundlagen, Dienstleister, Protokolle, Ihre Rechte</span></li>
+                    <li><a href="#website" class="text-anoraTeal hover:underline font-semibold">Teil B: Website anora-systems.com</a> <span class="text-gray-500">– Hosting, Kontaktformular, Gesprächsanfrage</span></li>
+                    <li><a href="#specscout" class="text-anoraTeal hover:underline font-semibold">Teil C: SpecScout</a> <span class="text-gray-500">– Suchanwendung, Dashboard und API</span></li>
+                </ul>
+            </nav>
 
-                <h4 class="font-bold text-gray-900 mt-4">Wie erfassen wir Ihre Daten?</h4>
+            <section id="allgemein" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">Teil A: Allgemeine Informationen</h2>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.1 Worum es geht</h3>
                 <p class="mb-4">
-                    Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular eingeben.
-                </p>
-                <p class="mb-4">
-                    Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten.
+                    Diese Datenschutzerklärung beschreibt, welche personenbezogenen Daten wir verarbeiten, wenn Sie unsere Website anora-systems.com besuchen (Teil B) und wenn Sie SpecScout nutzen, also die Suchanwendung unter specscout.anora-systems.com, das Dashboard unter dashboard.anora-systems.com und die SpecScout-API unter api.anora-systems.com (Teil C). Teil A gilt für beides. Personenbezogene Daten sind alle Angaben, die sich auf eine identifizierte oder identifizierbare Person beziehen, zum Beispiel Name, E-Mail-Adresse oder IP-Adresse.
                 </p>
 
-                <h4 class="font-bold text-gray-900 mt-4">Wofür nutzen wir Ihre Daten?</h4>
-                <p class="mb-4">
-                    Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden. Sofern über die Website Verträge geschlossen oder angebahnt werden können, werden die übermittelten Daten auch für Vertragsangebote, Bestellungen oder sonstige Auftragsanfragen verarbeitet.
-                </p>
-
-                <h4 class="font-bold text-gray-900 mt-4">Welche Rechte haben Sie bezüglich Ihrer Daten?</h4>
-                <p class="mb-4">
-                    Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
-                </p>
-                <p class="mb-4">
-                    Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden.
-                </p>
-            </section>
-
-            <section>
-                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">2. Hosting</h2>
-                <p class="mb-4">Wir hosten die Inhalte unserer Website bei folgendem Anbieter:</p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Externes Hosting</h3>
-                <p class="mb-4">
-                    Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters / der Hoster gespeichert. Hierbei kann es sich v. a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.
-                </p>
-                <p class="mb-4">
-                    Das externe Hosting erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO). Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z. B. Device-Fingerprinting) im Sinne des TDDDG umfasst. Die Einwilligung ist jederzeit widerrufbar.
-                </p>
-                <p class="mb-4">
-                    Unser(e) Hoster wird bzw. werden Ihre Daten nur insoweit verarbeiten, wie dies zur Erfüllung seiner Leistungspflichten erforderlich ist und unsere Weisungen in Bezug auf diese Daten befolgen.
-                </p>
-                <p class="mb-4">
-                    Wir setzen folgende(n) Hoster ein:
-                </p>
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.2 Verantwortlicher</h3>
+                <p class="mb-4">Verantwortlich für die Datenverarbeitung ist:</p>
                 <div class="bg-gray-50 p-4 rounded border border-gray-200 text-sm mb-4">
-                    Microsoft Corporation<br>
-                    One Microsoft Way<br>
-                    Redmond, WA 98052-6399<br>
-                    USA
-                </div>
-                <div class="bg-gray-50 p-4 rounded border border-gray-200 text-sm mb-4">
-                    Hetzner Online GmbH <br>
-                    Industriestraße 25<br>
-                    91710 Gunzenhausen  <br>
-                    Deutschland
-                </div>
-            </section>
-
-            <section>
-                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">3. Allgemeine Hinweise und Pflichtinformationen</h2>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Datenschutz</h3>
-                <p class="mb-4">
-                    Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
-                </p>
-                <p class="mb-4">
-                    Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind Daten, mit denen Sie persönlich identifiziert werden können. Die vorliegende Datenschutzerklärung erläutert, welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert auch, wie und zu welchem Zweck das geschieht.
-                </p>
-                <p class="mb-4">
-                    Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Hinweis zur verantwortlichen Stelle</h3>
-                <p class="mb-4">Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
-                <div class="bg-gray-50 p-4 rounded border border-gray-200 text-sm mb-4">
+                    Anora Systems<br>
                     Johannes Körner<br>
-                    Briachstr. 10<br>
+                    Briachstraße 10<br>
                     88250 Weingarten<br>
+                    Deutschland<br>
                     <br>
-                    Telefon: <a href="tel:+491759215813" class="text-anoraTeal hover:underline">+49 175 9215813</a><br>
-                    E-Mail: <a href="mailto:johannes.koerner@anora-systems.com" class="text-anoraTeal hover:underline">johannes.koerner@anora-systems.com</a>
+                    Telefon: <a href="tel:+4915679785206" class="text-anoraTeal hover:underline">+49 15679 785206</a><br>
+                    E-Mail: <a href="mailto:info@anora-systems.com" class="text-anoraTeal hover:underline">info@anora-systems.com</a>
                 </div>
                 <p class="mb-4">
-                    Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.
+                    Einen Datenschutzbeauftragten haben wir nicht benannt, weil wir dazu gesetzlich nicht verpflichtet sind. Fragen zum Datenschutz richten Sie bitte an die oben genannten Kontaktdaten.
                 </p>
 
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Speicherdauer</h3>
-                <p class="mb-4">
-                    Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löschersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten haben (z. B. steuer- oder handelsrechtliche Aufbewahrungsfristen); im letztgenannten Fall erfolgt die Löschung nach Fortfall dieser Gründe.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Allgemeine Hinweise zu den Rechtsgrundlagen der Datenverarbeitung auf dieser Website</h3>
-                <p class="mb-4">
-                    Sofern Sie in die Datenverarbeitung eingewilligt haben, verarbeiten wir Ihre personenbezogenen Daten auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO, sofern besondere Datenkategorien nach Art. 9 Abs. 1 DSGVO verarbeitet werden. Im Falle einer ausdrücklichen Einwilligung in die Übertragung personenbezogener Daten in Drittstaaten erfolgt die Datenverarbeitung außerdem auf Grundlage von Art. 49 Abs. 1 lit. a DSGVO. Sofern Sie in die Speicherung von Cookies oder in den Zugriff auf Informationen in Ihr Endgerät (z. B. via Device-Fingerprinting) eingewilligt haben, erfolgt die Datenverarbeitung zusätzlich auf Grundlage von § 25 Abs. 1 TDDDG. Die Einwilligung ist jederzeit widerrufbar. Sind Ihre Daten zur Vertragserfüllung oder zur Durchführung vorvertraglicher Maßnahmen erforderlich, verarbeiten wir Ihre Daten auf Grundlage des Art. 6 Abs. 1 lit. b DSGVO. Des Weiteren verarbeiten wir Ihre Daten, sofern diese zur Erfüllung einer rechtlichen Verpflichtung erforderlich sind auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO. Die Datenverarbeitung kann ferner auf Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO erfolgen. Über die jeweils im Einzelfall einschlägigen Rechtsgrundlagen wird in den folgenden Absätzen dieser Datenschutzerklärung informiert.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Empfänger von personenbezogenen Daten</h3>
-                <p class="mb-4">
-                    Im Rahmen unserer Geschäftstätigkeit arbeiten wir mit verschiedenen externen Stellen zusammen. Dabei ist teilweise auch eine Übermittlung von personenbezogenen Daten an diese externen Stellen erforderlich. Wir geben personenbezogene Daten nur dann an externe Stellen weiter, wenn dies im Rahmen einer Vertragserfüllung erforderlich ist, wenn wir gesetzlich hierzu verpflichtet sind (z. B. Weitergabe von Daten an Steuerbehörden), wenn wir ein berechtigtes Interesse nach Art. 6 Abs. 1 lit. f DSGVO an der Weitergabe haben oder wenn eine sonstige Rechtsgrundlage die Datenweitergabe erlaubt. Beim Einsatz von Auftragsverarbeitern geben wir personenbezogene Daten unserer Kunden nur auf Grundlage eines gültigen Vertrags über Auftragsverarbeitung weiter. Im Falle einer gemeinsamen Verarbeitung wird ein Vertrag über gemeinsame Verarbeitung geschlossen.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Widerruf Ihrer Einwilligung zur Datenverarbeitung</h3>
-                <p class="mb-4">
-                    Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich. Sie können eine bereits erteilte Einwilligung jederzeit widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Widerspruchsrecht gegen die Datenerhebung in besonderen Fällen sowie gegen Direktwerbung (Art. 21 DSGVO)</h3>
-                <div class="bg-gray-100 p-4 border-l-4 border-anoraBlue text-sm mb-4">
-                    <p class="uppercase font-semibold">
-                        WENN DIE DATENVERARBEITUNG AUF GRUNDLAGE VON ART. 6 ABS. 1 LIT. E ODER F DSGVO ERFOLGT, HABEN SIE JEDERZEIT DAS RECHT, AUS GRÜNDEN, DIE SICH AUS IHRER BESONDEREN SITUATION ERGEBEN, GEGEN DIE VERARBEITUNG IHRER PERSONENBEZOGENEN DATEN WIDERSPRUCH EINZULEGEN; DIES GILT AUCH FÜR EIN AUF DIESE BESTIMMUNGEN GESTÜTZTES PROFILING. DIE JEWEILIGE RECHTSGRUNDLAGE, AUF DENEN EINE VERARBEITUNG BERUHT, ENTNEHMEN SIE DIESER DATENSCHUTZERKLÄRUNG. WENN SIE WIDERSPRUCH EINLEGEN, WERDEN WIR IHRE BETROFFENEN PERSONENBEZOGENEN DATEN NICHT MEHR VERARBEITEN, ES SEI DENN, WIR KÖNNEN ZWINGENDE SCHUTZWÜRDIGE GRÜNDE FÜR DIE VERARBEITUNG NACHWEISEN, DIE IHRE INTERESSEN, RECHTE UND FREIHEITEN ÜBERWIEGEN ODER DIE VERARBEITUNG DIENT DER GELTENDMACHUNG, AUSÜBUNG ODER VERTEIDIGUNG VON RECHTSANSPRÜCHEN (WIDERSPRUCH NACH ART. 21 ABS. 1 DSGVO).
-                    </p>
-                    <p class="uppercase font-semibold mt-4">
-                        WERDEN IHRE PERSONENBEZOGENEN DATEN VERARBEITET, UM DIREKTWERBUNG ZU BETREIBEN, SO HABEN SIE DAS RECHT, JEDERZEIT WIDERSPRUCH GEGEN DIE VERARBEITUNG SIE BETREFFENDER PERSONENBEZOGENER DATEN ZUM ZWECKE DERARTIGER WERBUNG EINZULEGEN; DIES GILT AUCH FÜR DAS PROFILING, SOWEIT ES MIT SOLCHER DIREKTWERBUNG IN VERBINDUNG STEHT. WENN SIE WIDERSPRECHEN, WERDEN IHRE PERSONENBEZOGENEN DATEN ANSCHLIESSEND NICHT MEHR ZUM ZWECKE DER DIREKTWERBUNG VERWENDET (WIDERSPRUCH NACH ART. 21 ABS. 2 DSGVO).
-                    </p>
-                </div>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Beschwerderecht bei der zuständigen Aufsichtsbehörde</h3>
-                <p class="mb-4">
-                    Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer Aufsichtsbehörde, insbesondere in dem Mitgliedstaat ihres gewöhnlichen Aufenthalts, ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes zu. Das Beschwerderecht besteht unbeschadet anderweitiger verwaltungsrechtlicher oder gerichtlicher Rechtsbehelfe.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Recht auf Datenübertragbarkeit</h3>
-                <p class="mb-4">
-                    Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen. Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen verlangen, erfolgt dies nur, soweit es technisch machbar ist.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Auskunft, Berichtigung und Löschung</h3>
-                <p class="mb-4">
-                    Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit an uns wenden.
-                </p>
-
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Recht auf Einschränkung der Verarbeitung</h3>
-                <p class="mb-4">
-                    Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Hierzu können Sie sich jederzeit an uns wenden. Das Recht auf Einschränkung der Verarbeitung besteht in folgenden Fällen:
-                </p>
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.3 Rechtsgrundlagen</h3>
+                <p class="mb-4">Wir verarbeiten personenbezogene Daten nur, wenn eine der folgenden Rechtsgrundlagen greift. Welche Rechtsgrundlage im Einzelfall gilt, nennen wir bei der jeweiligen Verarbeitung.</p>
                 <ul class="list-disc pl-5 mb-4 space-y-2">
-                    <li>Wenn Sie die Richtigkeit Ihrer bei uns gespeicherten personenbezogenen Daten bestreiten, benötigen wir in der Regel Zeit, um dies zu überprüfen. Für die Dauer der Prüfung haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
-                    <li>Wenn die Verarbeitung Ihrer personenbezogenen Daten unrechtmäßig geschah/geschieht, können Sie statt der Löschung die Einschränkung der Datenverarbeitung verlangen.</li>
-                    <li>Wenn wir Ihre personenbezogenen Daten nicht mehr benötigen, Sie sie jedoch zur Ausübung, Verteidigung oder Geltendmachung von Rechtsansprüchen benötigen, haben Sie das Recht, statt der Löschung die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
-                    <li>Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
+                    <li><strong>Einwilligung</strong> (Art. 6 Abs. 1 lit. a DSGVO). Eine Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen.</li>
+                    <li><strong>Vertrag und vorvertragliche Maßnahmen</strong> (Art. 6 Abs. 1 lit. b DSGVO), etwa wenn Sie SpecScout nutzen oder ein Angebot anfragen.</li>
+                    <li><strong>Rechtliche Verpflichtung</strong> (Art. 6 Abs. 1 lit. c DSGVO), etwa steuer- und handelsrechtliche Aufbewahrungspflichten.</li>
+                    <li><strong>Berechtigte Interessen</strong> (Art. 6 Abs. 1 lit. f DSGVO). Das jeweilige Interesse nennen wir bei der Verarbeitung.</li>
                 </ul>
                 <p class="mb-4">
-                    Wenn Sie die Verarbeitung Ihrer personenbezogenen Daten eingeschränkt haben, dürfen diese Daten – von ihrer Speicherung abgesehen – nur mit Ihrer Einwilligung oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen oder zum Schutz der Rechte einer anderen natürlichen oder juristischen Person oder aus Gründen eines wichtigen öffentlichen Interesses der Europäischen Union oder eines Mitgliedstaats verarbeitet werden.
+                    Für das Speichern von Informationen auf Ihrem Endgerät und den Zugriff darauf, etwa durch Cookies, gilt zusätzlich § 25 TDDDG. Was auf Ihrem Endgerät gespeichert wird, steht in Teil B (Website) und Teil C (SpecScout).
                 </p>
 
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">SSL- bzw. TLS-Verschlüsselung</h3>
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.4 Dienstleister und andere Empfänger</h3>
                 <p class="mb-4">
-                    Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Bestellungen oder Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
+                    Wir setzen Dienstleister ein. Die meisten verarbeiten Daten in unserem Auftrag (Auftragsverarbeiter nach Art. 28 DSGVO) und dürfen sie nur nach unseren Weisungen und für die Erbringung ihrer Leistung verwenden. Einige Anbieter verarbeiten Daten auch in eigener Verantwortung; darauf weisen wir beim jeweiligen Dienst hin (B.1, C.7). Wir setzen Dienstleister für folgende Aufgaben ein:
                 </p>
+                <ul class="list-disc pl-5 mb-4 space-y-2">
+                    <li>Server in Deutschland für SpecScout und für die Verarbeitung von Kontakt- und Gesprächsanfragen von der Website (C.1),</li>
+                    <li>E-Mail-Postfächer und der Versand aller E-Mails, auch der automatischen E-Mails von SpecScout (A.8, C.9),</li>
+                    <li>Fehler- und Leistungsüberwachung unseres Servers (A.5),</li>
+                    <li>Auslieferung der Website (B.1),</li>
+                    <li>Websuche und KI-Modelle für Suchen und KI-Entwürfe in SpecScout (C.6).</li>
+                </ul>
                 <p class="mb-4">
-                    Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.
+                    Welche Dienstleister das sind, mit Sitz, Ort der Verarbeitung und Grundlage einer Übermittlung in Länder außerhalb der EU, steht in unserer <a href="dienstleister" class="text-anoraTeal hover:underline">Liste der Dienstleister</a>. Wir halten sie aktuell. Darüber hinaus geben wir personenbezogene Daten nur weiter, wenn wir gesetzlich dazu verpflichtet sind (etwa gegenüber Finanzbehörden) oder wenn es zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen erforderlich ist. Wir verkaufen keine personenbezogenen Daten.
                 </p>
 
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Widerspruch gegen Werbe-E-Mails</h3>
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.5 Server-Protokolle und Fehlerüberwachung</h3>
                 <p class="mb-4">
-                    Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.
+                    Unser Server api.anora-systems.com bedient SpecScout und nimmt die Kontakt- und Gesprächsanfragen der Website entgegen. Er protokolliert jede Anfrage mit IP-Adresse, Zeitpunkt, aufgerufener Adresse samt Parametern (bei Suchen also die Suchbegriffe) und Ergebnis. Einzelne Ereignisse protokollieren wir mit Ihrer Benutzerkennung oder E-Mail-Adresse, etwa eine Registrierung oder den Versand einer E-Mail. Die Server-Protokolle löschen wir nach spätestens 30 Tagen.
+                </p>
+                <p class="mb-4">
+                    Zur Fehler- und Leistungsüberwachung nutzen wir Sentry (A.4). Sentry erhält technische Angaben zu Anfragen an diesen Server, also die aufgerufene Adresse mit Parametern, die Browserkennung (User-Agent), Antwortzeiten und Fehlermeldungen, sowie unsere Protokollmeldungen. Diese Angaben können Inhalte Ihrer Anfrage enthalten, etwa Suchbegriffe, den Text eines Formulars oder E-Mail-Adressen. Ihre IP-Adresse übermitteln wir nicht gezielt an Sentry. Sentry ist nach dem EU-US Data Privacy Framework zertifiziert (A.6) und löscht die Daten nach höchstens 90 Tagen.
+                </p>
+                <p class="mb-4">
+                    Rechtsgrundlage für beides ist unser berechtigtes Interesse, Fehler schnell zu erkennen, Missbrauch aufzuklären und den Dienst sicher und stabil zu betreiben (Art. 6 Abs. 1 lit. f DSGVO).
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.6 Übermittlung in Länder außerhalb der EU</h3>
+                <p class="mb-4">
+                    Einige Dienstleister haben ihren Sitz in den USA oder anderen Ländern außerhalb der EU oder verarbeiten Daten dort. Wir übermitteln personenbezogene Daten in ein solches Drittland nur, wenn die Voraussetzungen der Art. 44 ff. DSGVO erfüllt sind: auf Grundlage des Angemessenheitsbeschlusses der EU-Kommission zum EU-US Data Privacy Framework (Art. 45 DSGVO), soweit der Empfänger danach zertifiziert ist, andernfalls auf Grundlage der Standardvertragsklauseln der EU-Kommission (Art. 46 Abs. 2 lit. c DSGVO). Eine Kopie der Standardvertragsklauseln erhalten Sie auf Anfrage (A.2). Welche Dienstleister das betrifft und auf welcher Grundlage, steht in der <a href="dienstleister" class="text-anoraTeal hover:underline">Liste der Dienstleister</a>.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.7 Speicherdauer</h3>
+                <p class="mb-4">
+                    Wir speichern personenbezogene Daten nur so lange, wie es für den jeweiligen Zweck erforderlich ist. Wo wir feste Fristen haben, nennen wir sie bei der jeweiligen Verarbeitung. Gesetzliche Aufbewahrungspflichten bleiben unberührt: Geschäftsbriefe und steuerlich relevante Unterlagen bewahren wir je nach Art sechs bis zehn Jahre auf (§ 257 HGB, § 147 AO). In dieser Zeit sperren wir die Daten und nutzen sie nur noch, um die Aufbewahrungspflicht zu erfüllen.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.8 Kontakt per E-Mail oder Telefon</h3>
+                <p class="mb-4">
+                    Wenn Sie uns per E-Mail oder Telefon kontaktieren, verarbeiten wir Ihre Angaben (zum Beispiel Name, Kontaktdaten und Inhalt Ihrer Anfrage), um Ihr Anliegen zu bearbeiten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, wenn Ihre Anfrage mit einem Vertrag oder dessen Anbahnung zusammenhängt, sonst unser berechtigtes Interesse an der Beantwortung von Anfragen (Art. 6 Abs. 1 lit. f DSGVO). E-Mails speichern wir in unseren Postfächern bei IONOS. Wir löschen Ihre Anfrage, wenn sie abschließend bearbeitet ist, soweit keine Aufbewahrungspflicht nach A.7 besteht.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.9 Ihre Rechte</h3>
+                <p class="mb-4">Ihnen stehen uns gegenüber folgende Rechte hinsichtlich Ihrer personenbezogenen Daten zu:</p>
+                <ul class="list-disc pl-5 mb-4 space-y-2">
+                    <li><strong>Auskunft</strong> über die Daten, die wir über Sie verarbeiten (Art. 15 DSGVO),</li>
+                    <li><strong>Berichtigung</strong> unrichtiger Daten (Art. 16 DSGVO),</li>
+                    <li><strong>Löschung</strong> (Art. 17 DSGVO),</li>
+                    <li><strong>Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO),</li>
+                    <li><strong>Datenübertragbarkeit</strong>, also Herausgabe der Daten, die Sie uns bereitgestellt haben, in einem gängigen, maschinenlesbaren Format (Art. 20 DSGVO),</li>
+                    <li><strong>Widerruf</strong> einer Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO),</li>
+                    <li><strong>Widerspruch</strong> gegen Verarbeitungen auf Grundlage berechtigter Interessen (Art. 21 DSGVO, siehe unten).</li>
+                </ul>
+                <p class="mb-4">Für alle Anfragen genügt eine formlose Nachricht an die in A.2 genannte Anschrift oder E-Mail-Adresse.</p>
+                <div class="bg-gray-100 p-4 border-l-4 border-anoraBlue text-sm mb-4">
+                    <h4 class="font-bold mb-2">Widerspruchsrecht nach Art. 21 DSGVO</h4>
+                    <p>
+                        Verarbeiten wir Ihre Daten auf Grundlage berechtigter Interessen (Art. 6 Abs. 1 lit. f DSGVO), können Sie dieser Verarbeitung jederzeit aus Gründen widersprechen, die sich aus Ihrer besonderen Situation ergeben. Wir verarbeiten die Daten dann nicht mehr, es sei denn, wir können zwingende schutzwürdige Gründe nachweisen, die Ihre Interessen, Rechte und Freiheiten überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen. Der Verarbeitung Ihrer Daten für Direktwerbung können Sie jederzeit ohne Angabe von Gründen widersprechen.
+                    </p>
+                </div>
+                <p class="mb-4">
+                    Sie haben außerdem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art. 77 DSGVO), insbesondere in dem Mitgliedstaat Ihres gewöhnlichen Aufenthaltsorts, Ihres Arbeitsplatzes oder des mutmaßlichen Verstoßes. Für uns zuständig ist:
+                </p>
+                <div class="bg-gray-50 p-4 rounded border border-gray-200 text-sm mb-4">
+                    Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg<br>
+                    Postfach 10 29 32<br>
+                    70025 Stuttgart<br>
+                    <a href="https://www.baden-wuerttemberg.datenschutz.de" class="text-anoraTeal hover:underline" target="_blank" rel="noopener noreferrer">www.baden-wuerttemberg.datenschutz.de</a>
+                </div>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.10 Pflicht zur Bereitstellung, keine automatisierten Entscheidungen</h3>
+                <p class="mb-4">
+                    Sie sind weder gesetzlich noch vertraglich verpflichtet, uns personenbezogene Daten bereitzustellen. Ohne die als Pflichtangaben gekennzeichneten Daten können wir eine Anfrage jedoch nicht beantworten und Ihnen keinen Zugang zu SpecScout geben. Automatisierte Entscheidungen im Einzelfall einschließlich Profiling (Art. 22 DSGVO) finden nicht statt.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.11 Verschlüsselung</h3>
+                <p class="mb-4">
+                    Website und SpecScout sind nur über verschlüsselte Verbindungen (TLS) erreichbar; unverschlüsselte Aufrufe leiten wir auf verschlüsselte um. Sie erkennen das an „https://“ in der Adresszeile und am Schloss-Symbol Ihres Browsers.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.12 Änderungen dieser Datenschutzerklärung</h3>
+                <p class="mb-4">
+                    Wir passen diese Datenschutzerklärung an, wenn sich unsere Datenverarbeitung oder die Rechtslage ändert. Es gilt die jeweils hier veröffentlichte Fassung; das Datum steht oben unter der Überschrift.
                 </p>
             </section>
 
-            <section>
-                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">4. Datenerfassung auf dieser Website</h2>
+            <section id="website" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">Teil B: Website anora-systems.com</h2>
 
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Anfrage per E-Mail, Telefon oder Telefax</h3>
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">B.1 Hosting bei GitHub Pages</h3>
                 <p class="mb-4">
-                    Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
+                    Die Website wird über GitHub Pages ausgeliefert, einen Dienst der GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Wenn Sie die Website aufrufen, verarbeitet GitHub die für die Auslieferung technisch nötigen Daten, insbesondere Ihre IP-Adresse, die aufgerufene Seite und den Zeitpunkt. GitHub protokolliert die IP-Adressen der Besucher aus Sicherheitsgründen. Diese Protokolle verarbeitet GitHub in eigener Verantwortung, die Speicherdauer legt GitHub fest; wir haben auf sie keinen Zugriff. Rechtsgrundlage ist unser berechtigtes Interesse an einer sicheren und zuverlässigen Bereitstellung der Website (Art. 6 Abs. 1 lit. f DSGVO). GitHub ist nach dem EU-US Data Privacy Framework zertifiziert (A.6). Mehr dazu in der <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" class="text-anoraTeal hover:underline" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von GitHub</a>.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">B.2 Keine Cookies, keine Analyse, keine fremden Inhalte</h3>
+                <p class="mb-4">
+                    Die Website setzt keine Cookies, speichert nichts in Ihrem Browser und verwendet keine Analyse- oder Tracking-Werkzeuge. Schriften, Icons und Skripte liefern wir selbst aus; beim Aufruf der Website lädt Ihr Browser keine Inhalte von anderen Servern. Eine Verbindung zu unserem eigenen Server api.anora-systems.com entsteht nur, wenn Sie das Kontaktformular oder eine Gesprächsanfrage absenden (B.3, B.4).
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">B.3 Kontaktformular</h3>
+                <p class="mb-4">
+                    Über das Kontaktformular können Sie uns eine Nachricht schicken. Pflichtangaben sind Name, E-Mail-Adresse und Nachricht; Unternehmen, Shopsystem und Katalogumfang sind freiwillig. Ihr Browser sendet die Angaben an unseren Server api.anora-systems.com bei Hetzner in Deutschland. Der Server leitet sie als E-Mail über IONOS an die Postfächer unseres Teams weiter; Ihre E-Mail-Adresse steht darin als Antwortadresse. Den Inhalt Ihrer Anfrage speichern wir auf dem Server nicht. Wie jede Anfrage an diesen Server erfassen unsere Server-Protokolle Ihre IP-Adresse, den Zeitpunkt und die aufgerufene Adresse, nicht aber den Inhalt Ihrer Nachricht. Technische Angaben zur Anfrage, die auch ihren Inhalt umfassen können, erhält Sentry, unser Dienst zur Fehler- und Leistungsüberwachung (A.5).
                 </p>
                 <p class="mb-4">
-                    Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde; die Einwilligung ist jederzeit widerrufbar.
+                    Zum Schutz vor Missbrauch prüft der Server, von welcher Seite die Anfrage kommt, und verarbeitet Ihre IP-Adresse: Er nimmt höchstens fünf Anfragen je IP-Adresse und Stunde an und insgesamt nur eine begrenzte Zahl pro Stunde. Die Zähler liegen nur im Arbeitsspeicher und verfallen nach einer Stunde. Das Formular enthält außerdem ein für Menschen unsichtbares Feld. Ist es ausgefüllt, gehen wir von einem automatisierten Absender aus: Die Nachricht wird dann nicht als Anfrage weitergeleitet; stattdessen erhalten wir einen Warnhinweis per E-Mail mit der Nachricht und der IP-Adresse, damit wir eine versehentlich blockierte echte Anfrage trotzdem beantworten können. Ist die Gesamtzahl für eine Stunde erreicht, erhalten wir einen Hinweis mit der IP-Adresse der ersten abgewiesenen Anfrage.
                 </p>
                 <p class="mb-4">
-                    Die von Ihnen an uns per Kontaktanfragen übersandten Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihres Anliegens). Zwingende gesetzliche Bestimmungen – insbesondere gesetzliche Aufbewahrungsfristen – bleiben unberührt.
+                    Rechtsgrundlage für die Bearbeitung Ihrer Anfrage ist Art. 6 Abs. 1 lit. b DSGVO, wenn sie mit einem Vertrag oder dessen Anbahnung zusammenhängt, sonst unser berechtigtes Interesse an der Beantwortung von Anfragen (Art. 6 Abs. 1 lit. f DSGVO). Die Missbrauchsabwehr beruht auf unserem berechtigten Interesse, das Formular und unseren Server vor Spam und Überlastung zu schützen (Art. 6 Abs. 1 lit. f DSGVO). Die E-Mails löschen wir wie in A.8 beschrieben, Warnhinweise, sobald wir sie geprüft haben.
                 </p>
-                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">Hochladen nutzererstellter Datensaetze</h3>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">B.4 Gesprächsanfrage</h3>
                 <p class="mb-4">
-                    Wenn Sie in unserem Programm nutzererstellte Datensaetze (insbesondere Spezifikationen und Kategorien) anlegen und hochladen, werden diese Daten an unseren Server übermittelt und dort gespeichert.
+                    Mit der Gesprächsanfrage auf der Kontaktseite schlagen Sie uns bis zu drei Termine für ein 20-minütiges Gespräch vor. Dafür verarbeiten wir Ihren Namen, Ihre E-Mail-Adresse und die gewählten Termine sowie, falls angegeben, Unternehmen, Telefonnummer und Nachricht. Weicht die Zeitzone Ihres Browsers von der deutschen Zeit ab, nennt die Anfrage die Termine zusätzlich in Ihrer Ortszeit. Technisch wird die Anfrage genauso verarbeitet wie eine Nachricht über das Kontaktformular (B.3), mit denselben Schutzmaßnahmen, Rechtsgrundlagen und Löschfristen. Die möglichen Termine berechnet Ihr Browser aus unseren Bürozeiten; einen Kalenderdienst nutzen wir dafür nicht. Wir bestätigen Ihnen einen der Termine per E-Mail oder schlagen einen anderen vor.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">B.5 Links zu SpecScout</h3>
+                <p class="mb-4">
+                    Links wie „Kostenlos starten“ führen zu SpecScout unter specscout.anora-systems.com. Was dort mit Ihren Daten geschieht, beschreibt Teil C.
+                </p>
+            </section>
+
+            <section id="specscout" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">Teil C: SpecScout</h2>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.1 Überblick und Hosting</h3>
+                <p class="mb-4">
+                    SpecScout besteht aus der Suchanwendung unter specscout.anora-systems.com, dem Dashboard unter dashboard.anora-systems.com und der SpecScout-API unter api.anora-systems.com. Alle drei laufen samt Datenbank auf unserem Server bei Hetzner in Deutschland (A.4). Suchanwendung und Dashboard leiten Ihre Eingaben über ihren eigenen Server an die API weiter und übermitteln dabei Ihre IP-Adresse, damit die API Sitzungen absichern, Missbrauch begrenzen und Zugriffe protokollieren kann.
                 </p>
                 <p class="mb-4">
-                    Administratoren können die hochgeladenen Spezifikationen und Kategorien einsehen, um diese zu prüfen, zu verwalten und im Rahmen des Systembetriebs zu bearbeiten.
+                    Wir verarbeiten Ihre Daten in SpecScout, um Ihnen den Dienst bereitzustellen (Art. 6 Abs. 1 lit. b DSGVO). Gehört Ihr Nutzerkonto zum Vertrag eines Kunden, etwa Ihres Arbeitgebers, ist dieser Kunde unser Vertragspartner; dann verarbeiten wir Ihre Daten auf Grundlage unseres berechtigten Interesses, den Vertrag mit dem Kunden zu erfüllen und Ihnen dafür Zugang zu SpecScout zu geben (Art. 6 Abs. 1 lit. f DSGVO). Sicherheitsmaßnahmen wie Protokolle und Zugriffsbegrenzungen beruhen auf unserem berechtigten Interesse an einem sicheren Betrieb (Art. 6 Abs. 1 lit. f DSGVO). Abweichungen nennen wir bei der jeweiligen Verarbeitung. Für Server-Protokolle und Fehlerüberwachung gilt A.5.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.2 Testzugang und kostenloser Zugang</h3>
+                <p class="mb-4">
+                    Über „Kostenlos starten“ geben Sie auf der Zugangsseite der Suchanwendung nur Ihre E-Mail-Adresse ein. Wir legen damit ein Konto im Testzugang an, mit dem Sie sofort einige Suchen ausführen können, und einen API-Schlüssel, über den die Suchanwendung für Sie sucht. An Ihre Adresse senden wir einen Bestätigungslink, der 24 Stunden gültig ist. Bestätigen Sie ihn, wird das Konto zum kostenlosen Zugang mit einem monatlichen Suchkontingent, und wir erhalten eine interne E-Mail mit Ihrer E-Mail-Adresse und Ihrer Zugangsstufe. Ein Passwort brauchen Sie nicht: Später melden Sie sich mit einem Link an, den wir Ihnen per E-Mail senden (C.3).
                 </p>
                 <p class="mb-4">
-                    Die Verarbeitung erfolgt zur Bereitstellung und Administration unserer Dienste sowie zur Erfüllung vertraglicher oder vorvertraglicher Massnahmen (Art. 6 Abs. 1 lit. b DSGVO) und auf Grundlage unseres berechtigten Interesses an einem sicheren und geordneten Betrieb (Art. 6 Abs. 1 lit. f DSGVO).
+                    Konten, deren E-Mail-Adresse nicht innerhalb von 7 Tagen bestätigt wird, löschen wir automatisch mit ihren Daten; der API-Schlüssel des Testzugangs läuft zum selben Zeitpunkt ab. Ihre IP-Adresse nutzen wir, um höchstens fünf Testzugänge je IP-Adresse und Stunde anzulegen; die Zähler liegen nur im Arbeitsspeicher. Rechtsgrundlage ist die Bereitstellung des Dienstes (Art. 6 Abs. 1 lit. b DSGVO), für die Begrenzung unser berechtigtes Interesse an der Abwehr von Missbrauch (Art. 6 Abs. 1 lit. f DSGVO).
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.3 Benutzerkonto und Anmeldung</h3>
+                <p class="mb-4">
+                    Im Dashboard registrieren Sie sich mit E-Mail-Adresse und Passwort; Ihr Name ist freiwillig. Das Passwort speichern wir nur als kryptografischen Hash. Auch hier bestätigen Sie Ihre E-Mail-Adresse über einen Link, der 24 Stunden gültig ist; danach gilt der kostenlose Zugang, und wir erhalten dieselbe interne E-Mail wie in C.2. Unbestätigte Konten löschen wir wie in C.2 nach 7 Tagen. Einen erweiterten Zugang schalten wir auf Ihre Anfrage von Hand frei und informieren Sie darüber per E-Mail. Versucht jemand, sich mit einer bereits registrierten Adresse erneut zu registrieren, erhält deren Inhaber einen Hinweis per E-Mail.
+                </p>
+                <p class="mb-4">
+                    Anmelden können Sie sich mit E-Mail-Adresse und Passwort, mit einem Anmeldelink per E-Mail, der 15 Minuten gültig und nur einmal verwendbar ist, oder in der Suchanwendung mit einem API-Schlüssel (C.4). Die Links in unseren E-Mails speichern wir nur als Hash. Nach fünf fehlgeschlagenen Passworteingaben sperren wir die Anmeldung mit Passwort für 15 Minuten; dafür speichern wir die Zahl und den Zeitpunkt der Fehlversuche. Auf Wunsch schützen Sie Ihr Konto mit einem zweiten Faktor (Einmalcodes aus einer Authenticator-App); den dafür nötigen geheimen Schlüssel speichern wir verschlüsselt, die Wiederherstellungscodes nur als Hash. Vor sensiblen Aktionen, etwa dem Export oder dem Löschen Ihres Kontos, bestätigen Sie Ihre Identität erneut, mit Ihrem Passwort oder einem Link per E-Mail, der 15 Minuten gültig ist. Ein Link zum Zurücksetzen des Passworts ist eine Stunde gültig.
+                </p>
+                <p class="mb-4">
+                    Für jede Anmeldung speichern wir eine Sitzung mit Ihrer IP-Adresse, Ihrer Browserkennung und den Zeitpunkten. Eine Sitzung endet nach höchstens 30 Tagen, beim Abmelden oder wenn Sie Ihr Passwort ändern, und wird dann gelöscht.
+                </p>
+                <p class="mb-4">
+                    Im Dashboard können Sie Name, E-Mail-Adresse und Passwort ändern, Ihre Daten als Datei exportieren und Ihr Konto selbst löschen; mit einem Konto aus der Suchanwendung melden Sie sich dort per Anmeldelink an. Beim Löschen entfernen wir Ihr Konto mit Sitzungen, API-Schlüsseln, eigenen Spezifikationen und Kategorien, Sucheinstellungen und Kontingentzählern. Einträge im Zugriffsprotokoll (C.4) bleiben ohne Bezug zu Ihrem Konto bis zu ihrer Löschung nach 30 Tagen bestehen. Ebenso bleiben für begrenzte Zeit Einträge in den Server-Protokollen und bei Sentry (A.5) sowie die interne Registrierungs-E-Mail in unserem Postfach (A.8) erhalten. Kontodaten speichern wir, solange das Konto besteht; unbestätigte Konten löschen wir nach 7 Tagen (C.2). Nutzerkonten, die mit einem Vertrag über einen kostenpflichtigen Tarif verbunden sind, löschen wir einschließlich eigener Spezifikationen, Kategorien und Sucheinstellungen 30 Tage nach Ende des Vertrags, soweit keine gesetzlichen Aufbewahrungspflichten bestehen.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.4 API-Schlüssel und Zugriffsprotokoll</h3>
+                <p class="mb-4">
+                    API-Schlüssel legen Sie im Dashboard an, mit Bezeichnung und optionalem Ablaufdatum. Wir zeigen den Schlüssel nur einmal an und speichern ihn nur als Hash. Abgelaufene oder widerrufene Schlüssel bleiben gespeichert, bis Sie sie oder Ihr Konto löschen. Melden Sie sich in der Suchanwendung mit einem API-Schlüssel an, hält deren Server den Schlüssel für die Dauer der Sitzung im Arbeitsspeicher.
+                </p>
+                <p class="mb-4">
+                    Zu jeder Anfrage mit einem API-Schlüssel speichern wir einen Eintrag im Zugriffsprotokoll: Schlüssel- und Benutzerkennung, aufgerufener Endpunkt (ohne Suchparameter), Ergebnis, IP-Adresse und Browserkennung. Das dient der Sicherheit und der Aufklärung von Missbrauch (Art. 6 Abs. 1 lit. f DSGVO). Die Einträge löschen wir nach 30 Tagen.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.5 Suchen</h3>
+                <p class="mb-4">
+                    Für eine Suche verarbeiten wir Ihre Eingaben: Produktname, Marke, Kategorie, gewünschte Spezifikationen, Optionen und gegebenenfalls Domains, die Sie bevorzugen oder ausschließen. Zu jeder Suche speichern wir diese Eingaben mit den gefundenen Werten, den Adressen der Quellseiten und technischen Messwerten, aber ohne Benutzerkennung und ohne IP-Adresse. Nach 90 Tagen fassen wir diese Daten zu täglichen Statistiken ohne Suchinhalte zusammen und löschen die Einzeldaten. Für Ihr Kontingent zählen wir die Suchen je Konto und Monat, solange das Konto besteht. Aus allen Suchen bilden wir außerdem Kennzahlen je Website, etwa wie oft eine Domain brauchbare Werte liefert; sie haben keinen Bezug zu einzelnen Nutzern. In den Server-Protokollen stehen die Suchbegriffe bis zu 30 Tage zusammen mit der IP-Adresse; zu Sentry siehe A.5.
+                </p>
+                <p class="mb-4">
+                    Um SpecScout zu verbessern, speichern wir außerdem zu jeder Seite, die ein KI-Modell für eine Suche auswertet, eine Stichprobe: Adresse und Text der Seite, die Antwort des Modells, Produktname, Marke, Kategorie und die gesuchten Spezifikationsdefinitionen. Auch diese Stichproben speichern wir ohne Benutzerkennung und ohne IP-Adresse. Wir nutzen sie, um die Qualität der Auswertung zu prüfen, Modelle und Anbieter zu vergleichen und die Auswahl der Quellen zu verbessern, und löschen sie nach 24 Monaten. Außerdem nutzen wir die gespeicherten Stichproben, um unseren Algorithmus zu verbessern, insbesondere um einen Ranking-Algorithmus zu trainieren, der Quellen bewertet und in eine Rangfolge bringt. Große Sprachmodelle trainieren wir damit nicht. Die Seitentexte können personenbezogene Daten Dritter enthalten (C.6). Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse liegt in einer genaueren Auswertung, der besseren Auswahl der Quellen und damit der Datenqualität von SpecScout.
+                </p>
+                <p class="mb-4">
+                    Suchanfragen enthalten in der Regel nur Produktdaten. Bitte geben Sie in Suchen, Spezifikationen und Kategorien keine personenbezogenen Daten ein.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.6 Eingesetzte Dienste für Suche und KI-Entwürfe</h3>
+                <p class="mb-4">
+                    Für Suchen und KI-Entwürfe geben wir Inhalte Ihrer Anfrage an die folgenden Arten von Diensten weiter; welche Dienste das im Einzelnen sind, steht in der <a href="dienstleister" class="text-anoraTeal hover:underline">Liste der Dienstleister</a>. Diese Dienste erhalten keine Angaben zu Ihrer Person, also weder Ihren Namen noch Ihre E-Mail-Adresse noch Ihre IP-Adresse.
+                </p>
+                <ul class="list-disc pl-5 mb-4 space-y-2">
+                    <li><strong>Websuche:</strong> Websuchdienste erhalten Suchbegriffe aus Marke, Produkt, Kategorie und bis zu drei Spezifikationsnamen sowie Ihre Domain-Filter.</li>
+                    <li><strong>Abruf von Webseiten:</strong> Die gefundenen öffentlichen Seiten ruft unser Server selbst ab. Die besuchten Websites sehen die IP-Adresse unseres Servers, nicht Ihre.</li>
+                    <li><strong>KI-Modelle zur Auswertung der Seiten:</strong> Anbieter von KI-Modellen erhalten Produktname, Marke, Spezifikationsdefinitionen und den Text der abgerufenen Seiten. Welcher Anbieter eine Anfrage beantwortet, hängt von Verfügbarkeit und Antwortzeit ab; außerdem vergleichen wir laufend, welche Modelle die Seiten am besten auswerten. Die Anbieter haben ihren Sitz in den USA. Anbieter, die Anfragen an andere Anbieter des jeweiligen Modells weiterleiten (etwa OpenRouter), nutzen wir nur so, dass die Anfrage ausschließlich an Anbieter geht, die die Anfragedaten nach Angaben des weiterleitenden Anbieters weder speichern noch zum Training verwenden; diese können ihren Sitz in den USA oder einem anderen Land außerhalb der EU haben.</li>
+                    <li><strong>KI-Entwürfe und KI-Prüfungen von Spezifikationen</strong> im Dashboard: Ihr Beschreibungstext und vorhandene Spezifikationsdefinitionen gehen, mit derselben Einschränkung, an Anbieter von KI-Modellen.</li>
+                </ul>
+                <p class="mb-4">
+                    Die Übermittlung in Drittländer stützen wir auf die Standardvertragsklauseln oder, bei zertifizierten Anbietern, auf das EU-US Data Privacy Framework (A.6). Die abgerufenen Webseiten können personenbezogene Daten Dritter enthalten, etwa Namen in Bewertungen. Wir werten nur Produktangaben aus; die Seitentexte speichern wir nur in den Stichproben nach C.5 und löschen sie nach 24 Monaten. Rechtsgrundlage ist die Bereitstellung des Dienstes (Art. 6 Abs. 1 lit. b DSGVO); soweit Seitentexte personenbezogene Daten Dritter enthalten, unser berechtigtes Interesse an der Auswertung öffentlich zugänglicher Produktinformationen (Art. 6 Abs. 1 lit. f DSGVO).
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.7 Produktbilder</h3>
+                <p class="mb-4">
+                    Wenn Sie in der Suchanwendung die Option „Produktbilder einbeziehen“ aktivieren, lädt Ihr Browser die gefundenen Bilder direkt von den jeweiligen Websites. Diese Websites erhalten dabei Ihre IP-Adresse, Ihre Browserkennung und die Adresse unserer Anwendung. Sie verarbeiten diese Daten in eigener Verantwortung, können eigene Cookies setzen und ihren Sitz auch außerhalb der EU haben. Ohne diese Option lädt die Suchanwendung keine Bilder von fremden Websites.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.8 Eigene Spezifikationen, Kategorien und Sucheinstellungen</h3>
+                <p class="mb-4">
+                    Spezifikationen, Kategorien und Sucheinstellungen (bevorzugte und ausgeschlossene Domains), die Sie anlegen, speichern wir mit Ihrem Konto, bis Sie sie oder Ihr Konto löschen. Unsere Administratoren können sie einsehen, um sie zu prüfen, Fehler zu beheben und den Betrieb zu sichern (Art. 6 Abs. 1 lit. b und f DSGVO).
+                </p>
+                <p class="mb-4">
+                    Bevorzugte und ausgeschlossene Domains fließen außerdem ohne Bezug zu Ihrem Konto in eine gemeinsame Bewertung von Websites ein, sobald mindestens zwei Nutzer dieselbe Regel festgelegt haben. Rechtsgrundlage ist unser berechtigtes Interesse, die Auswahl der Quellen für alle Nutzer zu verbessern (Art. 6 Abs. 1 lit. f DSGVO).
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.9 E-Mails von SpecScout</h3>
+                <p class="mb-4">
+                    SpecScout sendet Ihnen nur E-Mails, die Ihr Konto oder Ihren Vertrag betreffen: Bestätigungs- und Anmeldelinks, Links zur Bestätigung sensibler Aktionen und zum Zurücksetzen des Passworts, Nachrichten über eine Änderung Ihrer Zugangsstufe, eine Einladung, wenn wir ein Konto für Sie anlegen, den Hinweis auf einen Registrierungsversuch mit Ihrer Adresse und Mitteilungen über Änderungen unserer AGB. Der Versand läuft über IONOS (A.4). Werbung senden wir nicht.
+                </p>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.10 Speicherung in Ihrem Browser</h3>
+                <p class="mb-4">
+                    Für die Anmeldung und Ihre Einstellungen speichern Suchanwendung und Dashboard folgende Einträge in Ihrem Browser (§ 25 Abs. 2 Nr. 2 TDDDG).
+                </p>
+                <div class="overflow-x-auto mb-4">
+                    <table class="w-full text-sm border border-gray-200">
+                        <thead class="bg-gray-50 text-left">
+                            <tr><th scope="col" class="p-2 border-b border-gray-200">Name</th><th scope="col" class="p-2 border-b border-gray-200">Art</th><th scope="col" class="p-2 border-b border-gray-200">Zweck</th><th scope="col" class="p-2 border-b border-gray-200">Dauer</th></tr>
+                        </thead>
+                        <tbody class="align-top">
+                            <tr><td class="p-2 border-b border-gray-100"><code>specscout_demo_auth_sid</code></td><td class="p-2 border-b border-gray-100">Cookie, Suchanwendung</td><td class="p-2 border-b border-gray-100">Anmeldung (zufällige Sitzungskennung)</td><td class="p-2 border-b border-gray-100">bis Sie den Browser schließen; der Server beendet die Sitzung nach 7 Tagen ohne Nutzung, spätestens nach 30 Tagen</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>specscout_backend_sid</code></td><td class="p-2 border-b border-gray-100">Cookie, Suchanwendung</td><td class="p-2 border-b border-gray-100">Sitzung bei der API (zufällige Kennung)</td><td class="p-2 border-b border-gray-100">bis zu 30 Tage</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>session_id</code></td><td class="p-2 border-b border-gray-100">Cookie, Dashboard</td><td class="p-2 border-b border-gray-100">Anmeldung (zufällige Sitzungskennung)</td><td class="p-2 border-b border-gray-100">bis zu 30 Tage</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>specscout_mfa_login_token</code>, <code>mfa_login_token</code></td><td class="p-2 border-b border-gray-100">Cookie, beide</td><td class="p-2 border-b border-gray-100">Zwischenschritt bei der Anmeldung mit zweitem Faktor</td><td class="p-2 border-b border-gray-100">10 Minuten</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>PARAGLIDE_LOCALE</code></td><td class="p-2 border-b border-gray-100">Cookie, beide</td><td class="p-2 border-b border-gray-100">gewählte Sprache, nur nach einem Sprachwechsel</td><td class="p-2 border-b border-gray-100">400 Tage</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>sidebar:state</code></td><td class="p-2 border-b border-gray-100">Cookie, Dashboard</td><td class="p-2 border-b border-gray-100">Seitenleiste ein- oder ausgeklappt</td><td class="p-2 border-b border-gray-100">7 Tage</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>mode-watcher-mode</code>, <code>mode-watcher-theme</code></td><td class="p-2 border-b border-gray-100">Local Storage, beide</td><td class="p-2 border-b border-gray-100">Darstellung (hell, dunkel oder wie im System); wird beim ersten Aufruf angelegt</td><td class="p-2 border-b border-gray-100">bis Sie sie löschen</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>specscout_verification_resent</code></td><td class="p-2 border-b border-gray-100">Session Storage, Suchanwendung</td><td class="p-2 border-b border-gray-100">Zeitpunkt, zu dem Sie den Bestätigungslink erneut angefordert haben, für eine Wartezeit von 10 Minuten</td><td class="p-2 border-b border-gray-100">bis Sie den Tab schließen</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><code>sveltekit:scroll</code>, <code>sveltekit:snapshot</code></td><td class="p-2 border-b border-gray-100">Session Storage, beide</td><td class="p-2 border-b border-gray-100">Scrollposition und Seitenzustand beim Vor- und Zurückblättern</td><td class="p-2 border-b border-gray-100">bis Sie den Tab schließen</td></tr>
+                            <tr><td class="p-2"><code>specscout_demo_user_data</code></td><td class="p-2">Cookie, Suchanwendung</td><td class="p-2">von älteren Versionen gespeicherte eigene Kategorien und Spezifikationen; wird nur noch gelesen, nicht mehr gesetzt</td><td class="p-2">bis zu 10 Jahre ab dem Setzen</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.11 Keine Analyse, keine fremden Inhalte</h3>
+                <p class="mb-4">
+                    Suchanwendung und Dashboard verwenden keine Analyse- oder Tracking-Werkzeuge. Schriften und Symbole liefern sie selbst aus; außer Produktbildern (C.7) lädt Ihr Browser in den Anwendungen keine Inhalte von fremden Servern.
                 </p>
             </section>
 
