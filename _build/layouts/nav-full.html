@@ -1,0 +1,67 @@
+    <nav class="bg-white shadow-sm relative md:sticky md:top-0 z-50">
+        <div class="w-full mx-auto px-2 md:px-4 lg:px-8">
+
+            <div class="flex justify-between items-center py-1">
+
+                <div class="flex items-center flex-shrink-0 gap-3" style="margin-left: max(0px, calc(50vw - 40rem));">
+                    <a href="{{ logo_href }}">
+                        <img src="{{ root }}media/logo.png" alt="Anora Systems Logo" class="h-12 md:h-14 lg:h-20 w-auto transition-all">
+                    </a>
+
+                    <div class="hidden sm:block h-12 w-0.5 bg-gray-200"></div>
+
+                    <a href="{{ section_prefix }}#solution" class="hidden sm:block text-xl md:text-2xl tracking-tight text-anoraBlue font-outfit">
+                        Spec<span class="text-anoraTeal">Scout</span>
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-2 md:gap-2 lg:gap-8">
+
+                    <div data-nav-menu class="hidden xl:flex items-center space-x-3 lg:space-x-6 xl:space-x-6 2xl:space-x-8">
+{{# each nav }}
+                        <a href="{{ href }}"{{# if current }} aria-current="page" class="text-[0.85rem] lg:text-sm xl:text-base text-anoraTeal hover:text-anoraTeal transition whitespace-nowrap"{{ else }} class="text-[0.85rem] lg:text-sm xl:text-base text-gray-600 hover:text-anoraTeal transition whitespace-nowrap"{{/ if }}>{{ label }}</a>
+{{/ each }}
+
+                        <a href="{{ t.start_free_url }}" target="_blank" rel="noopener" class="bg-anoraOrange hover:bg-orange-600 text-white px-3 py-1.5 lg:px-4 lg:py-2 rounded-md text-[0.8rem] lg:text-sm xl:text-base font-medium transition shadow-lg shadow-orange-200 whitespace-nowrap">
+                            {{ t.start_free }}
+                        </a>
+                    </div>
+
+                    <div class="flex bg-gray-100 rounded p-0.5 flex-shrink-0 z-50">
+{{# each langs }}
+{{# if active }}
+                        <span class="px-2 py-0.5 bg-white text-anoraBlue text-[10px] font-bold rounded shadow-sm cursor-default">
+                            {{ code }}
+                        </span>
+{{ else }}
+                        <a href="{{ href }}" class="px-2 py-0.5 text-gray-400 text-[10px] font-medium hover:text-anoraTeal transition">
+                            {{ code }}
+                        </a>
+{{/ if }}
+{{/ each }}
+                    </div>
+
+                    <button id="mobile-menu-btn" class="xl:hidden p-2 text-gray-600 hover:text-anoraTeal focus:outline-none ml-1">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" data-nav-menu class="hidden xl:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+{{# each nav }}
+                <a href="{{ href }}"{{# if current }} aria-current="page" class="block py-2 text-base font-medium text-anoraTeal hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2"{{ else }} class="block py-2 text-base font-medium text-gray-600 hover:text-anoraTeal hover:bg-gray-50 rounded-md px-2"{{/ if }}>{{ label }}</a>
+{{/ each }}
+
+                <div class="pt-4">
+                    <a href="{{ t.start_free_url }}" target="_blank" rel="noopener" class="block w-full text-center bg-anoraOrange hover:bg-orange-600 text-white px-4 py-3 rounded-md text-base font-medium transition shadow-md">
+                        {{ t.start_free }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script src="{{ root }}js/nav-menu.js"></script>

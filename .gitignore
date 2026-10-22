@@ -1,6 +1,10 @@
 open_api_scheme.json
 CLAUDE.md
 
+# Build output and the Tailwind binary the build downloads (python _build/build.py)
+_site/
+_build/bin/
+
 # Python bytecode from running _tests/ and the opensource/ scripts
 __pycache__/
 *.py[cod]

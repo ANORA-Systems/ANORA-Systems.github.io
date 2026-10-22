@@ -1,0 +1,4 @@
+/* Input for Tailwind; the build writes the compiled file to assets/css/site.css. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

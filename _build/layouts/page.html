@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}"{{# if html_class }} class="{{ html_class }}"{{/ if }}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+{{# if description }}
+    <meta name="description" content="{{ description }}">
+{{/ if }}
+    <link rel="canonical" href="{{ canonical }}">
+{{# each alternates }}
+    <link rel="alternate" hreflang="{{ hreflang }}" href="{{ href }}">
+{{/ each }}
+
+    <link rel="icon" type="image/png" sizes="512x512" href="https://anora-systems.com/media/favicon-512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://anora-systems.com/media/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://anora-systems.com/media/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://anora-systems.com/media/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://anora-systems.com/media/favicon-180.png">
+
+    <link rel="stylesheet" href="{{ root }}assets/fonts/fonts.css">
+    <link rel="stylesheet" href="{{ root }}assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="{{ root }}assets/css/site.css">
+{{# if head }}
+
+    {{ head }}
+{{/ if }}
+</head>
+
+<body class="{{ body_class }}">
+
+{{# if nav_full }}
+{{> nav-full }}
+{{/ if }}
+{{# if nav_back }}
+{{> nav-back }}
+{{/ if }}
+{{ content }}
+{{# if footer }}
+{{> footer }}
+{{/ if }}
+</body>
+</html>

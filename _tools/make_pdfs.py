@@ -1,9 +1,10 @@
 """Regenerate the AGB/GTC PDFs in downloads/ from their HTML pages with headless Microsoft Edge.
 
-Each PDF is a print of its page (the pages' @media print styles decide the layout), so run this
-after every change to one of the pages below. Not published; GitHub Pages skips _ folders.
+Each PDF is a print of its built page (the pages' @media print styles decide the layout), so run
+this after every change to one of the pages below or to the layouts in _build/layouts/. The site
+is built into a temporary folder first. Not published; folders starting with _ never are.
 
-Run from anywhere (Python 3, standard library only; needs Edge, which Windows ships with):
+Run from anywhere (Python 3.9+, standard library only; needs Edge, which Windows ships with):
 
     python _tools/make_pdfs.py            # all PDFs
     python _tools/make_pdfs.py agb.html   # only the PDFs of the pages named
@@ -18,6 +19,8 @@ import time
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO / "_build"))
+import build  # noqa: E402
 
 # page -> PDF; the pages' download links point at these files
 PDFS = {
@@ -64,19 +67,26 @@ def main(pages: list[str]) -> int:
     failed = []
     # Edge can still hold its profile's lock file when the loop ends; a leftover
     # temp folder is harmless, a crash after the PDFs are written is not.
-    with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as profiles:
+    with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
+        site = Path(temp) / "site"
+        try:
+            build.build(site)
+        except build.BuildError as error:
+            print(f"Build failed: {error}")
+            return 1
+        profiles = Path(temp) / "profiles"
         for number, page in enumerate(pages or PDFS):
             pdf = REPO / PDFS[page]
             pdf.parent.mkdir(exist_ok=True)
             before = pdf.stat().st_mtime if pdf.exists() else None
             # One profile per page: a launch on a profile whose Edge is still
             # running is handed to that instance instead of printing.
-            profile = Path(profiles) / str(number)
-            # The virtual time budget lets the Tailwind play script style the page before printing.
+            profile = profiles / str(number)
+            # The virtual time budget lets the web fonts load before printing.
             subprocess.run(
                 [str(edge), "--headless=new", "--disable-gpu", "--no-first-run",
                  f"--user-data-dir={profile}", "--no-pdf-header-footer",
-                 "--virtual-time-budget=8000", f"--print-to-pdf={pdf}", (REPO / page).as_uri()],
+                 "--virtual-time-budget=8000", f"--print-to-pdf={pdf}", (site / page).as_uri()],
                 capture_output=True,
             )
             if wait_for_new_file(pdf, before):

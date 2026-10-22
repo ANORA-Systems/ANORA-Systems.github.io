@@ -25,18 +25,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # the sitemap's lastmod dates come from the history
 
       - name: Run tests
         run: |
           python -m unittest discover -s _tests -v
           node --test
 
+      - name: Build
+        run: python _build/build.py
+
       - name: Prepare the preview
         run: |
           # CNAME claims anora-systems.com; the preview must not
-          rm CNAME
+          rm _site/CNAME
           # keep search engines on anora-systems.com
-          find . -name '*.html' -not -path './.git/*' -print0 |
+          find _site -name '*.html' -print0 |
             xargs -0 sed -i 's#<head>#<head>\n    <meta name="robots" content="noindex, nofollow">#'
 
       - name: Push to the preview repo
@@ -46,5 +51,5 @@ jobs:
           deploy_key: ${{ secrets.DEV_PREVIEW_DEPLOY_KEY }}
           external_repository: JohannesKoerner/anora-dev
           publish_branch: gh-pages
-          publish_dir: .
+          publish_dir: _site
           force_orphan: true

@@ -1,25 +1,32 @@
-"""Serve the site locally the way GitHub Pages does, so clean URLs like /contact work.
+"""Build the site and serve it locally the way GitHub Pages does, rebuilding on every change.
 
-Our links name pages without .html (contact, en/privacy). GitHub Pages maps /contact to
-contact.html; a page opened from disk (file://) or through plain `python -m http.server` cannot,
-so clicking from page to page fails there. This server adds that one rule.
+The site is built into _site/ by _build/build.py (see there). This server serves _site/, maps
+clean URLs like /contact to contact.html as GitHub Pages does, and rebuilds whenever a page,
+layout, script, stylesheet or asset changes; reload the browser to see the result.
 
-Run from anywhere (Python 3, standard library only), then open http://localhost:8000:
+Run from anywhere (Python 3.9+, standard library only), then open http://localhost:8000:
 
     python _tools/serve.py          # or: python _tools/serve.py 8080
 
-The folder starts with an underscore so GitHub Pages does not publish it.
+The folder starts with an underscore so it is never published.
 """
 
 from __future__ import annotations
 
 import os
 import sys
+import threading
+import time
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO / "_build"))
+import build  # noqa: E402
+
+SITE = build.DEFAULT_OUT
+WATCHED = ["*.html", "en/*.html", "_build/**/*", "js/**/*", "assets/**/*", "media/**/*", "downloads/**/*", "opensource/*.json"]
 
 
 class CleanUrlHandler(SimpleHTTPRequestHandler):
@@ -30,10 +37,41 @@ class CleanUrlHandler(SimpleHTTPRequestHandler):
         return local
 
 
+def snapshot() -> dict[Path, float]:
+    files = {}
+    for pattern in WATCHED:
+        for path in REPO.glob(pattern):
+            # _build/bin holds the Tailwind binary; __pycache__ changes whenever the build is imported
+            if path.is_file() and not {"bin", "__pycache__"} & set(path.relative_to(REPO).parts):
+                files[path] = path.stat().st_mtime
+    return files
+
+
+def rebuild() -> None:
+    started = time.monotonic()
+    try:
+        build.build()
+        print(f"Built in {time.monotonic() - started:.1f}s")
+    except build.BuildError as error:
+        print(f"Build failed: {error}")
+
+
+def watch() -> None:
+    seen = snapshot()
+    while True:
+        time.sleep(1)
+        now = snapshot()
+        if now != seen:
+            seen = now
+            rebuild()
+
+
 def main() -> None:
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
-    server = ThreadingHTTPServer(("127.0.0.1", port), partial(CleanUrlHandler, directory=str(REPO)))
-    print(f"Serving {REPO} at http://localhost:{port}/  (Ctrl+C to stop)")
+    rebuild()
+    threading.Thread(target=watch, daemon=True).start()
+    server = ThreadingHTTPServer(("127.0.0.1", port), partial(CleanUrlHandler, directory=str(SITE)))
+    print(f"Serving {SITE} at http://localhost:{port}/  (rebuilds on change, Ctrl+C to stop)")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
