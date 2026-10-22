@@ -278,7 +278,7 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
             "href": relative_href(page, target) if target else "",
         })
     nav = [
-        {"href": nav_href(key, lang, is_home), "label": STRINGS[lang][key], "current": page.endswith(f"{nav_page(key)}.html")}
+        {"href": nav_href(key, lang, is_home), "label": STRINGS[lang][key], "current": page.endswith(f"{nav_page(key, lang)}.html")}
         for key in NAV
     ]
     return {
@@ -303,17 +303,17 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
     }
 
 
-def nav_page(key: str) -> str:
-    """The page file name (without .html) a menu entry stands for, if it is a page."""
-    return {"recommerce": "recommerce", "contact": "contact"}.get(key, "\0")
+def nav_page(key: str, lang: str) -> str:
+    """The page file name (without .html) a menu entry stands for, if it is a page of this site."""
+    if key in ("how_it_works", "docs"):
+        return "\0"
+    return STRINGS[lang].get(f"{key}_href", key)
 
 
 def nav_href(key: str, lang: str, is_home: bool) -> str:
     if key == "how_it_works":
         return "#how-it-works" if is_home else "./#how-it-works"
-    if key == "docs":
-        return STRINGS[lang]["docs_href"]
-    return key
+    return STRINGS[lang].get(f"{key}_href", key)
 
 
 # --- example data ----------------------------------------------------------------------------

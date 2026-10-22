@@ -25,6 +25,9 @@ class Pair:
 PAIRS = [
     Pair("index.html", "en/index.html", "monthly", "1.0"),
     Pair("recommerce.html", "en/recommerce.html", "monthly", "0.7"),
+    Pair("preise.html", "en/pricing.html", "monthly", "0.7"),
+    Pair("sicherheit.html", "en/security.html", "monthly", "0.5"),
+    Pair("ueber-uns.html", "en/about.html", "yearly", "0.5"),
     Pair("contact.html", "en/contact.html", "monthly", "0.6"),
     Pair("impressum.html", "en/legal.html"),
     Pair("datenschutz.html", "en/privacy.html"),
@@ -52,6 +55,12 @@ STRINGS = {
         "legal": "Rechtliches",
         "how_it_works": "So funktioniert's",
         "recommerce": "Re-Commerce",
+        "pricing": "Preise",
+        "pricing_href": "preise",
+        "security": "Sicherheit &amp; Daten",
+        "security_href": "sicherheit",
+        "about": "Über uns",
+        "about_href": "ueber-uns",
         "docs": "API-Dokumentation",
         "docs_href": "en/api-documentation",
         "imprint": "Impressum",
@@ -83,6 +92,12 @@ STRINGS = {
         "legal": "Legal",
         "how_it_works": "How it works",
         "recommerce": "Re-commerce",
+        "pricing": "Pricing",
+        "pricing_href": "pricing",
+        "security": "Security &amp; Data",
+        "security_href": "security",
+        "about": "About us",
+        "about_href": "about",
         "docs": "API documentation",
         "docs_href": "api-documentation",
         "imprint": "Imprint",
@@ -102,9 +117,10 @@ STRINGS = {
     },
 }
 
-# The full menu, in order. Each key is also its label's key in STRINGS; nav_href() in
-# _build/build.py turns it into a link relative to the page and marks the current page.
-NAV = ["how_it_works", "recommerce", "docs", "contact"]
+# The full menu, in order. Each key is also its label's key in STRINGS (and "<key>_href" its
+# link where the file name differs by language); nav_href() in _build/build.py turns it into a
+# link relative to the page and marks the current page.
+NAV = ["how_it_works", "recommerce", "pricing", "docs", "contact"]
 
 # Copied into the build unchanged. Inside folders, names starting with "." or "_" are skipped.
 STATIC = ["assets", "media", "js", "downloads", "demo", "opensource/specscout-dependencies.json", "CNAME"]

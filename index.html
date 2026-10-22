@@ -87,13 +87,6 @@ html_class: scroll-smooth
                         </div>
 
                     </div>
-                    <div class="mt-6 text-center md:text-right">
-                        <a href="en/api-documentation#example" class="inline-flex items-center gap-2 text-anoraTeal hover:text-white transition-colors text-sm font-semibold group bg-white/5 px-4 py-2 rounded-lg border border-white/10 hover:border-anoraTeal/50 hover:bg-white/10">
-                            <i class="fa-solid fa-code"></i>
-                            Vollständiges Request-Response JSON Beispiel
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -129,6 +122,10 @@ html_class: scroll-smooth
                     <h3 class="mt-4 font-semibold text-anoraBlue">Stunden manueller Recherche</h3>
                     <p class="mt-2 text-sm leading-relaxed text-gray-600">Herstellerseiten und Datenblätter durchsuchen, abtippen, prüfen: für jedes neue Produkt aufs Neue.</p>
                 </div>
+            </div>
+            <div class="mt-6 flex flex-col gap-2 rounded-xl border border-gray-200 bg-gray-100 p-6 md:flex-row md:items-center md:gap-6 md:px-8">
+                <p class="shrink-0 whitespace-nowrap text-4xl font-bold text-anoraTeal">44&nbsp;%</p>
+                <p class="text-gray-700">der Verbraucher haben einen Kauf abgebrochen, weil die Produktinformationen nicht ausreichten. <span class="mt-1 block text-sm text-gray-500">Quelle: <a href="https://syndigo.com/news/2025-product-experience-report/" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-anoraBlue">Syndigo, State of Product Experience Report 2025</a></span></p>
             </div>
         </div>
     </section>
@@ -191,7 +188,7 @@ html_class: scroll-smooth
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Einheiten werden umgerechnet, über 26 Arten von Maßen hinweg.</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Bereiche und Abmessungen als strukturierte Werte.</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Eine Merkmalsbibliothek als Startpunkt für Ihre Kategorien.</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Im Pilotprogramm: der KI-Assistent, der Ihre Merkmalsdefinitionen entwirft und prüft.</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Mit Enterprise: der KI-Assistent, der Ihre Merkmalsdefinitionen entwirft und prüft.</li>
                     </ul>
                 </div>
                 <div class="rounded-xl border border-gray-200 p-6 lg:p-8">
@@ -269,10 +266,10 @@ html_class: scroll-smooth
     <section id="team" class="scroll-mt-20 bg-gray-50 py-20">
         <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-anoraBlue">Das Team hinter SpecScout</h2>
-            <p class="mt-4 max-w-3xl text-lg text-gray-600">Anora Systems ist ein kleines Team aus Weingarten. Sie sprechen direkt mit den Gründern, die SpecScout bauen.</p>
+            <p class="mt-4 max-w-3xl text-lg text-gray-600">Anora Systems ist ein kleines Team aus Weingarten und Karlsruhe. Sie sprechen direkt mit den Gründern, die SpecScout bauen.</p>
             <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div class="flex items-start gap-5 rounded-xl border border-gray-200 bg-white p-6">
-                    <img src="media/johannes.png" alt="Johannes Körner" class="h-24 w-24 shrink-0 rounded-full object-cover">
+                    <img src="media/johannes_professional.png" alt="Johannes Körner" class="h-24 w-24 shrink-0 rounded-full object-cover">
                     <div>
                         <h3 class="text-lg font-semibold text-anoraBlue">Johannes Körner</h3>
                         <p class="text-sm font-medium text-anoraTeal">Co-Founder &amp; Operations</p>
@@ -280,7 +277,7 @@ html_class: scroll-smooth
                     </div>
                 </div>
                 <div class="flex items-start gap-5 rounded-xl border border-gray-200 bg-white p-6">
-                    <img src="media/erik.jpg" alt="Erik Dierkes" class="h-24 w-24 shrink-0 rounded-full object-cover">
+                    <img src="media/erik_professional.jpg" alt="Erik Dierkes" class="h-24 w-24 shrink-0 rounded-full object-cover">
                     <div>
                         <h3 class="text-lg font-semibold text-anoraBlue">Erik Dierkes</h3>
                         <p class="text-sm font-medium text-anoraTeal">Co-Founder &amp; Tech Lead</p>
@@ -288,6 +285,7 @@ html_class: scroll-smooth
                     </div>
                 </div>
             </div>
+            <a href="ueber-uns" class="mt-8 inline-flex items-center gap-1 text-sm font-semibold text-anoraTeal hover:text-anoraTealHover">Wie SpecScout entstanden ist <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
         </div>
     </section>
 
@@ -297,7 +295,7 @@ html_class: scroll-smooth
             <div class="mt-8 space-y-3">
                 <details class="group rounded-xl border border-gray-200 bg-white open:shadow-sm">
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-xl p-5 font-semibold text-anoraBlue focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraTeal [&::-webkit-details-marker]:hidden">Was kostet SpecScout?<i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-anoraTeal transition-transform group-open:rotate-180"></i></summary>
-                    <div class="px-5 pb-5 text-sm leading-relaxed text-gray-600">Mit dem kostenlosen Zugang haben Sie 20 Suchen pro Monat. Für mehr Suchen, den KI-Assistenten für Merkmalsdefinitionen und persönliche Betreuung gibt es während der Pilotphase den vollen Zugang zu individuell vereinbarten Preisen. <a href="contact" class="text-anoraTeal hover:underline">Sprechen Sie uns an</a>.</div>
+                    <div class="px-5 pb-5 text-sm leading-relaxed text-gray-600">Mit dem kostenlosen Zugang haben Sie 20 Suchen pro Monat. Für mehr Suchen, den KI-Assistenten für Merkmalsdefinitionen und persönliche Betreuung gibt es Enterprise, mit Preis auf Anfrage. <a href="preise" class="text-anoraTeal hover:underline">Zu den Preisen</a>.</div>
                 </details>
                 <details class="group rounded-xl border border-gray-200 bg-white open:shadow-sm">
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-xl p-5 font-semibold text-anoraBlue focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraTeal [&::-webkit-details-marker]:hidden">Kann ich die Datenqualität testen?<i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-anoraTeal transition-transform group-open:rotate-180"></i></summary>
@@ -337,7 +335,7 @@ html_class: scroll-smooth
     <section id="contact" class="relative scroll-mt-20 overflow-hidden bg-anoraBlue py-20 text-center">
         <div class="relative mx-auto max-w-3xl px-4">
             <h2 class="text-3xl font-bold text-white md:text-4xl">Bereit, Ihre Produktdaten zu vervollständigen?</h2>
-            <p class="mt-6 text-lg text-onBlue">Testen Sie SpecScout mit 20 kostenlosen Suchen pro Monat. Für größere Kataloge und unser Pilotprogramm sprechen Sie uns an: Wir suchen Onlinehändler, die SpecScout mitgestalten möchten.</p>
+            <p class="mt-6 text-lg text-onBlue">Testen Sie SpecScout mit 20 kostenlosen Suchen pro Monat. Für größere Kataloge und Enterprise sprechen Sie uns an.</p>
             <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
                 <a href="{{ t.start_free_url }}" class="rounded-brand bg-anoraOrange px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-anoraOrangeHover">Kostenlos starten</a>
                 <a href="contact" class="rounded-brand border border-white/30 px-8 py-4 text-lg font-medium text-white transition hover:border-white">Kontakt aufnehmen</a>

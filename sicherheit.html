@@ -1,0 +1,148 @@
+---
+title: Sicherheit &amp; Daten | SpecScout
+description: Wo SpecScout läuft, welche Dienstleister beteiligt sind, wie lange wir Daten speichern und wie Konten und API-Schlüssel geschützt sind, kurz und verständlich.
+nav: full
+footer: yes
+body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-screen
+---
+<head>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://anora-systems.com/sicherheit">
+    <meta property="og:title" content="Sicherheit &amp; Daten | SpecScout">
+    <meta property="og:description" content="Wo SpecScout läuft, welche Dienstleister beteiligt sind und wie lange wir Daten speichern, kurz und verständlich.">
+    <meta property="og:image" content="https://anora-systems.com/media/social-share.jpg">
+</head>
+
+    <main>
+
+    <header class="bg-anoraBlue">
+        <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+            <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-anoraTeal"><i data-lucide="shield-check" class="h-4 w-4"></i>Sicherheit &amp; Daten</p>
+            <h1 class="mt-4 max-w-3xl text-4xl font-bold leading-tight text-white md:text-5xl">Was mit Ihren Daten geschieht.</h1>
+            <p class="mt-6 max-w-3xl text-lg leading-relaxed text-onBlue">Das Wichtigste für Ihre Datenschutz- und Sicherheitsprüfung, in verständlichen Worten. Verbindlich sind unsere <a href="datenschutz" class="font-medium text-white underline hover:text-anoraTeal">Datenschutzerklärung</a>, die <a href="dienstleister" class="font-medium text-white underline hover:text-anoraTeal">Liste der Dienstleister</a> und die <a href="agb" class="font-medium text-white underline hover:text-anoraTeal">AGB</a>.</p>
+        </div>
+    </header>
+
+    <section class="bg-white py-20">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-anoraBlue">Auf einen Blick</h2>
+            <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div class="rounded-xl border border-gray-200 p-6">
+                    <i data-lucide="server" class="h-6 w-6 text-anoraTeal"></i>
+                    <h3 class="mt-4 font-semibold text-anoraBlue">Server in Deutschland</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Web-App, Dashboard, API und Datenbank laufen auf unserem Server bei Hetzner in Deutschland.</p>
+                </div>
+                <div class="rounded-xl border border-gray-200 p-6">
+                    <i data-lucide="lock" class="h-6 w-6 text-anoraTeal"></i>
+                    <h3 class="mt-4 font-semibold text-anoraBlue">Nur verschlüsselte Verbindungen</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Website und SpecScout sind nur über TLS erreichbar; unverschlüsselte Aufrufe leiten wir um.</p>
+                </div>
+                <div class="rounded-xl border border-gray-200 p-6">
+                    <i data-lucide="user-round-x" class="h-6 w-6 text-anoraTeal"></i>
+                    <h3 class="mt-4 font-semibold text-anoraBlue">Suchen ohne Personenbezug</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Eine Suche enthält Produktdaten. Wir speichern sie ohne Benutzerkennung und ohne IP-Adresse; nur die Server-Protokolle halten Suchbegriffe 30 Tage mit IP-Adresse. Websuche und KI-Modelle erfahren nicht, wer sucht.</p>
+                </div>
+                <div class="rounded-xl border border-gray-200 p-6">
+                    <i data-lucide="file-check" class="h-6 w-6 text-anoraTeal"></i>
+                    <h3 class="mt-4 font-semibold text-anoraBlue">Kein Auftragsverarbeitungsvertrag nötig</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">SpecScout ist für Produktdaten bestimmt; personenbezogene Daten verarbeiten wir nicht in Ihrem Auftrag. Für die Daten Ihrer Nutzerkonten sind wir selbst verantwortlich (AGB, Ziffer 11).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gray-50 py-20">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-anoraBlue">Was mit einer Suche geschieht</h2>
+            <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div class="rounded-xl border border-gray-200 bg-white p-6">
+                    <h3 class="font-semibold text-anoraBlue">Was eine Suche enthält</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Produktname, Marke, Kategorie, die gesuchten Merkmale und gegebenenfalls Ihre Quellenregeln. Personenbezogene Daten gehören nicht hinein; so steht es auch in den AGB.</p>
+                </div>
+                <div class="rounded-xl border border-gray-200 bg-white p-6">
+                    <h3 class="font-semibold text-anoraBlue">Wer beteiligt ist</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Websuchdienste erhalten Suchbegriffe aus den Produktdaten. Die gefundenen Seiten ruft unser Server selbst ab. KI-Modelle erhalten Produktname, Marke, Ihre Merkmalsdefinitionen und den Text der Seiten. Einige Anbieter sitzen in den USA oder verarbeiten dort, auf Grundlage des EU-US Data Privacy Framework oder der Standardvertragsklauseln. <a href="dienstleister" class="font-medium text-anoraTeal hover:underline">Alle Dienstleister</a></p>
+                </div>
+                <div class="rounded-xl border border-gray-200 bg-white p-6">
+                    <h3 class="font-semibold text-anoraBlue">Wie lange wir sie speichern</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Eingaben und Ergebnisse 90 Tage, ohne Benutzerkennung. Danach bleiben nur tägliche Statistiken ohne Suchinhalte. Für Ihr Kontingent zählen wir die Zahl Ihrer Suchen pro Monat.</p>
+                </div>
+                <div class="rounded-xl border border-gray-200 bg-white p-6">
+                    <h3 class="font-semibold text-anoraBlue">Wofür wir Suchen außerdem nutzen</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Zu jeder Seite, die ein KI-Modell auswertet, speichern wir Adresse, Seitentext, die Antwort des Modells und die gesuchten Merkmale 24 Monate lang, ohne Benutzerkennung: um die Qualität zu prüfen, Modelle zu vergleichen und einen Algorithmus zu trainieren, der Quellen bewertet. Große Sprachmodelle trainieren wir damit nicht. Quellenregeln, die mindestens zwei Nutzer gleich festgelegt haben, fließen ohne Bezug zu Ihrem Konto in eine gemeinsame Bewertung von Websites ein.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-20">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-anoraBlue">Konten, API-Schlüssel und Website</h2>
+            <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3">
+                <div>
+                    <h3 class="flex items-center gap-2 font-semibold text-anoraBlue"><i data-lucide="users" class="h-5 w-5 text-anoraTeal"></i>Konten</h3>
+                    <ul class="mt-4 space-y-3 text-sm leading-relaxed text-gray-600">
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Passwörter nur als kryptografischer Hash</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Zweiter Faktor per Authenticator-App, mit Wiederherstellungscodes</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Nach fünf falschen Passwörtern 15 Minuten Sperre</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Erneute Bestätigung vor Export oder Löschung des Kontos</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Daten selbst exportieren, Konto selbst löschen</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="flex items-center gap-2 font-semibold text-anoraBlue"><i data-lucide="key-round" class="h-5 w-5 text-anoraTeal"></i>API-Schlüssel</h3>
+                    <ul class="mt-4 space-y-3 text-sm leading-relaxed text-gray-600">
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Nur einmal angezeigt, nur als Hash gespeichert</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Optional mit Ablaufdatum, jederzeit widerrufbar</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Zugriffsprotokoll je Schlüssel, nach 30 Tagen gelöscht</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="flex items-center gap-2 font-semibold text-anoraBlue"><i data-lucide="shield-check" class="h-5 w-5 text-anoraTeal"></i>Diese Website</h3>
+                    <ul class="mt-4 space-y-3 text-sm leading-relaxed text-gray-600">
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Keine Cookies, keine Analyse- oder Tracking-Werkzeuge</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Schriften, Icons und Skripte von unserem eigenen Server</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Kontaktanfragen werden weitergeleitet, nicht auf dem Server gespeichert</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gray-50 py-20">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-anoraBlue">Speicherfristen</h2>
+            <div class="mt-10 overflow-hidden rounded-xl border border-gray-200 bg-white">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-gray-50 text-anoraBlue">
+                        <tr><th scope="col" class="px-6 py-3 font-semibold">Daten</th><th scope="col" class="px-6 py-3 font-semibold">Gelöscht nach</th></tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100 text-gray-600">
+                        <tr><td class="px-6 py-3">Server-Protokolle (mit IP-Adresse und Suchbegriffen)</td><td class="px-6 py-3">30 Tagen</td></tr>
+                        <tr><td class="px-6 py-3">Zugriffsprotokoll der API-Schlüssel</td><td class="px-6 py-3">30 Tagen</td></tr>
+                        <tr><td class="px-6 py-3">Fehlerüberwachung (Sentry, Speicherung in der EU)</td><td class="px-6 py-3">höchstens 90 Tagen</td></tr>
+                        <tr><td class="px-6 py-3">Suchen: Eingaben und Ergebnisse, ohne Benutzerkennung</td><td class="px-6 py-3">90 Tagen; danach nur tägliche Statistiken</td></tr>
+                        <tr><td class="px-6 py-3">Ausgewertete Seiten mit Antwort des KI-Modells, ohne Benutzerkennung</td><td class="px-6 py-3">24 Monaten</td></tr>
+                        <tr><td class="px-6 py-3">Anmeldesitzungen</td><td class="px-6 py-3">höchstens 30 Tagen</td></tr>
+                        <tr><td class="px-6 py-3">Konten mit unbestätigter E-Mail-Adresse</td><td class="px-6 py-3">7 Tagen</td></tr>
+                        <tr><td class="px-6 py-3">Konten mit Enterprise-Vertrag, samt eigenen Merkmalen und Einstellungen</td><td class="px-6 py-3">30 Tagen nach Vertragsende</td></tr>
+                        <tr><td class="px-6 py-3">Andere Konten</td><td class="px-6 py-3">wenn Sie das Konto löschen</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mt-4 text-sm text-gray-500">Gesetzliche Aufbewahrungspflichten, etwa für Rechnungen, bleiben unberührt. Einzelheiten in der <a href="datenschutz#specscout" class="font-medium text-anoraTeal hover:underline">Datenschutzerklärung, Teil C</a>.</p>
+        </div>
+    </section>
+
+    <section class="bg-anoraBlue py-20 text-center">
+        <div class="mx-auto max-w-3xl px-4">
+            <h2 class="text-3xl font-bold text-white">Fragen zu Datenschutz oder Sicherheit?</h2>
+            <p class="mt-6 text-lg text-onBlue">Schreiben Sie uns an <a href="mailto:info@anora-systems.com" class="font-medium text-white underline hover:text-anoraTeal">info@anora-systems.com</a> oder über die Kontaktseite. Testen können Sie SpecScout jederzeit selbst.</p>
+            <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+                <a href="contact" class="rounded-brand bg-anoraOrange px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-anoraOrangeHover">Kontakt aufnehmen</a>
+                <a href="{{ t.start_free_url }}" class="rounded-brand border border-white/30 px-8 py-4 text-lg font-medium text-white transition hover:border-white">Kostenlos starten</a>
+            </div>
+        </div>
+    </section>
+
+    </main>
