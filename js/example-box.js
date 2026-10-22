@@ -41,7 +41,7 @@
             no: 'Nein',
             recorded: (date, seconds) => `Aufgezeichnetes Ergebnis vom ${date} · Dauer ${seconds} s`,
             notLive: 'Diese Suche zeigt nur ausgewählte gespeicherte Ergebnisse.',
-            placeholderNote: 'Die Beispiele sind derzeit Platzhalter.',
+            shownOf: (shown, total) => `${shown} von ${total} Merkmalen gezeigt`,
             tryLive: 'Wenn Sie die Live-Suche ausprobieren möchten, klicken Sie',
             tryLiveButton: 'Live-Suche ausprobieren',
             close: 'Ergebnis schließen',
@@ -73,7 +73,7 @@
             no: 'No',
             recorded: (date, seconds) => `Recorded result from ${date} · took ${seconds} s`,
             notLive: 'This is an offline search only showing selected recorded results.',
-            placeholderNote: 'The examples are placeholders for now.',
+            shownOf: (shown, total) => `${shown} of ${total} attributes shown`,
             tryLive: 'Try live search',
             tryLiveButton: 'Try live search',
             close: 'Close results',
@@ -277,11 +277,18 @@
 
     // --- results --------------------------------------------------------------------------------
 
-    function formatValue(value, unit) {
+    // Multi-part values follow the spec's sub_values: a "min value"/"max value" pair is a range
+    // (100–102.400), anything else (width/height/depth) a dimension list (8,6 × 79 × 162,3).
+    // Yes/no answers the search returned as text ("True", "Yes") read as yes/no as well.
+    function formatValue(value, unit, subValues) {
+        const part = (item) => (typeof item === 'number' ? numberFormat.format(item) : String(item));
+        const isRange = Array.isArray(subValues) && subValues.length === 2 && /min/i.test(subValues[0]) && /max/i.test(subValues[1]);
         let text;
         if (typeof value === 'boolean') text = value ? TEXT.yes : TEXT.no;
+        else if (typeof value === 'string' && /^(true|yes)$/i.test(value)) text = TEXT.yes;
+        else if (typeof value === 'string' && /^(false|no)$/i.test(value)) text = TEXT.no;
         else if (typeof value === 'number') text = numberFormat.format(value);
-        else if (Array.isArray(value)) text = value.map((part) => (typeof part === 'number' ? numberFormat.format(part) : String(part))).join(' × ');
+        else if (Array.isArray(value)) text = value.map(part).join(isRange ? '–' : ' × ');
         else text = String(value);
         return unit ? `${text} ${unit}` : text;
     }
@@ -295,10 +302,10 @@
         return badge;
     }
 
-    function valueLine(look, specValue) {
+    function valueLine(look, specValue, spec) {
         const wrap = el('div', 'py-1');
         const line = el('div', 'flex flex-wrap items-center gap-2');
-        line.append(el('span', look.value, formatValue(specValue.value, specValue.unit)), confidenceBadge(look, specValue.confidence));
+        line.append(el('span', look.value, formatValue(specValue.value, specValue.unit, spec.sub_values)), confidenceBadge(look, specValue.confidence));
 
         const listId = nextId('example-sources');
         const toggle = el('button', look.sourcesButton);
@@ -342,7 +349,7 @@
         const view = el('div');
         example.response.specs.forEach((spec) => {
             const values = el('div');
-            spec.value.forEach((specValue) => values.append(valueLine(look, specValue)));
+            spec.value.forEach((specValue) => values.append(valueLine(look, specValue, spec)));
             view.append(specRow(look, spec.name, values));
         });
         example.response.not_found.forEach((spec) => {
@@ -384,9 +391,12 @@
             toggle.append(button);
             return [button, value];
         });
-        head.append(inputLine, toggle);
+        // Not every example has a typical-listing illustration; without one there is nothing to switch to.
+        head.append(inputLine);
+        if (example.typical_listing) head.append(toggle);
         const foot = el('p', look.foot,
-            TEXT.recorded(dateFormat.format(new Date(`${example.recorded_at}T12:00:00Z`)), Math.round(example.duration_ms / 1000)));
+            TEXT.recorded(dateFormat.format(new Date(`${example.recorded_at}T12:00:00Z`)), Math.round(example.duration_ms / 1000))
+            + (example.specs_total ? ` · ${TEXT.shownOf(example.response.specs.length + example.response.not_found.length, example.specs_total)}` : ''));
         card.append(head, body, foot);
 
         function update() {
@@ -404,7 +414,7 @@
 
     // --- the form -------------------------------------------------------------------------------
 
-    function searchPanel({ examples, look, startUrl, placeholder, onExpand, onCollapse }) {
+    function searchPanel({ examples, look, startUrl, onExpand, onCollapse }) {
         const categoryOf = (example) => example.category[lang];
         const unique = (values) => [...new Set(values)].sort((a, b) => a.localeCompare(b));
         const form = el('form', look.form);
@@ -463,7 +473,7 @@
         const panel = el('div');
         panel.append(form, result);
         // One quiet line: these are stored examples, the live search is in SpecScout.
-        const notice = el('p', look.notice, `${TEXT.notLive}${placeholder ? ` ${TEXT.placeholderNote}` : ''} ${TEXT.tryLive} `);
+        const notice = el('p', look.notice, `${TEXT.notLive} ${TEXT.tryLive} `);
         const live = el('a', look.noticeLink, TEXT.clickHere);
         live.href = startUrl;
         notice.append(live, document.createTextNode('.'));
@@ -542,7 +552,6 @@
                     examples: data.examples.filter(filter),
                     look,
                     startUrl: host.dataset.startUrl,
-                    placeholder: data.placeholder,
                     onExpand,
                     onCollapse,
                 });

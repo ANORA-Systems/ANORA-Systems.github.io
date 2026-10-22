@@ -52,7 +52,8 @@ class ExampleDataTest(unittest.TestCase):
             with self.subTest(example=example.get("slug")):
                 self.assertEqual(set(example["input"]), {"product_name", "brand"})
                 self.assertEqual(set(example["category"]), {"de", "en"})
-                self.assertEqual(set(example["typical_listing"]), {"de", "en"})
+                if "typical_listing" in example:  # optional illustration
+                    self.assertEqual(set(example["typical_listing"]), {"de", "en"})
                 datetime.date.fromisoformat(example["recorded_at"])
                 self.assertGreater(example["duration_ms"], 0)
                 response = example["response"]

@@ -27,7 +27,7 @@ sys.path.insert(0, str(REPO / "_build"))
 import build  # noqa: E402
 
 SITE = build.DEFAULT_OUT
-WATCHED = ["*.html", "en/*.html", "_build/**/*", "js/**/*", "assets/**/*", "media/**/*", "downloads/**/*", "opensource/*.json"]
+WATCHED = ["*.html", "en/*.html", "_build/**/*", "js/**/*", "assets/**/*", "media/**/*", "downloads/**/*", "demo/**/*", "opensource/*.json"]
 
 
 class CleanUrlHandler(SimpleHTTPRequestHandler):

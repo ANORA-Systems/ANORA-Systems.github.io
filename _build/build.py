@@ -331,9 +331,11 @@ def demo_context(lang: str) -> dict:
         _demo_data = json.loads(DEMO_FILE.read_text(encoding="utf-8"))
     example = _demo_data["examples"][0]
     response = example["response"]
+    # sub_values only tells the example box how to join multi-part values; the API has no such field
+    strip = lambda specs: [{key: value for key, value in spec.items() if key != "sub_values"} for spec in specs]  # noqa: E731
     excerpt = {
-        "specs": response["specs"][:2],
-        "not_found": response["not_found"][:1],
+        "specs": strip(response["specs"][:2]),
+        "not_found": strip(response["not_found"][:1]),
         "status": response["status"],
         "errors": response["errors"],
     }
