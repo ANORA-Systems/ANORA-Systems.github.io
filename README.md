@@ -29,7 +29,7 @@ The build wraps it in `_build/layouts/page.html`. That layout adds the shared `<
 
 An icon is written as `<i data-lucide="check" class="h-4 w-4"></i>`; the build replaces it with the SVG from `assets/lucide/`.
 
-The example box on the homepage and the Re-commerce page (`js/example-box.js`) shows search results from `demo/examples.json`, in the API's response shape; the site never calls the API. The hero card and the API excerpt on the homepage are built from the same file. While the file says `"placeholder": true`, every one of them shows a "placeholder data" label: replace the data with recorded results and set the flag to `false` before the relaunch.
+The example box on the homepage and the Re-commerce page (`js/example-box.js`) is a search form over the results in `demo/examples.json`, which are in the API's response shape; the site never calls the API. Product name, brand and category are separate searchable dropdowns of the available examples, and results appear after "Search". The API excerpt on the homepage is built from the same file. While the file says `"placeholder": true`, both show a "placeholder data" label: replace the data with recorded results and set the flag to `false` before the relaunch.
 
 `_build/pages.py` also lists every page with its counterpart in the other language. The build stops on a page that is missing there, and it writes `sitemap.xml` from that list, with each page's `lastmod` taken from its last commit.
 

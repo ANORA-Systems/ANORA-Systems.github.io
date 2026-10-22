@@ -13,6 +13,7 @@ The folder starts with an underscore so it is never published.
 
 from __future__ import annotations
 
+import importlib
 import os
 import sys
 import threading
@@ -48,11 +49,15 @@ def snapshot() -> dict[Path, float]:
 
 
 def rebuild() -> None:
+    global build
     started = time.monotonic()
     try:
+        # Reload the build code too, so edits to _build/*.py count without a restart.
+        importlib.reload(sys.modules["pages"])
+        build = importlib.reload(build)
         build.build()
         print(f"Built in {time.monotonic() - started:.1f}s")
-    except build.BuildError as error:
+    except Exception as error:  # a broken edit must not stop the server
         print(f"Build failed: {error}")
 
 

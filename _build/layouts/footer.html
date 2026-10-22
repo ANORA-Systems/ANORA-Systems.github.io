@@ -1,12 +1,17 @@
-    <footer class="mt-auto bg-anoraBlue text-sm text-onBlue">
+    <footer class="mt-auto border-t border-white/10 bg-anoraBlue text-sm text-onBlue">
         <div class="mx-auto grid grid-cols-1 max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-4 lg:px-8">
             <div>
                 <p class="font-outfit text-xl tracking-tight text-white">Spec<span class="text-anoraTeal">Scout</span></p>
                 <p class="mt-3 leading-relaxed">Anora Systems<br>Briachstraße 10<br>88250 Weingarten</p>
                 <p class="mt-3"><a href="mailto:info@anora-systems.com" class="transition hover:text-white">info@anora-systems.com</a></p>
-                <a href="https://www.linkedin.com/company/anora-systems" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-[#0077b5] hover:text-white" aria-label="{{ t.linkedin }}">
-                    <i class="fa-brands fa-linkedin-in"></i>
-                </a>
+                <div class="mt-4 flex gap-3">
+                    <a href="https://www.linkedin.com/company/anora-systems" target="_blank" rel="noopener noreferrer" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-[#0077b5] hover:text-white" aria-label="{{ t.linkedin }}">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/orgs/ANORA-Systems" target="_blank" rel="noopener noreferrer" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white hover:text-anoraBlue" aria-label="{{ t.github }}">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
             </div>
             <div>
                 <p class="font-semibold text-white">{{ t.product }}</p>
@@ -37,6 +42,6 @@
             </div>
         </div>
         <div class="border-t border-white/10">
-            <p class="mx-auto max-w-7xl px-4 py-5 text-xs text-onBlueMuted sm:px-6 lg:px-8">&copy; {{ year }} Anora Systems. {{ t.rights }}</p>
+            <p class="mx-auto max-w-7xl px-4 py-5 text-center text-xs text-onBlueMuted sm:px-6 lg:px-8">&copy; {{ year }} Anora Systems. {{ t.rights }}</p>
         </div>
     </footer>

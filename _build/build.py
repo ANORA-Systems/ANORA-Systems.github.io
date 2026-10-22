@@ -321,58 +321,16 @@ def nav_href(key: str, lang: str, is_home: bool) -> str:
 DEMO_FILE = REPO / "demo" / "examples.json"
 
 
-def format_number(value: float, lang: str) -> str:
-    text = f"{value:,.2f}".rstrip("0").rstrip(".")
-    return text.translate(str.maketrans(",.", ".,")) if lang == "de" else text
-
-
-def format_value(value, unit: str | None, lang: str) -> str:
-    """The same formatting as js/example-box.js."""
-    if isinstance(value, bool):
-        text = {"de": ("Ja", "Nein"), "en": ("Yes", "No")}[lang][0 if value else 1]
-    elif isinstance(value, (int, float)):
-        text = format_number(value, lang)
-    elif isinstance(value, list):
-        text = " × ".join(format_number(v, lang) if isinstance(v, (int, float)) else str(v) for v in value)
-    else:
-        text = str(value)
-    return f"{text} {unit}" if unit else text
-
-
-def confidence_tone(percent: int) -> str:
-    """Badge colours by confidence, the same thresholds as js/example-box.js."""
-    if percent >= 85:
-        return "bg-anoraTeal/10 text-teal-800 border-anoraTeal/30"
-    if percent >= 60:
-        return "bg-amber-50 text-amber-800 border-amber-200"
-    return "bg-gray-100 text-gray-700 border-gray-200"
-
-
 _demo_data: dict | None = None
 
 
 def demo_context(lang: str) -> dict:
-    """The first example of demo/examples.json, for the static hero card and the API excerpt."""
+    """The first example of demo/examples.json, for the API excerpt on the homepage."""
     global _demo_data
     if _demo_data is None:
         _demo_data = json.loads(DEMO_FILE.read_text(encoding="utf-8"))
     example = _demo_data["examples"][0]
     response = example["response"]
-    rows = []
-    for spec in response["specs"][:5]:
-        first = spec["value"][0]
-        percent = round(first["confidence"] * 100)
-        count = len(first["sources"])
-        sources = {"de": f"{count} Quelle" if count == 1 else f"{count} Quellen", "en": f"{count} source" if count == 1 else f"{count} sources"}[lang]
-        more = len(spec["value"]) - 1
-        rows.append({
-            "name": spec["name"],
-            "value": format_value(first["value"], first["unit"], lang),
-            "more": (f"+{more} " + ("weitere" if lang == "de" else "more")) if more else "",
-            "sources": sources,
-            "percent": percent,
-            "tone": confidence_tone(percent),
-        })
     excerpt = {
         "specs": response["specs"][:2],
         "not_found": response["not_found"][:1],
@@ -381,10 +339,6 @@ def demo_context(lang: str) -> dict:
     }
     return {
         "placeholder": bool(_demo_data.get("placeholder")),
-        "brand": example["input"]["brand"],
-        "product": example["input"]["product_name"],
-        "seconds": round(example["duration_ms"] / 1000),
-        "rows": rows,
         "request": html_escape(
             f"GET /api/v1/search?product_name={example['input']['product_name'].replace(' ', '+')}"
             f"&brand={example['input']['brand']}&category={example['category']['en']}"
