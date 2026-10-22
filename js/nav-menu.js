@@ -6,12 +6,14 @@
     const button = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     if (!button || !menu) return;
-    const icon = button.querySelector('i');
+    const openIcon = button.querySelector('[data-menu-icon="open"]');
+    const closeIcon = button.querySelector('[data-menu-icon="close"]');
 
     function setOpen(open) {
         menu.classList.toggle('hidden', !open);
-        icon.classList.toggle('fa-bars', !open);
-        icon.classList.toggle('fa-xmark', open);
+        openIcon.classList.toggle('hidden', open);
+        closeIcon.classList.toggle('hidden', !open);
+        button.setAttribute('aria-expanded', String(open));
     }
 
     button.addEventListener('click', () => setOpen(menu.classList.contains('hidden')));

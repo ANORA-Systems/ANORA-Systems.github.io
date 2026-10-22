@@ -1,0 +1,84 @@
+---
+title: Re-Commerce | Technische Daten für Gebrauchtgeräte | SpecScout
+description: Gebrauchte Geräte kommen meist nur mit einem Modellnamen. SpecScout ergänzt die technischen Daten, auch für ältere Modelle, mit Quellen und Konfidenzwert zu jedem Wert.
+nav: full
+footer: yes
+body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-screen
+---
+<head>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://anora-systems.com/recommerce">
+    <meta property="og:title" content="Re-Commerce mit SpecScout: technische Daten für Gebrauchtgeräte">
+    <meta property="og:description" content="Gebrauchte Geräte kommen meist nur mit einem Modellnamen. SpecScout ergänzt die technischen Daten, auch für ältere Modelle.">
+    <meta property="og:image" content="https://anora-systems.com/media/social-share.jpg">
+</head>
+
+    <main>
+
+    <header class="bg-anoraBlue">
+        <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+            <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-anoraTeal"><i data-lucide="recycle" class="h-4 w-4"></i>Re-Commerce</p>
+            <h1 class="mt-4 max-w-3xl text-4xl font-bold leading-tight text-white md:text-5xl">Gebrauchtgeräte kommen ohne Datenblatt. SpecScout ergänzt es.</h1>
+            <p class="mt-6 max-w-3xl text-lg leading-relaxed text-onBlue">Ein angekauftes Smartphone bringt einen Modellnamen mit, vielleicht eine Speichergröße auf dem Etikett, sonst nichts. Für ein gutes Angebot brauchen Sie die technischen Daten des Modells: vollständig, einheitlich und prüfbar.</p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href="{{ t.start_free_url }}" class="rounded-brand bg-anoraOrange px-6 py-3.5 text-center font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-anoraOrangeHover">Kostenlos starten</a>
+                <a href="contact" class="rounded-brand border border-white/30 px-6 py-3.5 text-center font-medium text-white transition hover:border-white">Kontakt aufnehmen</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="border-b border-gray-200 bg-white">
+        <div class="mx-auto flex max-w-5xl flex-col gap-2 px-4 py-8 sm:px-6 md:flex-row md:items-center md:gap-6 lg:px-8">
+            <p class="text-4xl font-bold text-anoraTeal">30 %</p>
+            <p class="text-gray-700">der Menschen in Deutschland haben schon einmal ein gebrauchtes Smartphone gekauft. <span class="text-sm text-gray-500">Quelle: <a href="https://www.bitkom.org/Presse/Presseinformation/Refurbished-gebraucht-Smartphones-nicht-immer-Neuware" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-anoraBlue">Bitkom-Umfrage, März 2025</a></span></p>
+        </div>
+    </section>
+
+    <section id="examples" class="scroll-mt-20 bg-gray-50 py-20">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-anoraBlue">Drei ältere Modelle, drei Ergebnisse</h2>
+            <p class="mt-4 max-w-3xl text-lg text-gray-600">Schalten Sie um zwischen dem, was oft im Angebot steht, und dem Ergebnis von SpecScout: jeder Wert mit Quellen und Konfidenzwert. Was sich nicht bestätigen ließ, steht als „nicht gefunden“ da.</p>
+            <div class="mt-8" data-example-box data-src="demo/examples.json" data-only="older">
+{{> example-box }}
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-20">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-anoraBlue">So passt SpecScout in Ihren Ablauf</h2>
+            <ol class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+                <li class="rounded-xl border border-gray-200 p-6">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">1</span>
+                    <h3 class="mt-4 font-semibold text-anoraBlue">Ankauf und Prüfung</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Sie prüfen und bewerten das Gerät wie gewohnt. Zustand, Akkugesundheit und Grading bleiben Ihre Sache.</p>
+                </li>
+                <li class="rounded-xl border border-gray-200 p-6">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">2</span>
+                    <h3 class="mt-4 font-semibold text-anoraBlue">Daten des Modells ergänzen</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Modellname und Marke oder EAN genügen: SpecScout liefert die Merkmale, die Sie festlegen, in Ihren Einheiten und Wertelisten.</p>
+                </li>
+                <li class="rounded-xl border border-gray-200 p-6">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">3</span>
+                    <h3 class="mt-4 font-semibold text-anoraBlue">Angebot erstellen</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Vollständige, filterbare Merkmale für Ihren Shop und Ihre Marktplatz-Angebote. Über die API auch für ganze Ankaufslisten, eine Anfrage pro Gerät.</p>
+                </li>
+            </ol>
+            <p class="mt-8 max-w-3xl text-sm leading-relaxed text-gray-600">Für ältere Modelle gelten dieselben Regeln wie für neue: Ein Wert kommt nur, wenn zwei unabhängige Quellen übereinstimmen oder eine maßgebliche Quelle wie der Hersteller ihn bestätigt. Wo ein Modell kaum noch dokumentiert ist, sehen Sie das am Ergebnis, als „nicht gefunden“ statt als Vermutung.</p>
+        </div>
+    </section>
+
+    <section class="bg-anoraBlue py-20 text-center">
+        <div class="mx-auto max-w-3xl px-4">
+            <h2 class="text-3xl font-bold text-white">Probieren Sie es mit Ihren Geräten.</h2>
+            <p class="mt-6 text-lg text-onBlue">20 Suchen im Monat sind kostenlos. Für größere Mengen und unser Pilotprogramm sprechen Sie uns an.</p>
+            <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+                <a href="{{ t.start_free_url }}" class="rounded-brand bg-anoraOrange px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-anoraOrangeHover">Kostenlos starten</a>
+                <a href="contact" class="rounded-brand border border-white/30 px-8 py-4 text-lg font-medium text-white transition hover:border-white">Kontakt aufnehmen</a>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <script src="js/example-box.js"></script>

@@ -11,6 +11,8 @@ Run from the repo root (Python 3.9+, standard library only):
 
 from __future__ import annotations
 
+import datetime
+import json
 import re
 import unittest
 
@@ -36,6 +38,31 @@ class TemplateTest(unittest.TestCase):
         for template in ("{{ missing }}", "{{# if on }}open", "{{/ if }}", "{{# loop x }}{{/ loop }}"):
             with self.subTest(template=template), self.assertRaises(build.BuildError):
                 render(template, on=True)
+
+
+class ExampleDataTest(unittest.TestCase):
+    """demo/examples.json holds search results in the API's response shape (js/example-box.js)."""
+
+    def test_examples_have_the_shape_the_example_box_reads(self) -> None:
+        data = json.loads((build.REPO / "demo" / "examples.json").read_text(encoding="utf-8"))
+        self.assertIsInstance(data.get("placeholder"), bool)
+        self.assertGreaterEqual(len(data["examples"]), 1)
+        self.assertGreaterEqual(sum(1 for e in data["examples"] if e.get("older")), 1, "the Re-commerce page needs older examples")
+        for example in data["examples"]:
+            with self.subTest(example=example.get("slug")):
+                self.assertEqual(set(example["input"]), {"product_name", "brand"})
+                self.assertEqual(set(example["category"]), {"de", "en"})
+                self.assertEqual(set(example["typical_listing"]), {"de", "en"})
+                datetime.date.fromisoformat(example["recorded_at"])
+                self.assertGreater(example["duration_ms"], 0)
+                response = example["response"]
+                for spec in response["specs"]:
+                    self.assertTrue(spec["value"], f"{spec['name']} is in specs without a value")
+                    for value in spec["value"]:
+                        self.assertTrue(0 <= value["confidence"] <= 1)
+                        self.assertTrue(value["sources"])
+                for spec in response["not_found"]:
+                    self.assertEqual(spec["value"], [])
 
 
 class PagesTest(unittest.TestCase):

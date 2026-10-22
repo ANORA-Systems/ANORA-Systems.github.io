@@ -37,6 +37,7 @@ from __future__ import annotations
 
 import datetime
 import hashlib
+import json
 import os
 import platform
 import re
@@ -48,7 +49,7 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from pages import NAV_SECTIONS, PAIRS, SITE, STATIC, STRINGS  # noqa: E402
+from pages import NAV, PAIRS, SITE, STATIC, STRINGS  # noqa: E402
 
 REPO = Path(__file__).resolve().parent.parent
 BUILD = REPO / "_build"
@@ -161,6 +162,36 @@ def render(nodes: list, scopes: list[dict], source: str) -> str:
     return "".join(out)
 
 
+# --- icons -----------------------------------------------------------------------------------
+
+LUCIDE = REPO / "assets" / "lucide"
+ICON_TAG = re.compile(r'<i data-lucide="([a-z0-9-]+)"(?: class="([^"]*)")?></i>')
+SVG_BODY = re.compile(r"<svg[^>]*>(.*)</svg>", re.S)
+
+
+def inline_icons(html: str, source: str) -> str:
+    """Replace <i data-lucide="name" class="..."></i> with the Lucide SVG, sized 1em by default.
+
+    The SVGs come from assets/lucide/ (Lucide, ISC licence). A missing icon stops the build;
+    copy it from the same lucide-static release (see assets/lucide/README.md).
+    """
+
+    def replace(match: re.Match) -> str:
+        name, classes = match.group(1), match.group(2) or ""
+        path = LUCIDE / f"{name}.svg"
+        if not path.is_file():
+            raise BuildError(f"{source}: no icon assets/lucide/{name}.svg")
+        body = " ".join(SVG_BODY.search(path.read_text(encoding="utf-8")).group(1).split())
+        class_attr = f"lucide lucide-{name} {classes}".strip()
+        return (
+            f'<svg class="{class_attr}" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" '
+            'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+            f'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{body}</svg>'
+        )
+
+    return ICON_TAG.sub(replace, html)
+
+
 # --- pages -----------------------------------------------------------------------------------
 
 FRONT_MATTER = re.compile(r"\A---\r?\n(.*?)\r?\n---\r?\n", re.S)
@@ -230,7 +261,6 @@ def read_page(page: str) -> tuple[dict[str, str], str, str]:
 def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
     lang = "en" if page.startswith("en/") else "de"
     is_home = page.endswith("index.html")
-    is_contact = page.endswith("contact.html")
     alternates = []
     if pair.de and pair.en:
         alternates = [
@@ -243,12 +273,14 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
         target = getattr(pair, code)
         langs.append({
             "code": code.upper(),
+            "hreflang": code,
             "active": code == lang,
             "href": relative_href(page, target) if target else "",
         })
-    section_prefix = "" if is_home else "./"
-    nav = [{"href": f"{section_prefix}#{sid}", "label": label, "current": False} for sid, label in NAV_SECTIONS[lang]]
-    nav.append({"href": "contact", "label": STRINGS[lang]["contact"], "current": is_contact})
+    nav = [
+        {"href": nav_href(key, lang, is_home), "label": STRINGS[lang][key], "current": page.endswith(f"{nav_page(key)}.html")}
+        for key in NAV
+    ]
     return {
         "lang": lang,
         "root": "../" if lang == "en" else "",
@@ -264,11 +296,105 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
         "langs": langs,
         "nav": nav,
         "logo_href": "#" if is_home else "./",
-        "section_prefix": section_prefix,
         "year": "2026",
         "t": STRINGS[lang],
+        "demo": demo_context(lang),
         "head": head,
     }
+
+
+def nav_page(key: str) -> str:
+    """The page file name (without .html) a menu entry stands for, if it is a page."""
+    return {"recommerce": "recommerce", "contact": "contact"}.get(key, "\0")
+
+
+def nav_href(key: str, lang: str, is_home: bool) -> str:
+    if key == "how_it_works":
+        return "#how-it-works" if is_home else "./#how-it-works"
+    if key == "docs":
+        return STRINGS[lang]["docs_href"]
+    return key
+
+
+# --- example data ----------------------------------------------------------------------------
+
+DEMO_FILE = REPO / "demo" / "examples.json"
+
+
+def format_number(value: float, lang: str) -> str:
+    text = f"{value:,.2f}".rstrip("0").rstrip(".")
+    return text.translate(str.maketrans(",.", ".,")) if lang == "de" else text
+
+
+def format_value(value, unit: str | None, lang: str) -> str:
+    """The same formatting as js/example-box.js."""
+    if isinstance(value, bool):
+        text = {"de": ("Ja", "Nein"), "en": ("Yes", "No")}[lang][0 if value else 1]
+    elif isinstance(value, (int, float)):
+        text = format_number(value, lang)
+    elif isinstance(value, list):
+        text = " × ".join(format_number(v, lang) if isinstance(v, (int, float)) else str(v) for v in value)
+    else:
+        text = str(value)
+    return f"{text} {unit}" if unit else text
+
+
+def confidence_tone(percent: int) -> str:
+    """Badge colours by confidence, the same thresholds as js/example-box.js."""
+    if percent >= 85:
+        return "bg-anoraTeal/10 text-teal-800 border-anoraTeal/30"
+    if percent >= 60:
+        return "bg-amber-50 text-amber-800 border-amber-200"
+    return "bg-gray-100 text-gray-700 border-gray-200"
+
+
+_demo_data: dict | None = None
+
+
+def demo_context(lang: str) -> dict:
+    """The first example of demo/examples.json, for the static hero card and the API excerpt."""
+    global _demo_data
+    if _demo_data is None:
+        _demo_data = json.loads(DEMO_FILE.read_text(encoding="utf-8"))
+    example = _demo_data["examples"][0]
+    response = example["response"]
+    rows = []
+    for spec in response["specs"][:5]:
+        first = spec["value"][0]
+        percent = round(first["confidence"] * 100)
+        count = len(first["sources"])
+        sources = {"de": f"{count} Quelle" if count == 1 else f"{count} Quellen", "en": f"{count} source" if count == 1 else f"{count} sources"}[lang]
+        more = len(spec["value"]) - 1
+        rows.append({
+            "name": spec["name"],
+            "value": format_value(first["value"], first["unit"], lang),
+            "more": (f"+{more} " + ("weitere" if lang == "de" else "more")) if more else "",
+            "sources": sources,
+            "percent": percent,
+            "tone": confidence_tone(percent),
+        })
+    excerpt = {
+        "specs": response["specs"][:2],
+        "not_found": response["not_found"][:1],
+        "status": response["status"],
+        "errors": response["errors"],
+    }
+    return {
+        "placeholder": bool(_demo_data.get("placeholder")),
+        "brand": example["input"]["brand"],
+        "product": example["input"]["product_name"],
+        "seconds": round(example["duration_ms"] / 1000),
+        "rows": rows,
+        "request": html_escape(
+            f"GET /api/v1/search?product_name={example['input']['product_name'].replace(' ', '+')}"
+            f"&brand={example['input']['brand']}&category={example['category']['en']}"
+        ),
+        "response_json": html_escape(json.dumps(excerpt, indent=2, ensure_ascii=False)),
+    }
+
+
+def html_escape(text: str) -> str:
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
 def build_pages(out: Path) -> None:
@@ -287,7 +413,7 @@ def build_pages(out: Path) -> None:
         context = page_context(page, index[page], meta, head)
         context["head"] = render(parse(head, page), [context], page)
         context["content"] = render(parse(body, page), [context], page)
-        html = render(layout, [context], f"page.html for {page}")
+        html = inline_icons(render(layout, [context], f"page.html for {page}"), page)
         target = out / page
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(html.replace("\r\n", "\n").encode("utf-8"))
@@ -392,7 +518,9 @@ def build(out: Path = DEFAULT_OUT) -> None:
     out = out.resolve()
     if out != DEFAULT_OUT and (out.is_relative_to(REPO) or REPO.is_relative_to(out)):
         raise BuildError(f"refusing to build into {out}: use _site/ or a folder outside the repo")
+    global _demo_data
     _partials.clear()
+    _demo_data = None
     if out.exists():
         shutil.rmtree(out)
     out.mkdir(parents=True)

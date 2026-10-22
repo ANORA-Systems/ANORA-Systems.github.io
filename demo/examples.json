@@ -1,0 +1,246 @@
+{
+  "placeholder": true,
+  "note": "PLACEHOLDER DATA. Invented values and example.com sources, in the shape of the API response. Replace with recorded results from the benchmark runs before the relaunch; the example box shows a 'placeholder' label while this flag is true.",
+  "examples": [
+    {
+      "slug": "galaxy-s24-ultra",
+      "category": {"de": "Smartphone", "en": "Smartphone"},
+      "recorded_at": "2026-10-20",
+      "duration_ms": 18400,
+      "input": {"product_name": "Galaxy S24 Ultra", "brand": "Samsung"},
+      "typical_listing": {
+        "de": ["Samsung Galaxy S24 Ultra 256GB Titanium Black – KI-Smartphone", "Großes 6,8\"-Display", "Top-Kamera mit 200 MP", "Akku: lange Laufzeit"],
+        "en": ["Samsung Galaxy S24 Ultra 256GB Titanium Black – AI smartphone", "Large 6.8\" display", "Top camera with 200 MP", "Battery: long-lasting"]
+      },
+      "response": {
+        "status": "success",
+        "errors": [],
+        "specs": [
+          {"name": "Display size", "unit": "inch", "instance": "float", "value": [{"value": 6.8, "unit": "inch", "confidence": 0.94, "sources": ["https://example.com/s24-ultra/manufacturer", "https://example.com/s24-ultra/datasheet", "https://example.com/s24-ultra/review"]}]},
+          {"name": "Storage", "unit": "GB", "instance": "int", "value": [
+            {"value": 256, "unit": "GB", "confidence": 0.93, "sources": ["https://example.com/s24-ultra/manufacturer", "https://example.com/s24-ultra/shop-a"]},
+            {"value": 512, "unit": "GB", "confidence": 0.93, "sources": ["https://example.com/s24-ultra/manufacturer", "https://example.com/s24-ultra/shop-b"]},
+            {"value": 1024, "unit": "GB", "confidence": 0.84, "sources": ["https://example.com/s24-ultra/manufacturer", "https://example.com/s24-ultra/comparison"]}
+          ]},
+          {"name": "RAM", "unit": "GB", "instance": "int", "value": [{"value": 12, "unit": "GB", "confidence": 0.91, "sources": ["https://example.com/s24-ultra/manufacturer", "https://example.com/s24-ultra/datasheet"]}]},
+          {"name": "Weight", "unit": "g", "instance": "float", "value": [{"value": 232, "unit": "g", "confidence": 0.95, "sources": ["https://example.com/s24-ultra/manufacturer", "https://example.com/s24-ultra/datasheet", "https://example.com/s24-ultra/review"]}]},
+          {"name": "Battery capacity", "unit": "mAh", "instance": "int", "value": [{"value": 5000, "unit": "mAh", "confidence": 0.95, "sources": ["https://example.com/s24-ultra/manufacturer", "https://example.com/s24-ultra/review", "https://example.com/s24-ultra/shop-a"]}]},
+          {"name": "Processor", "unit": "", "instance": "str", "value": [{"value": "Snapdragon 8 Gen 3 for Galaxy", "unit": null, "confidence": 0.9, "sources": ["https://example.com/s24-ultra/manufacturer", "https://example.com/s24-ultra/review"]}]},
+          {"name": "Main camera resolution", "unit": "MP", "instance": "int", "value": [{"value": 200, "unit": "MP", "confidence": 0.94, "sources": ["https://example.com/s24-ultra/manufacturer", "https://example.com/s24-ultra/datasheet"]}]},
+          {"name": "Charging port", "unit": "", "instance": "str", "value": [{"value": "USB-C", "unit": null, "confidence": 0.92, "sources": ["https://example.com/s24-ultra/manufacturer", "https://example.com/s24-ultra/shop-b"]}]},
+          {"name": "5G", "unit": "", "instance": "bool", "value": [{"value": true, "unit": null, "confidence": 0.96, "sources": ["https://example.com/s24-ultra/manufacturer", "https://example.com/s24-ultra/datasheet", "https://example.com/s24-ultra/shop-a"]}]}
+        ],
+        "not_found": [
+          {"name": "SAR value (head)", "unit": "W/kg", "instance": "float", "value": []}
+        ]
+      }
+    },
+    {
+      "slug": "iphone-12-pro",
+      "category": {"de": "Smartphone", "en": "Smartphone"},
+      "recorded_at": "2026-10-20",
+      "duration_ms": 14200,
+      "older": true,
+      "input": {"product_name": "iPhone 12 Pro", "brand": "Apple"},
+      "typical_listing": {
+        "de": ["Apple iPhone 12 Pro – generalüberholt – Zustand: sehr gut", "Speicher: siehe Variante", "Akkugesundheit mind. 85 %"],
+        "en": ["Apple iPhone 12 Pro – refurbished – condition: very good", "Storage: see variant", "Battery health at least 85%"]
+      },
+      "response": {
+        "status": "success",
+        "errors": [],
+        "specs": [
+          {"name": "Display size", "unit": "inch", "instance": "float", "value": [{"value": 6.1, "unit": "inch", "confidence": 0.94, "sources": ["https://example.com/iphone-12-pro/manufacturer", "https://example.com/iphone-12-pro/datasheet", "https://example.com/iphone-12-pro/review"]}]},
+          {"name": "Storage", "unit": "GB", "instance": "int", "value": [
+            {"value": 128, "unit": "GB", "confidence": 0.93, "sources": ["https://example.com/iphone-12-pro/manufacturer", "https://example.com/iphone-12-pro/shop-a"]},
+            {"value": 256, "unit": "GB", "confidence": 0.93, "sources": ["https://example.com/iphone-12-pro/manufacturer", "https://example.com/iphone-12-pro/shop-b"]},
+            {"value": 512, "unit": "GB", "confidence": 0.88, "sources": ["https://example.com/iphone-12-pro/manufacturer", "https://example.com/iphone-12-pro/comparison"]}
+          ]},
+          {"name": "Weight", "unit": "g", "instance": "float", "value": [{"value": 187, "unit": "g", "confidence": 0.95, "sources": ["https://example.com/iphone-12-pro/manufacturer", "https://example.com/iphone-12-pro/datasheet"]}]},
+          {"name": "Battery capacity", "unit": "mAh", "instance": "int", "value": [{"value": 2815, "unit": "mAh", "confidence": 0.71, "sources": ["https://example.com/iphone-12-pro/review", "https://example.com/iphone-12-pro/comparison"]}]},
+          {"name": "Processor", "unit": "", "instance": "str", "value": [{"value": "A14 Bionic", "unit": null, "confidence": 0.95, "sources": ["https://example.com/iphone-12-pro/manufacturer", "https://example.com/iphone-12-pro/review"]}]},
+          {"name": "Main camera resolution", "unit": "MP", "instance": "int", "value": [{"value": 12, "unit": "MP", "confidence": 0.94, "sources": ["https://example.com/iphone-12-pro/manufacturer", "https://example.com/iphone-12-pro/datasheet"]}]},
+          {"name": "Charging port", "unit": "", "instance": "str", "value": [{"value": "Lightning", "unit": null, "confidence": 0.95, "sources": ["https://example.com/iphone-12-pro/manufacturer", "https://example.com/iphone-12-pro/shop-a"]}]},
+          {"name": "5G", "unit": "", "instance": "bool", "value": [{"value": true, "unit": null, "confidence": 0.95, "sources": ["https://example.com/iphone-12-pro/manufacturer", "https://example.com/iphone-12-pro/datasheet"]}]}
+        ],
+        "not_found": [
+          {"name": "RAM", "unit": "GB", "instance": "int", "value": []}
+        ]
+      }
+    },
+    {
+      "slug": "pixel-7a",
+      "category": {"de": "Smartphone", "en": "Smartphone"},
+      "recorded_at": "2026-10-20",
+      "duration_ms": 16900,
+      "older": true,
+      "input": {"product_name": "Pixel 7a", "brand": "Google"},
+      "typical_listing": {
+        "de": ["Google Pixel 7a 128 GB Charcoal – gebraucht, Zustand B", "Display ca. 6 Zoll", "Kamera: gut"],
+        "en": ["Google Pixel 7a 128 GB Charcoal – used, grade B", "Display approx. 6 inches", "Camera: good"]
+      },
+      "response": {
+        "status": "success",
+        "errors": [],
+        "specs": [
+          {"name": "Display size", "unit": "inch", "instance": "float", "value": [{"value": 6.1, "unit": "inch", "confidence": 0.93, "sources": ["https://example.com/pixel-7a/manufacturer", "https://example.com/pixel-7a/datasheet"]}]},
+          {"name": "Storage", "unit": "GB", "instance": "int", "value": [{"value": 128, "unit": "GB", "confidence": 0.94, "sources": ["https://example.com/pixel-7a/manufacturer", "https://example.com/pixel-7a/shop-a", "https://example.com/pixel-7a/review"]}]},
+          {"name": "RAM", "unit": "GB", "instance": "int", "value": [{"value": 8, "unit": "GB", "confidence": 0.92, "sources": ["https://example.com/pixel-7a/manufacturer", "https://example.com/pixel-7a/datasheet"]}]},
+          {"name": "Weight", "unit": "g", "instance": "float", "value": [{"value": 193.5, "unit": "g", "confidence": 0.9, "sources": ["https://example.com/pixel-7a/manufacturer", "https://example.com/pixel-7a/review"]}]},
+          {"name": "Battery capacity", "unit": "mAh", "instance": "int", "value": [{"value": 4385, "unit": "mAh", "confidence": 0.89, "sources": ["https://example.com/pixel-7a/manufacturer", "https://example.com/pixel-7a/comparison"]}]},
+          {"name": "Processor", "unit": "", "instance": "str", "value": [{"value": "Google Tensor G2", "unit": null, "confidence": 0.95, "sources": ["https://example.com/pixel-7a/manufacturer", "https://example.com/pixel-7a/review"]}]},
+          {"name": "Main camera resolution", "unit": "MP", "instance": "int", "value": [{"value": 64, "unit": "MP", "confidence": 0.94, "sources": ["https://example.com/pixel-7a/manufacturer", "https://example.com/pixel-7a/datasheet"]}]},
+          {"name": "Charging port", "unit": "", "instance": "str", "value": [{"value": "USB-C", "unit": null, "confidence": 0.93, "sources": ["https://example.com/pixel-7a/manufacturer", "https://example.com/pixel-7a/shop-a"]}]},
+          {"name": "5G", "unit": "", "instance": "bool", "value": [{"value": true, "unit": null, "confidence": 0.94, "sources": ["https://example.com/pixel-7a/manufacturer", "https://example.com/pixel-7a/datasheet"]}]}
+        ],
+        "not_found": []
+      }
+    },
+    {
+      "slug": "xperia-1-v",
+      "category": {"de": "Smartphone", "en": "Smartphone"},
+      "recorded_at": "2026-10-20",
+      "duration_ms": 21300,
+      "older": true,
+      "input": {"product_name": "XPERIA 1 V", "brand": "Sony"},
+      "typical_listing": {
+        "de": ["Sony Xperia 1 V – Rückläufer, voll funktionsfähig", "Farbe: Schwarz", "Technische Daten: k. A."],
+        "en": ["Sony Xperia 1 V – customer return, fully working", "Colour: black", "Technical data: n/a"]
+      },
+      "response": {
+        "status": "success",
+        "errors": [],
+        "specs": [
+          {"name": "Display size", "unit": "inch", "instance": "float", "value": [{"value": 6.5, "unit": "inch", "confidence": 0.93, "sources": ["https://example.com/xperia-1-v/manufacturer", "https://example.com/xperia-1-v/datasheet"]}]},
+          {"name": "Storage", "unit": "GB", "instance": "int", "value": [
+            {"value": 256, "unit": "GB", "confidence": 0.92, "sources": ["https://example.com/xperia-1-v/manufacturer", "https://example.com/xperia-1-v/shop-a"]},
+            {"value": 512, "unit": "GB", "confidence": 0.76, "sources": ["https://example.com/xperia-1-v/comparison", "https://example.com/xperia-1-v/shop-b"]}
+          ]},
+          {"name": "RAM", "unit": "GB", "instance": "int", "value": [{"value": 12, "unit": "GB", "confidence": 0.9, "sources": ["https://example.com/xperia-1-v/manufacturer", "https://example.com/xperia-1-v/review"]}]},
+          {"name": "Weight", "unit": "g", "instance": "float", "value": [{"value": 187, "unit": "g", "confidence": 0.92, "sources": ["https://example.com/xperia-1-v/manufacturer", "https://example.com/xperia-1-v/datasheet"]}]},
+          {"name": "Battery capacity", "unit": "mAh", "instance": "int", "value": [{"value": 5000, "unit": "mAh", "confidence": 0.93, "sources": ["https://example.com/xperia-1-v/manufacturer", "https://example.com/xperia-1-v/review"]}]},
+          {"name": "Processor", "unit": "", "instance": "str", "value": [{"value": "Snapdragon 8 Gen 2", "unit": null, "confidence": 0.94, "sources": ["https://example.com/xperia-1-v/manufacturer", "https://example.com/xperia-1-v/review"]}]},
+          {"name": "Main camera resolution", "unit": "MP", "instance": "int", "value": [{"value": 48, "unit": "MP", "confidence": 0.91, "sources": ["https://example.com/xperia-1-v/manufacturer", "https://example.com/xperia-1-v/datasheet"]}]},
+          {"name": "Charging port", "unit": "", "instance": "str", "value": [{"value": "USB-C", "unit": null, "confidence": 0.9, "sources": ["https://example.com/xperia-1-v/manufacturer", "https://example.com/xperia-1-v/shop-a"]}]}
+        ],
+        "not_found": [
+          {"name": "5G", "unit": "", "instance": "bool", "value": []}
+        ]
+      }
+    },
+    {
+      "slug": "cube-stereo-hybrid-140",
+      "category": {"de": "Fahrrad", "en": "Bicycle"},
+      "recorded_at": "2026-10-20",
+      "duration_ms": 24700,
+      "input": {"product_name": "Stereo Hybrid 140 HPC TM 2023", "brand": "Cube"},
+      "typical_listing": {
+        "de": ["Cube Stereo Hybrid 140 HPC TM 625 2023 – E-MTB Fully", "Bosch-Motor", "Rahmengröße: M, L, XL"],
+        "en": ["Cube Stereo Hybrid 140 HPC TM 625 2023 – full-suspension e-MTB", "Bosch motor", "Frame size: M, L, XL"]
+      },
+      "response": {
+        "status": "success",
+        "errors": [],
+        "specs": [
+          {"name": "Frame material", "unit": "", "instance": "str", "value": [{"value": "Carbon", "unit": null, "confidence": 0.95, "sources": ["https://example.com/stereo-hybrid-140/manufacturer", "https://example.com/stereo-hybrid-140/review"]}]},
+          {"name": "Motor", "unit": "", "instance": "str", "value": [{"value": "Bosch Performance Line CX", "unit": null, "confidence": 0.94, "sources": ["https://example.com/stereo-hybrid-140/manufacturer", "https://example.com/stereo-hybrid-140/shop-a"]}]},
+          {"name": "Battery capacity", "unit": "Wh", "instance": "int", "value": [
+            {"value": 625, "unit": "Wh", "confidence": 0.93, "sources": ["https://example.com/stereo-hybrid-140/manufacturer", "https://example.com/stereo-hybrid-140/shop-a"]},
+            {"value": 750, "unit": "Wh", "confidence": 0.86, "sources": ["https://example.com/stereo-hybrid-140/manufacturer", "https://example.com/stereo-hybrid-140/shop-b"]}
+          ]},
+          {"name": "Wheel size", "unit": "inch", "instance": "float", "value": [{"value": 29, "unit": "inch", "confidence": 0.91, "sources": ["https://example.com/stereo-hybrid-140/manufacturer", "https://example.com/stereo-hybrid-140/review"]}]},
+          {"name": "Number of gears", "unit": "", "instance": "int", "value": [{"value": 12, "unit": null, "confidence": 0.94, "sources": ["https://example.com/stereo-hybrid-140/manufacturer", "https://example.com/stereo-hybrid-140/shop-a"]}]},
+          {"name": "Suspension travel (front)", "unit": "mm", "instance": "int", "value": [{"value": 150, "unit": "mm", "confidence": 0.88, "sources": ["https://example.com/stereo-hybrid-140/manufacturer", "https://example.com/stereo-hybrid-140/review"]}]},
+          {"name": "Brake type", "unit": "", "instance": "str", "value": [{"value": "Hydraulic disc brake", "unit": null, "confidence": 0.95, "sources": ["https://example.com/stereo-hybrid-140/manufacturer", "https://example.com/stereo-hybrid-140/shop-b"]}]},
+          {"name": "Weight", "unit": "kg", "instance": "float", "value": [{"value": 24.3, "unit": "kg", "confidence": 0.73, "sources": ["https://example.com/stereo-hybrid-140/review", "https://example.com/stereo-hybrid-140/comparison"]}]}
+        ],
+        "not_found": [
+          {"name": "Maximum system weight", "unit": "kg", "instance": "float", "value": []}
+        ]
+      }
+    },
+    {
+      "slug": "deuter-aircontact-core-60-10",
+      "category": {"de": "Rucksack", "en": "Backpack"},
+      "recorded_at": "2026-10-20",
+      "duration_ms": 15800,
+      "input": {"product_name": "Aircontact Core 60+10", "brand": "Deuter"},
+      "typical_listing": {
+        "de": ["Deuter Aircontact Core 60+10 Trekkingrucksack", "Viel Platz für lange Touren", "Bequemes Tragesystem"],
+        "en": ["Deuter Aircontact Core 60+10 trekking backpack", "Plenty of room for long trips", "Comfortable carrying system"]
+      },
+      "response": {
+        "status": "success",
+        "errors": [],
+        "specs": [
+          {"name": "Volume", "unit": "l", "instance": "int", "value": [{"value": 70, "unit": "l", "confidence": 0.9, "sources": ["https://example.com/aircontact-core/manufacturer", "https://example.com/aircontact-core/shop-a"]}]},
+          {"name": "Weight", "unit": "kg", "instance": "float", "value": [{"value": 2.5, "unit": "kg", "confidence": 0.91, "sources": ["https://example.com/aircontact-core/manufacturer", "https://example.com/aircontact-core/review"]}]},
+          {"name": "Dimensions (H × W × D)", "unit": "cm", "instance": "float", "value": [{"value": [84, 32, 26], "unit": "cm", "confidence": 0.86, "sources": ["https://example.com/aircontact-core/manufacturer", "https://example.com/aircontact-core/shop-b"]}]},
+          {"name": "Frame type", "unit": "", "instance": "str", "value": [{"value": "Internal frame", "unit": null, "confidence": 0.92, "sources": ["https://example.com/aircontact-core/manufacturer", "https://example.com/aircontact-core/review"]}]},
+          {"name": "Adjustable back length", "unit": "", "instance": "bool", "value": [{"value": true, "unit": null, "confidence": 0.93, "sources": ["https://example.com/aircontact-core/manufacturer", "https://example.com/aircontact-core/shop-a"]}]},
+          {"name": "Rain cover included", "unit": "", "instance": "bool", "value": [{"value": true, "unit": null, "confidence": 0.84, "sources": ["https://example.com/aircontact-core/manufacturer", "https://example.com/aircontact-core/shop-b"]}]},
+          {"name": "Main material", "unit": "", "instance": "str", "value": [{"value": "Polyamide", "unit": null, "confidence": 0.82, "sources": ["https://example.com/aircontact-core/manufacturer", "https://example.com/aircontact-core/review"]}]},
+          {"name": "Hydration system compatible", "unit": "", "instance": "bool", "value": [{"value": true, "unit": null, "confidence": 0.88, "sources": ["https://example.com/aircontact-core/manufacturer", "https://example.com/aircontact-core/shop-a"]}]}
+        ],
+        "not_found": [
+          {"name": "Back length range", "unit": "cm", "instance": "float", "value": []}
+        ]
+      }
+    },
+    {
+      "slug": "canon-eos-r6-mark-ii",
+      "category": {"de": "Kamera", "en": "Camera"},
+      "recorded_at": "2026-10-20",
+      "duration_ms": 19600,
+      "input": {"product_name": "EOS R6 Mark II", "brand": "Canon"},
+      "typical_listing": {
+        "de": ["Canon EOS R6 Mark II Body – spiegellose Vollformatkamera", "Hohe Auflösung", "4K-Video"],
+        "en": ["Canon EOS R6 Mark II body – full-frame mirrorless camera", "High resolution", "4K video"]
+      },
+      "response": {
+        "status": "success",
+        "errors": [],
+        "specs": [
+          {"name": "Sensor resolution", "unit": "MP", "instance": "float", "value": [{"value": 24.2, "unit": "MP", "confidence": 0.95, "sources": ["https://example.com/eos-r6-ii/manufacturer", "https://example.com/eos-r6-ii/datasheet", "https://example.com/eos-r6-ii/review"]}]},
+          {"name": "Sensor size", "unit": "", "instance": "str", "value": [{"value": "Full frame", "unit": null, "confidence": 0.96, "sources": ["https://example.com/eos-r6-ii/manufacturer", "https://example.com/eos-r6-ii/review"]}]},
+          {"name": "Weight (body)", "unit": "g", "instance": "float", "value": [{"value": 670, "unit": "g", "confidence": 0.92, "sources": ["https://example.com/eos-r6-ii/manufacturer", "https://example.com/eos-r6-ii/datasheet"]}]},
+          {"name": "Maximum ISO", "unit": "", "instance": "int", "value": [{"value": 102400, "unit": null, "confidence": 0.91, "sources": ["https://example.com/eos-r6-ii/manufacturer", "https://example.com/eos-r6-ii/review"]}]},
+          {"name": "In-body image stabilisation", "unit": "", "instance": "bool", "value": [{"value": true, "unit": null, "confidence": 0.95, "sources": ["https://example.com/eos-r6-ii/manufacturer", "https://example.com/eos-r6-ii/datasheet"]}]},
+          {"name": "Memory card slots", "unit": "", "instance": "int", "value": [{"value": 2, "unit": null, "confidence": 0.93, "sources": ["https://example.com/eos-r6-ii/manufacturer", "https://example.com/eos-r6-ii/shop-a"]}]},
+          {"name": "Dimensions (W × H × D)", "unit": "mm", "instance": "float", "value": [{"value": [138.4, 98.4, 88.4], "unit": "mm", "confidence": 0.87, "sources": ["https://example.com/eos-r6-ii/manufacturer", "https://example.com/eos-r6-ii/datasheet"]}]},
+          {"name": "Maximum video resolution", "unit": "", "instance": "str", "value": [{"value": "4K", "unit": null, "confidence": 0.94, "sources": ["https://example.com/eos-r6-ii/manufacturer", "https://example.com/eos-r6-ii/review"]}]}
+        ],
+        "not_found": [
+          {"name": "Shutter life", "unit": "", "instance": "int", "value": []}
+        ]
+      }
+    },
+    {
+      "slug": "hoka-clifton-9-gtx",
+      "category": {"de": "Laufschuh", "en": "Running Shoe"},
+      "recorded_at": "2026-10-20",
+      "duration_ms": 13900,
+      "input": {"product_name": "Clifton 9 GTX", "brand": "Hoka"},
+      "typical_listing": {
+        "de": ["HOKA Clifton 9 GTX Herren Laufschuh", "Wasserdicht", "Super gedämpft"],
+        "en": ["HOKA Clifton 9 GTX men's running shoe", "Waterproof", "Super cushioned"]
+      },
+      "response": {
+        "status": "success",
+        "errors": [],
+        "specs": [
+          {"name": "Drop", "unit": "mm", "instance": "int", "value": [{"value": 5, "unit": "mm", "confidence": 0.93, "sources": ["https://example.com/clifton-9-gtx/manufacturer", "https://example.com/clifton-9-gtx/review"]}]},
+          {"name": "Weight", "unit": "g", "instance": "float", "value": [{"value": 278, "unit": "g", "confidence": 0.78, "sources": ["https://example.com/clifton-9-gtx/review", "https://example.com/clifton-9-gtx/shop-a"]}]},
+          {"name": "Waterproof", "unit": "", "instance": "bool", "value": [{"value": true, "unit": null, "confidence": 0.95, "sources": ["https://example.com/clifton-9-gtx/manufacturer", "https://example.com/clifton-9-gtx/shop-b"]}]},
+          {"name": "Surface", "unit": "", "instance": "str", "value": [{"value": "Road", "unit": null, "confidence": 0.92, "sources": ["https://example.com/clifton-9-gtx/manufacturer", "https://example.com/clifton-9-gtx/review"]}]},
+          {"name": "Upper material", "unit": "", "instance": "str", "value": [{"value": "GORE-TEX", "unit": null, "confidence": 0.9, "sources": ["https://example.com/clifton-9-gtx/manufacturer", "https://example.com/clifton-9-gtx/shop-a"]}]},
+          {"name": "Stack height (heel)", "unit": "mm", "instance": "int", "value": [{"value": 32, "unit": "mm", "confidence": 0.85, "sources": ["https://example.com/clifton-9-gtx/manufacturer", "https://example.com/clifton-9-gtx/review"]}]},
+          {"name": "Cushioning", "unit": "", "instance": "str", "value": [{"value": "High", "unit": null, "confidence": 0.86, "sources": ["https://example.com/clifton-9-gtx/manufacturer", "https://example.com/clifton-9-gtx/review"]}]}
+        ],
+        "not_found": [
+          {"name": "Recycled material share", "unit": "%", "instance": "float", "value": []}
+        ]
+      }
+    }
+  ]
+}

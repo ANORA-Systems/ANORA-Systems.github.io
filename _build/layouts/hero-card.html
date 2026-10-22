@@ -1,0 +1,30 @@
+                    <div class="rounded-xl bg-white p-5 text-left shadow-2xl ring-1 ring-black/5 sm:p-6">
+                        <div class="flex items-start justify-between gap-3 border-b border-gray-100 pb-4">
+                            <div>
+                                <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">{{ t.input }}</p>
+                                <p class="mt-1 font-semibold text-anoraBlue">{{ demo.brand }} {{ demo.product }}</p>
+                            </div>
+                            <div class="flex flex-col items-end gap-1 text-xs text-gray-500">
+                                <span class="inline-flex items-center gap-1"><i data-lucide="clock" class="h-3.5 w-3.5"></i>{{ demo.seconds }} {{ t.seconds }}</span>
+{{# if demo.placeholder }}
+                                <span class="rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 font-medium text-amber-800">{{ t.placeholder }}</span>
+{{/ if }}
+                            </div>
+                        </div>
+                        <dl class="divide-y divide-gray-100">
+{{# each demo.rows }}
+                            <div class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1 py-2.5 sm:grid-cols-[9rem_minmax(0,1fr)_auto]">
+                                <dt class="col-span-2 text-xs text-gray-500 sm:col-span-1 sm:text-sm">{{ name }}</dt>
+                                <dd class="text-sm font-semibold text-anoraBlue">{{ value }}{{# if more }} <span class="ml-1 text-xs font-normal text-gray-500">{{ more }}</span>{{/ if }}</dd>
+                                <dd class="flex items-center gap-2 justify-self-end">
+                                    <span class="inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-semibold tabular-nums {{ tone }}" title="{{ t.confidence }}: {{ percent }} %">{{ percent }} %</span>
+                                    <span class="hidden items-center gap-1 text-xs text-anoraTeal sm:inline-flex"><i data-lucide="link-2" class="h-3.5 w-3.5"></i>{{ sources }}</span>
+                                </dd>
+                            </div>
+{{/ each }}
+                        </dl>
+                        <div class="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-gray-100 pt-3 text-xs">
+                            <a href="#examples" class="inline-flex items-center gap-1 font-semibold text-anoraTeal hover:text-anoraTealHover">{{ t.more_examples }} <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i></a>
+                            <a href="{{ t.docs_href }}#example" class="inline-flex items-center gap-1 text-gray-500 hover:text-anoraBlue"><i data-lucide="code-xml" class="h-3.5 w-3.5"></i>{{ t.json_example }}</a>
+                        </div>
+                    </div>

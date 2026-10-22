@@ -1,0 +1,84 @@
+---
+title: Re-commerce | Technical data for used devices | SpecScout
+description: Used devices usually arrive with nothing but a model name. SpecScout adds the technical data, for older models too, with sources and a confidence score for every value.
+nav: full
+footer: yes
+body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-screen
+---
+<head>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://anora-systems.com/en/recommerce">
+    <meta property="og:title" content="Re-commerce with SpecScout: technical data for used devices">
+    <meta property="og:description" content="Used devices usually arrive with nothing but a model name. SpecScout adds the technical data, for older models too.">
+    <meta property="og:image" content="https://anora-systems.com/media/social-share.jpg">
+</head>
+
+    <main>
+
+    <header class="bg-anoraBlue">
+        <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+            <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-anoraTeal"><i data-lucide="recycle" class="h-4 w-4"></i>Re-commerce</p>
+            <h1 class="mt-4 max-w-3xl text-4xl font-bold leading-tight text-white md:text-5xl">Used devices arrive without a datasheet. SpecScout adds it.</h1>
+            <p class="mt-6 max-w-3xl text-lg leading-relaxed text-onBlue">A trade-in smartphone comes with a model name, maybe a storage size on the label, and nothing else. A good listing needs the model's technical data: complete, consistent and checkable.</p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href="{{ t.start_free_url }}" class="rounded-brand bg-anoraOrange px-6 py-3.5 text-center font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-anoraOrangeHover">Start free</a>
+                <a href="contact" class="rounded-brand border border-white/30 px-6 py-3.5 text-center font-medium text-white transition hover:border-white">Contact us</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="border-b border-gray-200 bg-white">
+        <div class="mx-auto flex max-w-5xl flex-col gap-2 px-4 py-8 sm:px-6 md:flex-row md:items-center md:gap-6 lg:px-8">
+            <p class="text-4xl font-bold text-anoraTeal">30%</p>
+            <p class="text-gray-700">of people in Germany have bought a used smartphone before. <span class="text-sm text-gray-500">Source: <a href="https://www.bitkom.org/Presse/Presseinformation/Refurbished-gebraucht-Smartphones-nicht-immer-Neuware" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-anoraBlue">Bitkom survey, March 2025</a></span></p>
+        </div>
+    </section>
+
+    <section id="examples" class="scroll-mt-20 bg-gray-50 py-20">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-anoraBlue">Three older models, three results</h2>
+            <p class="mt-4 max-w-3xl text-lg text-gray-600">Switch between what a listing often says and the SpecScout result: every value with its sources and a confidence score. What couldn't be confirmed is shown as "not found".</p>
+            <div class="mt-8" data-example-box data-src="../demo/examples.json" data-only="older">
+{{> example-box }}
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-20">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-anoraBlue">How SpecScout fits your intake</h2>
+            <ol class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+                <li class="rounded-xl border border-gray-200 p-6">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">1</span>
+                    <h3 class="mt-4 font-semibold text-anoraBlue">Intake and grading</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">You check and grade the device as you do today. Condition, battery health and grading stay with you.</p>
+                </li>
+                <li class="rounded-xl border border-gray-200 p-6">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">2</span>
+                    <h3 class="mt-4 font-semibold text-anoraBlue">Add the model's data</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Model name and brand, or an EAN, is enough: SpecScout returns the attributes you define, in your units and value lists.</p>
+                </li>
+                <li class="rounded-xl border border-gray-200 p-6">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">3</span>
+                    <h3 class="mt-4 font-semibold text-anoraBlue">Create the listing</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Complete, filterable attributes for your shop and your marketplace listings. Through the API for whole intake lists too, one request per device.</p>
+                </li>
+            </ol>
+            <p class="mt-8 max-w-3xl text-sm leading-relaxed text-gray-600">Older models follow the same rules as new ones: a value is only returned when two independent sources agree, or when an authoritative source such as the manufacturer confirms it. Where a model is barely documented any more, the result shows it, as "not found" instead of a guess.</p>
+        </div>
+    </section>
+
+    <section class="bg-anoraBlue py-20 text-center">
+        <div class="mx-auto max-w-3xl px-4">
+            <h2 class="text-3xl font-bold text-white">Try it with your devices.</h2>
+            <p class="mt-6 text-lg text-onBlue">20 searches a month are free. For larger volumes and our pilot program, talk to us.</p>
+            <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+                <a href="{{ t.start_free_url }}" class="rounded-brand bg-anoraOrange px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-anoraOrangeHover">Start free</a>
+                <a href="contact" class="rounded-brand border border-white/30 px-8 py-4 text-lg font-medium text-white transition hover:border-white">Contact us</a>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <script src="../js/example-box.js"></script>

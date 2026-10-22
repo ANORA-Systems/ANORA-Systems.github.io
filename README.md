@@ -27,6 +27,10 @@ footer: yes
 
 The build wraps it in `_build/layouts/page.html`. That layout adds the shared `<head>` (canonical URL, `hreflang` alternates, favicons, stylesheets), the menu and the footer, whose text comes from `_build/pages.py` in both languages. Change the menu or footer there once, not in every page.
 
+An icon is written as `<i data-lucide="check" class="h-4 w-4"></i>`; the build replaces it with the SVG from `assets/lucide/`.
+
+The example box on the homepage and the Re-commerce page (`js/example-box.js`) shows search results from `demo/examples.json`, in the API's response shape; the site never calls the API. The hero card and the API excerpt on the homepage are built from the same file. While the file says `"placeholder": true`, every one of them shows a "placeholder data" label: replace the data with recorded results and set the flag to `false` before the relaunch.
+
 `_build/pages.py` also lists every page with its counterpart in the other language. The build stops on a page that is missing there, and it writes `sitemap.xml` from that list, with each page's `lastmod` taken from its last commit.
 
 ## Self-hosted assets only
@@ -36,7 +40,7 @@ The site loads nothing from other servers. Fonts, icons and styles ship with it:
 | What | Where |
 |---|---|
 | Fonts (Inter, Outfit, Fira Code) | `assets/fonts/`, declared in `assets/fonts/fonts.css` |
-| Icons (Font Awesome Free) | `assets/fontawesome/` |
+| Icons (Lucide, the apps' set; Font Awesome Free on pages not yet redesigned) | `assets/lucide/` (inlined by the build, see its README), `assets/fontawesome/` |
 | Styles (Tailwind CSS 3.4.17) | compiled by the build into `assets/css/site.css`; config in `_build/tailwind.config.js` |
 | Images, logos, favicons | `media/` |
 
@@ -69,7 +73,7 @@ node --test                                # Node 20+: call scheduler slots
 
 | Test | Checks |
 |---|---|
-| `_tests/test_build.py` | The templates render as intended; every built page is its own canonical URL, German and English pages point at each other, and the sitemap lists every indexed page and no archived one. |
+| `_tests/test_build.py` | The templates render as intended; the example data has the shape the example box reads; every built page is its own canonical URL, German and English pages point at each other, and the sitemap lists every indexed page and no archived one. |
 | `_tests/test_self_hosted_assets.py` | No built page, stylesheet or script loads anything from another server, and every local file a page points at exists. |
 | `_tests/test_clean_urls.py` | Links between our pages, canonical and `hreflang` URLs and the sitemap use clean URLs without `.html`, and each one points at a page that exists. |
 | `_tests/call-slots.test.js` | The call scheduler (`js/call-slots.js`) offers only valid times: weekdays 9:00 to 16:30 Berlin time without lunch, no public holidays, next-day bookings until 17:30, at most six weeks ahead, correct across the clock changes and in the visitor's time zone. |

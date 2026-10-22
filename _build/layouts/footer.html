@@ -1,5 +1,42 @@
-    <footer class="bg-anoraBlue py-12 text-center mt-auto">
-        <div class="max-w-3xl mx-auto px-4 text-gray-400 text-sm">
-{{> footer-content }}
+    <footer class="mt-auto bg-anoraBlue text-sm text-onBlue">
+        <div class="mx-auto grid grid-cols-1 max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-4 lg:px-8">
+            <div>
+                <p class="font-outfit text-xl tracking-tight text-white">Spec<span class="text-anoraTeal">Scout</span></p>
+                <p class="mt-3 leading-relaxed">Anora Systems<br>Briachstraße 10<br>88250 Weingarten</p>
+                <p class="mt-3"><a href="mailto:info@anora-systems.com" class="transition hover:text-white">info@anora-systems.com</a></p>
+                <a href="https://www.linkedin.com/company/anora-systems" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-[#0077b5] hover:text-white" aria-label="{{ t.linkedin }}">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+            </div>
+            <div>
+                <p class="font-semibold text-white">{{ t.product }}</p>
+                <ul class="mt-3 space-y-2">
+                    <li><a href="./#how-it-works" class="transition hover:text-white">{{ t.how_it_works }}</a></li>
+                    <li><a href="recommerce" class="transition hover:text-white">{{ t.recommerce }}</a></li>
+                    <li><a href="{{ t.docs_href }}" class="transition hover:text-white">{{ t.docs }}</a></li>
+                    <li><a href="{{ t.start_free_url }}" class="transition hover:text-white">{{ t.start_free }}</a></li>
+                    <li><a href="{{ t.login_url }}" class="transition hover:text-white">{{ t.login }}</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold text-white">{{ t.company }}</p>
+                <ul class="mt-3 space-y-2">
+                    <li><a href="contact" class="transition hover:text-white">{{ t.contact }}</a></li>
+                    <li><a href="./#team" class="transition hover:text-white">Team</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-semibold text-white">{{ t.legal }}</p>
+                <ul class="mt-3 space-y-2">
+                    <li><a href="{{ t.imprint_href }}" class="transition hover:text-white">{{ t.imprint }}</a></li>
+                    <li><a href="{{ t.privacy_href }}" class="transition hover:text-white">{{ t.privacy }}</a></li>
+                    <li><a href="{{ t.terms_href }}" class="transition hover:text-white">{{ t.terms }}</a></li>
+                    <li><a href="{{ t.providers_href }}" class="transition hover:text-white">{{ t.providers }}</a></li>
+                    <li><a href="{{ t.licenses_href }}" class="transition hover:text-white">{{ t.licenses }}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-white/10">
+            <p class="mx-auto max-w-7xl px-4 py-5 text-xs text-onBlueMuted sm:px-6 lg:px-8">&copy; {{ year }} Anora Systems. {{ t.rights }}</p>
         </div>
     </footer>
