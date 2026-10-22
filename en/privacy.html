@@ -97,8 +97,7 @@
                 <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.2 Controller</h3>
                 <p class="mb-4">The controller responsible for data processing is:</p>
                 <div class="bg-gray-50 p-4 rounded border border-gray-200 text-sm mb-4">
-                    Anora Systems<br>
-                    Johannes Körner<br>
+                    Anora Systems, owner Johannes Körner<br>
                     Briachstraße 10<br>
                     88250 Weingarten<br>
                     Germany<br>
@@ -142,7 +141,7 @@
                     Our server api.anora-systems.com runs SpecScout and receives the contact and call requests from the website. It logs every request with IP address, time, the address called including its parameters (for searches, the search terms) and the result. Some events we log with your user identifier or email address, for example a registration or the sending of an email. We delete the server logs after 30 days at the latest.
                 </p>
                 <p class="mb-4">
-                    For error and performance monitoring we use Sentry (A.4). Sentry receives technical details of requests to this server, that is the address called with its parameters, the browser identification (user agent), response times and error messages, as well as our log messages. These details can include the content of your request, such as search terms, the text of a form or email addresses. We do not deliberately send your IP address to Sentry. Sentry is certified under the EU-U.S. Data Privacy Framework (A.6) and deletes the data after at most 90 days.
+                    For error and performance monitoring we use Sentry (A.4). Sentry receives technical details of requests to this server, that is the address called with its parameters, the browser identification (user agent), response times and error messages, as well as our log messages. These details can include the content of your request, such as search terms, the text of a form or email addresses. We never deliberately send your IP address to Sentry, but in some cases it may be contained in individual reports. Sentry is certified under the EU-U.S. Data Privacy Framework (A.6) and deletes the data after at most 90 days.
                 </p>
                 <p class="mb-4">
                     The legal basis for both is our legitimate interest in detecting errors quickly, investigating abuse and running the service securely and reliably (Art. 6(1)(f) GDPR).
@@ -272,7 +271,7 @@
                     For every login we store a session with your IP address, your browser identification and the timestamps. A session ends after at most 30 days, when you log out or when you change your password, and is then deleted.
                 </p>
                 <p class="mb-4">
-                    In the dashboard you can change your name, email address and password, export your data as a file and delete your account yourself; with an account from the search app, you sign in there with a sign-in link. When you delete it, we remove your account together with its sessions, API keys, your own specifications and categories, search settings and quota counters. Entries in the access log (C.4) remain, without a link to your account, until they are deleted after 30 days. Entries in the server logs and at Sentry (A.5) and the internal registration email in our mailbox (A.8) also remain for a limited time. We keep account data as long as the account exists; we delete unconfirmed accounts after 7 days (C.2). User accounts connected to a contract for a paid plan, including custom specifications, categories and search settings, are deleted 30 days after the contract ends, unless statutory retention obligations apply.
+                    In the dashboard you can change your name, email address and password, export your data as a file and delete your account yourself; with an account from the search app, you sign in there with a sign-in link. When you delete it, we remove your account together with its sessions, API keys, your own specifications and categories, search settings and quota counters. Entries in the access log (C.4) remain, without a link to your account, until they are deleted after 30 days. Entries in the server logs and at Sentry also remain until they are deleted after 30 days or at most 90 days respectively (A.5). We delete the internal email about your registration (C.2) together with your account. We keep account data as long as the account exists; we delete unconfirmed accounts after 7 days (C.2). User accounts connected to a contract for a paid plan, including custom specifications, categories and search settings, are deleted 30 days after the contract ends, unless statutory retention obligations apply.
                 </p>
 
                 <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.4 API keys and access log</h3>
@@ -291,7 +290,7 @@
                     To improve SpecScout, we also store a sample for every page an AI model reads for a search: the page's address and text, the model's answer, product name, brand, category and the specification definitions searched for. These samples, too, are stored without a user identifier and without an IP address. We use them to check the quality of the extraction, to compare models and providers and to improve the choice of sources, and we delete them after 24 months. We also use the stored samples to improve our algorithm, in particular to train a ranking algorithm that rates sources and puts them in order. We do not train large language models with them. The page texts can contain personal data of third parties (C.6). The legal basis is Art. 6(1)(f) GDPR; our legitimate interest lies in more accurate extraction, a better choice of sources and thus the data quality of SpecScout.
                 </p>
                 <p class="mb-4">
-                    Searches usually contain only product data. Please do not enter personal data in searches, specifications or categories.
+                    Searches usually contain only product data. Please do not enter personal data in searches, specifications, categories or descriptions for AI drafts.
                 </p>
 
                 <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.6 Services used for searches and AI drafts</h3>
@@ -301,8 +300,8 @@
                 <ul class="list-disc pl-5 mb-4 space-y-2">
                     <li><strong>Web search:</strong> web search services receive search terms built from brand, product, category and up to three specification names, plus your domain filters.</li>
                     <li><strong>Fetching web pages:</strong> our server fetches the public pages found itself. The websites visited see our server's IP address, not yours.</li>
-                    <li><strong>AI models that read the pages:</strong> providers of AI models receive product name, brand, specification definitions and the text of the pages fetched. Which provider answers a request depends on availability and response time; we also keep comparing which models read the pages best. The providers are based in the USA. Providers that forward requests to other providers of the model concerned (such as OpenRouter) are used only so that a request goes exclusively to providers that, according to the forwarding provider, neither store the request data nor use it for training; these may be based in the USA or another country outside the EU.</li>
-                    <li><strong>AI drafts and AI reviews of specifications</strong> in the dashboard: your description and existing specification definitions go, with the same restriction, to providers of AI models.</li>
+                    <li><strong>AI models that read the pages:</strong> providers of AI models receive product name, brand, specification definitions and the text of the pages fetched. Which provider answers a request depends on availability and response time; we also keep comparing which models read the pages best. The providers are based in the EU, the United Kingdom or the USA and also process the data in the USA.</li>
+                    <li><strong>AI drafts and AI reviews of specifications</strong> in the dashboard: your description and existing specification definitions go to providers of AI models.</li>
                 </ul>
                 <p class="mb-4">
                     We base transfers to third countries on the standard contractual clauses or, for certified providers, on the EU-U.S. Data Privacy Framework (A.6). The web pages fetched can contain personal data of third parties, such as names in reviews. We extract only product information; we store page texts only in the samples described in C.5 and delete them after 24 months. The legal basis is providing the service (Art. 6(1)(b) GDPR); where page texts contain personal data of third parties, it is our legitimate interest in analyzing publicly available product information (Art. 6(1)(f) GDPR).
