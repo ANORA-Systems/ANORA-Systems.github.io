@@ -23,69 +23,75 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
     <section id="vergleich" class="scroll-mt-20 bg-gray-50 py-20">
         <div class="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
             <h2 class="mx-auto max-w-4xl text-3xl font-bold leading-tight text-anoraBlue md:text-4xl">SpecScout macht Second-Hand-Produkte genauso <span class="text-anoraTeal">transparent</span>, <span class="text-anoraTeal">filterbar</span> und <span class="text-anoraTeal">verkäuflich</span> wie Neuware.</h2>
-            <p class="mx-auto mt-6 max-w-3xl text-lg text-gray-600">Dasselbe Gerät, zwei Angebote: ein iPhone 12 Pro aus dem Ankauf. Links, wie es auf Marktplätzen oft angeboten wird: ein paar Angaben vom Etikett, der Rest im Fließtext. Rechts dasselbe Angebot mit den Daten, die SpecScout zum Modell gefunden hat.</p>
+            <p class="mx-auto mt-6 max-w-3xl text-lg text-gray-600">Dasselbe Gerät, zwei Angebote: ein iPhone 12 Pro aus dem Ankauf. Links, wie es auf Marktplätzen oft angeboten wird: eine kurze Beschreibung und ein paar Angaben vom Etikett. Rechts dasselbe Angebot mit den Daten, die SpecScout zum Modell gefunden hat.</p>
         </div>
-        <div class="mx-auto mt-10 grid max-w-[88rem] grid-cols-1 gap-6 px-4 sm:px-6 lg:px-8 xl:grid-cols-2">
-            <article class="flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-                <div class="border-b border-gray-100 bg-gray-50 px-6 py-3">
-                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-500">Typisches Angebot</p>
+        <div class="mx-auto mt-10 max-w-[88rem] px-4 sm:px-6 lg:px-8">
+            <div class="overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-xl shadow-slate-900/10">
+                <div class="flex items-center justify-between gap-4 bg-anoraBlue px-5 py-3">
+                    <div class="flex gap-2" aria-hidden="true"><span class="h-3 w-3 rounded-full bg-red-500"></span><span class="h-3 w-3 rounded-full bg-yellow-500"></span><span class="h-3 w-3 rounded-full bg-green-500"></span></div>
+                    <p class="truncate font-mono text-xs text-onBlueMuted">SpecScout · Apple iPhone 12 Pro</p>
                 </div>
-                <div class="flex-1 p-6">
-                    <div class="flex items-center gap-5">
-                        <div class="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400"><i data-lucide="smartphone" class="h-10 w-10"></i></div>
-                        <div>
-                            <h3 class="font-semibold leading-snug text-anoraBlue">Apple iPhone 12 Pro 128 GB Pazifikblau</h3>
-                            <p class="mt-1 text-sm text-gray-500">Gebraucht – Gut</p>
-                            <p class="mt-1 text-2xl font-bold text-slate-900">289 €</p>
+                <div class="grid grid-cols-1 divide-y divide-gray-200 xl:grid-cols-2 xl:divide-x xl:divide-y-0">
+                    <article class="flex flex-col">
+                        <div class="flex-1 p-6">
+                            <div class="flex flex-wrap items-center gap-x-5 gap-y-4">
+                                <div class="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400"><i data-lucide="smartphone" class="h-10 w-10"></i></div>
+                                <div class="min-w-0 flex-1">
+                                    <h3 class="font-semibold leading-snug text-anoraBlue">Apple iPhone 12 Pro 128 GB Pazifikblau</h3>
+                                    <p class="mt-1 text-sm text-gray-500">Gebraucht – Gut</p>
+                                    <p class="mt-1 text-2xl font-bold text-slate-900">289 €</p>
+                                </div>
+                                <div class="order-first w-full sm:order-none sm:w-auto sm:self-start">
+                                    <p class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 font-mono text-sm font-medium uppercase tracking-wide text-slate-600 ring-1 ring-inset ring-gray-200">Typisches Angebot</p>
+                                </div>
+                            </div>
+                            <h4 class="mt-6 text-xs font-semibold uppercase tracking-wider text-gray-500">Beschreibung</h4>
+                            <p class="mt-2 text-sm leading-relaxed text-gray-600">Gepflegtes iPhone 12 Pro mit 128 GB, immer mit Hülle und Panzerglas benutzt. Leichte Gebrauchsspuren am Rahmen, Display ohne Kratzer, Akkugesundheit 87 %. Super Kamera, schneller Prozessor und großes Display, für den Alltag mehr als genug. Kein Simlock, auch mit eSIM. Lieferumfang: iPhone und Original-Ladekabel.</p>
+                            <div class="mt-6 rounded-xl bg-gray-50 p-5">
+                                <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500">Artikelmerkmale</h4>
+                                <dl class="mt-4 grid grid-cols-2 gap-x-6 gap-y-4 text-sm sm:grid-cols-3">
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Marke</dt><dd class="mt-0.5 font-medium text-slate-800">Apple</dd></div>
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Modell</dt><dd class="mt-0.5 font-medium text-slate-800">iPhone 12 Pro</dd></div>
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Speicher</dt><dd class="mt-0.5 font-medium text-slate-800">128 GB</dd></div>
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Farbe</dt><dd class="mt-0.5 font-medium text-slate-800">Pazifikblau</dd></div>
+                                </dl>
+                            </div>
                         </div>
-                    </div>
-                    <h4 class="mt-6 text-xs font-semibold uppercase tracking-wider text-gray-500">Beschreibung</h4>
-                    <div class="mt-2 space-y-3 text-sm leading-relaxed text-gray-600">
-                        <p>Hallo, hier verkaufen wir ein iPhone 12 Pro in Pazifikblau mit 128 GB. Das Gerät wurde immer mit Hülle und Panzerglas benutzt und ist in einem guten Zustand, am Rahmen sind nur leichte Gebrauchsspuren zu sehen (siehe Bilder). Display ohne Kratzer, Face ID und alle Tasten funktionieren einwandfrei.</p>
-                        <p>Akkukapazität laut Einstellungen 87 %, der Akku hält locker einen Tag! Super Kamera mit drei Linsen, schneller Prozessor und großes Display, für den Alltag mehr als genug. Kein Simlock, läuft in allen Netzen, auch mit eSIM.</p>
-                        <p>Lieferumfang: iPhone und Original-Ladekabel, OVP leider nicht mehr vorhanden. Versand innerhalb von 24 Stunden, gut verpackt und versichert. Bei Fragen gerne melden!</p>
-                    </div>
-                    <div class="mt-6 rounded-xl bg-gray-50 p-5">
-                        <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500">Artikelmerkmale</h4>
-                        <dl class="mt-4 grid grid-cols-2 gap-x-6 gap-y-4 text-sm sm:grid-cols-3">
-                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Marke</dt><dd class="mt-0.5 font-medium text-slate-800">Apple</dd></div>
-                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Modell</dt><dd class="mt-0.5 font-medium text-slate-800">iPhone 12 Pro</dd></div>
-                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Speicher</dt><dd class="mt-0.5 font-medium text-slate-800">128 GB</dd></div>
-                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Farbe</dt><dd class="mt-0.5 font-medium text-slate-800">Pazifikblau</dd></div>
-                        </dl>
-                    </div>
-                </div>
-            </article>
-            <article class="flex flex-col overflow-hidden rounded-2xl border border-anoraTeal/50 bg-white shadow-md shadow-anoraTeal/10">
-                <div class="border-b border-anoraTeal/20 bg-anoraTeal/5 px-6 py-3">
-                    <p class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-teal-700"><i data-lucide="badge-check" class="h-4 w-4"></i>Mit SpecScout</p>
-                </div>
-                <div class="flex-1 p-6">
-                    <div class="flex items-center gap-5">
-                        <div class="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400"><i data-lucide="smartphone" class="h-10 w-10"></i></div>
-                        <div>
-                            <h3 class="font-semibold leading-snug text-anoraBlue">Apple iPhone 12 Pro 128 GB Pazifikblau</h3>
-                            <p class="mt-1 text-sm text-gray-500">Gebraucht – Gut</p>
-                            <p class="mt-1 text-2xl font-bold text-slate-900">289 €</p>
+                    </article>
+                    <article class="flex flex-col">
+                        <div class="flex-1 p-6">
+                            <div class="flex flex-wrap items-center gap-x-5 gap-y-4">
+                                <div class="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400"><i data-lucide="smartphone" class="h-10 w-10"></i></div>
+                                <div class="min-w-0 flex-1">
+                                    <h3 class="font-semibold leading-snug text-anoraBlue">Apple iPhone 12 Pro 128 GB Pazifikblau</h3>
+                                    <p class="mt-1 text-sm text-gray-500">Gebraucht – Gut</p>
+                                    <p class="mt-1 text-2xl font-bold text-slate-900">289 €</p>
+                                </div>
+                                <div class="order-first w-full sm:order-none sm:w-auto sm:self-start">
+                                    <p class="inline-flex items-center gap-1.5 rounded-full bg-anoraTeal/10 px-3 py-1 font-mono text-sm font-medium uppercase tracking-wide text-teal-700 ring-1 ring-inset ring-anoraTeal/40"><i data-lucide="badge-check" class="h-4 w-4"></i>Mit SpecScout</p>
+                                </div>
+                            </div>
+                            <h4 class="mt-6 text-xs font-semibold uppercase tracking-wider text-gray-500">Beschreibung</h4>
+                            <p class="mt-2 text-sm leading-relaxed text-gray-600">Gepflegtes iPhone 12 Pro mit 128 GB, immer mit Hülle und Panzerglas benutzt. Leichte Gebrauchsspuren am Rahmen, Display ohne Kratzer, Akkugesundheit 87 %. Super Kamera, schneller Prozessor und großes Display, für den Alltag mehr als genug. Kein Simlock, auch mit eSIM. Lieferumfang: iPhone und Original-Ladekabel.</p>
+                            <div class="mt-6 rounded-xl bg-gray-50 p-5">
+                                <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500">Artikelmerkmale</h4>
+                                <dl class="mt-4 grid grid-cols-2 gap-x-6 gap-y-4 text-sm sm:grid-cols-3">
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Marke</dt><dd class="mt-0.5 font-medium text-slate-800">Apple</dd></div>
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Modell</dt><dd class="mt-0.5 font-medium text-slate-800">iPhone 12 Pro</dd></div>
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Speicher</dt><dd class="mt-0.5 font-medium text-slate-800">128 GB</dd></div>
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Farbe</dt><dd class="mt-0.5 font-medium text-slate-800">Pazifikblau</dd></div>
+{{# each listing.rows }}
+                                    <div class="border-l-2 border-anoraTeal pl-3"><dt class="text-xs text-gray-500">{{ label }}</dt><dd class="mt-0.5 font-semibold text-anoraBlue">{{ value }}</dd></div>
+{{/ each }}
+                                </dl>
+                            </div>
                         </div>
-                    </div>
-                    <h4 class="mt-6 text-xs font-semibold uppercase tracking-wider text-gray-500">Beschreibung</h4>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Geprüft und auf Werkseinstellungen zurückgesetzt, ohne Simlock. Akkugesundheit 87 %, leichte Gebrauchsspuren am Rahmen, Display ohne Kratzer. Lieferumfang: iPhone und Original-Ladekabel.</p>
-                    <div class="mt-6 rounded-xl bg-gray-50 p-5">
-                        <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500">Artikelmerkmale</h4>
-                        <dl class="mt-4 grid grid-cols-2 gap-x-6 gap-y-4 text-sm sm:grid-cols-3">
-                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Marke</dt><dd class="mt-0.5 font-medium text-slate-800">Apple</dd></div>
-                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Modell</dt><dd class="mt-0.5 font-medium text-slate-800">iPhone 12 Pro</dd></div>
-                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Speicher</dt><dd class="mt-0.5 font-medium text-slate-800">128 GB</dd></div>
-                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Farbe</dt><dd class="mt-0.5 font-medium text-slate-800">Pazifikblau</dd></div>
-{{> listing-rows }}
-                        </dl>
-                    </div>
+                    </article>
                 </div>
-            </article>
+            </div>
         </div>
         <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <p class="mt-4 max-w-3xl text-xs text-gray-500">Werte rechts: {{ listing.recorded }}, unverändert.</p>
+            <p class="mx-auto mt-4 max-w-3xl text-center text-xs text-gray-500">Werte rechts: {{ listing.recorded }}, unverändert.</p>
         </div>
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12 lg:gap-16">
