@@ -11,28 +11,96 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
     <header class="bg-anoraBlue">
         <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
             <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-anoraTeal"><i data-lucide="recycle" class="h-4 w-4"></i>Re-Commerce</p>
-            <h1 class="mt-4 max-w-3xl text-4xl font-bold leading-tight text-white md:text-5xl">Gebrauchtgeräte kommen ohne Datenblatt. SpecScout ergänzt es.</h1>
+            <h1 class="mt-4 max-w-4xl text-4xl font-bold leading-tight text-white md:text-5xl">Wir schließen die Datenlücke der<br> <span class="text-anoraTeal">Circular Economy</span>.</h1>
             <p class="mt-6 max-w-3xl text-lg leading-relaxed text-onBlue">Ein angekauftes Smartphone bringt einen Modellnamen mit, vielleicht eine Speichergröße auf dem Etikett, sonst nichts. Für ein gutes Angebot brauchen Sie die technischen Daten des Modells: vollständig, einheitlich und prüfbar.</p>
             <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="{{ t.start_free_url }}" class="rounded-brand bg-anoraOrange px-6 py-3.5 text-center font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-anoraOrangeHover">Kostenlos starten</a>
+                <a href="{{ t.start_free_url }}" class="rounded-brand bg-anoraOrange px-6 py-3.5 text-center font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-anoraOrangeHover">Ausprobieren</a>
                 <a href="contact" class="rounded-brand border border-white/30 px-6 py-3.5 text-center font-medium text-white transition hover:border-white">Kontakt aufnehmen</a>
             </div>
         </div>
     </header>
 
-    <section class="border-b border-gray-200 bg-white">
-        <div class="mx-auto flex max-w-5xl flex-col gap-2 px-4 py-8 sm:px-6 md:flex-row md:items-center md:gap-6 lg:px-8">
-            <p class="text-4xl font-bold text-anoraTeal">30 %</p>
-            <p class="text-gray-700">der Menschen in Deutschland haben schon einmal ein gebrauchtes Smartphone gekauft. <span class="text-sm text-gray-500">Quelle: <a href="https://www.bitkom.org/Presse/Presseinformation/Refurbished-gebraucht-Smartphones-nicht-immer-Neuware" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-anoraBlue">Bitkom-Umfrage, März 2025</a></span></p>
+    <section id="vergleich" class="scroll-mt-20 bg-gray-50 py-20">
+        <div class="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+            <h2 class="mx-auto max-w-4xl text-3xl font-bold leading-tight text-anoraBlue md:text-4xl">SpecScout macht Second-Hand-Produkte genauso <span class="text-anoraTeal">transparent</span>, <span class="text-anoraTeal">filterbar</span> und <span class="text-anoraTeal">verkäuflich</span> wie Neuware.</h2>
+            <p class="mx-auto mt-6 max-w-3xl text-lg text-gray-600">Dasselbe Gerät, zwei Angebote: ein iPhone 12 Pro aus dem Ankauf. Links, wie es auf Marktplätzen oft angeboten wird: ein paar Angaben vom Etikett, der Rest im Fließtext. Rechts dasselbe Angebot mit den Daten, die SpecScout zum Modell gefunden hat.</p>
         </div>
-    </section>
-
-    <section id="examples" class="scroll-mt-20 bg-gray-50 py-20">
+        <div class="mx-auto mt-10 grid max-w-[88rem] grid-cols-1 gap-6 px-4 sm:px-6 lg:px-8 xl:grid-cols-2">
+            <article class="flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+                <div class="border-b border-gray-100 bg-gray-50 px-6 py-3">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-500">Typisches Angebot</p>
+                </div>
+                <div class="flex-1 p-6">
+                    <div class="flex items-center gap-5">
+                        <div class="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400"><i data-lucide="smartphone" class="h-10 w-10"></i></div>
+                        <div>
+                            <h3 class="font-semibold leading-snug text-anoraBlue">Apple iPhone 12 Pro 128 GB Pazifikblau</h3>
+                            <p class="mt-1 text-sm text-gray-500">Gebraucht – Gut</p>
+                            <p class="mt-1 text-2xl font-bold text-slate-900">289 €</p>
+                        </div>
+                    </div>
+                    <h4 class="mt-6 text-xs font-semibold uppercase tracking-wider text-gray-500">Beschreibung</h4>
+                    <div class="mt-2 space-y-3 text-sm leading-relaxed text-gray-600">
+                        <p>Hallo, hier verkaufen wir ein iPhone 12 Pro in Pazifikblau mit 128 GB. Das Gerät wurde immer mit Hülle und Panzerglas benutzt und ist in einem guten Zustand, am Rahmen sind nur leichte Gebrauchsspuren zu sehen (siehe Bilder). Display ohne Kratzer, Face ID und alle Tasten funktionieren einwandfrei.</p>
+                        <p>Akkukapazität laut Einstellungen 87 %, der Akku hält locker einen Tag! Super Kamera mit drei Linsen, schneller Prozessor und großes Display, für den Alltag mehr als genug. Kein Simlock, läuft in allen Netzen, auch mit eSIM.</p>
+                        <p>Lieferumfang: iPhone und Original-Ladekabel, OVP leider nicht mehr vorhanden. Versand innerhalb von 24 Stunden, gut verpackt und versichert. Bei Fragen gerne melden!</p>
+                    </div>
+                    <div class="mt-6 rounded-xl bg-gray-50 p-5">
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500">Artikelmerkmale</h4>
+                        <dl class="mt-4 grid grid-cols-2 gap-x-6 gap-y-4 text-sm sm:grid-cols-3">
+                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Marke</dt><dd class="mt-0.5 font-medium text-slate-800">Apple</dd></div>
+                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Modell</dt><dd class="mt-0.5 font-medium text-slate-800">iPhone 12 Pro</dd></div>
+                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Speicher</dt><dd class="mt-0.5 font-medium text-slate-800">128 GB</dd></div>
+                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Farbe</dt><dd class="mt-0.5 font-medium text-slate-800">Pazifikblau</dd></div>
+                        </dl>
+                    </div>
+                </div>
+            </article>
+            <article class="flex flex-col overflow-hidden rounded-2xl border border-anoraTeal/50 bg-white shadow-md shadow-anoraTeal/10">
+                <div class="border-b border-anoraTeal/20 bg-anoraTeal/5 px-6 py-3">
+                    <p class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-teal-700"><i data-lucide="badge-check" class="h-4 w-4"></i>Mit SpecScout</p>
+                </div>
+                <div class="flex-1 p-6">
+                    <div class="flex items-center gap-5">
+                        <div class="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400"><i data-lucide="smartphone" class="h-10 w-10"></i></div>
+                        <div>
+                            <h3 class="font-semibold leading-snug text-anoraBlue">Apple iPhone 12 Pro 128 GB Pazifikblau</h3>
+                            <p class="mt-1 text-sm text-gray-500">Gebraucht – Gut</p>
+                            <p class="mt-1 text-2xl font-bold text-slate-900">289 €</p>
+                        </div>
+                    </div>
+                    <h4 class="mt-6 text-xs font-semibold uppercase tracking-wider text-gray-500">Beschreibung</h4>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Geprüft und auf Werkseinstellungen zurückgesetzt, ohne Simlock. Akkugesundheit 87 %, leichte Gebrauchsspuren am Rahmen, Display ohne Kratzer. Lieferumfang: iPhone und Original-Ladekabel.</p>
+                    <div class="mt-6 rounded-xl bg-gray-50 p-5">
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500">Artikelmerkmale</h4>
+                        <dl class="mt-4 grid grid-cols-2 gap-x-6 gap-y-4 text-sm sm:grid-cols-3">
+                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Marke</dt><dd class="mt-0.5 font-medium text-slate-800">Apple</dd></div>
+                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Modell</dt><dd class="mt-0.5 font-medium text-slate-800">iPhone 12 Pro</dd></div>
+                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Speicher</dt><dd class="mt-0.5 font-medium text-slate-800">128 GB</dd></div>
+                            <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Farbe</dt><dd class="mt-0.5 font-medium text-slate-800">Pazifikblau</dd></div>
+{{> listing-rows }}
+                        </dl>
+                    </div>
+                </div>
+            </article>
+        </div>
         <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-anoraBlue">Drei ältere Modelle, drei Ergebnisse</h2>
-            <p class="mt-4 max-w-3xl text-lg text-gray-600">Suchen Sie eines der drei Geräte und schalten Sie um zwischen dem, was oft im Angebot steht, und dem Ergebnis von SpecScout: jeder Wert mit Quellen und Konfidenzwert. Was sich nicht bestätigen ließ, steht als „nicht gefunden“ da.</p>
-            <div class="mt-8" data-example-box data-src="demo/examples.json" data-start-url="{{ t.start_free_url }}" data-only="older">
-{{> example-box }}
+            <p class="mt-4 max-w-3xl text-xs text-gray-500">Werte rechts: {{ listing.recorded }}, unverändert.</p>
+        </div>
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12 lg:gap-16">
+                <div class="border-t-2 border-anoraTeal pt-5">
+                    <h3 class="text-lg font-semibold text-anoraBlue">Transparent</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">„Schneller Prozessor und großes Display“ kann niemand prüfen. SpecScout nennt zu jedem Wert die Quellen und einen Konfidenzwert. Ein Wert kommt nur, wenn zwei unabhängige Quellen übereinstimmen oder eine maßgebliche wie der Hersteller ihn bestätigt, auch bei älteren Modellen. Sonst heißt es „nicht gefunden“ statt einer Vermutung.</p>
+                </div>
+                <div class="border-t-2 border-anoraTeal pt-5">
+                    <h3 class="text-lg font-semibold text-anoraBlue">Filterbar</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Dass das linke Gerät eSIM kann, steht nur in der Beschreibung. Wer in Ihrem Shop nach eSIM oder Bildschirmgröße filtert, findet es nicht. SpecScout füllt die Merkmale, die Sie festlegen, in Ihren Einheiten und Wertelisten. So hat jedes Gerät dieselben Felder, ob neu oder gebraucht.</p>
+                </div>
+                <div class="border-t-2 border-anoraTeal pt-5">
+                    <h3 class="text-lg font-semibold text-anoraBlue">Verkäuflich wie Neuware</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Käufer vergleichen ein gebrauchtes Gerät mit dem neuen, Merkmal für Merkmal. Hat Ihr Angebot dieselben Daten wie die Neuware, entscheiden Zustand und Preis. Und beim Preis liegt das Gebrauchtgerät vorn.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -57,7 +125,16 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
                     <p class="mt-2 text-sm leading-relaxed text-gray-600">Vollständige, filterbare Merkmale für Ihren Shop und Ihre Marktplatz-Angebote. Über die API auch für ganze Ankaufslisten, eine Anfrage pro Gerät.</p>
                 </li>
             </ol>
-            <p class="mt-8 max-w-3xl text-sm leading-relaxed text-gray-600">Für ältere Modelle gelten dieselben Regeln wie für neue: Ein Wert kommt nur, wenn zwei unabhängige Quellen übereinstimmen oder eine maßgebliche Quelle wie der Hersteller ihn bestätigt. Wo ein Modell kaum noch dokumentiert ist, sehen Sie das am Ergebnis, als „nicht gefunden“ statt als Vermutung.</p>
+        </div>
+    </section>
+
+    <section class="border-t border-gray-200 bg-white">
+        <div class="mx-auto flex max-w-5xl flex-col gap-2 px-4 py-8 sm:px-6 md:flex-row md:items-center md:gap-6 lg:px-8">
+            <p class="whitespace-nowrap text-4xl font-bold text-anoraTeal">30 %</p>
+            <div>
+                <p class="text-gray-700">der Menschen in Deutschland haben schon einmal ein gebrauchtes Smartphone gekauft. <span class="text-sm text-gray-500">Quelle: <a href="https://www.bitkom.org/Presse/Presseinformation/Refurbished-gebraucht-Smartphones-nicht-immer-Neuware" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-anoraBlue">Bitkom-Umfrage, März 2025</a></span></p>
+                <p class="mt-1 font-medium text-anoraBlue">Jedes Gerät, das ein zweites Mal verkauft wird, muss nicht neu produziert werden.</p>
+            </div>
         </div>
     </section>
 
@@ -73,5 +150,3 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
     </section>
 
     </main>
-
-    <script src="js/example-box.js"></script>

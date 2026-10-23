@@ -47,7 +47,6 @@ class ExampleDataTest(unittest.TestCase):
         data = json.loads((build.REPO / "demo" / "examples.json").read_text(encoding="utf-8"))
         self.assertIsInstance(data.get("placeholder"), bool)
         self.assertGreaterEqual(len(data["examples"]), 1)
-        self.assertGreaterEqual(sum(1 for e in data["examples"] if e.get("older")), 1, "the Re-commerce page needs older examples")
         for example in data["examples"]:
             with self.subTest(example=example.get("slug")):
                 self.assertEqual(set(example["input"]), {"product_name", "brand"})
@@ -64,6 +63,13 @@ class ExampleDataTest(unittest.TestCase):
                         self.assertTrue(value["sources"])
                 for spec in response["not_found"]:
                     self.assertEqual(spec["value"], [])
+
+    def test_listing_values_read_as_in_the_example_box(self) -> None:
+        self.assertEqual(build.format_spec_value(2815.0, "mAh", "de"), "2.815 mAh")
+        self.assertEqual(build.format_spec_value(2815.0, "mAh", "en"), "2,815 mAh")
+        self.assertEqual(build.format_spec_value([7.4, 71.5, 146.7], "mm", "de"), "7,4 × 71,5 × 146,7 mm")
+        self.assertEqual(build.format_spec_value("True", None, "de"), "Ja")
+        self.assertEqual(build.format_spec_value("Apple A14 Bionic", None, "en"), "Apple A14 Bionic")
 
 
 class PagesTest(unittest.TestCase):

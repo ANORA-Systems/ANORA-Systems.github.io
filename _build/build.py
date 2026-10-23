@@ -302,6 +302,7 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
         "year": "2026",
         "t": STRINGS[lang],
         "demo": demo_context(lang),
+        "listing": listing_context(lang),
         "head": head,
     }
 
@@ -328,12 +329,16 @@ DEMO_FILE = REPO / "demo" / "examples.json"
 _demo_data: dict | None = None
 
 
-def demo_context(lang: str) -> dict:
-    """The first example of demo/examples.json, as an excerpt for the homepage."""
+def demo_data() -> dict:
     global _demo_data
     if _demo_data is None:
         _demo_data = json.loads(DEMO_FILE.read_text(encoding="utf-8"))
-    example = _demo_data["examples"][0]
+    return _demo_data
+
+
+def demo_context(lang: str) -> dict:
+    """The first example of demo/examples.json, as an excerpt for the homepage."""
+    example = demo_data()["examples"][0]
     response = example["response"]
     # sub_values only tells the example box how to join multi-part values; the API has no such field.
     # The records store a missing spec unit as "", the API returns null.
@@ -352,9 +357,80 @@ def demo_context(lang: str) -> dict:
         f"&brand={example['input']['brand']}&category=<{example['category']['en']} category ID>"
     )
     return {
-        "placeholder": bool(_demo_data.get("placeholder")),
+        "placeholder": bool(demo_data().get("placeholder")),
         "request": html_escape(request),
         "response_json": html_escape(json.dumps(excerpt, indent=2, ensure_ascii=False)),
+    }
+
+
+# The Re-commerce page compares a typical marketplace listing with the same listing completed
+# by SpecScout. The added rows come from this recorded example, values unchanged: (spec name in
+# the example, the shop's attribute label in German, in English).
+LISTING_EXAMPLE = "apple-iphone-12-pro"
+LISTING_SPECS = [
+    ("CPU", "Prozessor", "Processor"),
+    ("RAM", "Arbeitsspeicher", "RAM"),
+    ("Display size", "Bildschirmgröße", "Screen size"),
+    ("Battery capacity", "Akkukapazität", "Battery capacity"),
+    ("battery life", "Akkulaufzeit", "Battery life"),
+    ("Weight", "Gewicht", "Weight"),
+    ("dimensions", "Abmessungen", "Dimensions"),
+    ("Dual-SIM", "Dual-SIM", "Dual SIM"),
+    ("eSIM", "eSIM", "eSIM"),
+]
+LISTING_TEXT = {
+    "de": {"yes": "Ja", "no": "Nein",
+           "recorded": "Aufgezeichnetes Ergebnis vom {date} · Dauer {seconds} s",
+           "months": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]},
+    "en": {"yes": "Yes", "no": "No",
+           "recorded": "Recorded result from {date} · took {seconds} s",
+           "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]},
+}
+
+
+def format_number(number: float, lang: str) -> str:
+    """Up to two decimals, thousands grouped, as Intl.NumberFormat does in js/example-box.js."""
+    text = f"{number:,.2f}".rstrip("0").rstrip(".")
+    return text.translate(str.maketrans(",.", ".,")) if lang == "de" else text
+
+
+def format_spec_value(value, unit: str | None, lang: str) -> str:
+    """A value as js/example-box.js shows it: yes/no for true/false, parts joined with ×."""
+    text_of = LISTING_TEXT[lang]
+    if isinstance(value, bool):
+        text = text_of["yes"] if value else text_of["no"]
+    elif isinstance(value, str) and value.lower() in ("true", "yes", "false", "no"):
+        text = text_of["yes"] if value.lower() in ("true", "yes") else text_of["no"]
+    elif isinstance(value, (int, float)):
+        text = format_number(value, lang)
+    elif isinstance(value, list):
+        text = " × ".join(format_number(part, lang) if isinstance(part, (int, float)) else str(part) for part in value)
+    else:
+        text = str(value)
+    return f"{text} {unit}" if unit else text
+
+
+def listing_context(lang: str) -> dict:
+    """The rows SpecScout adds to the listing on the Re-commerce page."""
+    example = next((e for e in demo_data()["examples"] if e["slug"] == LISTING_EXAMPLE), None)
+    if example is None:
+        raise BuildError(f"demo/examples.json has no example {LISTING_EXAMPLE} (LISTING_EXAMPLE in build.py)")
+    specs = {spec["name"]: spec for spec in example["response"]["specs"]}
+    text_of = LISTING_TEXT[lang]
+    rows = []
+    for name, label_de, label_en in LISTING_SPECS:
+        if name not in specs or len(specs[name]["value"]) != 1:
+            raise BuildError(f"{LISTING_EXAMPLE} in demo/examples.json has no single value for {name} (LISTING_SPECS in build.py)")
+        found = specs[name]["value"][0]
+        rows.append({
+            "label": label_de if lang == "de" else label_en,
+            "value": html_escape(format_spec_value(found["value"], found["unit"], lang)),
+        })
+    date = datetime.date.fromisoformat(example["recorded_at"])
+    date_text = f"{date.day}. {text_of['months'][date.month - 1]} {date.year}" if lang == "de" else f"{date.day} {text_of['months'][date.month - 1]} {date.year}"
+    return {
+        "rows": rows,
+        "recorded": text_of["recorded"].format(date=date_text, seconds=round(example["duration_ms"] / 1000)),
     }
 
 
