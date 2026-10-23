@@ -69,9 +69,6 @@ footer: yes
                     Phone: <a href="tel:+4915679785206" class="text-anoraTeal hover:underline">+49 15679 785206</a><br>
                     Email: <a href="mailto:info@anora-systems.com" class="text-anoraTeal hover:underline">info@anora-systems.com</a>
                 </div>
-                <p class="mb-4">
-                    We have not appointed a data protection officer because we are not legally required to. Please send questions about data protection to the contact details above.
-                </p>
 
                 <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">A.3 Legal bases</h3>
                 <p class="mb-4">We process personal data only where one of the following legal bases applies. We state which one applies with each processing activity.</p>
@@ -91,7 +88,7 @@ footer: yes
                 </p>
                 <ul class="list-disc pl-5 mb-4 space-y-2">
                     <li>servers in Germany for SpecScout and for handling contact and call requests from the website (C.1),</li>
-                    <li>email mailboxes and the sending of all emails, including SpecScout's automatic emails (A.8, C.9),</li>
+                    <li>email mailboxes and the sending of all emails in Germany, including SpecScout's automatic emails (A.8, C.9),</li>
                     <li>error and performance monitoring of our server (A.5),</li>
                     <li>delivering the website (B.1),</li>
                     <li>web search and AI models for searches and AI drafts in SpecScout (C.6).</li>
@@ -193,7 +190,7 @@ footer: yes
                     You can send us a message through the contact form. Name, email address and message are required; company, shop system and catalog size are optional. Your browser sends the details to our server api.anora-systems.com at Hetzner in Germany. The server forwards them by email through IONOS to our team's mailboxes, with your email address as the reply address. We do not store the content of your request on the server. Like every request to this server, our server logs record your IP address, the time and the address called, but not the content of your message. Technical details of the request, which can include its content, reach Sentry, our error and performance monitoring service (A.5).
                 </p>
                 <p class="mb-4">
-                    To prevent abuse, the server checks which page the request comes from and processes your IP address: it accepts at most five requests per IP address per hour and only a limited number per hour overall. The counters are held in memory only and expire after one hour. The form also contains a field that is invisible to people. If it is filled in, we assume an automated sender: the message is then not forwarded as a request; instead we receive a warning email with the message and the IP address, so that we can still answer a genuine request that was blocked by mistake. If the overall number for an hour is reached, we receive a notice with the IP address of the first rejected request.
+                    To prevent abuse, the server checks which page the request comes from and processes your IP address: it accepts at most five requests per IP address per hour and only a limited number per hour overall. The counters are held in memory only and expire after one hour. If the server recognizes a request as automated, it does not forward it as a request. Instead we receive a warning email with the message and the IP address, so that we can still answer a genuine request that was blocked by mistake. If the overall number for an hour is reached, we receive a notice with the IP address of the first rejected request.
                 </p>
                 <p class="mb-4">
                     The legal basis for handling your request is Art. 6(1)(b) GDPR if it relates to a contract or its preparation, otherwise our legitimate interest in answering inquiries (Art. 6(1)(f) GDPR). Abuse prevention is based on our legitimate interest in protecting the form and our server from spam and overload (Art. 6(1)(f) GDPR). We delete the emails as described in A.8, and warning emails once we have checked them.
@@ -234,18 +231,18 @@ footer: yes
                     In the dashboard you register with an email address and a password; your name is optional. We store the password only as a cryptographic hash. Here, too, you confirm your email address through a link that is valid for 24 hours; after that you have free access, and we receive the same internal email as in C.2. We delete unconfirmed accounts after 7 days, as in C.2. We grant extended access by hand on request and let you know by email. If someone tries to register again with an address that is already registered, its owner receives a notice by email.
                 </p>
                 <p class="mb-4">
-                    You can sign in with your email address and password, with a sign-in link by email that is valid for 15 minutes and works only once, or in the search app with an API key (C.4). We store the links in our emails only as hashes. After five failed password attempts we block signing in with a password for 15 minutes; for this we store the number and time of failed attempts. If you wish, you can protect your account with a second factor (one-time codes from an authenticator app); we store the secret key this requires in encrypted form and the recovery codes only as hashes. Before sensitive actions, such as exporting or deleting your account, you confirm your identity again, with your password or a link by email that is valid for 15 minutes. A link to reset your password is valid for one hour.
+                    You can sign in with your email address and password, with a sign-in link by email that is valid for 15 minutes and works only once, or in the search app with an API key (C.4). We store the links in our emails only as hashes, together with the recipient's address; we delete both shortly after the link expires, and confirmation links after a further seven days. After five failed password attempts we block signing in with a password for 15 minutes; for this we store the number and time of failed attempts. If you wish, you can protect your account with a second factor (one-time codes from an authenticator app); we store the secret key this requires in encrypted form and the recovery codes only as hashes. Before sensitive actions, such as exporting or deleting your account, you confirm your identity again, with your password or a link by email that is valid for 15 minutes. A link to reset your password is valid for one hour.
                 </p>
                 <p class="mb-4">
                     For every login we store a session with your IP address, your browser identification and the timestamps. A session ends after at most 30 days, when you log out or when you change your password, and is then deleted.
                 </p>
                 <p class="mb-4">
-                    In the dashboard you can change your name, email address and password, export your data as a file and delete your account yourself; with an account from the search app, you sign in there with a sign-in link. When you delete it, we remove your account together with its sessions, API keys, your own specifications and categories, search settings and quota counters. Entries in the access log (C.4) remain, without a link to your account, until they are deleted after 30 days. Entries in the server logs and at Sentry also remain until they are deleted after 30 days or at most 90 days respectively (A.5). We delete the internal email about your registration (C.2) together with your account. We keep account data as long as the account exists; we delete unconfirmed accounts after 7 days (C.2). User accounts connected to a contract for a paid plan, including custom specifications, categories and search settings, are deleted 30 days after the contract ends, unless statutory retention obligations apply.
+                    In the dashboard you can change your name, email address and password, export your data as a file and delete your account yourself; with an account from the search app, you sign in there with a sign-in link. You confirm a new email address with a link (valid for 24 hours). The previous address receives a link that can undo the change for seven days in case it was not made by the account holder; for this we keep the previous address for seven days. During this time you cannot delete your account yourself. After a change has been undone, the account may stay locked until we have cleared up the case; our team then receives an email with the previous address and your user ID; we delete this email once the case is cleared up. If a change was not made by you, contact us (A.2). Your right to ask us to erase your data (A.10) remains unaffected. When you delete it, we remove your account together with its sessions, API keys, your own specifications and categories, search settings and quota counters. Entries in the access log (C.4) remain, without a link to your account, until they are deleted after 30 days. Entries in the server logs and at Sentry also remain until they are deleted after 30 days or at most 90 days respectively (A.5). We delete the internal email about your registration (C.2) together with your account. We keep account data as long as the account exists; we delete unconfirmed accounts after 7 days (C.2). When a contract for a paid plan ends, we delete the user accounts connected to it, including custom specifications, categories and search settings, 30 days after the contract ends, unless statutory retention obligations apply. If you delete your account yourself before then, we remove it immediately as described above.
                 </p>
 
                 <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.4 API keys and access log</h3>
                 <p class="mb-4">
-                    You create API keys in the dashboard, with a label and an optional expiry date. We show the key only once and store it only as a hash. Expired or revoked keys remain stored until you delete them or your account. If you log in to the search app with an API key, its server keeps the key in memory for the duration of the session.
+                    You create API keys in the dashboard, with a label and an optional expiry date. We show the key only once and store it only as a hash. Expired or revoked keys remain stored until you delete them or your account.
                 </p>
                 <p class="mb-4">
                     For every request made with an API key we store an entry in the access log: key and user identifier, the endpoint called (without search parameters), the result, IP address and browser identification. This serves security and the investigation of abuse (Art. 6(1)(f) GDPR). We delete the entries after 30 days.
@@ -278,7 +275,7 @@ footer: yes
 
                 <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.7 Product images</h3>
                 <p class="mb-4">
-                    If you turn on the option "Include product images" in the search app, your browser loads the images found directly from the websites concerned. These websites then receive your IP address, your browser identification and the address of our app. They process this data under their own responsibility, may set their own cookies and may be based outside the EU. Without this option, the search app loads no images from other websites.
+                    If you turn on the option "Include product images" in the search app, your browser loads the images found directly from the websites concerned. As with any retrieval of content from the internet, these websites receive your IP address and your browser identification, and also the address of our app. They process this data under their own responsibility, may set their own cookies and may be based outside the EU. Without this option, the search app loads no images from other websites.
                 </p>
 
                 <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.8 Your own specifications, categories and search settings</h3>
@@ -286,12 +283,12 @@ footer: yes
                     We store the specifications, categories and search settings (preferred and excluded domains) that you create, linked to your account, until you delete them or your account. Our administrators can view them to check them, fix errors and keep the service running (Art. 6(1)(b) and (f) GDPR).
                 </p>
                 <p class="mb-4">
-                    Preferred and excluded domains also feed, without a link to your account, into a shared rating of websites once at least two users have set the same rule. The legal basis is our legitimate interest in improving the choice of sources for all users (Art. 6(1)(f) GDPR).
+                    Preferred and excluded domains also feed, without a link to your account, into a shared rating of websites. The legal basis is our legitimate interest in improving the choice of sources for all users (Art. 6(1)(f) GDPR).
                 </p>
 
                 <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.9 Emails from SpecScout</h3>
                 <p class="mb-4">
-                    SpecScout only sends you emails about your account or your contract: confirmation and sign-in links, links to confirm sensitive actions and to reset your password, notices that your access level has changed, an invitation when we create an account for you, the notice of a registration attempt with your address, notices of changes to our GTC or to the free access (clause 5(3) GTC), and declarations concerning your contract, such as a termination. They are sent through IONOS (A.4). We do not send advertising.
+                    SpecScout only sends you emails about your account or your contract: confirmation and sign-in links, links to confirm sensitive actions and to reset your password, notices that your access level has changed, notices about a change of your email address, including to the previous address, an invitation when we create an account for you, the notice of a registration attempt with your address, notices of changes to our GTC or to the free access (clause 5(3) GTC), and declarations concerning your contract, such as a termination. They are sent through IONOS (A.4). We do not send advertising.
                 </p>
 
                 <h3 class="text-lg font-bold text-anoraBlue mt-6 mb-2">C.10 Storage in your browser</h3>
