@@ -86,6 +86,23 @@ class PagesTest(unittest.TestCase):
                     self.assertEqual(alternates, expected_alternates)
                     self.assertEqual(re.search(r'<html lang="(\w+)"', html).group(1), "en" if page.startswith("en/") else "de")
 
+    def test_every_page_has_a_link_preview_in_its_language(self) -> None:
+        for page in SITE.rglob("*.html"):
+            relative = page.relative_to(SITE).as_posix()
+            with self.subTest(page=relative):
+                html = page.read_text(encoding="utf-8")
+                lang = "en" if relative.startswith("en/") else "de"
+                images = re.findall(r'<meta property="og:image" content="([^"]+)">', html)
+                self.assertEqual(images, [f"{build.SITE}/media/social-share-{lang}.png"])
+                self.assertTrue((SITE / "media" / f"social-share-{lang}.png").is_file())
+                self.assertEqual(re.findall(r'<meta property="og:url" content="([^"]+)">', html), [build.url_of(relative)])
+
+    def test_structured_data_is_valid_json(self) -> None:
+        for page in SITE.rglob("*.html"):
+            for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', page.read_text(encoding="utf-8"), re.S):
+                with self.subTest(page=page.relative_to(SITE).as_posix()):
+                    self.assertEqual(json.loads(block)["@context"], "https://schema.org")
+
     def test_sitemap_lists_indexed_pages_and_no_archived_ones(self) -> None:
         sitemap = (SITE / "sitemap.xml").read_text(encoding="utf-8")
         listed = re.findall(r"<loc>([^<]+)</loc>", sitemap)

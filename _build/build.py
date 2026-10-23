@@ -293,6 +293,9 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
         "footer": meta["footer"] == "yes",
         "canonical": url_of(page),
         "alternates": alternates,
+        # link previews; the images come from _tools/make_share_images.py
+        "og_locale": "de_DE" if lang == "de" else "en_GB",
+        "og_image": f"{SITE}/media/social-share-{lang}.png",
         "langs": langs,
         "nav": nav,
         "logo_href": "#" if is_home else "./",
@@ -305,14 +308,15 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
 
 def nav_page(key: str, lang: str) -> str:
     """The page file name (without .html) a menu entry stands for, if it is a page of this site."""
-    if key in ("how_it_works", "docs"):
+    if key in ("product", "docs"):
         return "\0"
     return STRINGS[lang].get(f"{key}_href", key)
 
 
 def nav_href(key: str, lang: str, is_home: bool) -> str:
-    if key == "how_it_works":
-        return "#how-it-works" if is_home else "./#how-it-works"
+    # "Product" leads to the top of the homepage
+    if key == "product":
+        return "#" if is_home else "./"
     return STRINGS[lang].get(f"{key}_href", key)
 
 
@@ -325,26 +329,31 @@ _demo_data: dict | None = None
 
 
 def demo_context(lang: str) -> dict:
-    """The first example of demo/examples.json, for the API excerpt on the homepage."""
+    """The first example of demo/examples.json, as an excerpt for the homepage."""
     global _demo_data
     if _demo_data is None:
         _demo_data = json.loads(DEMO_FILE.read_text(encoding="utf-8"))
     example = _demo_data["examples"][0]
     response = example["response"]
-    # sub_values only tells the example box how to join multi-part values; the API has no such field
-    strip = lambda specs: [{key: value for key, value in spec.items() if key != "sub_values"} for spec in specs]  # noqa: E731
+    # sub_values only tells the example box how to join multi-part values; the API has no such field.
+    # The records store a missing spec unit as "", the API returns null.
+    strip = lambda specs: [  # noqa: E731
+        {key: (value or None) if key == "unit" else value for key, value in spec.items() if key != "sub_values"} for spec in specs
+    ]
     excerpt = {
         "specs": strip(response["specs"][:2]),
         "not_found": strip(response["not_found"][:1]),
         "status": response["status"],
         "errors": response["errors"],
     }
+    # category takes the ID of a saved category, not its name
+    request = (
+        f"GET /api/v1/search?product_name={example['input']['product_name'].replace(' ', '+')}"
+        f"&brand={example['input']['brand']}&category=<{example['category']['en']} category ID>"
+    )
     return {
         "placeholder": bool(_demo_data.get("placeholder")),
-        "request": html_escape(
-            f"GET /api/v1/search?product_name={example['input']['product_name'].replace(' ', '+')}"
-            f"&brand={example['input']['brand']}&category={example['category']['en']}"
-        ),
+        "request": html_escape(request),
         "response_json": html_escape(json.dumps(excerpt, indent=2, ensure_ascii=False)),
     }
 

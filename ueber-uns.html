@@ -1,16 +1,39 @@
 ---
 title: Über uns | Anora Systems
-description: Wie SpecScout entstanden ist: zwei Weltreisende, die sich auf einem Segelboot über den Atlantik kennengelernt haben, und ein gebrauchter Laptop, der sich online kaum finden ließ.
+description: Wie SpecScout entstanden ist: zwei Weltreisende, die sich auf einem Segelboot kennengelernt haben, und ein gebrauchter Laptop, der sich online kaum finden ließ.
 nav: full
 footer: yes
 body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-screen
 ---
 <head>
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://anora-systems.com/ueber-uns">
-    <meta property="og:title" content="Über uns | Anora Systems">
-    <meta property="og:description" content="Zwei Weltreisende, ein Segelboot und ein gebrauchter Laptop: wie SpecScout entstanden ist.">
-    <meta property="og:image" content="https://anora-systems.com/media/social-share.jpg">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "url": "https://anora-systems.com/ueber-uns",
+        "inLanguage": "de",
+        "mainEntity": {
+            "@type": "Organization",
+            "@id": "https://anora-systems.com/#organization",
+            "name": "Anora Systems",
+            "url": "https://anora-systems.com/",
+            "logo": "https://anora-systems.com/media/logo.png",
+            "email": "info@anora-systems.com",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Briachstraße 10",
+                "postalCode": "88250",
+                "addressLocality": "Weingarten",
+                "addressCountry": "DE"
+            },
+            "founder": [
+                {"@type": "Person", "name": "Johannes Körner", "jobTitle": "Co-Founder & Operations", "sameAs": "https://www.linkedin.com/in/johannes-k%C3%B6rner-7291ab331"},
+                {"@type": "Person", "name": "Erik Dierkes", "jobTitle": "Co-Founder & Tech Lead", "sameAs": "https://www.linkedin.com/in/erik-dierkes-b0131523b/"}
+            ],
+            "sameAs": ["https://www.linkedin.com/company/anora-systems", "https://github.com/orgs/ANORA-Systems"]
+        }
+    }
+    </script>
 </head>
 
     <main>
@@ -19,8 +42,8 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
         <div class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-2 lg:px-8">
             <div>
                 <p class="text-sm font-semibold uppercase tracking-wider text-anoraTeal">Über uns</p>
-                <h1 class="mt-4 text-4xl font-bold leading-tight text-anoraBlue md:text-5xl">Zwei Weltreisende, ein Segelboot und ein gebrauchter Laptop.</h1>
-                <p class="mt-6 text-lg leading-relaxed text-gray-600">Wie SpecScout entstanden ist, und wer dahintersteht: Johannes Körner und Erik Dierkes.</p>
+                <h1 class="mt-4 text-4xl font-bold leading-tight text-anoraBlue md:text-5xl">Zwei Weltreisende, ein Segelboot und die Herausforderungen beim Finden eines Laptop.</h1>
+                <p class="mt-6 text-lg leading-relaxed text-gray-600">Wie SpecScout entstanden ist, und wer dahintersteht</p>
             </div>
             <div class="grid grid-cols-2 gap-4 sm:gap-6">
                 <figure>
@@ -37,12 +60,12 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
 
     <section class="bg-gray-50 py-20">
         <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-anoraBlue">Wie SpecScout entstanden ist</h2>
+            <h2 class="text-3xl font-bold text-anoraBlue">Unsere Geschichte</h2>
             <div class="mt-8 space-y-6 text-lg leading-relaxed text-gray-700">
-                <p>Erik und Johannes haben sich nach der Schule kennengelernt. Beide waren per Anhalter unterwegs um die Welt, und der Zufall wollte es, dass sie auf demselben Segelboot über den Atlantik segelten.</p>
-                <p>Danach reiste Erik weiter durch Südamerika, während Johannes die Reise um die Welt fortsetzte. Den Kontakt haben die beiden trotzdem nie verloren. Erik gründete dann mit einem anderen Freund das erste eigene Start-up.</p>
-                <p>Das Leben ging weiter, bis Johannes eines Tages online einen gebrauchten Laptop kaufen wollte. Es war unglaublich frustrierend, wie schwer es war, gebrauchte Laptops zu finden, die zu den eigenen Anforderungen passten. Johannes fing an, über das Problem nachzudenken, und baute erste Prototypen.</p>
-                <p>Als klar war, dass es ohne Hilfe nicht geht, rief Johannes Erik an. Eriks anderes Unternehmen stand gerade vor dem Aus, wegen unglücklicher Umstände im Leben des Mitgründers. Die beiden beschlossen, die Sache wirklich anzugehen, und arbeiten seit 2025 in Vollzeit an SpecScout.</p>
+                <p>Die Geschichte unserer Gründer beginnt auf einem Segelboot, kurz nachdem sie die Schule abgeschlossen hatten. Erik und Johannes hatten beide ehrgeizige Pläne. Erik würde zwei Jahre lang durch Südamerika reisen, Johannes per Anhalter einmal um die ganze Welt. Gleich zu Beginn ihrer Reise stand ihnen an der Atlantikküste eine ihrer größten Herausforderungen bevor: die Überquerung. Ohne Flugzeug, denn das wäre zu einfach gewesen. Beide landeten in Gibraltar, wo sie Arbeit auf demselben Boot fanden, das sie zu den Kanarischen Inseln bringen sollte. So hat ihre Geschichte angefangen. Dort trennten sich ihre Wege wieder, und sie nahmen verschiedene Boote für die restliche Etappe nach Amerika.</p>
+                <p>Danach reiste Erik weiter durch Südamerika, während Johannes seine Reise um die Welt fortsetzte. Den Kontakt haben die beiden trotzdem nie verloren. Erik gründete dann mit einem anderen Freund sein erstes Start-up.</p>
+                <p>Das Leben ging weiter, bis Johannes eines Tages online einen gebrauchten Laptop kaufen wollte. Es frustrierte ihn unglaublich, wie schwer es war, gebrauchte Laptops zu finden, die zu seinen Anforderungen passten. Johannes fing an, über das Problem nachzudenken und Ideen zu entwickeln, wie man es lösen könnte.</p>
+                <p>Als klar war, dass es ohne Hilfe nicht geht, rief Johannes Erik an. Eriks anderes Unternehmen stand gerade vor dem Aus, wegen unglücklicher Umstände im Leben seines Mitgründers. Die beiden beschlossen, Anora Systems zu gründen. 2025 begannen sie, in Vollzeit an SpecScout zu arbeiten.</p>
             </div>
         </div>
     </section>
@@ -57,24 +80,31 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
     </section>
 
     <section class="bg-white py-20">
-        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-anoraBlue">Die Gründer</h2>            <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div class="flex items-start gap-5 rounded-xl border border-gray-200 p-6">
-                    <img src="media/johannes_professional.png" alt="Johannes Körner" class="h-24 w-24 shrink-0 rounded-full object-cover">
-                    <div>
+        <div class="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-anoraBlue">Die Gründer</h2>
+            <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-12">
+                <div class="flex flex-col items-center rounded-xl border border-[#e3e1dc] bg-[#f1f0ed] px-6 py-12 shadow-md shadow-[#e3e1dc]/70">
+                    <img src="media/johannes_professional.png" alt="Johannes Körner" class="h-36 w-36 rounded-full object-cover">
+                    <div class="mt-6 flex w-full flex-1 flex-col">
                         <h3 class="text-lg font-semibold text-anoraBlue">Johannes Körner</h3>
                         <p class="text-sm font-medium text-anoraTeal">Co-Founder &amp; Operations</p>
-                        <p class="mt-2 text-sm leading-relaxed text-gray-600">Hintergrund in Physik und Ingenieurwesen. Verantwortlich für Softwarearchitektur und Geschäftsführung.</p>
-                        <a href="https://www.linkedin.com/in/johannes-k%C3%B6rner-7291ab331" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-anoraTeal hover:underline"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>LinkedIn</a>
+                        <p class="mt-4 flex-1 border-t border-[#d6d3cd] pt-4 text-sm leading-relaxed text-gray-600">Hintergrund in Physik und Ingenieurwesen. Verantwortlich für Softwarearchitektur und Geschäftsführung. <span lang="en">Traveled the world and the seven seas.</span></p>
+                        <div class="mt-4 flex justify-center gap-5 border-t border-[#d6d3cd] pt-4">
+                            <a href="https://www.linkedin.com/in/johannes-k%C3%B6rner-7291ab331" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-anoraTeal hover:underline"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>LinkedIn</a>
+                            <a href="mailto:johannes.koerner@anora-systems.com" class="inline-flex items-center gap-1.5 text-sm font-medium text-anoraTeal hover:underline"><i class="fa-regular fa-envelope" aria-hidden="true"></i>E-Mail</a>
+                        </div>
                     </div>
                 </div>
-                <div class="flex items-start gap-5 rounded-xl border border-gray-200 p-6">
-                    <img src="media/erik_professional.jpg" alt="Erik Dierkes" class="h-24 w-24 shrink-0 rounded-full object-cover">
-                    <div>
+                <div class="flex flex-col items-center rounded-xl border border-[#e3e1dc] bg-[#f1f0ed] px-6 py-12 shadow-md shadow-[#e3e1dc]/70">
+                    <img src="media/erik_professional.jpg" alt="Erik Dierkes" class="h-36 w-36 rounded-full object-cover">
+                    <div class="mt-6 flex w-full flex-1 flex-col">
                         <h3 class="text-lg font-semibold text-anoraBlue">Erik Dierkes</h3>
                         <p class="text-sm font-medium text-anoraTeal">Co-Founder &amp; Tech Lead</p>
-                        <p class="mt-2 text-sm leading-relaxed text-gray-600">Full-Stack-Entwickler. Experte für API-Design, Webentwicklung und UX.</p>
-                        <a href="https://www.linkedin.com/in/erik-dierkes-b0131523b/" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-anoraTeal hover:underline"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>LinkedIn</a>
+                        <p class="mt-4 flex-1 border-t border-[#d6d3cd] pt-4 text-sm leading-relaxed text-gray-600">Full-Stack-Entwickler. Experte für API-Design, Webentwicklung und UX. <span lang="en">Everybody is looking for something (e.g. a better panel description).</span></p>
+                        <div class="mt-4 flex justify-center gap-5 border-t border-[#d6d3cd] pt-4">
+                            <a href="https://www.linkedin.com/in/erik-dierkes-b0131523b/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-anoraTeal hover:underline"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>LinkedIn</a>
+                            <a href="mailto:erik.dierkes@anora-systems.com" class="inline-flex items-center gap-1.5 text-sm font-medium text-anoraTeal hover:underline"><i class="fa-regular fa-envelope" aria-hidden="true"></i>E-Mail</a>
+                        </div>
                     </div>
                 </div>
             </div>

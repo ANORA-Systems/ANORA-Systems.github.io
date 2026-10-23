@@ -25,7 +25,9 @@ footer: yes
 <main>...</main>
 ```
 
-The build wraps it in `_build/layouts/page.html`. That layout adds the shared `<head>` (canonical URL, `hreflang` alternates, favicons, stylesheets), the menu and the footer, whose text comes from `_build/pages.py` in both languages. Change the menu or footer there once, not in every page.
+The build wraps it in `_build/layouts/page.html`. That layout adds the shared `<head>` (canonical URL, `hreflang` alternates, link preview tags, favicons, stylesheets), the menu and the footer, whose text comes from `_build/pages.py` in both languages. Change the menu or footer there once, not in every page.
+
+The link preview image of each language (`media/social-share-de.png`, `media/social-share-en.png`) is drawn by `python _tools/make_share_images.py`; run it again after changing the homepage headline.
 
 An icon is written as `<i data-lucide="check" class="h-4 w-4"></i>`; the build replaces it with the SVG from `assets/lucide/`.
 

@@ -9,16 +9,6 @@ html_class: scroll-smooth
 <head>
     <meta name="google-site-verification" content="ybnBL2PCbk57-2AXHVWXyyMtgjDKzndqHElJvgFlhL0" />
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://anora-systems.com/">
-    <meta property="og:title" content="SpecScout | Vollständige, filterbare Produktdaten">
-    <meta property="og:description" content="Technische Produktdaten aus dem Web, per Produktname und Marke oder per EAN. Jeder Wert mit Quellen und Konfidenzwert.">
-    <meta property="og:image" content="https://anora-systems.com/media/social-share.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="SpecScout | Vollständige, filterbare Produktdaten">
-    <meta name="twitter:description" content="Technische Produktdaten aus dem Web, per Produktname und Marke oder per EAN. Jeder Wert mit Quellen und Konfidenzwert.">
-    <meta name="twitter:image" content="https://anora-systems.com/media/social-share.jpg">
-
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -28,18 +18,23 @@ html_class: scroll-smooth
         "operatingSystem": "Web",
         "description": "SpecScout recherchiert technische Produktdaten im Web und liefert jeden Wert mit Quellen und Konfidenzwert, als Web-App und als REST-API.",
         "url": "https://anora-systems.com/",
+        "image": "https://anora-systems.com/media/social-share-de.png",
+        "inLanguage": "de",
         "creator": {
             "@type": "Organization",
+            "@id": "https://anora-systems.com/#organization",
             "name": "Anora Systems",
-            "url": "https://anora-systems.com",
-            "sameAs": ["https://www.linkedin.com/company/anora-systems"]
+            "url": "https://anora-systems.com/",
+            "logo": "https://anora-systems.com/media/logo.png",
+            "sameAs": ["https://www.linkedin.com/company/anora-systems", "https://github.com/orgs/ANORA-Systems"]
         },
         "offers": {
             "@type": "Offer",
             "name": "Free",
             "price": "0",
             "priceCurrency": "EUR",
-            "description": "20 Suchen pro Monat"
+            "description": "20 Suchen pro Monat, nach Bestätigung der E-Mail-Adresse",
+            "url": "https://anora-systems.com/preise"
         }
     }
     </script>
@@ -247,45 +242,6 @@ html_class: scroll-smooth
                 <p class="mb-3 text-sm text-onBlueMuted">Antwort der API (Auszug)</p>
 {{> api-excerpt }}
             </div>
-        </div>
-    </section>
-
-    <section id="recommerce" class="scroll-mt-20 bg-white py-16">
-        <div class="mx-auto flex max-w-5xl flex-col items-start gap-6 px-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-            <div class="flex items-start gap-4">
-                <i data-lucide="recycle" class="mt-1 h-8 w-8 shrink-0 text-anoraTeal"></i>
-                <div>
-                    <h2 class="text-2xl font-bold text-anoraBlue">Re-Commerce: Gebrauchtgeräte kommen ohne Datenblatt.</h2>
-                    <p class="mt-2 text-gray-600">SpecScout recherchiert die technischen Daten auch für ältere Modelle. Drei Beispiele zeigen, wie das aussieht.</p>
-                </div>
-            </div>
-            <a href="recommerce" class="inline-flex shrink-0 items-center gap-2 font-semibold text-anoraTeal hover:text-anoraTealHover">Mehr zu Re-Commerce <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
-        </div>
-    </section>
-
-    <section id="team" class="scroll-mt-20 bg-gray-50 py-20">
-        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-anoraBlue">Das Team hinter SpecScout</h2>
-            <p class="mt-4 max-w-3xl text-lg text-gray-600">Anora Systems ist ein kleines Team aus Weingarten und Karlsruhe. Sie sprechen direkt mit den Gründern, die SpecScout bauen.</p>
-            <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div class="flex items-start gap-5 rounded-xl border border-gray-200 bg-white p-6">
-                    <img src="media/johannes_professional.png" alt="Johannes Körner" class="h-24 w-24 shrink-0 rounded-full object-cover">
-                    <div>
-                        <h3 class="text-lg font-semibold text-anoraBlue">Johannes Körner</h3>
-                        <p class="text-sm font-medium text-anoraTeal">Co-Founder &amp; Operations</p>
-                        <p class="mt-2 text-sm leading-relaxed text-gray-600">Hintergrund in Physik und Ingenieurwesen. Verantwortlich für Softwarearchitektur und Geschäftsführung.</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-5 rounded-xl border border-gray-200 bg-white p-6">
-                    <img src="media/erik_professional.jpg" alt="Erik Dierkes" class="h-24 w-24 shrink-0 rounded-full object-cover">
-                    <div>
-                        <h3 class="text-lg font-semibold text-anoraBlue">Erik Dierkes</h3>
-                        <p class="text-sm font-medium text-anoraTeal">Co-Founder &amp; Tech Lead</p>
-                        <p class="mt-2 text-sm leading-relaxed text-gray-600">Full-Stack-Entwickler. Experte für API-Design, Webentwicklung und UX.</p>
-                    </div>
-                </div>
-            </div>
-            <a href="ueber-uns" class="mt-8 inline-flex items-center gap-1 text-sm font-semibold text-anoraTeal hover:text-anoraTealHover">Wie SpecScout entstanden ist <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
         </div>
     </section>
 

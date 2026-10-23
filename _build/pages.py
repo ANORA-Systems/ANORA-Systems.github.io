@@ -53,7 +53,6 @@ STRINGS = {
         "product": "Produkt",
         "company": "Unternehmen",
         "legal": "Rechtliches",
-        "how_it_works": "So funktioniert's",
         "recommerce": "Re-Commerce",
         "pricing": "Preise",
         "pricing_href": "preise",
@@ -90,7 +89,6 @@ STRINGS = {
         "product": "Product",
         "company": "Company",
         "legal": "Legal",
-        "how_it_works": "How it works",
         "recommerce": "Re-commerce",
         "pricing": "Pricing",
         "pricing_href": "pricing",
@@ -120,7 +118,7 @@ STRINGS = {
 # The full menu, in order. Each key is also its label's key in STRINGS (and "<key>_href" its
 # link where the file name differs by language); nav_href() in _build/build.py turns it into a
 # link relative to the page and marks the current page.
-NAV = ["how_it_works", "recommerce", "pricing", "docs", "contact"]
+NAV = ["product", "recommerce", "pricing", "docs", "contact"]
 
 # Copied into the build unchanged. Inside folders, names starting with "." or "_" are skipped.
 STATIC = ["assets", "media", "js", "downloads", "demo", "opensource/specscout-dependencies.json", "CNAME"]
