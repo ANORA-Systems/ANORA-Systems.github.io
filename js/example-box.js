@@ -26,6 +26,7 @@
             search: 'Suchen',
             searching: 'Suche läuft …',
             noOptions: 'Keine passenden Beispiele',
+            clearAll: 'Alle Felder leeren',
             needProduct: 'Bitte geben Sie einen Produktnamen ein.',
             noExample: (name) => `Für „${name}“ gibt es hier kein aufgezeichnetes Beispiel. Ihre eigenen Produkte suchen Sie direkt in SpecScout: `,
             startFree: 'Kostenlos starten',
@@ -58,6 +59,7 @@
             search: 'Search',
             searching: 'Searching …',
             noOptions: 'No matching examples',
+            clearAll: 'Clear all fields',
             needProduct: 'Please enter a product name.',
             noExample: (name) => `There is no recorded example for "${name}" here. Search your own products directly in SpecScout: `,
             startFree: 'Start free',
@@ -185,22 +187,34 @@
 
     // --- searchable dropdown (ARIA combobox with a listbox popup) ----------------------------
 
-    function combobox({ label, placeholder, options, onSelect, labelClass, wrapClass }) {
+    function combobox({ label, placeholder, options, onSelect, onClear, labelClass, wrapClass }) {
         const wrap = el('div', `relative ${wrapClass || ''}`);
         const inputId = nextId('example-field');
         const listId = nextId('example-options');
         const labelEl = el('label', labelClass, label);
         labelEl.htmlFor = inputId;
-        const input = el('input', fieldClass);
+        const input = el('input', onClear ? `${fieldClass} pr-11` : fieldClass);
         Object.assign(input, { id: inputId, type: 'text', placeholder, autocomplete: 'off', spellcheck: false });
         input.setAttribute('role', 'combobox');
         input.setAttribute('aria-autocomplete', 'list');
         input.setAttribute('aria-expanded', 'false');
         input.setAttribute('aria-controls', listId);
+        const field = el('div', 'relative');
+        field.append(input);
+        // With onClear, an x in the field: it empties this field and lets onClear empty the
+        // others, without focusing the field. The caller shows and hides it (`clear`).
+        let clear = null;
+        if (onClear) {
+            clear = el('button', 'absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-full bg-gray-200 p-1 text-slate-700 transition hover:bg-anoraTeal hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraTeal');
+            Object.assign(clear, { type: 'button', title: TEXT.clearAll });
+            clear.setAttribute('aria-label', TEXT.clearAll);
+            clear.append(icon('x'));
+            field.append(clear);
+        }
         const list = el('ul', 'absolute z-20 mt-1 hidden max-h-64 w-full overflow-auto rounded-brand border border-gray-200 bg-white py-1 text-sm shadow-lg');
         list.id = listId;
         list.setAttribute('role', 'listbox');
-        wrap.append(labelEl, input, list);
+        wrap.append(labelEl, field, list);
 
         let shown = [];
         let active = -1;
@@ -250,6 +264,13 @@
             highlight(-1);
         }
 
+        if (clear) {
+            clear.addEventListener('click', () => {
+                input.value = '';
+                onClear();
+                close();
+            });
+        }
         input.addEventListener('focus', open);
         input.addEventListener('click', open);
         input.addEventListener('input', open);
@@ -272,7 +293,7 @@
             }
         });
 
-        return { wrap, input };
+        return { wrap, input, clear };
     }
 
     // --- results --------------------------------------------------------------------------------
@@ -422,6 +443,9 @@
         let product;
         let brand;
         let category;
+        // The x in the product field empties all three and closes the result; it shows while
+        // any of them holds text.
+        const showClear = () => product.clear.classList.toggle('hidden', ![product, brand, category].some((field) => field.input.value.trim()));
 
         product = combobox({
             label: TEXT.product,
@@ -435,6 +459,13 @@
             onSelect: (option) => {
                 brand.input.value = option.example.input.brand;
                 category.input.value = categoryOf(option.example);
+                showClear();
+            },
+            onClear: () => {
+                brand.input.value = '';
+                category.input.value = '';
+                showClear();
+                collapse();
             },
         });
         brand = combobox({
@@ -447,6 +478,7 @@
             onSelect: (option) => {
                 const match = examples.find((example) => same(example.input.product_name, product.input.value));
                 if (match && !same(match.input.brand, option.value)) product.input.value = '';
+                showClear();
             },
         });
         category = combobox({
@@ -458,8 +490,10 @@
                 const match = examples.find((example) => same(example.input.product_name, product.input.value));
                 if (match && !same(categoryOf(match), option.value)) product.input.value = '';
                 if (brand.input.value.trim() && !examples.some((example) => same(example.input.brand, brand.input.value) && same(categoryOf(example), option.value))) brand.input.value = '';
+                showClear();
             },
         });
+        form.addEventListener('input', showClear);
 
         const submit = el('button', look.submit);
         submit.type = 'submit';
@@ -481,6 +515,15 @@
 
         let searchRun = 0;
 
+        // Folds the panel back: drops the result, or a search still under way, and any hint.
+        function collapse() {
+            searchRun += 1;
+            submit.disabled = false;
+            message.classList.add('hidden');
+            result.replaceChildren();
+            onCollapse();
+        }
+
         // Under every answer: the way to the live search, and a way to fold the panel back.
         function withActions(node) {
             const actions = el('div', look.actions);
@@ -491,9 +534,7 @@
             close.type = 'button';
             close.append(icon('x'), document.createTextNode(TEXT.close));
             close.addEventListener('click', () => {
-                searchRun += 1;
-                result.replaceChildren();
-                onCollapse();
+                collapse();
                 product.input.focus({ preventScroll: true });
             });
             actions.append(live, close);
