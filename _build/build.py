@@ -371,13 +371,14 @@ LISTING_SPECS = [
     ("Display size", "Bildschirmgröße", "Screen size"),
     ("Display resolution", "Auflösung", "Resolution"),
     ("Panel type", "Paneltyp", "Panel type"),
-    ("Thunderbolt or USB4", "Thunderbolt / USB4", "Thunderbolt / USB4"),
-    ("HDMI port", "HDMI", "HDMI"),
+    ("Ports", "Anschlüsse", "Ports"),
     ("Wi-Fi standard", "WLAN", "Wi-Fi"),
     ("CPU cores", "Prozessorkerne", "CPU cores"),
     ("Weight", "Gewicht", "Weight"),
     ("Dimensions", "Abmessungen", "Dimensions"),
 ]
+# The yes/no port specs share one "Ports" row, which names the ports found present.
+LISTING_PORTS = [("Thunderbolt or USB4", "Thunderbolt / USB4"), ("HDMI port", "HDMI")]
 # Pixel counts read better without thousands separators (1920 × 1080, not 1.920 × 1.080).
 LISTING_UNGROUPED = {"Display resolution"}
 LISTING_TEXT = {
@@ -417,14 +418,22 @@ def listing_context(lang: str) -> dict:
     example = json.loads(LISTING_FILE.read_text(encoding="utf-8"))
     specs = {spec["name"]: spec for spec in example["specs"]}
     text_of = LISTING_TEXT[lang]
-    rows = []
-    for name, label_de, label_en in LISTING_SPECS:
+
+    def spec(name: str) -> dict:
         if name not in specs:
             raise BuildError(f"{LISTING_FILE.name} has no value for {name} (LISTING_SPECS in build.py)")
-        found = specs[name]
+        return specs[name]
+
+    rows = []
+    for name, label_de, label_en in LISTING_SPECS:
+        if name == "Ports":
+            value = ", ".join(port for spec_name, port in LISTING_PORTS if spec(spec_name)["value"] is True)
+        else:
+            found = spec(name)
+            value = format_spec_value(found["value"], found["unit"], lang, name not in LISTING_UNGROUPED)
         rows.append({
             "label": label_de if lang == "de" else label_en,
-            "value": html_escape(format_spec_value(found["value"], found["unit"], lang, name not in LISTING_UNGROUPED)),
+            "value": html_escape(value),
         })
     date = datetime.date.fromisoformat(example["recorded_at"])
     date_text = f"{date.day}. {text_of['months'][date.month - 1]} {date.year}" if lang == "de" else f"{date.day} {text_of['months'][date.month - 1]} {date.year}"
