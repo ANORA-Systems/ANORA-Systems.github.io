@@ -364,20 +364,22 @@ def demo_context(lang: str) -> dict:
 
 
 # The Re-commerce page compares a typical marketplace listing with the same listing completed
-# by SpecScout. The added rows come from this recorded example, values unchanged: (spec name in
-# the example, the shop's attribute label in German, in English).
-LISTING_EXAMPLE = "apple-iphone-12-pro"
+# by SpecScout. The added rows come from this recorded search, values unchanged: (spec name in
+# the search, the shop's attribute label in German, in English). Its note says where it comes from.
+LISTING_FILE = REPO / "_build" / "listing-example.json"
 LISTING_SPECS = [
-    ("CPU", "Prozessor", "Processor"),
-    ("RAM", "Arbeitsspeicher", "RAM"),
     ("Display size", "Bildschirmgröße", "Screen size"),
-    ("Battery capacity", "Akkukapazität", "Battery capacity"),
-    ("battery life", "Akkulaufzeit", "Battery life"),
+    ("Display resolution", "Auflösung", "Resolution"),
+    ("Panel type", "Paneltyp", "Panel type"),
+    ("Thunderbolt or USB4", "Thunderbolt / USB4", "Thunderbolt / USB4"),
+    ("HDMI port", "HDMI", "HDMI"),
+    ("Wi-Fi standard", "WLAN", "Wi-Fi"),
+    ("CPU cores", "Prozessorkerne", "CPU cores"),
     ("Weight", "Gewicht", "Weight"),
-    ("dimensions", "Abmessungen", "Dimensions"),
-    ("Dual-SIM", "Dual-SIM", "Dual SIM"),
-    ("eSIM", "eSIM", "eSIM"),
+    ("Dimensions", "Abmessungen", "Dimensions"),
 ]
+# Pixel counts read better without thousands separators (1920 × 1080, not 1.920 × 1.080).
+LISTING_UNGROUPED = {"Display resolution"}
 LISTING_TEXT = {
     "de": {"yes": "Ja", "no": "Nein",
            "recorded": "Aufgezeichnetes Ergebnis vom {date} · Dauer {seconds} s",
@@ -388,13 +390,13 @@ LISTING_TEXT = {
 }
 
 
-def format_number(number: float, lang: str) -> str:
+def format_number(number: float, lang: str, grouped: bool = True) -> str:
     """Up to two decimals, thousands grouped, as Intl.NumberFormat does in js/example-box.js."""
-    text = f"{number:,.2f}".rstrip("0").rstrip(".")
+    text = f"{number:{',' if grouped else ''}.2f}".rstrip("0").rstrip(".")
     return text.translate(str.maketrans(",.", ".,")) if lang == "de" else text
 
 
-def format_spec_value(value, unit: str | None, lang: str) -> str:
+def format_spec_value(value, unit: str | None, lang: str, grouped: bool = True) -> str:
     """A value as js/example-box.js shows it: yes/no for true/false, parts joined with ×."""
     text_of = LISTING_TEXT[lang]
     if isinstance(value, bool):
@@ -402,9 +404,9 @@ def format_spec_value(value, unit: str | None, lang: str) -> str:
     elif isinstance(value, str) and value.lower() in ("true", "yes", "false", "no"):
         text = text_of["yes"] if value.lower() in ("true", "yes") else text_of["no"]
     elif isinstance(value, (int, float)):
-        text = format_number(value, lang)
+        text = format_number(value, lang, grouped)
     elif isinstance(value, list):
-        text = " × ".join(format_number(part, lang) if isinstance(part, (int, float)) else str(part) for part in value)
+        text = " × ".join(format_number(part, lang, grouped) if isinstance(part, (int, float)) else str(part) for part in value)
     else:
         text = str(value)
     return f"{text} {unit}" if unit else text
@@ -412,19 +414,17 @@ def format_spec_value(value, unit: str | None, lang: str) -> str:
 
 def listing_context(lang: str) -> dict:
     """The rows SpecScout adds to the listing on the Re-commerce page."""
-    example = next((e for e in demo_data()["examples"] if e["slug"] == LISTING_EXAMPLE), None)
-    if example is None:
-        raise BuildError(f"demo/examples.json has no example {LISTING_EXAMPLE} (LISTING_EXAMPLE in build.py)")
-    specs = {spec["name"]: spec for spec in example["response"]["specs"]}
+    example = json.loads(LISTING_FILE.read_text(encoding="utf-8"))
+    specs = {spec["name"]: spec for spec in example["specs"]}
     text_of = LISTING_TEXT[lang]
     rows = []
     for name, label_de, label_en in LISTING_SPECS:
-        if name not in specs or len(specs[name]["value"]) != 1:
-            raise BuildError(f"{LISTING_EXAMPLE} in demo/examples.json has no single value for {name} (LISTING_SPECS in build.py)")
-        found = specs[name]["value"][0]
+        if name not in specs:
+            raise BuildError(f"{LISTING_FILE.name} has no value for {name} (LISTING_SPECS in build.py)")
+        found = specs[name]
         rows.append({
             "label": label_de if lang == "de" else label_en,
-            "value": html_escape(format_spec_value(found["value"], found["unit"], lang)),
+            "value": html_escape(format_spec_value(found["value"], found["unit"], lang, name not in LISTING_UNGROUPED)),
         })
     date = datetime.date.fromisoformat(example["recorded_at"])
     date_text = f"{date.day}. {text_of['months'][date.month - 1]} {date.year}" if lang == "de" else f"{date.day} {text_of['months'][date.month - 1]} {date.year}"

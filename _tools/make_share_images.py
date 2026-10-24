@@ -39,7 +39,7 @@ ROWS = {
 TEXT = {
     "de": {
         "headline": "Vollständige, filterbare Produktdaten. Ohne manuelle Recherche.",
-        "subline": "Jeder Wert mit Quellen und Konfidenzwert. 20 Suchen im Monat kostenlos.",
+        "subline": "Jeder Wert mit Quellen und Confidence-Wert. 20 Suchen im Monat kostenlos.",
         "card": "SpecScout · Beispielsuche",
         "product": "Galaxy S24 Ultra · Samsung · Smartphone",
         "sources": "Quellen",

@@ -130,7 +130,7 @@ html_class: scroll-smooth
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl">
                 <h2 class="text-3xl font-bold text-anoraBlue">How SpecScout works</h2>
-                <p class="mt-4 text-lg text-gray-600">One product at a time in the web app, whole lists through the API. The steps are the same.</p>
+                <p class="mt-4 text-lg text-gray-600">A simple workflow for fast, automated data enrichment</p>
             </div>
             <ol class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                 <li class="rounded-xl border border-gray-200 bg-white p-6">
@@ -141,17 +141,17 @@ html_class: scroll-smooth
                 <li class="rounded-xl border border-gray-200 bg-white p-6">
                     <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">2</span>
                     <h3 class="mt-4 font-semibold text-anoraBlue">Choose the attributes</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">You decide which attributes to look for, in which unit and with which allowed values. Or start from a category in the spec library.</p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">You decide exactly which specifications to look for per category, and in which unit and format you need the results. Or simply pick and edit predefined specifications from our extensive library.</p>
                 </li>
                 <li class="rounded-xl border border-gray-200 bg-white p-6">
                     <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">3</span>
                     <h3 class="mt-4 font-semibold text-anoraBlue">Research and checks</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">SpecScout reads manufacturer pages, datasheets (PDF) and shops. A value only counts when two independent sources agree, or when an authoritative source such as the manufacturer confirms it.</p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">SpecScout reads manufacturer pages, datasheets (PDF) and reliable third-party sources. A value is only returned when two independent sources agree, or when an authoritative source such as the manufacturer confirms it.</p>
                 </li>
                 <li class="rounded-xl border border-gray-200 bg-white p-6">
                     <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">4</span>
                     <h3 class="mt-4 font-semibold text-anoraBlue">Use the result</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Every value with its sources and a confidence score, as a table in the web app or as JSON through the API. What couldn't be confirmed comes back as "not found".</p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Every value comes with its sources and a confidence score, as a table in the web app or as JSON through the API. What couldn't be confirmed comes back as "not found".</p>
                 </li>
             </ol>
         </div>
@@ -167,35 +167,34 @@ html_class: scroll-smooth
                     <h3 class="mt-4 text-xl font-semibold text-anoraBlue">Correct, and you can check it.</h3>
                     <ul class="mt-4 space-y-3 text-sm leading-relaxed text-gray-600">
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Every value is confirmed by at least two independent sources, or by an authoritative source such as the manufacturer.</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Pages about a different model are rejected.</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Every value comes with its sources and a confidence score.</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>When a product comes in variants (say 256 and 512 GB), all values are returned with their sources instead of a guess.</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Similar products are filtered out.</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Values that can't be confirmed come back as "not found".</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Fixed value lists restrict the AI to the values you allow; multi-part values (dimensions, ranges) are only returned when every part agrees.</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i><span>You decide which sites count: block or trust sources for a brand, a category or both, or search only your own list. <a href="api-documentation#search-settings" class="font-medium text-anoraTeal hover:underline">More in the docs</a></span></li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i><span>You decide which sites count: blacklist, trust or exclusively use sources for a brand, a category or both. <a href="api-documentation#search-settings" class="font-medium text-anoraTeal hover:underline">More in the docs</a></span></li>
                     </ul>
                 </div>
                 <div class="rounded-xl border border-gray-200 p-6 lg:p-8">
                     <i data-lucide="list-filter" class="h-7 w-7 text-anoraTeal"></i>
                     <h3 class="mt-4 text-xl font-semibold text-anoraBlue">Ready for your filters.</h3>
                     <ul class="mt-4 space-y-3 text-sm leading-relaxed text-gray-600">
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Fixed value lists per attribute, with synonyms and other languages mapped onto your values.</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Units are converted, across 26 kinds of measurement.</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>All values are normalised to the unit you want.</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Ranges and dimensions as structured values.</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>A spec library to start your categories from.</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>With Enterprise: the AI assistant that drafts and checks your spec definitions.</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Consistent specification definitions for every product in a category, so products can be compared reliably.</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Optional fixed value lists per specification; synonyms and other languages are mapped onto those fixed values.</li>
                     </ul>
                 </div>
                 <div class="rounded-xl border border-gray-200 p-6 lg:p-8">
                     <i data-lucide="gauge" class="h-7 w-7 text-anoraTeal"></i>
                     <h3 class="mt-4 text-xl font-semibold text-anoraBlue">Hours of research, done in minutes.</h3>
                     <ul class="mt-4 space-y-3 text-sm leading-relaxed text-gray-600">
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>About 17 seconds per product on average (measured in August 2026), instead of searching shop pages and datasheets by hand.</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>The confidence score shows which values to look at, and the sources are one click away.</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>"Not found" marks exactly what's left to fill in.</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>One product at a time in the web app, whole lists through the API (one request per product), or we run your list for you.</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i><span>About 17 seconds per product on average<span class="text-anoraTeal">*</span>, instead of searching shop pages and datasheets by hand.</span></li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Review instead of research: the confidence score and sources show at a glance which values you can trust and which you may want to double-check.</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>A specification library to start your categories from makes creating new categories quick and easy.</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>With Enterprise: a built-in AI assistant that drafts, adjusts and checks your specifications when you want to define your own.</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>With our batch search you can search for several products at once. While SpecScout is working, you can start the next search right away.</li>
                     </ul>
-                    <a href="#examples" class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-anoraTeal hover:text-anoraTealHover">See the search times in the examples <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+                    <p class="mt-4 text-xs text-gray-400"><span class="text-anoraTeal">*</span>measured in August 2026</p>
                 </div>
             </div>
         </div>
@@ -203,7 +202,7 @@ html_class: scroll-smooth
 
     <section id="fit" class="scroll-mt-20 bg-gray-50 py-20">
         <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-anoraBlue">When SpecScout fits, and when it doesn't</h2>
+            <h2 class="text-3xl font-bold text-anoraBlue">When SpecScout is right for you, and when it isn't</h2>
             <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div class="rounded-xl border border-anoraTeal/30 bg-white p-6">
                     <h3 class="flex items-center gap-2 font-semibold text-anoraBlue"><i data-lucide="circle-check" class="h-5 w-5 text-anoraTeal"></i>A good fit if you</h3>

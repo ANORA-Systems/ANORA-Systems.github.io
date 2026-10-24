@@ -42,7 +42,7 @@
             no: 'Nein',
             recorded: (date, seconds) => `Aufgezeichnetes Ergebnis vom ${date} · Dauer ${seconds} s`,
             notLive: 'Diese Suche zeigt nur ausgewählte gespeicherte Ergebnisse.',
-            shownOf: (shown, total) => `${shown} von ${total} Merkmalen gezeigt`,
+            shownOf: (shown, total) => `${shown} von ${total} Spezifikationen gezeigt`,
             tryLive: 'Wenn Sie die Live-Suche ausprobieren möchten, klicken Sie',
             tryLiveButton: 'Live-Suche ausprobieren',
             close: 'Ergebnis schließen',

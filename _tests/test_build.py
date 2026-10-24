@@ -68,6 +68,7 @@ class ExampleDataTest(unittest.TestCase):
         self.assertEqual(build.format_spec_value(2815.0, "mAh", "de"), "2.815 mAh")
         self.assertEqual(build.format_spec_value(2815.0, "mAh", "en"), "2,815 mAh")
         self.assertEqual(build.format_spec_value([7.4, 71.5, 146.7], "mm", "de"), "7,4 × 71,5 × 146,7 mm")
+        self.assertEqual(build.format_spec_value([1920, 1080], None, "de", grouped=False), "1920 × 1080")
         self.assertEqual(build.format_spec_value("True", None, "de"), "Ja")
         self.assertEqual(build.format_spec_value("Apple A14 Bionic", None, "en"), "Apple A14 Bionic")
 

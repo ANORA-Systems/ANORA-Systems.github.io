@@ -1,6 +1,6 @@
 ---
 title: Re-Commerce | Technische Daten für Gebrauchtgeräte | SpecScout
-description: Gebrauchte Geräte kommen meist nur mit einem Modellnamen. SpecScout ergänzt die technischen Daten, auch für ältere Modelle, mit Quellen und Konfidenzwert zu jedem Wert.
+description: Gebrauchte Geräte kommen meist nur mit einem Modellnamen. SpecScout ergänzt die technischen Daten, auch für ältere Modelle, mit Quellen und Confidence-Wert zu jedem Wert.
 nav: full
 footer: yes
 body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-screen
@@ -12,7 +12,7 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
         <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
             <p class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-anoraTeal"><i data-lucide="recycle" class="h-4 w-4"></i>Re-Commerce</p>
             <h1 class="mt-4 max-w-4xl text-4xl font-bold leading-tight text-white md:text-5xl">Wir schließen die Datenlücke der<br> <span class="text-anoraTeal">Circular Economy</span>.</h1>
-            <p class="mt-6 max-w-3xl text-lg leading-relaxed text-onBlue">Ein angekauftes Smartphone bringt einen Modellnamen mit, vielleicht eine Speichergröße auf dem Etikett, sonst nichts. Für ein gutes Angebot brauchen Sie die technischen Daten des Modells: vollständig, einheitlich und prüfbar.</p>
+            <p class="mt-6 max-w-3xl text-lg leading-relaxed text-onBlue">Ein angekaufter Laptop bringt einen Modellnamen mit, vielleicht Prozessor und Speicher vom Aufkleber, sonst nichts. Für ein gutes Angebot brauchen Sie die technischen Daten des Modells: vollständig, einheitlich und prüfbar.</p>
             <div class="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a href="{{ t.start_free_url }}" class="rounded-brand bg-anoraOrange px-6 py-3.5 text-center font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-anoraOrangeHover">Ausprobieren</a>
                 <a href="contact" class="rounded-brand border border-white/30 px-6 py-3.5 text-center font-medium text-white transition hover:border-white">Kontakt aufnehmen</a>
@@ -23,21 +23,21 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
     <section id="vergleich" class="scroll-mt-20 bg-gray-50 py-20">
         <div class="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
             <h2 class="mx-auto max-w-4xl text-3xl font-bold leading-tight text-anoraBlue md:text-4xl">SpecScout macht Second-Hand-Produkte genauso <span class="text-anoraTeal">transparent</span>, <span class="text-anoraTeal">filterbar</span> und <span class="text-anoraTeal">verkäuflich</span> wie Neuware.</h2>
-            <p class="mx-auto mt-6 max-w-3xl text-lg text-gray-600">Dasselbe Gerät, zwei Angebote: ein iPhone 12 Pro aus dem Ankauf. Links, wie es auf Marktplätzen oft angeboten wird: eine kurze Beschreibung und ein paar Angaben vom Etikett. Rechts dasselbe Angebot mit den Daten, die SpecScout zum Modell gefunden hat.</p>
+            <p class="mx-auto mt-6 max-w-3xl text-lg text-gray-600">Ein Beispiel: ein gebrauchtes Lenovo ThinkPad T14 Gen 2. Links, wie es aktuell häufig auf Marktplätzen angeboten wird. Rechts, wie das Angebot mit SpecScout aussehen könnte. Sind die Daten in Suche und Filter Ihres Shops eingebunden, finden genau die Kunden das rechte Angebot, die danach suchen.</p>
         </div>
         <div class="mx-auto mt-10 max-w-[88rem] px-4 sm:px-6 lg:px-8">
             <div class="overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-xl shadow-slate-900/10">
                 <div class="flex items-center justify-between gap-4 bg-anoraBlue px-5 py-3">
                     <div class="flex gap-2" aria-hidden="true"><span class="h-3 w-3 rounded-full bg-red-500"></span><span class="h-3 w-3 rounded-full bg-yellow-500"></span><span class="h-3 w-3 rounded-full bg-green-500"></span></div>
-                    <p class="truncate font-mono text-xs text-onBlueMuted">SpecScout · Apple iPhone 12 Pro</p>
+                    <p class="truncate font-mono text-xs text-onBlueMuted">SpecScout · Lenovo ThinkPad T14 Gen 2</p>
                 </div>
                 <div class="grid grid-cols-1 divide-y divide-gray-200 xl:grid-cols-2 xl:divide-x xl:divide-y-0">
                     <article class="flex flex-col">
                         <div class="flex-1 p-6">
                             <div class="flex flex-wrap items-center gap-x-5 gap-y-4">
-                                <div class="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400"><i data-lucide="smartphone" class="h-10 w-10"></i></div>
+                                <img src="media/recommerce-thinkpad-t14.jpg" alt="Gebrauchtes Lenovo ThinkPad T14 auf einem Holztisch" width="96" height="96" loading="lazy" class="h-24 w-24 shrink-0 rounded-xl object-cover">
                                 <div class="min-w-0 flex-1">
-                                    <h3 class="font-semibold leading-snug text-anoraBlue">Apple iPhone 12 Pro 128 GB Pazifikblau</h3>
+                                    <h3 class="font-semibold leading-snug text-anoraBlue">Lenovo ThinkPad T14 Gen 2, i5, 16&nbsp;GB RAM, 512&nbsp;GB SSD</h3>
                                     <p class="mt-1 text-sm text-gray-500">Gebraucht – Gut</p>
                                     <p class="mt-1 text-2xl font-bold text-slate-900">289 €</p>
                                 </div>
@@ -46,14 +46,13 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
                                 </div>
                             </div>
                             <h4 class="mt-6 text-xs font-semibold uppercase tracking-wider text-gray-500">Beschreibung</h4>
-                            <p class="mt-2 text-sm leading-relaxed text-gray-600">Gepflegtes iPhone 12 Pro mit 128 GB, immer mit Hülle und Panzerglas benutzt. Leichte Gebrauchsspuren am Rahmen, Display ohne Kratzer, Akkugesundheit 87 %. Super Kamera, schneller Prozessor und großes Display, für den Alltag mehr als genug. Kein Simlock, auch mit eSIM. Lieferumfang: iPhone und Original-Ladekabel.</p>
+                            <p class="mt-2 text-sm leading-relaxed text-gray-600">ThinkPad T14 Gen 2 aus einer Firmenauflösung, Intel Core i5, 16 GB RAM, 512 GB SSD. Leichte Gebrauchsspuren am Gehäuse, Display ohne Pixelfehler, Akku hält noch gut. Schneller Prozessor, super Display und viele Anschlüsse, auch Thunderbolt. Windows 11 Pro frisch installiert. Lieferumfang: Laptop und Original-Netzteil.</p>
                             <div class="mt-6 rounded-xl bg-gray-50 p-5">
                                 <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500">Artikelmerkmale</h4>
                                 <dl class="mt-4 grid grid-cols-2 gap-x-6 gap-y-4 text-sm sm:grid-cols-3">
-                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Marke</dt><dd class="mt-0.5 font-medium text-slate-800">Apple</dd></div>
-                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Modell</dt><dd class="mt-0.5 font-medium text-slate-800">iPhone 12 Pro</dd></div>
-                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Speicher</dt><dd class="mt-0.5 font-medium text-slate-800">128 GB</dd></div>
-                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Farbe</dt><dd class="mt-0.5 font-medium text-slate-800">Pazifikblau</dd></div>
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Marke</dt><dd class="mt-0.5 font-medium text-slate-800">Lenovo</dd></div>
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Modell</dt><dd class="mt-0.5 font-medium text-slate-800">ThinkPad T14 Gen 2</dd></div>
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Speicher</dt><dd class="mt-0.5 font-medium text-slate-800">512 GB SSD</dd></div>
                                 </dl>
                             </div>
                         </div>
@@ -61,9 +60,9 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
                     <article class="flex flex-col">
                         <div class="flex-1 p-6">
                             <div class="flex flex-wrap items-center gap-x-5 gap-y-4">
-                                <div class="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400"><i data-lucide="smartphone" class="h-10 w-10"></i></div>
+                                <img src="media/recommerce-thinkpad-t14.jpg" alt="Gebrauchtes Lenovo ThinkPad T14 auf einem Holztisch" width="96" height="96" loading="lazy" class="h-24 w-24 shrink-0 rounded-xl object-cover">
                                 <div class="min-w-0 flex-1">
-                                    <h3 class="font-semibold leading-snug text-anoraBlue">Apple iPhone 12 Pro 128 GB Pazifikblau</h3>
+                                    <h3 class="font-semibold leading-snug text-anoraBlue">Lenovo ThinkPad T14 Gen 2, i5, 16&nbsp;GB RAM, 512&nbsp;GB SSD</h3>
                                     <p class="mt-1 text-sm text-gray-500">Gebraucht – Gut</p>
                                     <p class="mt-1 text-2xl font-bold text-slate-900">289 €</p>
                                 </div>
@@ -72,14 +71,15 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
                                 </div>
                             </div>
                             <h4 class="mt-6 text-xs font-semibold uppercase tracking-wider text-gray-500">Beschreibung</h4>
-                            <p class="mt-2 text-sm leading-relaxed text-gray-600">Gepflegtes iPhone 12 Pro mit 128 GB, immer mit Hülle und Panzerglas benutzt. Leichte Gebrauchsspuren am Rahmen, Display ohne Kratzer, Akkugesundheit 87 %. Super Kamera, schneller Prozessor und großes Display, für den Alltag mehr als genug. Kein Simlock, auch mit eSIM. Lieferumfang: iPhone und Original-Ladekabel.</p>
+                            <p class="mt-2 text-sm leading-relaxed text-gray-600">ThinkPad T14 Gen 2 aus einer Firmenauflösung, Intel Core i5, 16 GB RAM, 512 GB SSD. Leichte Gebrauchsspuren am Gehäuse, Display ohne Pixelfehler, Akku hält noch gut. Schneller Prozessor, super Display und viele Anschlüsse, auch Thunderbolt. Windows 11 Pro frisch installiert. Lieferumfang: Laptop und Original-Netzteil.</p>
                             <div class="mt-6 rounded-xl bg-gray-50 p-5">
                                 <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500">Artikelmerkmale</h4>
                                 <dl class="mt-4 grid grid-cols-2 gap-x-6 gap-y-4 text-sm sm:grid-cols-3">
-                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Marke</dt><dd class="mt-0.5 font-medium text-slate-800">Apple</dd></div>
-                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Modell</dt><dd class="mt-0.5 font-medium text-slate-800">iPhone 12 Pro</dd></div>
-                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Speicher</dt><dd class="mt-0.5 font-medium text-slate-800">128 GB</dd></div>
-                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Farbe</dt><dd class="mt-0.5 font-medium text-slate-800">Pazifikblau</dd></div>
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Marke</dt><dd class="mt-0.5 font-medium text-slate-800">Lenovo</dd></div>
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Modell</dt><dd class="mt-0.5 font-medium text-slate-800">ThinkPad T14 Gen 2</dd></div>
+                                    <div class="border-l-2 border-gray-200 pl-3"><dt class="text-xs text-gray-500">Speicher</dt><dd class="mt-0.5 font-medium text-slate-800">512 GB SSD</dd></div>
+                                    <div class="border-l-2 border-anoraTeal pl-3"><dt class="text-xs text-gray-500">Prozessor</dt><dd class="mt-0.5 font-semibold text-anoraBlue">Intel Core i5-1135G7</dd></div>
+                                    <div class="border-l-2 border-anoraTeal pl-3"><dt class="text-xs text-gray-500">Arbeitsspeicher</dt><dd class="mt-0.5 font-semibold text-anoraBlue">16 GB</dd></div>
 {{# each listing.rows }}
                                     <div class="border-l-2 border-anoraTeal pl-3"><dt class="text-xs text-gray-500">{{ label }}</dt><dd class="mt-0.5 font-semibold text-anoraBlue">{{ value }}</dd></div>
 {{/ each }}
@@ -97,15 +97,15 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
             <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12 lg:gap-16">
                 <div class="border-t-2 border-anoraTeal pt-5">
                     <h3 class="text-lg font-semibold text-anoraBlue">Transparent</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">„Schneller Prozessor und großes Display“ kann niemand prüfen. SpecScout nennt zu jedem Wert die Quellen und einen Konfidenzwert. Ein Wert kommt nur, wenn zwei unabhängige Quellen übereinstimmen oder eine maßgebliche wie der Hersteller ihn bestätigt, auch bei älteren Modellen. Sonst heißt es „nicht gefunden“ statt einer Vermutung.</p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">„Super Display und viele Anschlüsse“ kann niemand prüfen. SpecScout nennt zu jedem Wert die Quellen und einen Confidence-Wert. Ein Wert kommt nur, wenn zwei unabhängige Quellen übereinstimmen oder eine maßgebliche wie der Hersteller ihn bestätigt, auch bei älteren Modellen. Sonst heißt es „nicht gefunden“ statt einer Vermutung.</p>
                 </div>
                 <div class="border-t-2 border-anoraTeal pt-5">
                     <h3 class="text-lg font-semibold text-anoraBlue">Filterbar</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Dass das linke Gerät eSIM kann, steht nur in der Beschreibung. Wer in Ihrem Shop nach eSIM oder Bildschirmgröße filtert, findet es nicht. SpecScout füllt die Merkmale, die Sie festlegen, in Ihren Einheiten und Wertelisten. So hat jedes Gerät dieselben Felder, ob neu oder gebraucht.</p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Dass der linke Laptop Thunderbolt hat, steht nur in der Beschreibung. Wer in Ihrem Shop nach Thunderbolt oder Bildschirmgröße filtert, findet ihn nicht. SpecScout füllt die Spezifikationen, die Sie festlegen, in Ihren Einheiten und Wertelisten. So hat jedes Gerät dieselben Felder, ob neu oder gebraucht.</p>
                 </div>
                 <div class="border-t-2 border-anoraTeal pt-5">
                     <h3 class="text-lg font-semibold text-anoraBlue">Verkäuflich wie Neuware</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Käufer vergleichen ein gebrauchtes Gerät mit dem neuen, Merkmal für Merkmal. Hat Ihr Angebot dieselben Daten wie die Neuware, entscheiden Zustand und Preis. Und beim Preis liegt das Gebrauchtgerät vorn.</p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Wenn Käufer auf der Suche nach einem Produkt sind, konkurrieren gebrauchte und neue Produkte. Oft gewinnt das Neue, weil einfacher zu prüfen ist, dass das Produkt die richtigen Eigenschaften hat. Ist Ihr Angebot genauso gut dokumentiert wie Neuware, entscheiden Zustand und Preis. Und beim Preis liegt das Gebrauchtgerät vorn.</p>
                 </div>
             </div>
         </div>
@@ -113,7 +113,7 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
 
     <section class="bg-white py-20">
         <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-anoraBlue">So passt SpecScout in Ihren Ablauf</h2>
+            <h2 class="text-center text-3xl font-bold text-anoraBlue">So passt SpecScout in Ihren Ablauf</h2>
             <ol class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
                 <li class="rounded-xl border border-gray-200 p-6">
                     <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">1</span>
@@ -123,24 +123,21 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
                 <li class="rounded-xl border border-gray-200 p-6">
                     <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">2</span>
                     <h3 class="mt-4 font-semibold text-anoraBlue">Daten des Modells ergänzen</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Modellname und Marke oder EAN genügen: SpecScout liefert die Merkmale, die Sie festlegen, in Ihren Einheiten und Wertelisten.</p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Modellname und Marke oder EAN genügen: SpecScout liefert die Spezifikationen, die Sie festlegen, in Ihren Einheiten und Wertelisten.</p>
                 </li>
                 <li class="rounded-xl border border-gray-200 p-6">
                     <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">3</span>
                     <h3 class="mt-4 font-semibold text-anoraBlue">Angebot erstellen</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Vollständige, filterbare Merkmale für Ihren Shop und Ihre Marktplatz-Angebote. Über die API auch für ganze Ankaufslisten, eine Anfrage pro Gerät.</p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Vollständige, filterbare Produktspezifikationen für Ihren Shop und Ihre Marktplatz-Angebote. Über die API auch für ganze Ankaufslisten, eine Anfrage pro Gerät.</p>
                 </li>
             </ol>
         </div>
     </section>
 
-    <section class="border-t border-gray-200 bg-white">
-        <div class="mx-auto flex max-w-5xl flex-col gap-2 px-4 py-8 sm:px-6 md:flex-row md:items-center md:gap-6 lg:px-8">
-            <p class="whitespace-nowrap text-4xl font-bold text-anoraTeal">30 %</p>
-            <div>
-                <p class="text-gray-700">der Menschen in Deutschland haben schon einmal ein gebrauchtes Smartphone gekauft. <span class="text-sm text-gray-500">Quelle: <a href="https://www.bitkom.org/Presse/Presseinformation/Refurbished-gebraucht-Smartphones-nicht-immer-Neuware" target="_blank" rel="nofollow noopener noreferrer" class="underline hover:text-anoraBlue">Bitkom-Umfrage, März 2025</a></span></p>
-                <p class="mt-1 font-medium text-anoraBlue">Jedes Gerät, das ein zweites Mal verkauft wird, muss nicht neu produziert werden.</p>
-            </div>
+    <section class="bg-gray-50 py-16">
+        <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+            <p class="flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-wider text-teal-700"><i data-lucide="recycle" class="h-4 w-4"></i>Nachhaltigkeit</p>
+            <p class="mt-4 text-2xl font-bold leading-snug text-anoraBlue md:text-3xl">Jedes Gerät, das ein zweites Mal verkauft wird,<br class="hidden md:inline"> <span class="text-anoraTeal">muss nicht neu produziert werden</span>.</p>
         </div>
     </section>
 
