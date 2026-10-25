@@ -44,6 +44,7 @@
             </div>
         </div>
         <div class="border-t border-white/10">
-            <p class="mx-auto max-w-7xl px-4 py-5 text-center text-xs text-onBlueMuted sm:px-6 lg:px-8">&copy; {{ year }} Anora Systems. {{ t.rights }}</p>
+            <p class="mx-auto max-w-7xl px-4 py-5 text-center text-xs text-onBlueMuted sm:px-6 lg:px-8">&copy; <span data-current-year>{{ year }}</span> Anora Systems. {{ t.rights }}</p>
+            <script>document.querySelectorAll("[data-current-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });</script>
         </div>
     </footer>

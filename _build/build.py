@@ -299,7 +299,8 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
         "langs": langs,
         "nav": nav,
         "logo_href": "#" if is_home else "./",
-        "year": "2026",
+        # the footer script replaces it with the visitor's current year
+        "year": str(datetime.date.today().year),
         "t": STRINGS[lang],
         "demo": demo_context(lang),
         "listing": listing_context(lang),
