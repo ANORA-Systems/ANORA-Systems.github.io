@@ -23,7 +23,7 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
                 <div class="rounded-xl border border-gray-200 p-6">
                     <i data-lucide="server" class="h-6 w-6 text-anoraTeal"></i>
                     <h3 class="mt-4 font-semibold text-anoraBlue">Servers in Germany</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">The web app, dashboard, API and database run on our server at Hetzner in Germany.</p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">The web app, dashboard, API and database run on our servers at Hetzner in Germany.</p>
                 </div>
                 <div class="rounded-xl border border-gray-200 p-6">
                     <i data-lucide="lock" class="h-6 w-6 text-anoraTeal"></i>
@@ -54,15 +54,15 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
                 </div>
                 <div class="rounded-xl border border-gray-200 bg-white p-6">
                     <h3 class="font-semibold text-anoraBlue">Who is involved</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Web search services receive search terms built from the product data. Our server fetches the pages it finds itself. AI models receive the product name, brand, your spec definitions and the text of the pages. Some providers are based in the US or process data there, under the EU-US Data Privacy Framework or the Standard Contractual Clauses. <a href="service-providers" class="font-medium text-anoraTeal hover:underline">All service providers</a></p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Web search services receive search terms built from the product data. The pages found are fetched by our own servers. AI models receive the product name, brand, your spec definitions and the text of the pages. Some providers are based in the US or process data there, under the EU-US Data Privacy Framework or the Standard Contractual Clauses. <a href="service-providers" class="font-medium text-anoraTeal hover:underline">All service providers</a></p>
                 </div>
                 <div class="rounded-xl border border-gray-200 bg-white p-6">
                     <h3 class="font-semibold text-anoraBlue">How long we keep it</h3>
                     <p class="mt-2 text-sm leading-relaxed text-gray-600">Inputs and results for 90 days, without a user ID. After that, only daily statistics without search content remain. For your allowance, we count your searches per month.</p>
                 </div>
                 <div class="rounded-xl border border-gray-200 bg-white p-6">
-                    <h3 class="font-semibold text-anoraBlue">What else we use searches for</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">For every page an AI model evaluates, we keep its address, its text, the model's answer and the specs searched for, for at most 12 months and without a user ID: to check quality, compare models and train an algorithm that ranks sources. We do not train large language models with it. Source rules feed into a shared rating of websites, without any link to your account.</p>
+                    <h3 class="font-semibold text-anoraBlue">How your searches make SpecScout better</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Evaluated pages teach SpecScout which sources are reliable, so it returns better search results. For this, we keep the address, text, the model's answer and the specs searched for of every page an AI model evaluates, for at most 12 months and without a user ID. We use them to check quality, compare models and train an algorithm that ranks sources. We do not train large language models with it. Your source rules feed into a shared rating of websites, without any link to your account.</p>
                 </div>
             </div>
         </div>
@@ -70,32 +70,20 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
 
     <section class="bg-white py-20">
         <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-anoraBlue">Accounts, API keys and this website</h2>
-            <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3">
+            <h2 class="text-3xl font-bold text-anoraBlue">How we protect your account</h2>
+            <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
                 <div>
                     <h3 class="flex items-center gap-2 font-semibold text-anoraBlue"><i data-lucide="users" class="h-5 w-5 text-anoraTeal"></i>Accounts</h3>
                     <ul class="mt-4 space-y-3 text-sm leading-relaxed text-gray-600">
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Passwords stored only as a cryptographic hash</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Second factor through an authenticator app, with recovery codes</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Locked for 15 minutes after five wrong passwords</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Confirm again before exporting or deleting the account</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Export your data and delete your account yourself</li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="flex items-center gap-2 font-semibold text-anoraBlue"><i data-lucide="key-round" class="h-5 w-5 text-anoraTeal"></i>API keys</h3>
                     <ul class="mt-4 space-y-3 text-sm leading-relaxed text-gray-600">
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Shown once, stored only as a hash</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Optional expiry date, revocable at any time</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Access log per key, deleted after 30 days</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="flex items-center gap-2 font-semibold text-anoraBlue"><i data-lucide="shield-check" class="h-5 w-5 text-anoraTeal"></i>This website</h3>
-                    <ul class="mt-4 space-y-3 text-sm leading-relaxed text-gray-600">
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>No cookies, no analytics or tracking tools</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Fonts, icons and scripts from our own server</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Contact requests are forwarded, not stored on the server</li>
                     </ul>
                 </div>
             </div>

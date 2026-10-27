@@ -23,7 +23,7 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
                 <div class="rounded-xl border border-gray-200 p-6">
                     <i data-lucide="server" class="h-6 w-6 text-anoraTeal"></i>
                     <h3 class="mt-4 font-semibold text-anoraBlue">Server in Deutschland</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Web-App, Dashboard, API und Datenbank laufen auf unserem Server bei Hetzner in Deutschland.</p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Web-App, Dashboard, API und Datenbank laufen auf unseren Servern bei Hetzner in Deutschland.</p>
                 </div>
                 <div class="rounded-xl border border-gray-200 p-6">
                     <i data-lucide="lock" class="h-6 w-6 text-anoraTeal"></i>
@@ -54,15 +54,15 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
                 </div>
                 <div class="rounded-xl border border-gray-200 bg-white p-6">
                     <h3 class="font-semibold text-anoraBlue">Wer beteiligt ist</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Websuchdienste erhalten Suchbegriffe aus den Produktdaten. Die gefundenen Seiten ruft unser Server selbst ab. KI-Modelle erhalten Produktname, Marke, die Definitionen Ihrer Spezifikationen und den Text der Seiten. Einige Anbieter sitzen in den USA oder verarbeiten dort, auf Grundlage des EU-US Data Privacy Framework oder der Standardvertragsklauseln. <a href="dienstleister" class="font-medium text-anoraTeal hover:underline">Alle Dienstleister</a></p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Websuchdienste erhalten Suchbegriffe aus den Produktdaten. Die gefundenen Seiten rufen unsere Server selbst ab. KI-Modelle erhalten Produktname, Marke, die Definitionen Ihrer Spezifikationen und den Text der Seiten. Einige Anbieter sitzen in den USA oder verarbeiten dort, auf Grundlage des EU-US Data Privacy Framework oder der Standardvertragsklauseln. <a href="dienstleister" class="font-medium text-anoraTeal hover:underline">Alle Dienstleister</a></p>
                 </div>
                 <div class="rounded-xl border border-gray-200 bg-white p-6">
                     <h3 class="font-semibold text-anoraBlue">Wie lange wir sie speichern</h3>
                     <p class="mt-2 text-sm leading-relaxed text-gray-600">Eingaben und Ergebnisse 90 Tage, ohne Benutzerkennung. Danach bleiben nur tägliche Statistiken ohne Suchinhalte. Für Ihr Kontingent zählen wir die Zahl Ihrer Suchen pro Monat.</p>
                 </div>
                 <div class="rounded-xl border border-gray-200 bg-white p-6">
-                    <h3 class="font-semibold text-anoraBlue">Wofür wir Suchen außerdem nutzen</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Zu jeder Seite, die ein KI-Modell auswertet, speichern wir Adresse, Seitentext, die Antwort des Modells und die gesuchten Spezifikationen bis zu 12 Monate lang, ohne Benutzerkennung: um die Qualität zu prüfen, Modelle zu vergleichen und einen Algorithmus zu trainieren, der Quellen bewertet. Große Sprachmodelle trainieren wir damit nicht. Quellenregeln fließen ohne Bezug zu Ihrem Konto in eine gemeinsame Bewertung von Websites ein.</p>
+                    <h3 class="font-semibold text-anoraBlue">Wie Ihre Suchen SpecScout besser machen</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Aus ausgewerteten Seiten lernt SpecScout, welche Quellen verlässlich sind, und liefert so bessere Suchergebnisse. Dazu speichern wir zu jeder Seite, die ein KI-Modell auswertet, Adresse, Seitentext, die Antwort des Modells und die gesuchten Spezifikationen bis zu 12 Monate lang, ohne Benutzerkennung. Damit prüfen wir die Qualität, vergleichen Modelle und trainieren einen Algorithmus, der Quellen bewertet. Große Sprachmodelle trainieren wir damit nicht. Ihre Quellenregeln fließen ohne Bezug zu Ihrem Konto in eine gemeinsame Bewertung von Websites ein.</p>
                 </div>
             </div>
         </div>
@@ -70,32 +70,20 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
 
     <section class="bg-white py-20">
         <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-anoraBlue">Konten, API-Schlüssel und Website</h2>
-            <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3">
+            <h2 class="text-3xl font-bold text-anoraBlue">So schützen wir Ihr Konto</h2>
+            <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
                 <div>
                     <h3 class="flex items-center gap-2 font-semibold text-anoraBlue"><i data-lucide="users" class="h-5 w-5 text-anoraTeal"></i>Konten</h3>
                     <ul class="mt-4 space-y-3 text-sm leading-relaxed text-gray-600">
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Passwörter nur als kryptografischer Hash</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Zweiter Faktor per Authenticator-App, mit Wiederherstellungscodes</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Nach fünf falschen Passwörtern 15 Minuten Sperre</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Erneute Bestätigung vor Export oder Löschung des Kontos</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Daten selbst exportieren, Konto selbst löschen</li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="flex items-center gap-2 font-semibold text-anoraBlue"><i data-lucide="key-round" class="h-5 w-5 text-anoraTeal"></i>API-Schlüssel</h3>
                     <ul class="mt-4 space-y-3 text-sm leading-relaxed text-gray-600">
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Nur einmal angezeigt, nur als Hash gespeichert</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Optional mit Ablaufdatum, jederzeit widerrufbar</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Zugriffsprotokoll je Schlüssel, nach 30 Tagen gelöscht</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="flex items-center gap-2 font-semibold text-anoraBlue"><i data-lucide="shield-check" class="h-5 w-5 text-anoraTeal"></i>Diese Website</h3>
-                    <ul class="mt-4 space-y-3 text-sm leading-relaxed text-gray-600">
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Keine Cookies, keine Analyse- oder Tracking-Werkzeuge</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Schriften, Icons und Skripte von unserem eigenen Server</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Kontaktanfragen werden weitergeleitet, nicht auf dem Server gespeichert</li>
                     </ul>
                 </div>
             </div>
