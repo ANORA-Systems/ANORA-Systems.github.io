@@ -75,7 +75,17 @@ html_class: scroll-smooth
 
             <section id="quickstart" class="mb-10 rounded-3xl border border-gray-200 bg-white/90 backdrop-blur p-6 md:p-8 shadow-lg shadow-slate-200/60">
                 <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-2">Quickstart</h2>
-                <p class="text-gray-600 mb-6">Your first search in five minutes. All you need is a free account.</p>
+                <p class="text-gray-600 mb-6">Your first search in five minutes. All you need is a free account, and there are two ways to start.</p>
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mb-8">
+                    <div class="rounded-xl border border-gray-200 p-5">
+                        <h3 class="font-semibold text-anoraBlue">Without code: the web app</h3>
+                        <p class="mt-1 text-sm text-gray-600">Sign up with <a href="{{ t.start_free_url }}" class="text-anoraTeal hover:underline font-medium">Start free</a> and search in your browser at <a href="https://specscout.anora-systems.com" class="text-anoraTeal hover:underline font-medium">specscout.anora-systems.com</a>. You see every value with its sources and confidence score, which is the quickest way to try SpecScout before you connect your own system.</p>
+                    </div>
+                    <div class="rounded-xl border border-gray-200 p-5">
+                        <h3 class="font-semibold text-anoraBlue">With the API: an API key</h3>
+                        <p class="mt-1 text-sm text-gray-600">Create an API key and send searches from your own system. The steps below take you from the key to your first result.</p>
+                    </div>
+                </div>
                 <ol class="space-y-6">
                     <li>
                         <h3 class="font-semibold text-anoraBlue">1. Get an API key</h3>
@@ -119,7 +129,7 @@ for spec in response.json()["specs"]:
                     </li>
                     <li>
                         <h3 class="font-semibold text-anoraBlue">4. Read the result</h3>
-                        <p class="mt-1 text-sm text-gray-600">Each entry in <code class="font-mono bg-gray-100 px-1 rounded">specs</code> holds one or more values, each with its unit, the pages it came from (<code class="font-mono bg-gray-100 px-1 rounded">sources</code>) and a <a href="#confidence" class="text-anoraTeal hover:underline font-medium">confidence score</a>. Specifications that could not be confirmed by at least two independent sources are listed in <code class="font-mono bg-gray-100 px-1 rounded">not_found</code>, never guessed.</p>
+                        <p class="mt-1 text-sm text-gray-600">Each entry in <code class="font-mono bg-gray-100 px-1 rounded">specs</code> holds one or more values, each with its unit, the pages it came from (<code class="font-mono bg-gray-100 px-1 rounded">sources</code>) and a <a href="#confidence" class="text-anoraTeal hover:underline font-medium">confidence score</a>. Specifications that could not be confirmed by at least two independent sources, or by one <a href="#confidence" class="text-anoraTeal hover:underline font-medium">authoritative source</a> such as the manufacturer, are listed in <code class="font-mono bg-gray-100 px-1 rounded">not_found</code>, never guessed.</p>
                     </li>
                     <li>
                         <h3 class="font-semibold text-anoraBlue">5. Next steps</h3>
@@ -214,7 +224,7 @@ for spec in response.json()["specs"]:
       {                             // differ (e.g. 256 GB and 512 GB), each with its own sources
         "value": "string | number | boolean | array",   // array only for sub_values specs (ranges, dimensions)
         "unit": "string | null",
-        "sources": ["url"],         // at least two independent pages (see Confidence scores)
+        "sources": ["url"],         // at least two independent pages, or one authoritative page (see Confidence scores)
         "confidence": 0.89          // 0 to 0.99, see Confidence scores
       }
     ]
@@ -250,7 +260,7 @@ for spec in response.json()["specs"]:
                 <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-4">Confidence scores</h2>
                 <p class="text-gray-600 mb-4">Every value comes with a <code class="font-mono bg-gray-100 px-1 rounded">confidence</code> between 0 and 0.99. It sums up how many independent pages state the value and how reliable those sites are. It is not a measured probability that the value is correct; use it to decide which values to accept and which to check.</p>
                 <ul class="list-disc pl-5 space-y-2 text-sm text-gray-600 mb-5">
-                    <li><strong class="text-anoraBlue">Only confirmed values are returned.</strong> A value needs at least two independent pages; yes/no values need a clear majority of the sources. The one exception is a page you marked <code class="font-mono bg-gray-100 px-1 rounded">authoritative</code> in your <a href="#search-settings" class="text-anoraTeal hover:underline font-medium">domain rules</a>: it is read by two different AI models, which counts as two sources. Everything else ends up in <code class="font-mono bg-gray-100 px-1 rounded">not_found</code>.</li>
+                    <li><strong class="text-anoraBlue">Only confirmed values are returned.</strong> A value needs at least two independent pages; yes/no values need a clear majority of the sources. The one exception is an authoritative page: the manufacturer's own site, which SpecScout recognises when the brand is part of the domain name (bosch.com, shop.bosch.de), or a site you marked <code class="font-mono bg-gray-100 px-1 rounded">authoritative</code> in your <a href="#search-settings" class="text-anoraTeal hover:underline font-medium">domain rules</a>. It is read by two different AI models, which counts as two sources. Everything else ends up in <code class="font-mono bg-gray-100 px-1 rounded">not_found</code>.</li>
                     <li><strong class="text-anoraBlue">More and better sources raise it.</strong> Each page adds to the score according to how reliable its site is: manufacturer pages and specification databases count more than retailers, marketplaces or forums. Sites you mark <code class="font-mono bg-gray-100 px-1 rounded">trusted</code> or <code class="font-mono bg-gray-100 px-1 rounded">authoritative</code> count more.</li>
                     <li><strong class="text-anoraBlue">Each value has its own score.</strong> When a spec has several values (256 GB and 512 GB), each is scored on its own sources; the other values do not lower it.</li>
                 </ul>
@@ -1353,7 +1363,7 @@ Content-Type: text/plain
                         <ul class="space-y-1 list-disc pl-4">
                             <li><code class="font-mono">normal</code> - include the domain as a source, no further claim.</li>
                             <li><code class="font-mono">trusted</code> - strong prior: values from this domain get a high per-value confidence and the domain is ranked higher. Values are still cross-source verified.</li>
-                            <li><code class="font-mono">authoritative</code> - the product's own source (e.g. the manufacturer). Everything <code class="font-mono">trusted</code> does, plus its pages get a second, independent extraction so specs only this source publishes can still be confirmed.</li>
+                            <li><code class="font-mono">authoritative</code> - the product's own source (e.g. the manufacturer). SpecScout already recognises a manufacturer site when the brand is part of its domain name; mark it here when the domain differs, for example a sub-brand on the parent company's domain. Everything <code class="font-mono">trusted</code> does, plus its pages get a second, independent extraction so specs only this source publishes can still be confirmed.</li>
                         </ul>
                         <p class="mt-2">A rule has a base <code class="font-mono">trust</code>; a scope term may override it for its own situation (<code class="font-mono">effective_trust</code>). <code class="font-mono">globally_active: true</code> puts a scoped whitelist rule into the <code class="font-mono">stored</code> pool at its base trust while its terms keep acting as overrides.</p>
                         <p class="mt-2"><code class="font-mono">source_kind</code> (<code class="font-mono">manufacturer</code> | <code class="font-mono">comparison_portal</code>) is a purely descriptive label available on both lists.</p>
