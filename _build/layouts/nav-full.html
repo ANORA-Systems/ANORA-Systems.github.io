@@ -7,8 +7,8 @@
                 <span class="hidden font-outfit text-xl tracking-tight text-anoraBlue sm:block">Spec<span class="text-anoraTeal">Scout</span></span>
             </a>
 
-            <div class="flex items-center gap-2 lg:gap-6">
-                <div data-nav-menu class="hidden items-center gap-6 lg:flex">
+            <div class="flex items-center gap-2 lg:gap-4 xl:gap-6">
+                <div data-nav-menu class="hidden items-center gap-5 lg:flex xl:gap-6">
 {{# each nav }}
                     <a href="{{ href }}"{{# if current }} aria-current="page" class="text-sm font-medium text-anoraTeal transition hover:text-anoraTeal"{{ else }} class="text-sm font-medium text-gray-600 transition hover:text-anoraTeal"{{/ if }}>{{ label }}</a>
 {{/ each }}
@@ -22,7 +22,11 @@
 {{# if active }}
                     <span class="rounded bg-white px-2 py-0.5 font-bold text-anoraBlue shadow-sm" aria-current="true">{{ code }}</span>
 {{ else }}
+{{# if href }}
                     <a href="{{ href }}" hreflang="{{ hreflang }}" class="px-2 py-0.5 font-medium text-gray-500 transition hover:text-anoraTeal">{{ code }}</a>
+{{ else }}
+                    <span class="cursor-not-allowed px-2 py-0.5 font-medium text-gray-300" title="{{ t.no_translation }}">{{ code }}</span>
+{{/ if }}
 {{/ if }}
 {{/ each }}
                 </div>

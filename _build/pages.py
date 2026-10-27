@@ -48,7 +48,6 @@ STRINGS = {
         "login_url": "https://dashboard.anora-systems.com/de/auth/login",
         "contact": "Kontakt",
         "menu": "Menü",
-        "back_home": "Zurück zur Startseite",
         "rights": "Alle Rechte vorbehalten.",
         "product": "Produkt",
         "company": "Unternehmen",
@@ -57,6 +56,8 @@ STRINGS = {
         "pricing": "Preise",
         "pricing_href": "preise",
         "security": "Sicherheit &amp; Daten",
+        "security_nav": "Sicherheit",
+        "no_translation": "Diese Seite gibt es nur auf Deutsch.",
         "security_href": "sicherheit",
         "about": "Über uns",
         "about_href": "ueber-uns",
@@ -84,7 +85,6 @@ STRINGS = {
         "login_url": "https://dashboard.anora-systems.com/auth/login",
         "contact": "Contact",
         "menu": "Menu",
-        "back_home": "Back to Home",
         "rights": "All rights reserved.",
         "product": "Product",
         "company": "Company",
@@ -93,6 +93,8 @@ STRINGS = {
         "pricing": "Pricing",
         "pricing_href": "pricing",
         "security": "Security &amp; Data",
+        "security_nav": "Security",
+        "no_translation": "This page is only available in English.",
         "security_href": "security",
         "about": "About us",
         "about_href": "about",
@@ -115,10 +117,10 @@ STRINGS = {
     },
 }
 
-# The full menu, in order. Each key is also its label's key in STRINGS (and "<key>_href" its
-# link where the file name differs by language); nav_href() in _build/build.py turns it into a
+# The full menu, in order. Each key is also its label's key in STRINGS ("<key>_nav" a shorter
+# menu label, "<key>_href" its link where the file name differs by language); nav_href() in _build/build.py turns it into a
 # link relative to the page and marks the current page.
-NAV = ["product", "recommerce", "pricing", "docs", "contact"]
+NAV = ["product", "recommerce", "pricing", "security", "docs", "contact"]
 
 # Copied into the build unchanged. Inside folders, names starting with "." or "_" are skipped.
 STATIC = ["assets", "media", "js", "downloads", "demo", "opensource/specscout-dependencies.json", "CNAME"]

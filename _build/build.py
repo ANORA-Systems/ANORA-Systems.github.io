@@ -11,7 +11,7 @@ then an optional <head> block, then the body content:
     ---
     title: Impressum | Anora Systems
     description: ...                (optional)
-    nav: back                       full | back | none
+    nav: full                       full | none
     footer: yes                     yes | no
     body_class: ...                 (optional, default below)
     html_class: ...                 (optional)
@@ -253,8 +253,8 @@ def read_page(page: str) -> tuple[dict[str, str], str, str]:
     for key in ("title", "nav", "footer"):
         if key not in meta:
             raise BuildError(f"{page}: front matter has no {key}")
-    if meta["nav"] not in ("full", "back", "none") or meta["footer"] not in ("yes", "no"):
-        raise BuildError(f"{page}: nav must be full, back or none and footer yes or no")
+    if meta["nav"] not in ("full", "none") or meta["footer"] not in ("yes", "no"):
+        raise BuildError(f"{page}: nav must be full or none and footer yes or no")
     return meta, head, body
 
 
@@ -278,7 +278,7 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
             "href": relative_href(page, target) if target else "",
         })
     nav = [
-        {"href": nav_href(key, lang, is_home), "label": STRINGS[lang][key], "current": page.endswith(f"{nav_page(key, lang)}.html")}
+        {"href": nav_href(key, lang, is_home), "label": STRINGS[lang].get(f"{key}_nav", STRINGS[lang][key]), "current": page.endswith(f"{nav_page(key, lang)}.html")}
         for key in NAV
     ]
     return {
@@ -289,7 +289,6 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
         "html_class": meta.get("html_class", ""),
         "body_class": meta.get("body_class", DEFAULT_BODY_CLASS),
         "nav_full": meta["nav"] == "full",
-        "nav_back": meta["nav"] == "back",
         "footer": meta["footer"] == "yes",
         "canonical": url_of(page),
         "alternates": alternates,
@@ -310,7 +309,7 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
 
 def nav_page(key: str, lang: str) -> str:
     """The page file name (without .html) a menu entry stands for, if it is a page of this site."""
-    if key in ("product", "docs"):
+    if key == "product":
         return "\0"
     return STRINGS[lang].get(f"{key}_href", key)
 

@@ -19,7 +19,7 @@ Every `*.html` in the repo root (German) and in `en/` (English) is a page source
 ---
 title: Impressum | Anora Systems
 description: Optional meta description.
-nav: back          (full: the homepage menu; back: logo and "back to home"; none)
+nav: full          (full: the site menu; none: no menu)
 footer: yes
 ---
 <main>...</main>
