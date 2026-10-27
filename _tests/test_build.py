@@ -64,6 +64,16 @@ class ExampleDataTest(unittest.TestCase):
                 for spec in response["not_found"]:
                     self.assertEqual(spec["value"], [])
 
+    def test_highlighted_json_reads_as_the_json_it_colours(self) -> None:
+        text = json.dumps({"name": "a \"true\" <b>", "unit": None, "confidence": 0.8, "ok": True, "n": [-1, 2e3]}, indent=2)
+        html = build.highlight_json(text)
+        plain = re.sub(r"</?span[^>]*>", "", html).replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&")
+        self.assertEqual(plain, text)
+        self.assertIn('<span class="text-sky-300">"name"</span>:', html)
+        self.assertIn('<span class="text-emerald-300">"a \\"true\\" &lt;b&gt;"</span>', html)
+        self.assertIn('<span class="text-violet-300">null</span>', html)
+        self.assertIn('<span class="text-anoraOrange">0.8</span>', html)
+
     def test_listing_values_read_as_in_the_example_box(self) -> None:
         self.assertEqual(build.format_spec_value(2815.0, "mAh", "de"), "2.815 mAh")
         self.assertEqual(build.format_spec_value(2815.0, "mAh", "en"), "2,815 mAh")

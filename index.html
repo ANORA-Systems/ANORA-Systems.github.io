@@ -232,11 +232,14 @@ html_class: scroll-smooth
                 <h2 class="mt-3 text-3xl font-bold text-white">Eine REST-API, die in jedes System passt.</h2>
                 <ul class="mt-6 space-y-3 text-onBlue">
                     <li class="flex gap-3"><i data-lucide="terminal" class="mt-1 h-5 w-5 shrink-0 text-anoraTeal"></i>JSON über HTTPS; funktioniert mit jedem System, das eine REST-API aufrufen kann, auch mit Automatisierungswerkzeugen.</li>
-                    <li class="flex gap-3"><i data-lucide="key-round" class="mt-1 h-5 w-5 shrink-0 text-anoraTeal"></i>API-Schlüssel mit Ablaufdatum, jederzeit widerrufbar, verwaltet im Dashboard.</li>
+                    <li class="flex gap-3"><i data-lucide="list-filter" class="mt-1 h-5 w-5 shrink-0 text-anoraTeal"></i>Spezifikationen einmal als Kategorie festlegen, danach genügen Produktname, Marke und Kategorie.</li>
+                    <li class="flex gap-3"><i data-lucide="clock" class="mt-1 h-5 w-5 shrink-0 text-anoraTeal"></i>Eine Suche dauert 10 bis 40 Sekunden; am besten als Hintergrundjob mit mindestens 180 Sekunden Timeout.</li>
                     <li class="flex gap-3"><i data-lucide="gauge" class="mt-1 h-5 w-5 shrink-0 text-anoraTeal"></i>Bis zu 200 Anfragen pro Minute je Schlüssel; nur abgeschlossene Suchen zählen gegen Ihr Kontingent.</li>
-                    <li class="flex gap-3"><i data-lucide="book-open" class="mt-1 h-5 w-5 shrink-0 text-anoraTeal"></i>Dokumentierte Endpunkte, Fehlercodes und Limits.</li>
                 </ul>
-                <a href="en/api-documentation" class="mt-8 inline-flex items-center gap-2 rounded-brand border border-white/30 px-5 py-3 text-sm font-semibold text-white transition hover:border-white">Zur API-Dokumentation (Englisch) <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="{{ t.register_url }}" class="inline-flex items-center gap-2 rounded-brand bg-anoraOrange px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-anoraOrangeHover">Kostenlosen API-Schlüssel holen</a>
+                    <a href="en/api-documentation" class="inline-flex items-center gap-2 rounded-brand border border-white/30 px-5 py-3 text-sm font-semibold text-white transition hover:border-white">Zur API-Dokumentation (Englisch) <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+                </div>
             </div>
             <div>
                 <p class="mb-3 text-sm text-onBlueMuted">Antwort der API (Auszug)</p>

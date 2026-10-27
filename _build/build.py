@@ -351,16 +351,41 @@ def demo_context(lang: str) -> dict:
         "status": response["status"],
         "errors": response["errors"],
     }
-    # category takes the ID of a saved category, not its name
+    # category takes the ID of a saved category, not its name; the ID is an example (the docs' sample UUID)
     request = (
         f"GET /api/v1/search?product_name={example['input']['product_name'].replace(' ', '+')}"
-        f"&brand={example['input']['brand']}&category=<{example['category']['en']} category ID>"
+        f"&brand={example['input']['brand']}&category={EXAMPLE_CATEGORY_ID}"
     )
     return {
         "placeholder": bool(demo_data().get("placeholder")),
         "request": html_escape(request),
-        "response_json": html_escape(json.dumps(excerpt, indent=2, ensure_ascii=False)),
+        "response_json": highlight_json(json.dumps(excerpt, indent=2, ensure_ascii=False)),
     }
+
+
+EXAMPLE_CATEGORY_ID = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+
+# One token of json.dumps output: a string (group 1, a key when group 2 holds its colon), a number
+# (group 3) or a literal (group 4). Strings come first, so "true" inside a string stays a string.
+JSON_TOKEN = re.compile(r'("(?:\\.|[^"\\])*")(\s*:)?|(-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)|\b(true|false|null)\b')
+JSON_COLORS = {"key": "text-sky-300", "string": "text-emerald-300", "number": "text-anoraOrange", "literal": "text-violet-300"}
+
+
+def highlight_json(text: str) -> str:
+    """Escape JSON for HTML and colour its keys, strings, numbers and literals with Tailwind classes."""
+    out, end = [], 0
+    for match in JSON_TOKEN.finditer(text):
+        out.append(html_escape(text[end:match.start()]))
+        string, colon, number, literal = match.groups()
+        if string is not None:
+            kind = "key" if colon else "string"
+            out.append(f'<span class="{JSON_COLORS[kind]}">{html_escape(string)}</span>{colon or ""}')
+        else:
+            kind = "number" if number is not None else "literal"
+            out.append(f'<span class="{JSON_COLORS[kind]}">{match.group(0)}</span>')
+        end = match.end()
+    out.append(html_escape(text[end:]))
+    return "".join(out)
 
 
 # The Re-commerce page compares a typical marketplace listing with the same listing completed
