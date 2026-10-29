@@ -11,6 +11,8 @@ python _build/build.py        # only builds, into _site/
 
 The first build downloads Tailwind's standalone CLI (version and SHA-256 pinned in `_build/build.py`) into `_build/bin/`. `_site/` and `_build/bin/` are not committed.
 
+The preview server builds into its own temporary folder and switches to a new build only once it has succeeded, so several servers can run side by side and a reload during a rebuild still shows the last good version. It does not update `_site/`; `python _build/build.py` does.
+
 ## How a page is made
 
 Every `*.html` in the repo root (German) and in `en/` (English) is a page source: a front matter block, an optional `<head>` block with tags only this page needs, then the page body.
