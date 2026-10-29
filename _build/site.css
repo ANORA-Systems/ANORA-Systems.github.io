@@ -2,3 +2,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Code colours, set by highlight_code() in _build/build.py: darker shades for the light code boxes,
+   lighter ones inside .code-dark. Outside @layer, so Tailwind keeps them although the class names
+   only appear in the built pages. */
+.tok-key { color: theme('colors.sky.800'); }
+.tok-str { color: theme('colors.emerald.700'); }
+.tok-num { color: theme('colors.orange.700'); }
+.tok-lit { color: theme('colors.violet.700'); }
+.tok-com { color: theme('colors.gray.500'); font-style: italic; }
+.code-dark .tok-key { color: theme('colors.sky.300'); }
+.code-dark .tok-str { color: theme('colors.emerald.300'); }
+.code-dark .tok-num { color: theme('colors.anoraOrange'); }
+.code-dark .tok-lit { color: theme('colors.violet.300'); }
+.code-dark .tok-com { color: theme('colors.slate.400'); }

@@ -31,6 +31,8 @@ The link preview image of each language (`media/social-share-de.png`, `media/soc
 
 An icon is written as `<i data-lucide="check" class="h-4 w-4"></i>`; the build replaces it with the SVG from `assets/lucide/`.
 
+A code example is written as plain escaped text in `<pre><code class="language-json">…</code></pre>` (also `language-bash`, `language-python`, `language-http`); the build colours it. Add `code-dark` to the `<pre>` of a dark code box so it gets the lighter colours. The colours are in `_build/site.css`.
+
 The example search (`js/example-box.js`) is a search form over the results in `demo/examples.json`, which are in the API's response shape; the site never calls the API. Product name, brand and category are separate searchable dropdowns of the available examples, and results appear after "Search" and a short pause with a spinner. On the homepage the search sits in the dark hero card, which expands to show the result; the Re-commerce page has a light box. The API excerpt on the homepage is built from the same file. The examples are recorded results of the October 2026 benchmark runs (42 products in 16 categories), taken unchanged from the stored search records.
 
 `_build/pages.py` also lists every page with its counterpart in the other language. The build stops on a page that is missing there, and it writes `sitemap.xml` from that list, with each page's `lastmod` taken from its last commit.

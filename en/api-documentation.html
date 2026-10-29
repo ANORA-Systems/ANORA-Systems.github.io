@@ -93,7 +93,7 @@ html_class: scroll-smooth
                     </li>
                     <li>
                         <h3 class="font-semibold text-anoraBlue">2. Check the key</h3>
-                        <pre class="mt-2 bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code>curl -X POST https://api.anora-systems.com/api/v1/auth/validate_api_key \
+                        <pre class="code-dark mt-2 bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code class="language-bash">curl -X POST https://api.anora-systems.com/api/v1/auth/validate_api_key \
   -H "x_api_key: $SPECSCOUT_KEY"
 
 # {"valid": true, "key_type": "default", "access_level": "free", ...}</code></pre>
@@ -101,7 +101,7 @@ html_class: scroll-smooth
                     <li>
                         <h3 class="font-semibold text-anoraBlue">3. Run a search</h3>
                         <p class="mt-1 text-sm text-gray-600">Name the product and its brand, and say which specifications you want: inline as <code class="font-mono bg-gray-100 px-1 rounded">required_specs</code>, or later as a saved <a href="#categories" class="text-anoraTeal hover:underline font-medium">category</a>. A search takes about 10 to 40 seconds, so allow a long timeout.</p>
-                        <pre class="mt-2 bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code>curl -G https://api.anora-systems.com/api/v1/search \
+                        <pre class="code-dark mt-2 bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code class="language-bash">curl -G https://api.anora-systems.com/api/v1/search \
   -H "x_api_key: $SPECSCOUT_KEY" --max-time 180 \
   --data-urlencode "product_name=Galaxy S24 Ultra" \
   --data-urlencode "brand=Samsung" \
@@ -110,7 +110,7 @@ html_class: scroll-smooth
     {"name": "RAM", "description": "Working memory", "instance": "float", "unit": "GB"}
   ]'</code></pre>
                         <p class="mt-3 text-sm text-gray-600">The same in Python:</p>
-                        <pre class="mt-2 bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code>import json, os, requests
+                        <pre class="code-dark mt-2 bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code class="language-python">import json, os, requests
 
 specs = [
     {"name": "Display size", "description": "Diagonal of the main display", "instance": "float", "unit": "inch"},
@@ -184,7 +184,7 @@ for spec in response.json()["specs"]:
                         <p class="text-xs text-gray-500 mb-4">Rate limit: 200 requests per minute. A search takes about 10 to 40 seconds and at most 175; set your client timeout to at least 180 seconds. The server also caps how many searches run at the same time: when it is busy you get <code class="font-mono bg-gray-100 px-1 rounded">429 search_concurrency_limit_reached</code> with a <code class="font-mono bg-gray-100 px-1 rounded">Retry-After</code> header; wait that many seconds and try again. Every completed search counts against your <a href="#quotas" class="text-anoraTeal hover:underline">quota</a>, including one that ends with <code class="font-mono bg-gray-100 px-1 rounded">status: "fail"</code>; error responses do not.</p>
 
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Success Response (200 OK)</h4>
-                        <pre class="bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code>{
+                        <pre class="code-dark bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code class="language-json">{
   "status": "success",
   "specs": [
     {
@@ -214,7 +214,7 @@ for spec in response.json()["specs"]:
                             <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                 <ul class="space-y-2">
                                     <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/ServiceResponsePublic</code></li>
-                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "specs": [{                       // SpecificationLite: one entry per specification with at least one verified value
     "id": "uuid",
     "name": "string",
@@ -241,7 +241,7 @@ for spec in response.json()["specs"]:
                                     <li><code class="font-mono">403</code> <code class="font-mono">api_key_scope_insufficient</code></li>
                                     <li><code class="font-mono">404</code> <code class="font-mono">category_not_found</code> (does not exist or is not visible to you)</li>
                                     <li><code class="font-mono">422</code> <code class="font-mono">validation_error</code>: malformed <code class="font-mono">required_specs</code> / domain-list JSON, <code class="font-mono">category</code> not a UUID, or one of the domain-rule rules above; or FastAPI's schema error (missing <code class="font-mono">product_name</code> or <code class="font-mono">brand</code>):</li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
@@ -303,7 +303,7 @@ for spec in response.json()["specs"]:
                             <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                 <ul class="space-y-2">
                                     <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/ValidateAPIKeySuccessResponse</code></li>
-                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "valid": true,
   "key_id": "uuid",
   "key_type": "default",            // customer keys are always "default"
@@ -343,14 +343,14 @@ for spec in response.json()["specs"]:
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Accepted</h4>
-                        <pre class="bg-emerald-50 text-emerald-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-emerald-200"><code>POST /api/v2/specifications
+                        <pre class="bg-emerald-50 text-emerald-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-emerald-200"><code class="language-http">POST /api/v2/specifications
 Content-Type: application/json
 
 {"name": "Weight", "description": "...", "instance": "float"}</code></pre>
                     </div>
                     <div>
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Rejected &mdash; 422</h4>
-                        <pre class="bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>POST /api/v2/specifications
+                        <pre class="bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-http">POST /api/v2/specifications
 Content-Type: text/plain
 
 {"name": "Weight", "description": "...", "instance": "float"}</code></pre>
@@ -365,7 +365,7 @@ Content-Type: text/plain
                 <div class="grid md:grid-cols-2 gap-4 mb-5">
                     <div>
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Business / validation error</h4>
-                        <pre class="bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                        <pre class="bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": "a specification named 'Weight' is already attached to category ...",
   "code": "specification_name_conflict_in_category",
   "correlation_id": "3f9c..."
@@ -373,7 +373,7 @@ Content-Type: text/plain
                     </div>
                     <div>
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Internal error (500)</h4>
-                        <pre class="bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                        <pre class="bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": "internal server error",
   "code": "internal_server_error",
   "correlation_id": "3f9c..."
@@ -419,7 +419,7 @@ Content-Type: text/plain
                             <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                 <ul class="space-y-2">
                                     <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/UserPublic</code></li>
-                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "id": "uuid",
   "email": "jane.doe@example.com",
   "access_level": "free",           // "trial" | "free" | "full"
@@ -458,7 +458,7 @@ Content-Type: text/plain
                             <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                 <ul class="space-y-2">
                                     <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/UserQuotaResponse</code></li>
-                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "quota_key": "search",            // "search" (Enterprise), "search_free" (Free), "search_trial" (trial)
   "limit": 500,
   "used": 254,
@@ -501,7 +501,7 @@ Content-Type: text/plain
                             <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                 <ul class="space-y-2">
                                     <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/MonthlySearchUsageListResponse</code></li>
-                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "items": [
     {
       "period_start": "2026-06-01T00:00:00Z",
@@ -586,7 +586,7 @@ Content-Type: text/plain
                     <div class="p-6">
                         <p class="text-gray-600 text-sm mb-2">Create a new specification for the current user.</p>
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
-                        <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
+                        <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code class="language-json">{
   "name": "Display Size",                     // required
   "description": "Diagonal of visible display area", // required
   "instance": "float",                        // required: "float", "int", "str", "bool"
@@ -612,7 +612,7 @@ Content-Type: text/plain
                             <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                 <ul class="space-y-2">
                                     <li><code class="font-mono">201</code> Successful Response, schema: <code class="font-mono">#/components/schemas/SpecificationPublic</code></li>
-                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "id": "uuid",
   "name": "Display Size",
   "description": "Diagonal of visible display area",
@@ -628,7 +628,7 @@ Content-Type: text/plain
   "updated_at": "2026-01-01T00:00:00Z"
 }</code></pre>
                                     <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
@@ -674,7 +674,7 @@ Content-Type: text/plain
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
                                         <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/SpecificationListResponse</code></li>
-                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "items": [
     {"id": "uuid", "name": "Display Size", "description": "...", "instance": "float", "unit": "inch"}
   ],
@@ -690,7 +690,7 @@ Content-Type: text/plain
   }
 }</code></pre>
                                         <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
@@ -717,7 +717,7 @@ Content-Type: text/plain
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
                                         <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/SpecificationPublic</code></li>
-                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "id": "uuid",
   "name": "Display Size",
   "description": "Diagonal of visible display area",
@@ -733,7 +733,7 @@ Content-Type: text/plain
   "updated_at": "2026-01-01T00:00:00Z"
 }</code></pre>
                                         <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
@@ -753,7 +753,7 @@ Content-Type: text/plain
                         <div class="p-6">
                             <p class="text-gray-600 text-sm mb-2">Update a specification.</p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
-                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code class="language-json">{
   "name": "Display Size",                     // required
   "description": "Diagonal of visible display area", // required
   "instance": "float",                        // required: "float", "int", "str", "bool"
@@ -783,7 +783,7 @@ Content-Type: text/plain
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
                                         <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/SpecificationPublic</code></li>
-                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "id": "uuid",
   "name": "Display Size",
   "description": "Diagonal of visible display area",
@@ -799,7 +799,7 @@ Content-Type: text/plain
   "updated_at": "2026-01-01T00:00:00Z"
 }</code></pre>
                                         <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
@@ -848,7 +848,7 @@ Content-Type: text/plain
                             <p class="text-gray-600 text-sm mb-2">Let the AI assistant draft a specification from a short description, or rewrite an existing one. The draft is reviewed against our definition rules before it is returned, and similar existing specifications are listed so you do not create duplicates. Nothing is saved; create the specification yourself once you are happy with it.</p>
                             <p class="text-xs text-gray-500 mb-4"><strong>Enterprise only</strong> (access level <code class="font-mono">full</code>); other accounts get <code class="font-mono">403 access_level_insufficient</code>. Rate limit: 20 requests per minute. A call takes about 5 to 15 seconds.</p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
-                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code class="language-json">{
   "prompt": "battery capacity in milliampere-hours",   // required, at most 500 characters
   "name": "Battery Capacity",                          // optional, at most 100 characters
   "specification_id": "uuid",                          // optional: rewrite this saved specification
@@ -865,7 +865,7 @@ Content-Type: text/plain
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
                                         <li><code class="font-mono">200</code> Successful Response</li>
-                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "draft": {
     "name": "Battery Capacity",
     "description": "Rated capacity of the battery cell",
@@ -910,7 +910,7 @@ Content-Type: text/plain
                             <p class="text-gray-600 text-sm mb-2">Check a specification against our definition rules and get a revised copy. Send a saved specification (<code class="font-mono">specification_id</code>), an unsaved one (<code class="font-mono">specification</code>), or both to review unsaved edits of a saved specification. Nothing is saved.</p>
                             <p class="text-xs text-gray-500 mb-4"><strong>Enterprise only</strong> (access level <code class="font-mono">full</code>). Rate limit: 20 requests per minute.</p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
-                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code class="language-json">{
   "specification_id": "uuid",          // and/or
   "specification": {...},              // an unsaved definition, same fields as create
   "category_id": "uuid",               // optional, for context
@@ -925,7 +925,7 @@ Content-Type: text/plain
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
                                         <li><code class="font-mono">200</code> Successful Response</li>
-                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "findings": [
     {"check": "string", "field": "description", "message": "string", "evidence": "string"}
   ],
@@ -960,7 +960,7 @@ Content-Type: text/plain
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
                                         <li><code class="font-mono">200</code> Successful Response - array of <code class="font-mono">CategoryPublic</code></li>
-                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>[
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">[
   {
     "id": "uuid",
     "name": "Laptops",
@@ -1010,7 +1010,7 @@ Content-Type: text/plain
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
                                         <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/CategoryListResponse</code></li>
-                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "items": [
     {
       "id": "uuid",
@@ -1034,7 +1034,7 @@ Content-Type: text/plain
   }
 }</code></pre>
                                         <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
@@ -1061,7 +1061,7 @@ Content-Type: text/plain
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
                                         <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/CategoryPublic</code></li>
-                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "id": "uuid",
   "name": "Laptops",
   "user_id": "uuid",
@@ -1071,7 +1071,7 @@ Content-Type: text/plain
   "updated_at": "2026-01-01T00:00:00Z"
 }</code></pre>
                                         <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
@@ -1106,7 +1106,7 @@ Content-Type: text/plain
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
                                         <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/SpecificationListResponse</code></li>
-                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                        <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "items": [
     {
       "id": "uuid",
@@ -1130,7 +1130,7 @@ Content-Type: text/plain
   }
 }</code></pre>
                                         <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
@@ -1152,7 +1152,7 @@ Content-Type: text/plain
                         <p class="text-gray-600 text-sm mb-2">Create a category, optionally below a parent category. Keep category names unique; the API does not enforce this, but duplicate names make categories hard to tell apart.</p>
                         <p class="text-xs text-gray-500 mb-2">Rate limit: 200 requests per minute.</p>
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
-                        <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code>{
+                        <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code class="language-json">{
   "name": "Laptops",              // required
   "top_category": "uuid"          // optional: the parent category
 }</code></pre>
@@ -1166,7 +1166,7 @@ Content-Type: text/plain
                                 <li><code class="font-mono">201</code> Successful Response, schema: <code class="font-mono">#/components/schemas/CategoryPublic</code></li>
                                 <li><code class="font-mono">403</code> <code class="font-mono">forbidden_parent_category</code>; <code class="font-mono">404</code> <code class="font-mono">parent_category_not_found</code></li>
                                 <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
@@ -1188,7 +1188,7 @@ Content-Type: text/plain
                             <p class="text-gray-600 text-sm mb-2">Update a category. The body replaces the category: leaving out <code class="font-mono">top_category</code> moves it to the top level.</p>
                             <p class="text-xs text-gray-500 mb-2">Rate limit: 100 requests per minute. <code class="font-mono">400 category_hierarchy_cycle</code> if the new parent is the category itself or one of its sub-categories; <code class="font-mono">403 forbidden_category</code> / <code class="font-mono">forbidden_parent_category</code>; <code class="font-mono">404 category_not_found</code> / <code class="font-mono">parent_category_not_found</code>.</p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Request Body</h4>
-                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code>{
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200"><code class="language-json">{
   "name": "New Category Name",
   "top_category": "uuid"          // optional; omitted = top level
 }</code></pre>
@@ -1200,7 +1200,7 @@ Content-Type: text/plain
                                 <div class="border-t border-gray-200 px-4 py-3 text-xs text-gray-700">
                                     <ul class="space-y-2">
                                         <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">#/components/schemas/CategoryPublic</code></li>
-                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                    <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "id": "uuid",
   "name": "Laptops",
   "user_id": "uuid",
@@ -1210,7 +1210,7 @@ Content-Type: text/plain
   "updated_at": "2026-01-01T00:00:00Z"
 }</code></pre>
                                         <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
@@ -1239,7 +1239,7 @@ Content-Type: text/plain
                                     <ul class="space-y-2">
                                         <li><code class="font-mono">204</code> Successful Response (no content)</li>
                                         <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                        <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
@@ -1272,7 +1272,7 @@ Content-Type: text/plain
                                     <li><code class="font-mono">404</code> <code class="font-mono">category_not_found</code>, <code class="font-mono">specification_not_found</code></li>
                                     <li><code class="font-mono">409</code> <code class="font-mono">specification_name_conflict_in_category</code>: another spec with the same name is already attached</li>
                                     <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
@@ -1301,7 +1301,7 @@ Content-Type: text/plain
                                 <ul class="space-y-2">
                                     <li><code class="font-mono">204</code> Successful Response (no content)</li>
                                     <li><code class="font-mono">422</code> Validation Error, schema: <code class="font-mono">#/components/schemas/HTTPValidationError</code></li>
-                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code>{
+                                    <pre class="mt-2 bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
   "detail": [
     {"loc": ["query", "field_name"], "msg": "Field required", "type": "missing"}
   ]
@@ -1404,7 +1404,7 @@ Content-Type: text/plain
                             <ul class="space-y-2">
 
                                 <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">DomainBlacklistItemListResponse</code> / <code class="font-mono">DomainWhitelistItemListResponse</code></li>
-                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "items": [
     {
       "id": "uuid",
@@ -1442,7 +1442,7 @@ Content-Type: text/plain
                         <div class="p-6">
                             <p class="text-gray-600 text-sm mb-2">Create a rule for a domain. Without <code class="font-mono">scopes</code> the rule is <strong>global</strong>; each <code class="font-mono">scopes</code> entry becomes one scope term. Creating a domain that already has a rule on this list is always a <code class="font-mono">409</code>. There is no upsert; use <a href="#ensure" class="text-anoraTeal hover:underline font-medium">ensure</a> for an idempotent "make sure this domain is covered" call.</p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-4 mb-2">Request Body</h4>
-                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code class="language-json">{
   "domain": "bosch.com",                       // required, 1-2048 chars
   "source_kind": "manufacturer",               // optional, both lists: "manufacturer" | "comparison_portal"
   "trust": "trusted",                          // whitelist only, optional, default "normal"
@@ -1497,7 +1497,7 @@ Content-Type: text/plain
                             <ul class="space-y-2">
 
                                 <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">DomainBlacklistItemDetail</code> / <code class="font-mono">DomainWhitelistItemDetail</code>. Blacklist responses carry no trust fields at all.</li>
-                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "id": "uuid", "user_id": "uuid", "domain": "bosch.com",
   "trust": "trusted", "source_kind": "manufacturer", "globally_active": false, "is_active": true,
   "created_at": "2026-01-01T00:00:00Z", "updated_at": "2026-01-01T00:00:00Z",
@@ -1535,7 +1535,7 @@ Content-Type: text/plain
                         <div class="p-6">
                             <p class="text-gray-600 text-sm mb-2">Partial update: an omitted key leaves the stored value untouched. Scope terms are managed through the term routes below, not here.</p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-4 mb-2">Request Body</h4>
-                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code class="language-json">{
   "is_active": false,           // optional: disable/enable without deleting
   "trust": "authoritative",     // whitelist only, optional: raises or lowers the rule's base trust (null = no-op)
   "source_kind": null,          // optional, both lists; explicit null clears the classification
@@ -1601,7 +1601,7 @@ Content-Type: text/plain
                                     <li>Because ensure only ever widens a rule and is safe to repeat, you can call it on every click without reading the list first. Show the <code class="font-mono bg-gray-100 px-1 rounded">outcome</code> as a short confirmation ("blocked", "was already blocked").</li>
                                     <li>The next search for that brand or category leaves the domain out (blacklist) or ranks it higher (whitelist).</li>
                                 </ol>
-                                <pre class="mt-3 bg-codeBg text-gray-300 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code>POST /api/v1/users/search-settings/blacklist/ensure
+                                <pre class="code-dark mt-3 bg-codeBg text-gray-300 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code class="language-http">POST /api/v1/users/search-settings/blacklist/ensure
 x_api_key: &lt;API_KEY&gt;
 Content-Type: application/json
 
@@ -1611,7 +1611,7 @@ Content-Type: application/json
                             </div>
                             <p class="text-gray-600 text-sm mb-2">Goal-directed "block this source" / "trust this source" call. After it returns, a rule for the domain exists, is active, and covers <strong>at least</strong> the requested scope (or the whole domain if no scope is given). It never narrows an existing rule and never lowers trust. At most one scope per call.</p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-4 mb-2">Request Body</h4>
-                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{"domain": "annoying-shop.de", "category_id": "uuid"}                 // scope: one category
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code class="language-json">{"domain": "annoying-shop.de", "category_id": "uuid"}                 // scope: one category
 {"domain": "annoying-shop.de", "brand": "Sony"}                       // scope: one brand
 {"domain": "annoying-shop.de", "category_id": "uuid", "brand": "Sony"} // scope: category AND brand
 {"domain": "annoying-shop.de"}                                        // global: covers every search
@@ -1640,7 +1640,7 @@ Content-Type: application/json
                             <ul class="space-y-2">
 
                                 <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">DomainBlacklistEnsureResponse</code> / <code class="font-mono">DomainWhitelistEnsureResponse</code></li>
-                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   ...single-rule detail fields (see GET /{list}/{item_id})...,
   "outcome": "scope_added",     // "created" | "scope_added" | "already_covered" | "already_global" | "promoted_to_global"
   "reactivated": false,         // true if the rule was inactive and this call switched it back on
@@ -1667,7 +1667,7 @@ Content-Type: application/json
                         <div class="p-6">
                             <p class="text-gray-600 text-sm mb-2">Add one scope term to a rule. At least one of <code class="font-mono">category_id</code> / <code class="font-mono">brand</code> is required. Adding a term to a global rule scopes it down (explicit narrowing).</p>
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-4 mb-2">Request Body</h4>
-                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code>{
+                            <pre class="bg-gray-100 text-gray-600 p-3 rounded-lg text-xs font-mono mb-4 border border-gray-200 overflow-x-auto"><code class="language-json">{
   "category_id": "uuid",     // optional
   "brand": "Bosch",          // optional; normalized (trim, collapse whitespace, lowercase, max 128 chars)
   "trust": "authoritative"   // whitelist only, optional: overrides the rule's trust when this term matches
@@ -1681,7 +1681,7 @@ Content-Type: application/json
                             <ul class="space-y-2">
 
                                 <li><code class="font-mono">201</code> Successful Response, schema: <code class="font-mono">RuleScopeTermPublic</code> (whitelist) / <code class="font-mono">BlacklistRuleScopeTermPublic</code> (blacklist, without the two trust fields)</li>
-                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{
+                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{
   "id": "uuid",
   "category_id": "uuid",
   "category_name": "Power Tools",
@@ -1798,7 +1798,7 @@ Content-Type: application/json
                             <ul class="space-y-2">
 
                                 <li><code class="font-mono">200</code> Successful Response, schema: <code class="font-mono">BrandSuggestResponse</code></li>
-                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code>{"items": ["Bosch", "Bosch Professional", "Sony"]}</code></pre>
+                                <pre class="mt-2 bg-gray-100 text-gray-700 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-gray-200"><code class="language-json">{"items": ["Bosch", "Bosch Professional", "Sony"]}</code></pre>
                                 <li><code class="font-mono">422</code> Validation Error</li>
                             </ul>
                         </div>

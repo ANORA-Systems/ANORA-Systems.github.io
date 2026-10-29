@@ -46,6 +46,7 @@ import stat
 import subprocess
 import sys
 import urllib.request
+from html import unescape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -190,6 +191,63 @@ def inline_icons(html: str, source: str) -> str:
         )
 
     return ICON_TAG.sub(replace, html)
+
+
+# --- code highlighting -----------------------------------------------------------------------
+
+# <code class="... language-json"> blocks are coloured at build time: each token gets a tok-* class,
+# coloured in _build/site.css (darker shades by default, lighter ones inside .code-dark).
+CODE_TAG = re.compile(r'(<code class="[^"]*\blanguage-([a-z]+)\b[^"]*">)(.*?)(</code>)', re.S)
+STRING = r'"(?:\\.|[^"\\\n])*"'
+TOKENS = {
+    # a string followed by a colon is a key; // comments annotate the examples in the docs
+    "json": [("com", r"//[^\n]*"), ("key", STRING + r"(?=\s*:)"), ("str", STRING),
+             ("num", r"-?\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b"), ("lit", r"\b(?:true|false|null)\b")],
+    "bash": [("com", r"(?<!\S)#[^\n]*"), ("str", STRING + r"|'[^']*'"), ("lit", r"(?<![\w-])--?[a-zA-Z][\w-]*|^curl\b"),
+             ("key", r"\$\w+")],
+    "python": [("com", r"#[^\n]*"), ("key", STRING + r"(?=\s*:)"), ("str", STRING + r"|'[^'\n]*'"),
+               ("num", r"\b\d+(?:\.\d+)?\b"),
+               ("lit", r"\b(?:import|from|for|in|if|else|return|def|True|False|None)\b")],
+}
+TOKEN_PATTERNS = {
+    lang: re.compile("|".join(f"(?P<{kind}{i}>{pattern})" for i, (kind, pattern) in enumerate(rules)), re.M)
+    for lang, rules in TOKENS.items()
+}
+HTTP_HEAD = re.compile(r"^([A-Z]+)( [^\n]*)$|^([\w-]+)(:[^\n]*)$", re.M)
+
+
+def highlight(text: str, lang: str) -> str:
+    """HTML for plain-text code, with tokens wrapped in <span class="tok-...">."""
+    if lang == "http":
+        # request line and headers, then a blank line and a JSON body
+        head, sep, body = text.partition("\n\n")
+
+        def head_line(match: re.Match) -> str:
+            word, rest = (match.group(1), match.group(2)) if match.group(1) else (match.group(3), match.group(4))
+            kind = "lit" if match.group(1) else "key"
+            return f'<span class="tok-{kind}">{word}</span>{rest}'
+
+        return HTTP_HEAD.sub(head_line, html_escape(head)) + sep + highlight(body, "json")
+    out, end = [], 0
+    for match in TOKEN_PATTERNS[lang].finditer(text):
+        kind = match.lastgroup.rstrip("0123456789")
+        out.append(html_escape(text[end:match.start()]))
+        out.append(f'<span class="tok-{kind}">{html_escape(match.group(0))}</span>')
+        end = match.end()
+    out.append(html_escape(text[end:]))
+    return "".join(out)
+
+
+def highlight_code(html: str, source: str) -> str:
+    def replace(match: re.Match) -> str:
+        open_tag, lang, body, close_tag = match.groups()
+        if lang not in TOKENS and lang != "http":
+            raise BuildError(f"{source}: no highlighting for language-{lang}")
+        if "<" in body:
+            raise BuildError(f"{source}: a language-{lang} block contains markup; write it as plain escaped text")
+        return open_tag + highlight(unescape(body), lang) + close_tag
+
+    return CODE_TAG.sub(replace, html)
 
 
 # --- pages -----------------------------------------------------------------------------------
@@ -359,33 +417,11 @@ def demo_context(lang: str) -> dict:
     return {
         "placeholder": bool(demo_data().get("placeholder")),
         "request": html_escape(request),
-        "response_json": highlight_json(json.dumps(excerpt, indent=2, ensure_ascii=False)),
+        "response_json": html_escape(json.dumps(excerpt, indent=2, ensure_ascii=False)),
     }
 
 
 EXAMPLE_CATEGORY_ID = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-
-# One token of json.dumps output: a string (group 1, a key when group 2 holds its colon), a number
-# (group 3) or a literal (group 4). Strings come first, so "true" inside a string stays a string.
-JSON_TOKEN = re.compile(r'("(?:\\.|[^"\\])*")(\s*:)?|(-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)|\b(true|false|null)\b')
-JSON_COLORS = {"key": "text-sky-300", "string": "text-emerald-300", "number": "text-anoraOrange", "literal": "text-violet-300"}
-
-
-def highlight_json(text: str) -> str:
-    """Escape JSON for HTML and colour its keys, strings, numbers and literals with Tailwind classes."""
-    out, end = [], 0
-    for match in JSON_TOKEN.finditer(text):
-        out.append(html_escape(text[end:match.start()]))
-        string, colon, number, literal = match.groups()
-        if string is not None:
-            kind = "key" if colon else "string"
-            out.append(f'<span class="{JSON_COLORS[kind]}">{html_escape(string)}</span>{colon or ""}')
-        else:
-            kind = "number" if number is not None else "literal"
-            out.append(f'<span class="{JSON_COLORS[kind]}">{match.group(0)}</span>')
-        end = match.end()
-    out.append(html_escape(text[end:]))
-    return "".join(out)
 
 
 # The Re-commerce page compares a typical marketplace listing with the same listing completed
@@ -488,7 +524,7 @@ def build_pages(out: Path) -> None:
         context = page_context(page, index[page], meta, head)
         context["head"] = render(parse(head, page), [context], page)
         context["content"] = render(parse(body, page), [context], page)
-        html = inline_icons(render(layout, [context], f"page.html for {page}"), page)
+        html = highlight_code(inline_icons(render(layout, [context], f"page.html for {page}"), page), page)
         target = out / page
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(html.replace("\r\n", "\n").encode("utf-8"))

@@ -40,6 +40,57 @@ class TemplateTest(unittest.TestCase):
                 render(template, on=True)
 
 
+class HighlightTest(unittest.TestCase):
+    """highlight_code() colours code blocks without changing a character of the code."""
+
+    SAMPLES = {
+        "json": '{\n  "name": "a \\"true\\" <b> // no comment",  // a comment\n  "unit": null, "n": [-1, 2e3, 0.8], "ok": true\n}',
+        "bash": "curl -G https://api.anora-systems.com/x \\\n  -H \"x_api_key: $KEY\" --max-time 180 \\\n  --data-urlencode 'a=[{\"b\": 1}]'\n\n# {\"valid\": true}",
+        "python": 'import json\nfor spec in r.json()["specs"]:  # loop\n    print({"a": 1}, None, \'x\')',
+        "http": 'POST /api/v2/specifications\nx_api_key: <API_KEY>\n\n{"name": "Weight"}\n\n// 200: {"ok": true}',
+    }
+
+    def plain(self, html: str) -> str:
+        return build.unescape(re.sub(r"</?span[^>]*>", "", html))
+
+    def test_the_text_is_unchanged(self) -> None:
+        for lang, text in self.SAMPLES.items():
+            with self.subTest(lang=lang):
+                self.assertEqual(self.plain(build.highlight(text, lang)), text)
+
+    def test_tokens_get_their_kind(self) -> None:
+        html = build.highlight(self.SAMPLES["json"], "json")
+        self.assertIn('<span class="tok-key">"name"</span>', html)
+        self.assertIn('<span class="tok-str">"a \\"true\\" &lt;b&gt; // no comment"</span>', html)
+        self.assertIn('<span class="tok-com">// a comment</span>', html)
+        self.assertIn('<span class="tok-lit">null</span>', html)
+        self.assertIn('<span class="tok-num">0.8</span>', html)
+        bash = build.highlight(self.SAMPLES["bash"], "bash")
+        self.assertIn('<span class="tok-lit">curl</span>', bash)
+        self.assertIn('<span class="tok-lit">--max-time</span>', bash)
+        self.assertIn('<span class="tok-com"># {"valid": true}</span>', bash)
+        http = build.highlight(self.SAMPLES["http"], "http")
+        self.assertIn('<span class="tok-lit">POST</span> /api/v2/specifications', http)
+        self.assertIn('<span class="tok-key">x_api_key</span>: &lt;API_KEY&gt;', http)
+
+    def test_unknown_languages_and_markup_stop_the_build(self) -> None:
+        for html in ('<code class="language-cobol">x</code>', '<code class="language-json"><b>x</b></code>'):
+            with self.subTest(html=html), self.assertRaises(build.BuildError):
+                build.highlight_code(html, "test")
+
+    def test_every_code_block_on_the_api_page_is_coloured(self) -> None:
+        html = (SITE / "en" / "api-documentation.html").read_text(encoding="utf-8")
+        blocks = re.findall(r"<pre[^>]*>\s*<code([^>]*)>", html)
+        self.assertGreater(len(blocks), 40)
+        for attrs in blocks:
+            self.assertRegex(attrs, r"\blanguage-[a-z]+\b")
+        self.assertIn('<span class="tok-key">', html)
+        css = (SITE / "assets" / "css" / "site.css").read_text(encoding="utf-8")
+        for kind in ("key", "str", "num", "lit", "com"):
+            self.assertRegex(css, rf"(^|}})\.tok-{kind}{{", f"the light colour for tok-{kind} is missing")
+            self.assertIn(f".code-dark .tok-{kind}{{", css)
+
+
 class ExampleDataTest(unittest.TestCase):
     """demo/examples.json holds search results in the API's response shape (js/example-box.js)."""
 
@@ -63,16 +114,6 @@ class ExampleDataTest(unittest.TestCase):
                         self.assertTrue(value["sources"])
                 for spec in response["not_found"]:
                     self.assertEqual(spec["value"], [])
-
-    def test_highlighted_json_reads_as_the_json_it_colours(self) -> None:
-        text = json.dumps({"name": "a \"true\" <b>", "unit": None, "confidence": 0.8, "ok": True, "n": [-1, 2e3]}, indent=2)
-        html = build.highlight_json(text)
-        plain = re.sub(r"</?span[^>]*>", "", html).replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&")
-        self.assertEqual(plain, text)
-        self.assertIn('<span class="text-sky-300">"name"</span>:', html)
-        self.assertIn('<span class="text-emerald-300">"a \\"true\\" &lt;b&gt;"</span>', html)
-        self.assertIn('<span class="text-violet-300">null</span>', html)
-        self.assertIn('<span class="text-anoraOrange">0.8</span>', html)
 
     def test_listing_values_read_as_in_the_example_box(self) -> None:
         self.assertEqual(build.format_spec_value(2815.0, "mAh", "de"), "2.815 mAh")
