@@ -74,7 +74,7 @@ To run them by hand, from the repo root, with no dependencies to install:
 
 ```bash
 python -m unittest discover -s _tests -v   # Python 3.9+: builds the site, then checks it
-node --test                                # Node 20+: call scheduler slots
+node --test                                # Node 20+: call scheduler slots, contact sending
 ```
 
 | Test | Checks |
@@ -83,8 +83,9 @@ node --test                                # Node 20+: call scheduler slots
 | `_tests/test_self_hosted_assets.py` | No built page, stylesheet or script loads anything from another server, and every local file a page points at exists. |
 | `_tests/test_clean_urls.py` | Links between our pages, canonical and `hreflang` URLs and the sitemap use clean URLs without `.html`, and each one points at a page that exists. |
 | `_tests/call-slots.test.js` | The call scheduler (`js/call-slots.js`) offers only valid times: weekdays 9:00 to 16:30 Berlin time without lunch, no public holidays, next-day bookings until 17:30, at most six weeks ahead, correct across the clock changes and in the visitor's time zone. |
+| `_tests/contact-api.test.js` | Sending the contact form and the call request (`js/contact-api.js`): the request the backend expects, the 20-second timeout, and the wait after a 429: the `Retry-After` header is read as whole seconds (anything else means no wait), the countdown ends on time, and one wait holds the send buttons of both forms. |
 
-The Python tests build the site into a temporary folder (`_tests/site_build.py`), so they always check what would be published. Folders starting with `_` are never published. The contact form and call request also have a manual check: after changing `js/contact-form.js`, `js/call-scheduler.js` or the contact pages, open `/contact` and `/en/contact` in the preview server, open the scheduler, pick a time and step through the form. Sending only works from https://anora-systems.com, so a local copy always ends on the email fallback.
+The Python tests build the site into a temporary folder (`_tests/site_build.py`), so they always check what would be published. Folders starting with `_` are never published. The contact form and call request also have a manual check: after changing `js/contact-api.js`, `js/contact-form.js`, `js/call-scheduler.js` or the contact pages, open `/contact` and `/en/contact` in the preview server, open the scheduler, pick a time and step through the form. Sending only works from https://anora-systems.com, so a local copy always ends on the email fallback. To see the wait after a 429 locally, run `fetch = async () => new Response('', {status: 429, headers: {'Retry-After': '75'}})` in the browser console before sending: the send buttons count down from 1:15 and come back at zero.
 
 ## Publishing
 

@@ -57,12 +57,13 @@ footer: yes
                         <label for="cf-website">Website</label>
                         <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
                     </div>
+                    <p class="sr-only" aria-live="polite" data-live></p>
                     <div class="hidden rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert" data-error>
-                        <p class="flex gap-2"><i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i><span data-error-text="failed">Your message could not be sent just now. Please try again or send it by email.</span><span data-error-text="busy" class="hidden">We are receiving a lot of messages right now. Please send yours by email or try again later.</span></p>
+                        <p class="flex gap-2"><i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i><span data-error-text="failed">Your message could not be sent just now. Please try again or send it by email.</span><span data-error-text="busy" class="hidden">We are receiving a lot of messages right now. Please send yours by email or try again later.</span><span data-error-text="wait" class="hidden">We are receiving a lot of messages right now. You can send again once the timer on the button runs out, or send yours by email now.</span></p>
                         <a href="mailto:info@anora-systems.com" data-action="mail" class="inline-block mt-2 ml-6 font-semibold text-red-700 underline hover:text-red-900">Send by email</a>
                     </div>
                     <div>
-                        <button type="submit" data-submit class="inline-flex items-center gap-2 bg-anoraOrange hover:bg-orange-600 text-white px-6 py-3 rounded-md font-bold transition shadow-md disabled:opacity-60 disabled:cursor-wait focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-anoraOrange">
+                        <button type="submit" data-submit class="inline-flex items-center gap-2 bg-anoraOrange hover:bg-orange-600 text-white px-6 py-3 rounded-md font-bold transition shadow-md disabled:opacity-60 disabled:cursor-wait aria-disabled:cursor-not-allowed aria-disabled:hover:bg-anoraOrange focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-anoraOrange">
                             Send message
                         </button>
                     </div>
@@ -108,6 +109,7 @@ footer: yes
     </main>
 
 
+    <script src="../js/contact-api.js"></script>
     <script src="../js/contact-form.js"></script>
     <script src="../js/call-slots.js"></script>
     <script src="../js/call-scheduler.js"></script>

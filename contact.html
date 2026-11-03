@@ -57,12 +57,13 @@ footer: yes
                         <label for="cf-website">Website</label>
                         <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
                     </div>
+                    <p class="sr-only" aria-live="polite" data-live></p>
                     <div class="hidden rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert" data-error>
-                        <p class="flex gap-2"><i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i><span data-error-text="failed">Ihre Nachricht konnte gerade nicht gesendet werden. Bitte versuchen Sie es noch einmal oder schicken Sie sie per E-Mail.</span><span data-error-text="busy" class="hidden">Gerade erreichen uns sehr viele Nachrichten. Bitte schicken Sie Ihre per E-Mail oder versuchen Sie es später noch einmal.</span></p>
+                        <p class="flex gap-2"><i class="fa-solid fa-circle-exclamation mt-0.5" aria-hidden="true"></i><span data-error-text="failed">Ihre Nachricht konnte gerade nicht gesendet werden. Bitte versuchen Sie es noch einmal oder schicken Sie sie per E-Mail.</span><span data-error-text="busy" class="hidden">Gerade erreichen uns sehr viele Nachrichten. Bitte schicken Sie Ihre per E-Mail oder versuchen Sie es später noch einmal.</span><span data-error-text="wait" class="hidden">Gerade erreichen uns sehr viele Nachrichten. Sie können wieder senden, sobald der Zähler am Button abgelaufen ist, oder Ihre Nachricht gleich per E-Mail schicken.</span></p>
                         <a href="mailto:info@anora-systems.com" data-action="mail" class="inline-block mt-2 ml-6 font-semibold text-red-700 underline hover:text-red-900">Per E-Mail senden</a>
                     </div>
                     <div>
-                        <button type="submit" data-submit class="inline-flex items-center gap-2 bg-anoraOrange hover:bg-orange-600 text-white px-6 py-3 rounded-md font-bold transition shadow-md disabled:opacity-60 disabled:cursor-wait focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-anoraOrange">
+                        <button type="submit" data-submit class="inline-flex items-center gap-2 bg-anoraOrange hover:bg-orange-600 text-white px-6 py-3 rounded-md font-bold transition shadow-md disabled:opacity-60 disabled:cursor-wait aria-disabled:cursor-not-allowed aria-disabled:hover:bg-anoraOrange focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-anoraOrange">
                             Nachricht senden
                         </button>
                     </div>
@@ -108,6 +109,7 @@ footer: yes
     </main>
 
 
+    <script src="js/contact-api.js"></script>
     <script src="js/contact-form.js"></script>
     <script src="js/call-slots.js"></script>
     <script src="js/call-scheduler.js"></script>

@@ -1,27 +1,19 @@
 // Written contact form on the contact pages. The form (data-contact-form)
-// POSTs the message as JSON to the SpecScout backend's contact endpoint, which
-// mails it to us with the visitor's address as Reply-To. Texts the script
-// generates (subject, trailer labels) are picked from <html lang>; the
+// sends the message through js/contact-api.js, which the page loads first and
+// which describes the endpoint and its answers. Texts the script generates
+// (subject, trailer labels, button labels) are picked from <html lang>; the
 // visitor-facing blocks (error, confirmations) are markup on the page.
 //
-// Request body (backend: app/models/pydantic/contact_request.py):
-//   {
-//     "subject": "Nachricht von Jane Doe",   // one line, max 200 chars; mailed with a "[Contact request]" prefix
-//     "message": "...",                      // max 5000 chars: the message plus a trailer with the visitor's details
-//     "sender_email": "jane@example.com",    // becomes the mail's Reply-To
-//     "website": ""                          // honeypot, bots fill it in
-//   }
-// 204 on success. Errors come as {"detail": "...", "code": "..."}: 403 from a
-// foreign origin, 429 when the hourly limit is used up, 503 when the mail
-// server did not take the message. On any failure the form shows an error with
-// a link that opens the visitor's email program with the same message instead.
+// On any failure the form shows an error with a link that opens the visitor's
+// email program with the same message instead. When the hourly limit is used
+// up and the backend says how long to wait, the send button stays off and
+// counts down (m:ss) until the visitor may send again.
 (function () {
     'use strict';
 
-    const ENDPOINT = 'https://api.anora-systems.com/api/v1/contact';
     const EMAIL = 'info@anora-systems.com';
-    const SUBJECT_MAX_LENGTH = 200;
-    const TIMEOUT = 20000;
+    if (!window.AnoraContactApi) return;
+    const { send, waiting, startWait, onWait, holdButton, announce } = window.AnoraContactApi;
 
     const TEXT = {
         de: {
@@ -32,6 +24,8 @@
             labels: { company: 'Unternehmen', shop: 'Shopsystem', catalog: 'Katalogumfang' },
             invalidEmail: 'Ungültige E-Mail-Adresse',
             sending: 'Wird gesendet …',
+            waiting: (time) => `Erneut senden in ${time}`,
+            ready: 'Sie können Ihre Nachricht jetzt wieder senden.',
         },
         en: {
             subject: (name) => `Message from ${name}`,
@@ -41,6 +35,8 @@
             labels: { company: 'Company', shop: 'Shop system', catalog: 'Catalog size' },
             invalidEmail: 'Invalid email',
             sending: 'Sending …',
+            waiting: (time) => `Send again in ${time}`,
+            ready: 'You can send your message again now.',
         },
     };
 
@@ -54,6 +50,7 @@
         errorTexts: form.querySelectorAll('[data-error-text]'),
         errorMail: form.querySelector('[data-action="mail"]'),
         email: form.querySelector('[name="email"]'),
+        live: form.querySelector('[data-live]'),
         done: {
             sent: document.querySelector('[data-done="sent"]'),
             mail: document.querySelector('[data-done="mail"]'),
@@ -81,15 +78,18 @@
         return `mailto:${EMAIL}?subject=${encodeURIComponent(t.mailSubject)}&body=${encodeURIComponent(messageLines(data).join('\r\n'))}`;
     }
 
-    function showError(busy) {
+    // kind: 'failed', 'busy' (limit used up, no time known) or 'wait' (limit
+    // used up, the button counts down).
+    function showError(kind) {
         el.errorTexts.forEach((node) => {
-            node.classList.toggle('hidden', (node.dataset.errorText === 'busy') !== busy);
+            node.classList.toggle('hidden', node.dataset.errorText !== kind);
         });
         el.error.classList.remove('hidden');
     }
 
     // Hide the form and show the matching confirmation.
     function finish(how, data) {
+        unwatch.forEach((stop) => stop());
         const panel = el.done[how];
         const emailNode = panel.querySelector('[data-done-email]');
         if (emailNode) emailNode.textContent = data.email;
@@ -99,49 +99,57 @@
         if (heading) heading.focus();
     }
 
+    function buttonLabel() {
+        return sending ? `<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> ${t.sending}` : submitLabel;
+    }
+
+    // During the wait after a 429 (from this form or the call scheduler) the
+    // button counts down and the wait message shows; at zero both go and
+    // screen readers, which heard the role="alert" message, hear that the
+    // wait is over. finish() stops both, as the form is gone by then.
+    const hold = holdButton(el.submit, t.waiting, buttonLabel);
+    const unwatch = [hold.stop, onWait({
+        start() { showError('wait'); },
+        tick() {},
+        done() {
+            el.error.classList.add('hidden');
+            // While a request of this form is still open, its result speaks next.
+            if (!sending) announce(el.live, t.ready);
+        },
+    })];
+
     function setSending(on) {
         sending = on;
         el.submit.disabled = on;
-        el.submit.innerHTML = on ? `<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> ${t.sending}` : submitLabel;
+        el.submit.innerHTML = buttonLabel();
+        hold.refresh();
     }
 
     async function submit(event) {
         event.preventDefault();
-        if (sending) return;
+        if (sending || waiting()) return;
         // The form is novalidate so the browser does not add its own hover
         // tooltips to invalid fields; this shows the usual warning instead.
         if (!form.reportValidity()) return;
         const data = formData();
         el.error.classList.add('hidden');
         setSending(true);
-        const controller = new AbortController();
-        const timer = setTimeout(() => controller.abort(), TIMEOUT);
-        let busy = false;
-        try {
-            const response = await fetch(ENDPOINT, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    subject: t.subject(data.name).slice(0, SUBJECT_MAX_LENGTH),
-                    message: messageLines(data).join('\n'),
-                    sender_email: data.email,
-                    website: data.website || '',
-                }),
-                signal: controller.signal,
-            });
-            if (response.ok) {
-                finish('sent', data);
-                return;
-            }
-            busy = response.status === 429;
-        } catch (error) {
-            // Offline, blocked or timed out: handled below like a refused request.
-        } finally {
-            clearTimeout(timer);
-            setSending(false);
+        const result = await send({
+            subject: t.subject(data.name),
+            message: messageLines(data).join('\n'),
+            senderEmail: data.email,
+            website: data.website,
+        });
+        setSending(false);
+        if (result.status === 'sent') {
+            finish('sent', data);
+            return;
         }
         el.errorMail.href = mailto(data);
-        showError(busy);
+        // A wait, new or started by the call scheduler while this request ran,
+        // keeps its message rather than the one for this request.
+        if (result.status === 'busy' && result.retryAfter) startWait(result.retryAfter);
+        else if (!waiting()) showError(result.status);
     }
 
     form.addEventListener('submit', submit);

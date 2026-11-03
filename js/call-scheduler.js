@@ -8,31 +8,27 @@
 // The page trusts the visitor's clock and the backend does not check the
 // slots, so whoever confirms the call checks them against our calendar.
 //
-// Submitting POSTs JSON to the SpecScout backend's contact endpoint (the same
-// one js/contact-form.js uses), which mails it to us with the visitor's address
-// as Reply-To. The endpoint takes plain text only, so the slots, the visitor's
-// time zone and details go into the message, a notice to our team built by
-// teamLines(): always in English, times in German time.
-//   {
-//     "subject": "Call request from Jane Doe",     // max 200 chars, mailed with a "[Contact request]" prefix
-//     "message": "You've received a call request from Jane Doe.\n\nProposed times, ...\n- Wed 14 Oct 2026, 09:00 (03:00 their time)\n...",  // max 5000 chars
-//     "sender_email": "jane@example.com",
-//     "website": ""                                // honeypot, bots fill it in
-//   }
+// Submitting sends the request through js/contact-api.js (the same endpoint
+// js/contact-form.js uses; the page loads it first), which mails it to us with
+// the visitor's address as Reply-To. The endpoint takes plain text only, so
+// the slots, the visitor's time zone and details go into the message, a notice
+// to our team built by teamLines(): always in English, times in German time.
+//   subject: "Call request from Jane Doe"
+//   message: "You've received a call request from Jane Doe.\n\nProposed times, ...\n- Wed 14 Oct 2026, 09:00 (03:00 their time)\n..."
 // "their time" appears only when the visitor's clock differs from ours.
-// 204 on success. 429 means the hourly limit is used up; on that and every
-// other failure the dialog offers to send the request by email instead, in
-// the visitor's words and page language (mailLines()).
+// On any failure the dialog offers to send the request by email instead, in
+// the visitor's words and page language (mailLines()). When the hourly limit
+// is used up and the backend says how long to wait, the send button stays off
+// and counts down (m:ss) until the visitor may send again.
 (function () {
     'use strict';
 
-    const ENDPOINT = 'https://api.anora-systems.com/api/v1/contact';
-    const SUBJECT_MAX_LENGTH = 200;
     const EMAIL = 'info@anora-systems.com';
     const MAX_PICKS = 3;
     // Office hours and slot times (js/call-slots.js). The texts below say
     // "20 minutes" and "9 to 17", so change them together with OFFICE.
-    if (!window.AnoraCallSlots) return;
+    if (!window.AnoraCallSlots || !window.AnoraContactApi) return;
+    const { send, waiting, startWait, onWait, holdButton, announce: announceTo } = window.AnoraContactApi;
     const { OFFICE, dayKey, keyDate, officeClock, officeOffset, buildSlots } = window.AnoraCallSlots;
 
     const TEXT = {
@@ -80,6 +76,9 @@
             sending: 'Wird gesendet …',
             error: 'Ihre Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es noch einmal oder schicken Sie sie per E-Mail.',
             busy: 'Gerade erreichen uns sehr viele Anfragen. Bitte schicken Sie Ihre per E-Mail oder versuchen Sie es später noch einmal.',
+            wait: 'Gerade erreichen uns sehr viele Anfragen. Sie können wieder senden, sobald der Zähler am Button abgelaufen ist, oder Ihre Anfrage gleich per E-Mail schicken.',
+            waiting: (time) => `Erneut senden in ${time}`,
+            ready: 'Sie können Ihre Anfrage jetzt wieder senden.',
             errorMail: 'Per E-Mail senden',
             doneTitle: 'Vielen Dank!',
             doneText: (email) => `Ihre Anfrage ist bei uns. Wir bestätigen einen Ihrer Termine per E-Mail an ${email}.`,
@@ -136,6 +135,9 @@
             sending: 'Sending …',
             error: 'Your request could not be sent just now. Please try again or send it by email.',
             busy: 'We are receiving a lot of requests right now. Please send yours by email or try again later.',
+            wait: 'We are receiving a lot of requests right now. You can send again once the timer on the button runs out, or send yours by email now.',
+            waiting: (time) => `Send again in ${time}`,
+            ready: 'You can send your request again now.',
             errorMail: 'Send by email',
             doneTitle: 'Thank you!',
             doneText: (email) => `We have your request and will confirm one of your times by email to ${email}.`,
@@ -197,7 +199,7 @@
     // ---- Markup -------------------------------------------------------------
 
     const inputClass = 'w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-anoraTeal focus:border-anoraTeal';
-    const primaryClass = 'inline-flex items-center justify-center gap-2 bg-anoraBlue hover:bg-anoraTeal text-white px-6 py-3 rounded-md font-bold transition shadow-md disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-anoraBlue focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-anoraTeal';
+    const primaryClass = 'inline-flex items-center justify-center gap-2 bg-anoraBlue hover:bg-anoraTeal text-white px-6 py-3 rounded-md font-bold transition shadow-md disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-anoraBlue aria-disabled:cursor-not-allowed aria-disabled:hover:bg-anoraBlue focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-anoraTeal';
     const ringClass = 'focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraTeal';
 
     function field(id, name, label, type, attrs, optional) {
@@ -529,8 +531,7 @@
     }
 
     function announce(text) {
-        el.live.textContent = '';
-        setTimeout(() => { el.live.textContent = text; }, 50);
+        announceTo(el.live, text);
     }
 
     // ---- Actions ------------------------------------------------------------
@@ -590,7 +591,8 @@
     function reset() {
         picks = [];
         el.form.reset();
-        el.error.classList.add('hidden');
+        // A running wait keeps its message, so the held button is explained.
+        el.error.classList.toggle('hidden', !waiting());
         step = 1;
     }
 
@@ -656,47 +658,59 @@
     function setSending(on) {
         sending = on;
         el.submit.disabled = on;
-        el.submit.innerHTML = on ? `<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>${t.sending}` : t.submit;
+        el.submit.innerHTML = buttonLabel();
+        hold.refresh();
     }
+
+    function buttonLabel() {
+        return sending ? `<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>${t.sending}` : t.submit;
+    }
+
+    // During the wait after a 429 (from this dialog or the contact form) the
+    // button counts down and the wait message shows; at zero both go. Runs
+    // on while the dialog is closed, because the limit does too.
+    const hold = holdButton(el.submit, t.waiting, buttonLabel);
+    onWait({
+        start() {
+            el.errorText.textContent = t.wait;
+            el.error.classList.remove('hidden');
+        },
+        tick() {},
+        done() {
+            el.error.classList.add('hidden');
+            // While a request of this dialog is still open, its result speaks next.
+            if (!sending) announce(t.ready);
+        },
+    });
 
     async function submit(event) {
         event.preventDefault();
-        if (sending || !picks.length) return;
+        if (sending || waiting() || !picks.length) return;
         // The form is novalidate so the browser does not add its own hover
         // tooltips to invalid fields; this shows the usual warning instead.
         if (!el.form.reportValidity()) return;
         const data = formData();
         el.error.classList.add('hidden');
         setSending(true);
-        const controller = new AbortController();
-        // The backend sends the mail while the request waits.
-        const timer = setTimeout(() => controller.abort(), 20000);
-        let busy = false;
-        try {
-            const response = await fetch(ENDPOINT, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    subject: `Call request from ${data.name}`.slice(0, SUBJECT_MAX_LENGTH),
-                    message: teamLines(data).join('\n'),
-                    sender_email: data.email,
-                    website: data.website || '',
-                }),
-                signal: controller.signal,
-            });
-            if (response.ok) {
-                finish(false, data);
-                return;
-            }
-            busy = response.status === 429;
-        } catch (error) {
-            // Offline, blocked or timed out: handled below like a refused request.
-        } finally {
-            clearTimeout(timer);
-            setSending(false);
+        const result = await send({
+            subject: `Call request from ${data.name}`,
+            message: teamLines(data).join('\n'),
+            senderEmail: data.email,
+            website: data.website,
+        });
+        setSending(false);
+        if (result.status === 'sent') {
+            finish(false, data);
+            return;
         }
-        el.errorText.textContent = busy ? t.busy : t.error;
         el.errorMail.href = mailto(data);
+        if (result.status === 'busy' && result.retryAfter) {
+            startWait(result.retryAfter);
+            return;
+        }
+        // A wait the contact form started while this request ran keeps its message.
+        if (waiting()) return;
+        el.errorText.textContent = result.status === 'busy' ? t.busy : t.error;
         el.error.classList.remove('hidden');
     }
 
