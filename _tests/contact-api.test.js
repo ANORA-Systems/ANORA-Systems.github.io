@@ -274,3 +274,15 @@ test('wait: when it ends, the button gets what the form says it should show now'
     assert.equal(button.attr('aria-disabled'), undefined);
     hold.stop();
 });
+
+test('keepMailtoCurrent: every way to reach the link rebuilds its href from the form', () => {
+    const handlers = {};
+    const link = { href: 'mailto:info@anora-systems.com', addEventListener: (type, fn) => { handlers[type] = fn; } };
+    let text = 'first';
+    api.keepMailtoCurrent(link, () => `mailto:info@anora-systems.com?body=${text}`);
+    for (const type of ['pointerenter', 'focus', 'pointerdown', 'contextmenu', 'click']) {
+        text = type;
+        handlers[type]();
+        assert.equal(link.href, `mailto:info@anora-systems.com?body=${type}`, type);
+    }
+});

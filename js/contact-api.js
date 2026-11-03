@@ -1,7 +1,7 @@
 // Sending to the SpecScout backend's contact endpoint, shared by the written
 // contact form (js/contact-form.js) and the call scheduler
 // (js/call-scheduler.js). It reads no page on its own: the few browser helpers
-// (holdButton, announce) work only on the elements they are given, so
+// (holdButton, announce, keepMailtoCurrent) work only on the elements they are given, so
 // _tests/contact-api.test.js can run all of it under Node without a browser.
 // The contact pages load this file first; it puts its functions on
 // window.AnoraContactApi (module.exports under Node).
@@ -173,6 +173,19 @@
         return { stop, refresh() { if (waiting()) render(waitLeft); } };
     }
 
+    // Keeps a "send by email" link's mailto in step with the form: build()
+    // returns the href from what the form holds now. Rebuilt on every way to
+    // reach the link (hover for the status bar, focus, press including the
+    // middle button, right-click for "copy address", click), so edits after
+    // the error are always in it. A click follows the link after its
+    // handlers, so it opens the href set here.
+    function keepMailtoCurrent(link, build) {
+        const refresh = () => { link.href = build(); };
+        ['pointerenter', 'focus', 'pointerdown', 'contextmenu', 'click'].forEach((type) => {
+            link.addEventListener(type, refresh);
+        });
+    }
+
     // Has a polite live region read out `text`. Emptied first and filled a
     // moment later, so the same text is read again when it repeats.
     function announce(node, text) {
@@ -180,7 +193,7 @@
         setTimeout(() => { node.textContent = text; }, 50);
     }
 
-    const api = { ENDPOINT, retryAfterSeconds, clock, send, countdown, waiting, startWait, onWait, holdButton, announce };
+    const api = { ENDPOINT, retryAfterSeconds, clock, send, countdown, waiting, startWait, onWait, holdButton, announce, keepMailtoCurrent };
     if (typeof module === 'object' && module.exports) module.exports = api;
     else root.AnoraContactApi = api;
 })(typeof window !== 'undefined' ? window : globalThis);

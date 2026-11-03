@@ -13,7 +13,7 @@
 
     const EMAIL = 'info@anora-systems.com';
     if (!window.AnoraContactApi) return;
-    const { send, waiting, startWait, onWait, holdButton, announce } = window.AnoraContactApi;
+    const { send, waiting, startWait, onWait, holdButton, announce, keepMailtoCurrent } = window.AnoraContactApi;
 
     const TEXT = {
         de: {
@@ -145,7 +145,6 @@
             finish('sent', data);
             return;
         }
-        el.errorMail.href = mailto(data);
         // A wait, new or started by the call scheduler while this request ran,
         // keeps its message rather than the one for this request.
         if (result.status === 'busy' && result.retryAfter) startWait(result.retryAfter);
@@ -154,9 +153,12 @@
 
     form.addEventListener('submit', submit);
 
-    // The link opens the email program; show the matching confirmation.
+    // The link opens the email program with the message as it reads now;
+    // then the matching confirmation.
+    keepMailtoCurrent(el.errorMail, () => mailto(formData()));
     el.errorMail.addEventListener('click', () => {
-        setTimeout(() => finish('mail', formData()), 0);
+        const data = formData();
+        setTimeout(() => finish('mail', data), 0);
     });
 
     // A short message instead of the browser's detailed one ("Please include an '@' ...").

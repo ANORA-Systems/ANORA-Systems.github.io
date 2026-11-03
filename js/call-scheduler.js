@@ -28,7 +28,7 @@
     // Office hours and slot times (js/call-slots.js). The texts below say
     // "20 minutes" and "9 to 17", so change them together with OFFICE.
     if (!window.AnoraCallSlots || !window.AnoraContactApi) return;
-    const { send, waiting, startWait, onWait, holdButton, announce: announceTo } = window.AnoraContactApi;
+    const { send, waiting, startWait, onWait, holdButton, announce: announceTo, keepMailtoCurrent } = window.AnoraContactApi;
     const { OFFICE, dayKey, keyDate, officeClock, officeOffset, buildSlots } = window.AnoraCallSlots;
 
     const TEXT = {
@@ -703,7 +703,6 @@
             finish(false, data);
             return;
         }
-        el.errorMail.href = mailto(data);
         if (result.status === 'busy' && result.retryAfter) {
             startWait(result.retryAfter);
             return;
@@ -768,8 +767,10 @@
             showStep(1);
             focusHeading();
         } else if (action === 'mail') {
-            // The link opens the email program; show the matching confirmation.
-            setTimeout(() => finish(true, formData()), 0);
+            // The link opened the email program (its href is kept current by
+            // keepMailtoCurrent below); show the matching confirmation.
+            const data = formData();
+            setTimeout(() => finish(true, data), 0);
         }
     });
 
@@ -783,6 +784,10 @@
     });
 
     el.form.addEventListener('submit', submit);
+
+    // The email link always carries the request as it reads now, times and
+    // details changed after the error included.
+    keepMailtoCurrent(el.errorMail, () => mailto(formData()));
 
     // A short message instead of the browser's detailed one ("Please include an '@' ...").
     // Rechecked on every keystroke, because the browser keeps an open warning
