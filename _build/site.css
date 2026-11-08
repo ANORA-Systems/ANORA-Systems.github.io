@@ -3,6 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* On screen only, so the printed pages and the AGB PDFs keep their layout:
+   - an email address never breaks at its hyphen ("info@anora-/systems.com");
+   - headings are balanced, so a last word never stands alone on its line. */
+@media screen {
+    a[href^="mailto:"] { white-space: nowrap; }
+    h1, h2, h3 { text-wrap: balance; }
+}
+
 /* Code colours, set by highlight_code() in _build/build.py: darker shades for the light code boxes,
    lighter ones inside .code-dark. Outside @layer, so Tailwind keeps them although the class names
    only appear in the built pages. */
