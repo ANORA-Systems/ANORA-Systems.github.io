@@ -99,8 +99,10 @@ def watch() -> None:
 def main() -> None:
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
     # Exit cleanly on kill or a closed terminal too, so atexit deletes the build folders.
-    for stop in (signal.SIGTERM, signal.SIGHUP):
-        signal.signal(stop, lambda *_: sys.exit(0))
+    # SIGHUP exists only on Unix; a closed console window on Windows sends SIGBREAK.
+    for name in ("SIGTERM", "SIGHUP", "SIGBREAK"):
+        if hasattr(signal, name):
+            signal.signal(getattr(signal, name), lambda *_: sys.exit(0))
     rebuild()
     threading.Thread(target=watch, daemon=True).start()
     server = ThreadingHTTPServer(("127.0.0.1", port), CleanUrlHandler)

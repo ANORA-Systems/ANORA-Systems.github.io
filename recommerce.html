@@ -23,16 +23,20 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
     <section id="vergleich" class="scroll-mt-20 bg-gray-50 py-20">
         <div class="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
             <h2 class="mx-auto max-w-4xl text-3xl font-bold leading-tight text-anoraBlue md:text-4xl">SpecScout macht Second-Hand-Produkte genauso <span class="text-anoraTeal">transparent</span>, <span class="text-anoraTeal">filterbar</span> und <span class="text-anoraTeal">verkäuflich</span> wie Neuware.</h2>
-            <p class="mx-auto mt-6 max-w-3xl text-lg text-gray-600">Ein Beispiel: ein gebrauchtes Lenovo ThinkPad T14 Gen 2. Links, wie es aktuell häufig auf Marktplätzen angeboten wird. Rechts, wie das Angebot mit SpecScout aussehen könnte. Sind die Daten in Suche und Filter Ihres Shops eingebunden, finden genau die Kunden das rechte Angebot, die danach suchen.</p>
+            <p class="mx-auto mt-6 max-w-3xl text-lg text-gray-600">Ein Beispiel: ein gebrauchtes Lenovo ThinkPad T14 Gen 2. <span class="xl:hidden">Oben</span><span class="hidden xl:inline">Links</span>, wie es aktuell häufig auf Marktplätzen angeboten wird. <span class="xl:hidden">Darunter</span><span class="hidden xl:inline">Rechts</span>, wie das Angebot mit SpecScout aussehen könnte. Sind die Daten in Suche und Filter Ihres Shops eingebunden, finden genau die Kunden das <span class="xl:hidden">untere</span><span class="hidden xl:inline">rechte</span> Angebot, die danach suchen.</p>
         </div>
         <div class="mx-auto mt-10 max-w-[88rem] px-4 sm:px-6 lg:px-8">
-            <div class="overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-xl shadow-slate-900/10">
-                <div class="flex items-center justify-between gap-4 bg-anoraBlue px-5 py-3">
+            <div class="xl:overflow-hidden xl:rounded-2xl xl:border xl:border-slate-300 xl:bg-white xl:shadow-xl xl:shadow-slate-900/10">
+                <div class="hidden items-center justify-between gap-4 bg-anoraBlue px-5 py-3 xl:flex">
                     <div class="flex gap-2" aria-hidden="true"><span class="h-3 w-3 rounded-full bg-red-500"></span><span class="h-3 w-3 rounded-full bg-yellow-500"></span><span class="h-3 w-3 rounded-full bg-green-500"></span></div>
                     <p class="truncate font-mono text-xs text-onBlueMuted">SpecScout · Lenovo ThinkPad T14 Gen 2</p>
                 </div>
-                <div class="grid grid-cols-1 divide-y divide-gray-200 xl:grid-cols-2 xl:divide-x xl:divide-y-0">
-                    <article class="flex flex-col">
+                <div class="grid grid-cols-1 gap-8 xl:grid-cols-2 xl:gap-0 xl:divide-x xl:divide-gray-200">
+                    <article class="flex flex-col overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-xl shadow-slate-900/10 xl:overflow-visible xl:rounded-none xl:border-0 xl:shadow-none">
+                        <div class="flex items-center justify-between gap-4 bg-anoraBlue px-5 py-3 xl:hidden">
+                            <div class="flex gap-2" aria-hidden="true"><span class="h-3 w-3 rounded-full bg-red-500"></span><span class="h-3 w-3 rounded-full bg-yellow-500"></span><span class="h-3 w-3 rounded-full bg-green-500"></span></div>
+                            <p class="truncate font-mono text-xs text-onBlueMuted">Marktplatz · Lenovo ThinkPad T14 Gen 2</p>
+                        </div>
                         <div class="flex-1 p-6">
                             <div class="flex flex-wrap items-center gap-x-5 gap-y-4">
                                 <img src="media/recommerce-thinkpad-t14.jpg" alt="Gebrauchtes Lenovo ThinkPad T14 auf einem Holztisch" width="96" height="96" loading="lazy" class="h-24 w-24 shrink-0 rounded-xl object-cover">
@@ -58,7 +62,11 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
                             </div>
                         </div>
                     </article>
-                    <article class="flex flex-col">
+                    <article class="flex flex-col overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-xl shadow-slate-900/10 xl:overflow-visible xl:rounded-none xl:border-0 xl:shadow-none">
+                        <div class="flex items-center justify-between gap-4 bg-anoraBlue px-5 py-3 xl:hidden">
+                            <div class="flex gap-2" aria-hidden="true"><span class="h-3 w-3 rounded-full bg-red-500"></span><span class="h-3 w-3 rounded-full bg-yellow-500"></span><span class="h-3 w-3 rounded-full bg-green-500"></span></div>
+                            <p class="truncate font-mono text-xs text-onBlueMuted">SpecScout · Lenovo ThinkPad T14 Gen 2</p>
+                        </div>
                         <div class="flex-1 p-6">
                             <div class="flex flex-wrap items-center gap-x-5 gap-y-4">
                                 <img src="media/recommerce-thinkpad-t14.jpg" alt="Gebrauchtes Lenovo ThinkPad T14 auf einem Holztisch" width="96" height="96" loading="lazy" class="h-24 w-24 shrink-0 rounded-xl object-cover">
@@ -93,7 +101,7 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
             </div>
         </div>
         <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <p class="mx-auto mt-4 max-w-3xl text-center text-xs text-gray-500">Werte rechts: {{ listing.recorded }}, unverändert.</p>
+            <p class="mx-auto mt-4 max-w-3xl text-center text-xs text-gray-500">Werte <span class="xl:hidden">im unteren Angebot</span><span class="hidden xl:inline">rechts</span>: {{ listing.recorded }}, unverändert.</p>
         </div>
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12 lg:gap-16">
@@ -103,7 +111,7 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
                 </div>
                 <div class="border-t-2 border-anoraTeal pt-5">
                     <h3 class="text-lg font-semibold text-anoraBlue">Filterbar</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Wie groß genau der Bildschirm links ist, steht nirgends. Wer in Ihrem Shop nach Bildschirmgröße oder HDMI filtert, findet den Laptop nicht. SpecScout liefert die Spezifikationen, die Sie festlegen, in Ihrem Format. So hat jedes Gerät dieselben Felder, ob neu oder gebraucht.</p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Wie groß genau der Bildschirm <span class="xl:hidden">im oberen Angebot</span><span class="hidden xl:inline">links</span> ist, steht nirgends. Wer in Ihrem Shop nach Bildschirmgröße oder HDMI filtert, findet den Laptop nicht. SpecScout liefert die Spezifikationen, die Sie festlegen, in Ihrem Format. So hat jedes Gerät dieselben Felder, ob neu oder gebraucht.</p>
                 </div>
                 <div class="border-t-2 border-anoraTeal pt-5">
                     <h3 class="text-lg font-semibold text-anoraBlue">Verkäuflich wie Neuware</h3>
@@ -130,7 +138,7 @@ body_class: font-sans text-slate-800 antialiased bg-white flex flex-col min-h-sc
                 <li class="rounded-xl border border-gray-200 p-6">
                     <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">3</span>
                     <h3 class="mt-4 font-semibold text-anoraBlue">Angebot erstellen</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Vollständige, filterbare Produktspezifikationen für Ihren Shop und Ihre Marktplatz-Angebote. Über die API auch für ganze Ankaufslisten, eine Anfrage pro Produkt.</p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Vollständige, filterbare Produktspezifikationen für Ihren Shop und Ihre Marktplatz-Angebote. Über die API automatisiert und skalierbar für Ihren gesamten Bestand.</p>
                 </li>
             </ol>
         </div>

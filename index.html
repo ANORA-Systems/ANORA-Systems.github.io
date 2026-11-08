@@ -51,7 +51,7 @@ html_class: scroll-smooth
                         Vollständige, filterbare Produktdaten. Ohne manuelle Recherche.
                     </h1>
                     <p class="text-xl text-gray-300 mb-8 leading-relaxed">
-                        <strong>SpecScout</strong> extrahiert, validiert und strukturiert technische Spezifikationen aus dem Web. Stundenlange Recherche, in Minuten erledigt.
+                        <strong>SpecScout</strong> extrahiert, validiert und strukturiert technische Produktdaten aus dem Web. Stundenlange Recherche, in Minuten erledigt.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="https://specscout.anora-systems.com/de/access" target="_blank" rel="noopener" class="bg-anoraOrange hover:bg-orange-600 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition shadow-lg shadow-orange-900/50">
@@ -92,7 +92,7 @@ html_class: scroll-smooth
             <li class="flex items-start gap-3"><i data-lucide="shield-check" class="mt-0.5 h-5 w-5 shrink-0 text-anoraTeal"></i><span><strong class="text-anoraBlue">Jeder Wert bestätigt</strong> durch zwei unabhängige Quellen oder eine maßgebliche Quelle wie den Hersteller</span></li>
             <li class="flex items-start gap-3"><i data-lucide="link-2" class="mt-0.5 h-5 w-5 shrink-0 text-anoraTeal"></i><span><strong class="text-anoraBlue">Quellen und Confidence-Wert</strong> zu jedem einzelnen Wert</span></li>
             <li class="flex items-start gap-3"><i data-lucide="barcode" class="mt-0.5 h-5 w-5 shrink-0 text-anoraTeal"></i><span><strong class="text-anoraBlue">Suche per Name und Marke</strong> oder per EAN</span></li>
-            <li class="flex items-start gap-3"><i data-lucide="server" class="mt-0.5 h-5 w-5 shrink-0 text-anoraTeal"></i><span><strong class="text-anoraBlue">Server in Deutschland</strong>, Suchen ohne Personenbezug. <a href="sicherheit" class="font-medium text-anoraTeal hover:underline">Sicherheit &amp; Daten</a></span></li>
+            <li class="flex items-start gap-3"><i data-lucide="server" class="mt-0.5 h-5 w-5 shrink-0 text-anoraTeal"></i><span><strong class="text-anoraBlue">Server in Deutschland</strong>, Datenschutz nach DSGVO.<br><a href="sicherheit" class="font-medium text-anoraTeal hover:underline">Sicherheit &amp; Daten</a></span></li>
         </ul>
     </section>
 
@@ -137,7 +137,7 @@ html_class: scroll-smooth
                 <li class="rounded-xl border border-gray-200 bg-white p-6">
                     <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">1</span>
                     <h3 class="mt-4 font-semibold text-anoraBlue">Produkt angeben</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Produktname und Marke oder eine EAN. In der Web-App einzeln, über die API eine Anfrage pro Produkt.</p>
+                    <p class="mt-2 text-sm leading-relaxed text-gray-600">Sie geben den Produktnamen und die Marke oder eine EAN ein. In der Web-App suchen Sie ein Produkt nach dem anderen, über die API stellen Sie eine Anfrage pro Produkt.</p>
                 </li>
                 <li class="rounded-xl border border-gray-200 bg-white p-6">
                     <span class="flex h-8 w-8 items-center justify-center rounded-full bg-anoraBlue text-sm font-bold text-white">2</span>
@@ -172,7 +172,7 @@ html_class: scroll-smooth
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Gibt es ein Produkt in Varianten (etwa 256 und 512 GB), kommen alle Werte mit ihren Quellen statt eines geratenen.</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Ähnliche Produkte werden aussortiert.</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Was sich nicht bestätigen lässt, kommt als „nicht gefunden“ zurück.</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i><span>Sie entscheiden, welche Seiten zählen: Quellen für eine Marke, eine Kategorie oder beides blacklisten oder als vertrauenswürdig markieren, oder exklusiv verwenden. <a href="en/api-documentation#search-settings" class="font-medium text-anoraTeal hover:underline">Mehr in der Doku</a></span></li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i><span>Sie entscheiden, welche Seiten zählen: Quellen für eine Marke, eine Kategorie oder beides blacklisten oder als vertrauenswürdig markieren, oder exklusiv verwenden. <a href="api-dokumentation#search-settings" class="font-medium text-anoraTeal hover:underline">Mehr in der Doku</a></span></li>
                     </ul>
                 </div>
                 <div class="rounded-xl border border-gray-200 p-6 lg:p-8">
@@ -238,7 +238,7 @@ html_class: scroll-smooth
                 </ul>
                 <div class="mt-8 flex flex-wrap gap-3">
                     <a href="{{ t.register_url }}" class="inline-flex items-center gap-2 rounded-brand bg-anoraOrange px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-anoraOrangeHover">Kostenlosen API-Schlüssel holen</a>
-                    <a href="en/api-documentation" class="inline-flex items-center gap-2 rounded-brand border border-white/30 px-5 py-3 text-sm font-semibold text-white transition hover:border-white">Zur API-Dokumentation (Englisch) <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+                    <a href="api-dokumentation" class="inline-flex items-center gap-2 rounded-brand border border-white/30 px-5 py-3 text-sm font-semibold text-white transition hover:border-white">Zur API-Dokumentation (Englisch) <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
                 </div>
             </div>
             <div>
@@ -274,7 +274,7 @@ html_class: scroll-smooth
                 </details>
                 <details class="group rounded-xl border border-gray-200 bg-white open:shadow-sm">
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-xl p-5 font-semibold text-anoraBlue focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraTeal [&::-webkit-details-marker]:hidden">Wie binde ich SpecScout an mein System an?<i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-anoraTeal transition-transform group-open:rotate-180"></i></summary>
-                    <div class="px-5 pb-5 text-sm leading-relaxed text-gray-600">SpecScout ist eine Web-App und eine API. In der Web-App suchen Sie Produkt für Produkt. Über die REST-Schnittstelle rufen Sie die Daten als JSON ab. Damit funktioniert SpecScout mit jedem System, das eine REST-API aufrufen kann, auch mit Automatisierungswerkzeugen wie Zapier, n8n oder Microsoft Power Platform. Details stehen in der <a href="en/api-documentation" class="text-anoraTeal hover:underline">API-Dokumentation</a>.</div>
+                    <div class="px-5 pb-5 text-sm leading-relaxed text-gray-600">SpecScout ist eine Web-App und eine API. In der Web-App suchen Sie Produkt für Produkt. Über die REST-Schnittstelle rufen Sie die Daten als JSON ab. Damit funktioniert SpecScout mit jedem System, das eine REST-API aufrufen kann, auch mit Automatisierungswerkzeugen wie Zapier, n8n oder Microsoft Power Platform. Details stehen in der <a href="api-dokumentation" class="text-anoraTeal hover:underline">API-Dokumentation</a>.</div>
                 </details>
                 <details class="group rounded-xl border border-gray-200 bg-white open:shadow-sm">
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-xl p-5 font-semibold text-anoraBlue focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraTeal [&::-webkit-details-marker]:hidden">Ist SpecScout für eine vollständige Automatisierung geeignet?<i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-anoraTeal transition-transform group-open:rotate-180"></i></summary>

@@ -38,6 +38,13 @@ PAIRS = [
     Pair("agb-2026-02.html", "en/terms-2026-02.html", sitemap=False),
 ]
 
+# English-only pages that the German pages link to are also built in a German frame: the same
+# content with the German menu, footer and links, at a German URL, so a visitor coming from a
+# German page stays on the German site. The frame's canonical URL is the English page's (the
+# content is the same), it has no hreflang alternates and is not in the sitemap. The English
+# page's DE switch leads to the frame. Key: the frame's file in the build; value: its source.
+FRAMED = {"api-dokumentation.html": "en/api-documentation.html"}
+
 # Text the shared layouts use, per language. Values are HTML (& is &amp;).
 # The *_href values are relative: every page of a language sits in the same folder.
 STRINGS = {
@@ -63,7 +70,7 @@ STRINGS = {
         "about": "Über uns",
         "about_href": "ueber-uns",
         "docs": "API-Dokumentation",
-        "docs_href": "en/api-documentation",
+        "docs_href": "api-dokumentation",
         "imprint": "Impressum",
         "imprint_href": "impressum",
         "privacy": "Datenschutz",

@@ -144,6 +144,26 @@ class PagesTest(unittest.TestCase):
                     self.assertEqual(alternates, expected_alternates)
                     self.assertEqual(re.search(r'<html lang="(\w+)"', html).group(1), "en" if page.startswith("en/") else "de")
 
+    def test_german_frames_keep_visitors_on_the_german_site(self) -> None:
+        for frame, source in build.FRAMED.items():
+            with self.subTest(frame=frame):
+                html = (SITE / frame).read_text(encoding="utf-8")
+                english = (SITE / source).read_text(encoding="utf-8")
+                self.assertEqual(re.findall(r'<link rel="canonical" href="([^"]+)">', html), [build.url_of(source)])
+                self.assertNotIn('hreflang="', html.split("</head>")[0])
+                self.assertEqual(re.search(r'<html lang="(\w+)"', html).group(1), "de")
+                self.assertIn(f'href="{build.STRINGS["de"]["imprint_href"]}"', html)  # German footer
+                self.assertIn(f'aria-current="page" class="text-sm font-medium text-anoraTeal transition hover:text-anoraTeal">{build.STRINGS["de"]["docs"]}<', html)
+                self.assertIn(f'<a href="{build.relative_href(frame, source)}" hreflang="en"', html)
+                self.assertIn(f'<a href="{build.relative_href(source, frame)}" hreflang="de"', english)
+                self.assertNotIn(build.url_of(frame), (SITE / "sitemap.xml").read_text(encoding="utf-8"))
+        for page in SITE.glob("*.html"):
+            if page.name in build.FRAMED:  # a frame's EN switch leads to the English page
+                continue
+            with self.subTest(page=page.name):
+                self.assertNotRegex(page.read_text(encoding="utf-8"), r'href="en/(' + "|".join(re.escape(s[3:-5]) for s in build.FRAMED.values()) + r')\b',
+                                    "a German page links the English page instead of its German frame")
+
     def test_every_page_has_a_link_preview_in_its_language(self) -> None:
         for page in SITE.rglob("*.html"):
             relative = page.relative_to(SITE).as_posix()

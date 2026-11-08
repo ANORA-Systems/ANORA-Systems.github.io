@@ -50,7 +50,7 @@ from html import unescape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from pages import NAV, PAIRS, SITE, STATIC, STRINGS  # noqa: E402
+from pages import FRAMED, NAV, PAIRS, SITE, STATIC, STRINGS  # noqa: E402
 
 REPO = Path(__file__).resolve().parent.parent
 BUILD = REPO / "_build"
@@ -317,8 +317,10 @@ def read_page(page: str) -> tuple[dict[str, str], str, str]:
 
 
 def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
+    """page is the built file; for a German frame (FRAMED) it differs from its source, pair.en."""
     lang = "en" if page.startswith("en/") else "de"
     is_home = page.endswith("index.html")
+    frames = {source: frame for frame, source in FRAMED.items()}
     alternates = []
     if pair.de and pair.en:
         alternates = [
@@ -328,7 +330,7 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
         ]
     langs = []
     for code in ("de", "en"):
-        target = getattr(pair, code)
+        target = getattr(pair, code) or (frames.get(pair.en) if code == "de" else None)
         langs.append({
             "code": code.upper(),
             "hreflang": code,
@@ -348,7 +350,8 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
         "body_class": meta.get("body_class", DEFAULT_BODY_CLASS),
         "nav_full": meta["nav"] == "full",
         "footer": meta["footer"] == "yes",
-        "canonical": url_of(page),
+        "canonical": url_of(page if page in (pair.de, pair.en) else pair.en),
+        "og_url": url_of(page),
         "alternates": alternates,
         # link previews; the images come from _tools/make_share_images.py
         "og_locale": "de_DE" if lang == "de" else "en_GB",
@@ -518,13 +521,16 @@ def build_pages(out: Path) -> None:
             "pages and _build/pages.py disagree: "
             + "; ".join([f"{p} is not in PAIRS" for p in unknown] + [f"{p} is in PAIRS but missing" for p in missing])
         )
+    for frame, source in FRAMED.items():
+        if frame in index or source not in index or index[source].de or not source.startswith("en/") or "/" in frame:
+            raise BuildError(f"FRAMED: {frame} must be a new file in the site root and {source} an English-only page in PAIRS")
     layout = partial("page")
-    for page in pages:
-        meta, head, body = read_page(page)
-        context = page_context(page, index[page], meta, head)
-        context["head"] = render(parse(head, page), [context], page)
-        context["content"] = render(parse(body, page), [context], page)
-        html = highlight_code(inline_icons(render(layout, [context], f"page.html for {page}"), page), page)
+    for page, source in [*((p, p) for p in pages), *FRAMED.items()]:
+        meta, head, body = read_page(source)
+        context = page_context(page, index[source], meta, head)
+        context["head"] = render(parse(head, source), [context], source)
+        context["content"] = render(parse(body, source), [context], source)
+        html = highlight_code(inline_icons(render(layout, [context], f"page.html for {page}"), source), source)
         target = out / page
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(html.replace("\r\n", "\n").encode("utf-8"))
