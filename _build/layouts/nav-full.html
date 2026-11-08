@@ -8,7 +8,7 @@
             </a>
 
             <div class="flex items-center gap-2 lg:gap-4 xl:gap-6">
-                <div data-nav-menu class="hidden items-center gap-5 lg:flex xl:gap-6">
+                <div data-nav-menu class="hidden items-center gap-6 xl:flex">
 {{# each nav }}
                     <a href="{{ href }}"{{# if current }} aria-current="page" class="text-sm font-medium text-anoraTeal transition hover:text-anoraTeal"{{ else }} class="text-sm font-medium text-gray-600 transition hover:text-anoraTeal"{{/ if }}>{{ label }}</a>
 {{/ each }}
@@ -31,20 +31,21 @@
 {{/ each }}
                 </div>
 
-                <button id="mobile-menu-btn" type="button" class="rounded-md p-2 text-gray-600 transition hover:text-anoraTeal focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraTeal lg:hidden" aria-controls="mobile-menu" aria-expanded="false" aria-label="{{ t.menu }}">
+                <button id="mobile-menu-btn" type="button" class="rounded-md p-2 text-gray-600 transition hover:text-anoraTeal focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraTeal xl:hidden" aria-controls="mobile-menu" aria-expanded="false" aria-label="{{ t.menu }}">
                     <span data-menu-icon="open"><i data-lucide="menu" class="h-6 w-6"></i></span>
                     <span data-menu-icon="close" class="hidden"><i data-lucide="x" class="h-6 w-6"></i></span>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" data-nav-menu class="absolute left-0 hidden w-full border-b border-gray-200 bg-white shadow-lg lg:hidden">
+        <div id="mobile-menu" data-nav-menu class="absolute left-0 hidden w-full border-b border-gray-200 bg-white shadow-lg xl:hidden">
             <div class="mx-auto max-w-7xl space-y-1 px-4 pb-6 pt-2 sm:px-6">
 {{# each nav }}
                 <a href="{{ href }}"{{# if current }} aria-current="page" class="block rounded-md px-2 py-2 text-base font-medium text-anoraTeal hover:bg-gray-50"{{ else }} class="block rounded-md px-2 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-anoraTeal"{{/ if }}>{{ label }}</a>
 {{/ each }}
-                <a href="{{ t.login_url }}" class="block rounded-md px-2 py-2 text-base font-medium text-anoraBlue hover:bg-gray-50">{{ t.login }}</a>
-                <div class="pt-3">
+                <!-- The bar itself shows "Log in" from md and "Start free" from sm, so the menu repeats them only below that -->
+                <a href="{{ t.login_url }}" class="block rounded-md px-2 py-2 text-base font-medium text-anoraBlue hover:bg-gray-50 md:hidden">{{ t.login }}</a>
+                <div class="pt-3 sm:hidden">
                     <a href="{{ t.start_free_url }}" class="block w-full rounded-brand bg-anoraOrange px-4 py-3 text-center text-base font-semibold text-white shadow-sm transition hover:bg-anoraOrangeHover">{{ t.start_free }}</a>
                 </div>
             </div>
