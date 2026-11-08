@@ -361,6 +361,7 @@ def page_context(page: str, pair, meta: dict[str, str], head: str) -> dict:
         "t": STRINGS[lang],
         "demo": demo_context(lang),
         "listing": listing_context(lang),
+        "results": results_context(lang),
         "head": head,
     }
 
@@ -501,6 +502,164 @@ def listing_context(lang: str) -> dict:
     return {
         "rows": rows,
         "recorded": text_of["recorded"].format(date=date_text, seconds=round(example["duration_ms"] / 1000)),
+    }
+
+
+# --- benchmark results -----------------------------------------------------------------------
+
+# The Results page, the homepage's proof bar and FAQ and the Re-commerce page show the benchmark
+# numbers. The counts come from _tools/make_results.py; the percentages are computed here, so a
+# new run only means a new results.json. The names are the public ones, not the grader's.
+RESULTS_FILE = REPO / "_build" / "results.json"
+RESULTS_CATEGORIES = {
+    "Action Camera": ("Actioncam", "Action camera"),
+    "Backpack": ("Rucksack", "Backpack"),
+    "Bicycle": ("Fahrrad", "Bicycle"),
+    "Bluetooth Speaker": ("Bluetooth-Lautsprecher", "Bluetooth speaker"),
+    "Car": ("Auto", "Car"),
+    "Cordless Drill": ("Akkuschrauber", "Cordless drill"),
+    "Desktop": ("Desktop-PC", "Desktop PC"),
+    "Espresso Machine": ("Kaffeevollautomat", "Espresso machine"),
+    "Refrigerator": ("Kühlschrank", "Refrigerator"),
+    "Robot Vacuum": ("Saugroboter", "Robot vacuum"),
+    "Robotic Lawnmower": ("Mähroboter", "Robotic lawnmower"),
+    "Sleeping Bag": ("Schlafsack", "Sleeping bag"),
+    "Smartphone": ("Smartphone", "Smartphone"),
+}
+RESULTS_TEXT = {
+    "de": {
+        "exact": "Genau richtig", "included": "Richtiger Wert dabei, Liste weicht ab",
+        "none": "Kein richtiger Wert", "missed": "Nicht gefunden",
+        "empty_ok": "Richtig leer gelassen", "fabricated": "Trotzdem ein Wert",
+        "extra_values": "Alle richtigen Werte, dazu ein weiterer",
+        "missing_values": "Nur richtige Werte, aber nicht alle",
+        "partial_overlap": "Teils richtig, teils abweichend",
+        "no_overlap": "Kein richtiger Wert",
+        "high": "Confidence-Wert ab 90 %", "medium": "70 bis 89 %", "low": "unter 70 %",
+        "easy": "Klare Datentabelle beim Hersteller",
+        "ordinary": "Einige Angaben nur bei Händlern",
+        "hard": "Angaben vor allem in PDF-Datenblättern, Werbetexten oder bei Händlern",
+        "products": "{n} Produkte",
+        "months": LISTING_TEXT["de"]["months"],
+    },
+    "en": {
+        "exact": "Exact match", "included": "Right value included, list differs",
+        "none": "No correct value", "missed": "Not found",
+        "empty_ok": "Correctly left empty", "fabricated": "A value anyway",
+        "extra_values": "All correct values, plus one more",
+        "missing_values": "Only correct values, but not all of them",
+        "partial_overlap": "Partly correct, partly different",
+        "no_overlap": "No correct value",
+        "high": "Confidence 90% or more", "medium": "70 to 89%", "low": "below 70%",
+        "easy": "Clear spec table from the manufacturer",
+        "ordinary": "Some specs only at retailers",
+        "hard": "Specs mainly in PDF datasheets, marketing copy or at retailers",
+        "products": "{n} products",
+        "months": LISTING_TEXT["en"]["months"],
+    },
+}
+
+
+def percent(part: int, whole: int, lang: str, digits: int = 0) -> str:
+    """89.7% / 89,7 %; digits=0 rounds to whole percent."""
+    text = f"{100 * part / whole:.{digits}f}"
+    return f"{text.replace('.', ',')}&nbsp;%" if lang == "de" else f"{text}%"
+
+
+def width(part: int, whole: int) -> str:
+    """A bar's CSS width."""
+    return f"{100 * part / whole:.2f}%"
+
+
+def date_text(iso: str, lang: str) -> str:
+    date = datetime.date.fromisoformat(iso)
+    month = RESULTS_TEXT[lang]["months"][date.month - 1]
+    return f"{date.day}. {month} {date.year}" if lang == "de" else f"{date.day} {month} {date.year}"
+
+
+def results_context(lang: str) -> dict:
+    data = json.loads(RESULTS_FILE.read_text(encoding="utf-8"))
+    text_of = RESULTS_TEXT[lang]
+    pct = lambda part, whole, digits=0: percent(part, whole, lang, digits)  # noqa: E731
+
+    # The headline metric: of the answers to specs whose value is published, the share that include
+    # the right value (an exact match, or a list with the right value and more or fewer others).
+    # Values returned where none is published are shown on their own (empty_bar), not in it.
+    def shares(c: dict) -> dict:
+        answered = c["correct"] + c["wrong"]
+        none = c["no_overlap"] + c.get("unclassified", 0)
+        documented = answered + c["missed"]
+        return {"answered": answered, "documented": documented, "none": none,
+                "included_count": answered - none, "included": pct(answered - none, answered),
+                "included_width": width(answered - none, answered), "exact": pct(c["correct"], answered),
+                "nothing_right": pct(none, answered, 1), "answered_share": pct(answered, documented)}
+
+    total = data["total"]
+    main = shares(total)
+    empty = total["correct_abstain"] + total["not_applicable"]
+    without_value = empty + total["fabricated"]
+    near = main["included_count"] - total["correct"]  # right value included, list differs
+
+    documented_bar = [
+        {"label": text_of[key], "count": count, "share": pct(count, main["documented"]),
+         "width": width(count, main["documented"]), "color": color}
+        for key, count, color in (("exact", total["correct"], "bg-anoraTeal"), ("included", near, "bg-teal-300"),
+                                  ("none", main["none"], "bg-amber-400"), ("missed", total["missed"], "bg-gray-300"))
+    ]
+    empty_bar = [
+        {"label": text_of["empty_ok"], "count": empty, "share": pct(empty, without_value),
+         "width": width(empty, without_value), "color": "bg-anoraTeal"},
+        {"label": text_of["fabricated"], "count": total["fabricated"], "share": pct(total["fabricated"], without_value),
+         "width": width(total["fabricated"], without_value), "color": "bg-amber-400"},
+    ]
+    errors = [
+        {"label": text_of[key], "count": total[key], "width": width(total[key], total["wrong"]),
+         "color": "bg-amber-400" if key == "no_overlap" else "bg-teal-300"}
+        for key in ("extra_values", "missing_values", "partial_overlap", "no_overlap")
+    ]
+    bands = []
+    for band in data["confidence"]:
+        s = shares(band)
+        bands.append({"label": text_of[band["band"]], "included": s["included"], "width": s["included_width"],
+                      "share": pct(s["answered"], main["answered"])})
+    high = shares(data["confidence"][0])
+
+    runs = [*data["history"], {"version": data["run"]["date"], **total}]
+    worst = max(shares(run)["none"] / shares(run)["answered"] for run in runs)
+    history = []
+    for run in runs:
+        s = shares(run)
+        history.append({"label": date_text(run["version"], lang), "nothing_right": s["nothing_right"],
+                        "width": width(s["none"] / s["answered"], worst), "current": run is runs[-1]})
+
+    categories = []
+    for row in sorted(data["by_category"], key=lambda r: (-shares(r)["included_count"] / shares(r)["answered"], -shares(r)["answered"] / shares(r)["documented"])):
+        if row["category"] not in RESULTS_CATEGORIES:
+            raise BuildError(f"{RESULTS_FILE.name}: no public name for category {row['category']} (RESULTS_CATEGORIES in build.py)")
+        name_de, name_en = RESULTS_CATEGORIES[row["category"]]
+        categories.append({"name": name_de if lang == "de" else name_en,
+                           "products": text_of["products"].format(n=row["products"]), **shares(row)})
+
+    difficulty = [{"label": text_of[key], **shares(data["difficulty"][key])} for key in ("easy", "ordinary", "hard")]
+
+    run = data["run"]
+    seconds = lambda s: f"{s:.0f}"  # noqa: E731
+    return {
+        "preliminary": run["preliminary"],
+        "date": date_text(run["date"], lang),
+        "products": data["products"], "categories": data["categories"], "slots": data["slots"],
+        "products_total": run["products_total"], "categories_total": run["categories_total"],
+        **{key: main[key] for key in ("included", "included_count", "answered", "documented", "exact", "nothing_right", "answered_share")},
+        "nothing_right_short": pct(main["none"], main["answered"]), "no_correct": main["none"],
+        "correct": total["correct"], "wrong": total["wrong"], "near": near,
+        "empty": empty, "without_value": without_value, "fabricated": total["fabricated"],
+        "empty_share": pct(empty, without_value),
+        "high_included": high["included"], "high_share": pct(high["answered"], main["answered"]),
+        "hard_included": difficulty[2]["included"],
+        "median_s": seconds(run["median_s"]), "p90_s": seconds(run["p90_s"]),
+        "documented_bar": documented_bar, "empty_bar": empty_bar, "errors": errors, "bands": bands,
+        "history": history, "by_category": categories, "difficulty": difficulty,
+        "first_nothing_right": history[0]["nothing_right"], "first_label": history[0]["label"],
     }
 
 

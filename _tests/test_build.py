@@ -124,6 +124,40 @@ class ExampleDataTest(unittest.TestCase):
         self.assertEqual(build.format_spec_value("Apple A14 Bionic", None, "en"), "Apple A14 Bionic")
 
 
+class ResultsDataTest(unittest.TestCase):
+    """_build/results.json (from _tools/make_results.py) adds up, and the pages show its numbers."""
+
+    def test_the_counts_add_up(self) -> None:
+        data = json.loads(build.RESULTS_FILE.read_text(encoding="utf-8"))
+        total = data["total"]
+        verdicts = ("correct", "wrong", "fabricated", "missed", "correct_abstain", "not_applicable")
+        self.assertEqual(sum(total[k] for k in verdicts), data["slots"])
+        self.assertEqual(sum(total[k] for k in ("extra_values", "missing_values", "partial_overlap", "no_overlap")), total["wrong"])
+        for key in ("correct", "wrong", "fabricated", "no_overlap"):
+            self.assertEqual(sum(band[key] for band in data["confidence"]), total[key], key)
+        for key in verdicts:
+            self.assertEqual(sum(row[key] for row in data["by_category"]), total[key], key)
+            self.assertEqual(sum(group[key] for group in data["difficulty"].values()), total[key], key)
+        self.assertEqual(len(data["by_category"]), data["categories"])
+        self.assertTrue(all(row["category"] in build.RESULTS_CATEGORIES for row in data["by_category"]))
+
+    def test_percentages_read_as_on_the_page(self) -> None:
+        self.assertEqual(build.percent(654, 729, "en"), "90%")
+        self.assertEqual(build.percent(15, 669, "de", 1), "2,2&nbsp;%")
+
+    def test_the_pages_show_the_current_numbers(self) -> None:
+        for page, lang in (("ergebnisse.html", "de"), ("en/results.html", "en"), ("index.html", "de"),
+                           ("en/index.html", "en"), ("recommerce.html", "de"), ("en/recommerce.html", "en")):
+            with self.subTest(page=page):
+                html = (SITE / page).read_text(encoding="utf-8")
+                self.assertIn(build.results_context(lang)["included"], html)
+
+    def test_the_headline_counts_only_answers_without_any_correct_value_as_wrong(self) -> None:
+        results = build.results_context("en")
+        self.assertEqual(results["included_count"] + results["no_correct"], results["answered"])
+        self.assertEqual(results["correct"] + results["near"], results["included_count"])
+
+
 class PagesTest(unittest.TestCase):
     def test_no_template_tag_is_left_in_a_page(self) -> None:
         leftovers = [p.relative_to(SITE).as_posix() for p in SITE.rglob("*.html") if "{{" in p.read_text(encoding="utf-8")]
