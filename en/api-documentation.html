@@ -26,14 +26,24 @@ html_class: scroll-smooth
             scroll-margin-top: 90px;
         }
 
+        /* Long inline code (JSON examples, paths) may break anywhere, so it never widens the page on phones */
+        main :not(pre) > code {
+            overflow-wrap: anywhere;
+        }
+
     </style>
 </head>
 
-    <div lang="en" class="relative flex flex-col md:flex-row min-h-[calc(100vh-65px)]">
-        
-        <aside class="w-full md:w-80 md:shrink-0 md:h-[calc(100vh-65px)] md:sticky md:top-[65px] overflow-y-auto scrollbar-hide p-4 md:p-6 lg:p-8">
-            <div class="bg-white/90 backdrop-blur border border-gray-200 rounded-3xl shadow-lg shadow-slate-200/70 p-6">
-                <div class="block mb-8 group">
+    <div lang="en" class="relative flex flex-col lg:flex-row min-h-[calc(100vh-65px)]">
+
+        <aside class="w-full lg:w-80 lg:shrink-0 lg:h-[calc(100vh-65px)] lg:sticky lg:top-[65px] lg:overflow-y-auto scrollbar-hide px-6 pt-6 md:px-10 md:pt-10 lg:p-8">
+            <!-- Below lg the section list is a closed "On this page" menu above the content; from lg it is the open sidebar (the script below keeps it open there; without JS it stays open everywhere) -->
+            <details id="docs-toc" class="group/toc bg-white/90 backdrop-blur border border-gray-200 rounded-3xl shadow-lg shadow-slate-200/70 px-5 py-4 lg:p-6" open>
+                <summary class="lg:hidden list-none cursor-pointer flex items-center justify-between gap-4 font-semibold text-anoraBlue">
+                    On this page
+                    <i class="fa-solid fa-chevron-down text-gray-400 transition-transform group-open/toc:rotate-180"></i>
+                </summary>
+                <div class="block mt-5 lg:mt-0 lg:mb-8 group">
                 <nav class="space-y-8 text-sm">
                     <div>
                         <h3 class="uppercase tracking-wider text-xs font-bold text-gray-400 mb-3">General</h3>
@@ -61,7 +71,20 @@ html_class: scroll-smooth
 
                 </nav>
                 </div>
-            </div>
+            </details>
+            <script>
+                (function () {
+                    var toc = document.getElementById('docs-toc');
+                    var wide = window.matchMedia('(min-width: 1024px)');
+                    function sync() { toc.open = wide.matches; }
+                    sync();
+                    wide.addEventListener('change', sync);
+                    // Closed again before the jump, so the target is not pushed down by the open list
+                    toc.addEventListener('click', function (event) {
+                        if (!wide.matches && event.target.closest('a')) toc.open = false;
+                    });
+                })();
+            </script>
         </aside>
 
         <main class="relative z-10 flex-1 min-w-0 w-full max-w-6xl mx-auto p-6 md:p-10 lg:p-12">
@@ -151,7 +174,7 @@ for spec in response.json()["specs"]:
                     Performs the core SpecScout service: searches the web for product specifications based on a query.
                 </p>
                 <div class="bg-white rounded-2xl shadow-lg border border-anoraTeal/30 overflow-hidden mb-5">
-                    <div class="bg-gray-50 px-6 py-4 border-b border-anoraTeal/20 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-anoraTeal/20 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                         <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                         <span class="text-anoraBlue font-bold">/api/v1/search</span>
                         <span class="text-sm text-gray-500 ml-auto">Search &amp; extract</span>
@@ -159,16 +182,16 @@ for spec in response.json()["specs"]:
                     <div class="p-6">
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Query Parameters</h4>
                         <ul class="space-y-3 mb-6 text-sm">
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">product_name</span> <span class="text-gray-600">Required string. E.g. "MacBook Pro 16 M3 Max". A barcode (8 or more digits) next to other words is left out of the web search; a name that is only a barcode or part number is searched as it is.</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">brand</span> <span class="text-gray-600">Required string. E.g. "Apple". Also activates saved <a href="#search-settings" class="text-anoraTeal hover:underline font-medium">domain rules</a> scoped to this brand.</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">required_specs</span> <span class="text-gray-600">Optional string (nullable). JSON-encoded <strong>array</strong> of specification objects to look for, using the same fields as <a href="#specs" class="text-anoraTeal hover:underline font-medium">specification creation</a> (including <code class="font-mono bg-gray-100 px-1 rounded text-xs">sub_values</code>, <code class="font-mono bg-gray-100 px-1 rounded text-xs">options</code>, <code class="font-mono bg-gray-100 px-1 rounded text-xs">tolerance</code>), e.g. <code class="font-mono bg-gray-100 px-1 rounded text-xs">[{"name": "Battery Capacity", "description": "Rated capacity of the battery", "instance": "int", "unit": "mAh"}]</code>. Invalid JSON or a non-array is rejected with <code class="font-mono bg-gray-100 px-1 rounded">422 validation_error</code>; so is an entry that fails validation (<code class="font-mono bg-gray-100 px-1 rounded">{"index": n, "errors": [...]}</code>).</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">category</span> <span class="text-gray-600"><span class="text-gray-600">Optional string. <strong>ID (UUID)</strong> of a predefined category (see <a href="#create-category" class="text-anoraTeal hover:underline font-medium">category creation</a>) whose attached specifications should be looked for. Not the category name. Values that are not valid UUIDs are rejected with <code class="font-mono bg-gray-100 px-1 rounded">422 validation_error</code>; an unknown or inaccessible category with <code class="font-mono bg-gray-100 px-1 rounded">404 category_not_found</code>. At least one specification must result from <code class="font-mono bg-gray-100 px-1 rounded">required_specs</code> and/or <code class="font-mono bg-gray-100 px-1 rounded">category</code>, otherwise <code class="font-mono bg-gray-100 px-1 rounded">400 no_specifications_to_search</code>.</span></span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">include_product_images</span> <span class="text-gray-600">Optional boolean. Default: <code class="font-mono bg-gray-100 px-1 rounded">false</code>. Include product image URLs in the response.</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">blacklist_sources</span> <span class="text-gray-600">Optional, repeatable. Which pools feed the effective domain <strong>blacklist</strong> for this request: <code class="font-mono bg-gray-100 px-1 rounded">stored</code> (your global saved rules), <code class="font-mono bg-gray-100 px-1 rounded">category</code> (saved rules scoped to the searched category), <code class="font-mono bg-gray-100 px-1 rounded">brand</code> (saved rules scoped to the searched brand), <code class="font-mono bg-gray-100 px-1 rounded">provided</code> (the <code class="font-mono bg-gray-100 px-1 rounded">blacklist_domains</code> list below), <code class="font-mono bg-gray-100 px-1 rounded">none</code> (disable the blacklist; must be the only value). Default when absent: all four real sources. E.g. <code class="font-mono bg-gray-100 px-1 rounded">?blacklist_sources=stored&amp;blacklist_sources=provided</code>.</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">whitelist_sources</span> <span class="text-gray-600">Optional, repeatable. Same values and default as <code class="font-mono bg-gray-100 px-1 rounded">blacklist_sources</code>, for the effective domain <strong>whitelist</strong>.</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">whitelist_exclusive</span> <span class="text-gray-600">Optional boolean. Default: <code class="font-mono bg-gray-100 px-1 rounded">false</code>. When <code class="font-mono bg-gray-100 px-1 rounded">true</code>, the <strong>entire search run</strong> is restricted to whitelisted domains (all web searches are site-restricted, other URLs are dropped before scraping). Without it the whitelist only adds and boosts sources. Requires a non-empty effective whitelist.</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">blacklist_domains</span> <span class="text-gray-600">Optional string. JSON-encoded array of domains to exclude for this request only, e.g. <code class="font-mono bg-gray-100 px-1 rounded">["ebay.com", "amazon.de"]</code>. Requires <code class="font-mono bg-gray-100 px-1 rounded">provided</code> in <code class="font-mono bg-gray-100 px-1 rounded">blacklist_sources</code> (it is by default).</span></li>
-                            <li class="flex gap-4"><span class="font-mono text-anoraBlue font-bold w-44 shrink-0">whitelist_domains</span> <span class="text-gray-600">Optional string. JSON-encoded array of objects for this request only, e.g. <code class="font-mono bg-gray-100 px-1 rounded">[{"domain": "bosch.com", "trust": "authoritative"}]</code>. <code class="font-mono bg-gray-100 px-1 rounded">trust</code> is optional: <code class="font-mono bg-gray-100 px-1 rounded">normal</code> (default), <code class="font-mono bg-gray-100 px-1 rounded">trusted</code>, <code class="font-mono bg-gray-100 px-1 rounded">authoritative</code> (see the trust ladder under <a href="#search-settings" class="text-anoraTeal hover:underline font-medium">Domain Rules</a>). Requires <code class="font-mono bg-gray-100 px-1 rounded">provided</code> in <code class="font-mono bg-gray-100 px-1 rounded">whitelist_sources</code>. Provided entries win over saved rules for the same domain.</span></li>
+                            <li class="flex flex-col gap-1 sm:flex-row sm:gap-4"><span class="font-mono text-anoraBlue font-bold sm:w-48 sm:shrink-0">product_name</span> <span class="min-w-0 text-gray-600">Required string. E.g. "MacBook Pro 16 M3 Max". A barcode (8 or more digits) next to other words is left out of the web search; a name that is only a barcode or part number is searched as it is.</span></li>
+                            <li class="flex flex-col gap-1 sm:flex-row sm:gap-4"><span class="font-mono text-anoraBlue font-bold sm:w-48 sm:shrink-0">brand</span> <span class="min-w-0 text-gray-600">Required string. E.g. "Apple". Also activates saved <a href="#search-settings" class="text-anoraTeal hover:underline font-medium">domain rules</a> scoped to this brand.</span></li>
+                            <li class="flex flex-col gap-1 sm:flex-row sm:gap-4"><span class="font-mono text-anoraBlue font-bold sm:w-48 sm:shrink-0">required_specs</span> <span class="min-w-0 text-gray-600">Optional string (nullable). JSON-encoded <strong>array</strong> of specification objects to look for, using the same fields as <a href="#specs" class="text-anoraTeal hover:underline font-medium">specification creation</a> (including <code class="font-mono bg-gray-100 px-1 rounded text-xs">sub_values</code>, <code class="font-mono bg-gray-100 px-1 rounded text-xs">options</code>, <code class="font-mono bg-gray-100 px-1 rounded text-xs">tolerance</code>), e.g. <code class="font-mono bg-gray-100 px-1 rounded text-xs">[{"name": "Battery Capacity", "description": "Rated capacity of the battery", "instance": "int", "unit": "mAh"}]</code>. Invalid JSON or a non-array is rejected with <code class="font-mono bg-gray-100 px-1 rounded">422 validation_error</code>; so is an entry that fails validation (<code class="font-mono bg-gray-100 px-1 rounded">{"index": n, "errors": [...]}</code>).</span></li>
+                            <li class="flex flex-col gap-1 sm:flex-row sm:gap-4"><span class="font-mono text-anoraBlue font-bold sm:w-48 sm:shrink-0">category</span> <span class="min-w-0 text-gray-600"><span class="text-gray-600">Optional string. <strong>ID (UUID)</strong> of a predefined category (see <a href="#create-category" class="text-anoraTeal hover:underline font-medium">category creation</a>) whose attached specifications should be looked for. Not the category name. Values that are not valid UUIDs are rejected with <code class="font-mono bg-gray-100 px-1 rounded">422 validation_error</code>; an unknown or inaccessible category with <code class="font-mono bg-gray-100 px-1 rounded">404 category_not_found</code>. At least one specification must result from <code class="font-mono bg-gray-100 px-1 rounded">required_specs</code> and/or <code class="font-mono bg-gray-100 px-1 rounded">category</code>, otherwise <code class="font-mono bg-gray-100 px-1 rounded">400 no_specifications_to_search</code>.</span></span></li>
+                            <li class="flex flex-col gap-1 sm:flex-row sm:gap-4"><span class="font-mono text-anoraBlue font-bold sm:w-48 sm:shrink-0">include_product_images</span> <span class="min-w-0 text-gray-600">Optional boolean. Default: <code class="font-mono bg-gray-100 px-1 rounded">false</code>. Include product image URLs in the response.</span></li>
+                            <li class="flex flex-col gap-1 sm:flex-row sm:gap-4"><span class="font-mono text-anoraBlue font-bold sm:w-48 sm:shrink-0">blacklist_sources</span> <span class="min-w-0 text-gray-600">Optional, repeatable. Which pools feed the effective domain <strong>blacklist</strong> for this request: <code class="font-mono bg-gray-100 px-1 rounded">stored</code> (your global saved rules), <code class="font-mono bg-gray-100 px-1 rounded">category</code> (saved rules scoped to the searched category), <code class="font-mono bg-gray-100 px-1 rounded">brand</code> (saved rules scoped to the searched brand), <code class="font-mono bg-gray-100 px-1 rounded">provided</code> (the <code class="font-mono bg-gray-100 px-1 rounded">blacklist_domains</code> list below), <code class="font-mono bg-gray-100 px-1 rounded">none</code> (disable the blacklist; must be the only value). Default when absent: all four real sources. E.g. <code class="font-mono bg-gray-100 px-1 rounded">?blacklist_sources=stored&amp;blacklist_sources=provided</code>.</span></li>
+                            <li class="flex flex-col gap-1 sm:flex-row sm:gap-4"><span class="font-mono text-anoraBlue font-bold sm:w-48 sm:shrink-0">whitelist_sources</span> <span class="min-w-0 text-gray-600">Optional, repeatable. Same values and default as <code class="font-mono bg-gray-100 px-1 rounded">blacklist_sources</code>, for the effective domain <strong>whitelist</strong>.</span></li>
+                            <li class="flex flex-col gap-1 sm:flex-row sm:gap-4"><span class="font-mono text-anoraBlue font-bold sm:w-48 sm:shrink-0">whitelist_exclusive</span> <span class="min-w-0 text-gray-600">Optional boolean. Default: <code class="font-mono bg-gray-100 px-1 rounded">false</code>. When <code class="font-mono bg-gray-100 px-1 rounded">true</code>, the <strong>entire search run</strong> is restricted to whitelisted domains (all web searches are site-restricted, other URLs are dropped before scraping). Without it the whitelist only adds and boosts sources. Requires a non-empty effective whitelist.</span></li>
+                            <li class="flex flex-col gap-1 sm:flex-row sm:gap-4"><span class="font-mono text-anoraBlue font-bold sm:w-48 sm:shrink-0">blacklist_domains</span> <span class="min-w-0 text-gray-600">Optional string. JSON-encoded array of domains to exclude for this request only, e.g. <code class="font-mono bg-gray-100 px-1 rounded">["ebay.com", "amazon.de"]</code>. Requires <code class="font-mono bg-gray-100 px-1 rounded">provided</code> in <code class="font-mono bg-gray-100 px-1 rounded">blacklist_sources</code> (it is by default).</span></li>
+                            <li class="flex flex-col gap-1 sm:flex-row sm:gap-4"><span class="font-mono text-anoraBlue font-bold sm:w-48 sm:shrink-0">whitelist_domains</span> <span class="min-w-0 text-gray-600">Optional string. JSON-encoded array of objects for this request only, e.g. <code class="font-mono bg-gray-100 px-1 rounded">[{"domain": "bosch.com", "trust": "authoritative"}]</code>. <code class="font-mono bg-gray-100 px-1 rounded">trust</code> is optional: <code class="font-mono bg-gray-100 px-1 rounded">normal</code> (default), <code class="font-mono bg-gray-100 px-1 rounded">trusted</code>, <code class="font-mono bg-gray-100 px-1 rounded">authoritative</code> (see the trust ladder under <a href="#search-settings" class="text-anoraTeal hover:underline font-medium">Domain Rules</a>). Requires <code class="font-mono bg-gray-100 px-1 rounded">provided</code> in <code class="font-mono bg-gray-100 px-1 rounded">whitelist_sources</code>. Provided entries win over saved rules for the same domain.</span></li>
                         </ul>
 
                         <div class="rounded-xl border border-anoraTeal/30 bg-anoraTeal/5 p-4 text-xs text-gray-700 mb-4">
@@ -287,7 +310,7 @@ for spec in response.json()["specs"]:
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                         <span class="text-gray-600">/api/v1/auth/validate_api_key</span>
                         <span class="text-sm text-gray-500 ml-auto">Validate API key</span>
@@ -340,7 +363,7 @@ for spec in response.json()["specs"]:
                     <p class="text-sm text-amber-900">Browser <code class="font-mono text-xs bg-white px-1 rounded border border-amber-200">fetch()</code> sends <code class="font-mono text-xs bg-white px-1 rounded border border-amber-200">text/plain;charset=UTF-8</code> when given a JSON string body without an explicit header, which this API refuses. Set the header explicitly.</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Accepted</h4>
                         <pre class="bg-emerald-50 text-emerald-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-emerald-200"><code class="language-http">POST /api/v2/specifications
@@ -362,7 +385,7 @@ Content-Type: text/plain
                 <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-4">Errors &amp; Status Codes</h2>
                 <p class="text-gray-600 mb-5">Errors raised by the API's own validation and business rules return a human-readable <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">detail</code> plus a stable, machine-readable <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">code</code>. Branch on <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">code</code>, not on the text. Request-schema violations caught before the endpoint runs (missing required field, wrong type, unknown enum value) use FastAPI's standard <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">{"detail": [...]}</code> list shape without a <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">code</code>.</p>
 
-                <div class="grid md:grid-cols-2 gap-4 mb-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
                     <div>
                         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Business / validation error</h4>
                         <pre class="bg-red-50 text-red-900 p-3 rounded-lg text-xs font-mono overflow-x-auto border border-red-200"><code class="language-json">{
@@ -403,7 +426,7 @@ Content-Type: text/plain
                 <h2 class="text-2xl md:text-[1.8rem] font-outfit font-bold tracking-tight text-anoraBlue mb-6">Users</h2>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                         <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                         <span class="text-gray-600">/api/v1/users/me</span>
                         <span class="text-sm text-gray-500 ml-auto">Get own account</span>
@@ -442,7 +465,7 @@ Content-Type: text/plain
                 <p class="text-gray-600 mb-5">Check your quota limits and usage.</p>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                         <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                         <span class="text-gray-600">/api/v1/quotas/me</span>
                         <span class="text-sm text-gray-500 ml-auto">Get own quota</span>
@@ -478,7 +501,7 @@ Content-Type: text/plain
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                         <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                         <span class="text-gray-600">/api/v1/quotas/monthly</span>
                         <span class="text-sm text-gray-500 ml-auto">Get monthly usage history</span>
@@ -540,7 +563,7 @@ Content-Type: text/plain
 
                         <div>
                             <h5 class="font-semibold mb-2">Good vs Bad Examples</h5>
-                            <div class="grid md:grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div class="rounded-xl border border-red-300 bg-red-50 p-3">
                                     <p class="font-semibold text-red-800 mb-2">Bad</p>
                                     <ul class="space-y-1 text-red-900">
@@ -578,7 +601,7 @@ Content-Type: text/plain
                 </details>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                         <span class="text-gray-600">/api/<strong>v2</strong>/specifications</span>
                         <span class="text-sm text-gray-500 ml-auto">Create spec</span>
@@ -641,7 +664,7 @@ Content-Type: text/plain
                 
                 <div class="space-y-4">
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                             <code class="text-sm text-gray-700">/api/<strong>v2</strong>/specifications</code>
                             <span class="text-sm text-gray-500 ml-auto">List all specs</span>
@@ -701,7 +724,7 @@ Content-Type: text/plain
                         </div>
                     </div>
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                             <code class="text-sm text-gray-700">/api/<strong>v2</strong>/specifications/{spec_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Get single spec</span>
@@ -745,7 +768,7 @@ Content-Type: text/plain
                     </div>
                     
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-4">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
                             <span class="text-gray-600">/api/<strong>v2</strong>/specifications/{spec_id}</span>
                             <span class="text-sm text-gray-500 ml-auto">Update spec</span>
@@ -811,7 +834,7 @@ Content-Type: text/plain
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
                             <code class="text-sm text-gray-700">/api/<strong>v2</strong>/specifications/{spec_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Delete spec</span>
@@ -839,7 +862,7 @@ Content-Type: text/plain
 
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                             <code class="text-sm text-gray-700">/api/<strong>v2</strong>/specifications/draft</code>
                             <span class="text-sm text-gray-500 ml-auto">AI-draft a spec</span>
@@ -901,7 +924,7 @@ Content-Type: text/plain
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                             <code class="text-sm text-gray-700">/api/<strong>v2</strong>/specifications/review</code>
                             <span class="text-sm text-gray-500 ml-auto">AI-review a spec</span>
@@ -945,7 +968,7 @@ Content-Type: text/plain
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                             <code class="text-sm text-gray-700">/api/<strong>v2</strong>/specifications/{spec_id}/categories</code>
                             <span class="text-sm text-gray-500 ml-auto">List spec's categories</span>
@@ -985,7 +1008,7 @@ Content-Type: text/plain
 
                 <div class="space-y-4 mb-5">
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                             <code class="text-sm text-gray-700">/api/<strong>v2</strong>/categories</code>
                             <span class="text-sm text-gray-500 ml-auto">List categories</span>
@@ -1045,7 +1068,7 @@ Content-Type: text/plain
                         </div>
                     </div>
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                             <code class="text-sm text-gray-700">/api/<strong>v2</strong>/categories/{category_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Get category</span>
@@ -1082,7 +1105,7 @@ Content-Type: text/plain
                         </div>
                     </div>
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                             <code class="text-sm text-gray-700">/api/<strong>v2</strong>/categories/{category_id}/specifications</code>
                             <span class="text-sm text-gray-500 ml-auto">List category specifications</span>
@@ -1143,7 +1166,7 @@ Content-Type: text/plain
                 </div>
 
                 <div id="create-category" class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5 scroll-mt-24">
-                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                         <span class="text-gray-600">/api/<strong>v2</strong>/categories</span>
                         <span class="text-sm text-gray-500 ml-auto">Create category</span>
@@ -1179,7 +1202,7 @@ Content-Type: text/plain
                 
                 <div class="space-y-4 mb-5">
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-4">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">PUT</span>
                             <span class="text-gray-600">/api/<strong>v2</strong>/categories/{category_id}</span>
                             <span class="text-sm text-gray-500 ml-auto">Update category</span>
@@ -1222,7 +1245,7 @@ Content-Type: text/plain
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
                             <code class="text-sm text-gray-700">/api/<strong>v2</strong>/categories/{category_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Delete category</span>
@@ -1252,7 +1275,7 @@ Content-Type: text/plain
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                         <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                         <span class="text-gray-600">/api/<strong>v2</strong>/categories/{category_id}/specs/{spec_id}</span>
                         <span class="text-sm text-gray-500 ml-auto">Attach spec</span>
@@ -1284,7 +1307,7 @@ Content-Type: text/plain
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden mb-5">
-                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                    <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                         <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
                         <span class="text-gray-600">/api/<strong>v2</strong>/categories/{category_id}/specs/{spec_id}</span>
                         <span class="text-sm text-gray-500 ml-auto">Detach spec</span>
@@ -1315,7 +1338,7 @@ Content-Type: text/plain
                 <div class="space-y-4 mt-4">
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                             <code class="text-sm text-gray-700">/api/<strong>v2</strong>/categories/{category_id}/duplicate</code>
                             <span class="text-sm text-gray-500 ml-auto">Duplicate category</span>
@@ -1347,7 +1370,7 @@ Content-Type: text/plain
                 <p class="text-gray-600 mb-4">Saved domain rules steer which websites a search uses. The <strong>blacklist</strong> excludes domains from web searches and scraping; the <strong>whitelist</strong> adds domains as sources and can declare how much to trust them. Each user holds at most one rule per domain per list. Every route below exists for both lists; <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">{list}</code> stands for <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">blacklist</code> or <code class="font-mono text-sm bg-gray-100 px-1 rounded border border-gray-200">whitelist</code>.</p>
                 <p class="text-xs text-gray-500 mb-6">Rate limits: creating a rule 50 requests per minute, every other domain-rule route 100.</p>
 
-                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div class="rounded-2xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700">
                         <h4 class="font-bold text-anoraBlue mb-2">Global vs. scoped rules</h4>
                         <ul class="space-y-1 list-disc pl-4">
@@ -1374,7 +1397,7 @@ Content-Type: text/plain
 
                 <div class="space-y-4">
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                             <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}</code>
                             <span class="text-sm text-gray-500 ml-auto">List rules</span>
@@ -1434,7 +1457,7 @@ Content-Type: text/plain
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                             <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}</code>
                             <span class="text-sm text-gray-500 ml-auto">Create rule</span>
@@ -1474,7 +1497,7 @@ Content-Type: text/plain
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                             <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Get rule (with scope terms)</span>
@@ -1527,7 +1550,7 @@ Content-Type: text/plain
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-yellow-500 text-white font-bold text-xs">PATCH</span>
                             <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Update rule</span>
@@ -1560,7 +1583,7 @@ Content-Type: text/plain
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
                             <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Delete rule</span>
@@ -1587,7 +1610,7 @@ Content-Type: text/plain
 
                     <div id="ensure" class="scroll-mt-24">
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                             <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/ensure</code>
                             <span class="text-sm text-gray-500 ml-auto">Ensure rule covers a scope (idempotent)</span>
@@ -1659,7 +1682,7 @@ Content-Type: application/json
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraOrange text-white font-bold text-xs">POST</span>
                             <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}/scopes</code>
                             <span class="text-sm text-gray-500 ml-auto">Add scope term</span>
@@ -1702,7 +1725,7 @@ Content-Type: application/json
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                             <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}/scopes</code>
                             <span class="text-sm text-gray-500 ml-auto">List scope terms</span>
@@ -1732,7 +1755,7 @@ Content-Type: application/json
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-red-500 text-white font-bold text-xs">DELETE</span>
                             <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}/scopes/{term_id}</code>
                             <span class="text-sm text-gray-500 ml-auto">Remove scope term</span>
@@ -1758,7 +1781,7 @@ Content-Type: application/json
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-gray-500 text-white font-bold text-xs">SHORTCUTS</span>
                             <code class="text-sm text-gray-700">/api/v1/users/search-settings/{list}/{item_id}/categories | /brands</code>
                             <span class="text-sm text-gray-500 ml-auto">Single-part scope terms</span>
@@ -1777,7 +1800,7 @@ Content-Type: application/json
                     </div>
 
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
-                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-3 font-mono text-sm">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm [overflow-wrap:anywhere]">
                             <span class="px-2.5 py-0.5 rounded bg-anoraTeal text-white font-bold text-xs">GET</span>
                             <code class="text-sm text-gray-700">/api/v1/users/search-settings/brands</code>
                             <span class="text-sm text-gray-500 ml-auto">Brand autocomplete</span>
