@@ -101,8 +101,9 @@
             spinner: 'h-5 w-5 animate-spin text-anoraTeal',
             note: 'rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-600',
             noteLink: 'font-semibold text-anoraTeal hover:underline',
-            card: 'rounded-xl border border-gray-200 bg-white shadow-sm',
-            head: 'flex flex-col gap-3 border-b border-gray-100 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5',
+            card: 'relative rounded-xl border border-gray-200 bg-white shadow-sm',
+            head: 'flex flex-col gap-3 border-b border-gray-100 p-4 pr-12 sm:flex-row sm:items-center sm:justify-between sm:p-5 sm:pr-14',
+            closeX: 'absolute right-2 top-2 inline-flex h-9 w-9 items-center justify-center rounded-full text-gray-400 transition hover:bg-gray-100 hover:text-anoraBlue focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraTeal sm:right-3 sm:top-3',
             inputLine: 'text-sm text-gray-600',
             inputLabel: 'font-semibold text-anoraBlue',
             toggle: 'inline-flex self-start rounded-lg bg-gray-100 p-1 text-sm',
@@ -138,8 +139,9 @@
             spinner: 'h-5 w-5 animate-spin text-anoraTeal',
             note: 'mt-5 border-t border-white/10 pt-5 text-sm text-onBlue',
             noteLink: 'font-semibold text-anoraTeal hover:underline',
-            card: 'mt-5 border-t border-white/10 pt-5',
-            head: 'flex flex-col gap-3 pb-3',
+            card: 'relative mt-5 border-t border-white/10 pt-5',
+            head: 'flex flex-col gap-3 pb-3 pr-10',
+            closeX: 'absolute -right-1.5 top-3.5 inline-flex h-9 w-9 items-center justify-center rounded-full text-onBlueMuted transition hover:bg-white/10 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white',
             inputLine: 'text-sm text-onBlue',
             inputLabel: 'font-semibold text-white',
             toggle: 'inline-flex self-start rounded-lg bg-black/30 p-1 text-sm',
@@ -393,7 +395,7 @@
         return view;
     }
 
-    function resultCard(look, example) {
+    function resultCard(look, example, onClose) {
         let showResults = true;
         const card = el('div', look.card);
         const head = el('div', look.head);
@@ -418,7 +420,14 @@
         const foot = el('p', look.foot,
             TEXT.recorded(dateFormat.format(new Date(`${example.recorded_at}T12:00:00Z`)), Math.round(example.duration_ms / 1000))
             + (example.specs_total ? ` · ${TEXT.shownOf(example.response.specs.length + example.response.not_found.length, example.specs_total)}` : ''));
-        card.append(head, body, foot);
+        // A second way to close at the top, since the result is long on a phone.
+        const closeX = el('button', look.closeX);
+        closeX.type = 'button';
+        closeX.setAttribute('aria-label', TEXT.close);
+        closeX.title = TEXT.close;
+        closeX.append(icon('x'));
+        closeX.addEventListener('click', onClose);
+        card.append(head, closeX, body, foot);
 
         function update() {
             toggleButtons.forEach(([button, value]) => {
@@ -524,6 +533,11 @@
             onCollapse();
         }
 
+        function closeResult() {
+            collapse();
+            product.input.focus({ preventScroll: true });
+        }
+
         // Under every answer: the way to the live search, and a way to fold the panel back.
         function withActions(node) {
             const actions = el('div', look.actions);
@@ -533,10 +547,7 @@
             const close = el('button', look.closeButton);
             close.type = 'button';
             close.append(icon('x'), document.createTextNode(TEXT.close));
-            close.addEventListener('click', () => {
-                collapse();
-                product.input.focus({ preventScroll: true });
-            });
+            close.addEventListener('click', closeResult);
             actions.append(live, close);
             const wrap = el('div');
             wrap.append(node, actions);
@@ -575,7 +586,7 @@
                     result.replaceChildren(withActions(note));
                     return;
                 }
-                result.replaceChildren(withActions(resultCard(look, match)));
+                result.replaceChildren(withActions(resultCard(look, match, closeResult)));
             }, reduceMotion ? 300 : 1200 + Math.round(Math.random() * 600));
         });
         return panel;

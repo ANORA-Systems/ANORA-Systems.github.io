@@ -7,13 +7,18 @@ footer: yes
     <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
 
         <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-4">Contact</h1>
-        <p class="text-gray-600 leading-relaxed mb-8 max-w-3xl">
+        <p class="text-gray-600 leading-relaxed mb-6 lg:mb-8 max-w-3xl">
             Questions about SpecScout, a larger catalog to process, or interested in Enterprise? Write to us, book a short call, or email us directly at <a href="mailto:info@anora-systems.com" class="font-semibold text-anoraBlue hover:text-anoraTeal transition">info@anora-systems.com</a>.
         </p>
 
+        <div class="mb-8 flex flex-col gap-3 sm:flex-row lg:hidden">
+            <a href="#message" class="inline-flex items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2.5 text-sm font-semibold text-anoraBlue transition hover:border-anoraTeal hover:text-anoraTeal"><i class="fa-solid fa-envelope text-anoraTeal" aria-hidden="true"></i>Write to us<i class="fa-solid fa-arrow-down text-xs text-gray-400" aria-hidden="true"></i></a>
+            <a href="#call" class="inline-flex items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2.5 text-sm font-semibold text-anoraBlue transition hover:border-anoraTeal hover:text-anoraTeal"><i class="fa-solid fa-phone text-anoraBlue" aria-hidden="true"></i>Book a call<i class="fa-solid fa-arrow-down text-xs text-gray-400" aria-hidden="true"></i></a>
+        </div>
+
         <div class="grid lg:grid-cols-5 gap-8 items-start">
 
-            <section class="lg:col-span-3 bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100" aria-labelledby="form-title">
+            <section id="message" class="scroll-mt-24 lg:col-span-3 bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100" aria-labelledby="form-title">
                 <div class="flex items-center gap-4 mb-6">
                     <div class="w-12 h-12 bg-anoraTeal/10 text-anoraTeal rounded-lg flex items-center justify-center text-xl">
                         <i class="fa-solid fa-envelope" aria-hidden="true"></i>
@@ -63,7 +68,7 @@ footer: yes
                         <a href="mailto:info@anora-systems.com" data-action="mail" class="inline-block mt-2 ml-6 font-semibold text-red-700 underline hover:text-red-900">Send by email</a>
                     </div>
                     <div>
-                        <button type="submit" data-submit class="inline-flex items-center gap-2 bg-anoraOrange hover:bg-orange-600 text-white px-6 py-3 rounded-md font-bold transition shadow-md disabled:opacity-60 disabled:cursor-wait aria-disabled:cursor-not-allowed aria-disabled:hover:bg-anoraOrange focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-anoraOrange">
+                        <button type="submit" data-submit class="inline-flex w-full items-center justify-center gap-2 sm:w-auto bg-anoraOrange hover:bg-orange-600 text-white px-6 py-3 rounded-md font-bold transition shadow-md disabled:opacity-60 disabled:cursor-wait aria-disabled:cursor-not-allowed aria-disabled:hover:bg-anoraOrange focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-anoraOrange">
                             Send message
                         </button>
                     </div>
@@ -86,7 +91,7 @@ footer: yes
                 </p>
             </section>
 
-            <section class="lg:col-span-2 bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100" aria-labelledby="call-title">
+            <section id="call" class="scroll-mt-24 lg:col-span-2 bg-white p-8 md:p-10 rounded-xl shadow-sm border border-gray-100" aria-labelledby="call-title">
                 <div class="flex items-center gap-4 mb-6">
                     <div class="w-12 h-12 bg-anoraBlue/10 text-anoraBlue rounded-lg flex items-center justify-center text-xl">
                         <i class="fa-solid fa-phone" aria-hidden="true"></i>
@@ -95,7 +100,7 @@ footer: yes
                 </div>
                 <p class="text-gray-600 leading-relaxed mb-4">In 20 minutes we answer your questions and look together at whether SpecScout fits your catalog.</p>
                 <p class="text-gray-600 leading-relaxed mb-6">Send us two or three times that suit you. We confirm one of them by email.</p>
-                <button type="button" data-call-scheduler aria-haspopup="dialog" class="inline-flex items-center gap-2 bg-anoraBlue hover:bg-anoraTeal text-white px-6 py-3 rounded-md font-bold transition shadow-md">
+                <button type="button" data-call-scheduler aria-haspopup="dialog" class="inline-flex w-full items-center justify-center gap-2 sm:w-auto bg-anoraBlue hover:bg-anoraTeal text-white px-6 py-3 rounded-md font-bold transition shadow-md">
                     Request a call
                 </button>
                 <p class="text-sm text-gray-500 mt-3">Opens a calendar to pick the times that suit you.</p>

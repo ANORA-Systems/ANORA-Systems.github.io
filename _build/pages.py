@@ -85,6 +85,8 @@ STRINGS = {
         "github": "Anora Systems auf GitHub",
         "examples_need_js": "Die Beispiele brauchen JavaScript.",
         "placeholder": "Platzhalterdaten",
+        "excerpt_more": "Ganze Antwort anzeigen",
+        "excerpt_less": "Weniger anzeigen",
     },
     "en": {
         "start_free": "Start free",
@@ -123,6 +125,8 @@ STRINGS = {
         "github": "Anora Systems on GitHub",
         "examples_need_js": "The examples need JavaScript.",
         "placeholder": "Placeholder data",
+        "excerpt_more": "Show the full response",
+        "excerpt_less": "Show less",
     },
 }
 

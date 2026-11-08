@@ -96,7 +96,7 @@ html_class: scroll-smooth
         </ul>
     </section>
 
-    <section id="problem" class="scroll-mt-20 bg-gray-50 py-20">
+    <section id="problem" class="scroll-mt-20 bg-gray-50 py-14 md:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl">
                 <h2 class="text-3xl font-bold text-anoraBlue">Fehlende Produktdaten kosten Umsatz.</h2>
@@ -127,7 +127,7 @@ html_class: scroll-smooth
     </section>
 
     <span id="solution" class="block scroll-mt-20" aria-hidden="true"></span>
-    <section id="how-it-works" class="scroll-mt-20 bg-gray-50 py-20">
+    <section id="how-it-works" class="scroll-mt-20 bg-gray-50 py-14 md:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl">
                 <h2 class="text-3xl font-bold text-anoraBlue">So funktioniert SpecScout</h2>
@@ -159,7 +159,7 @@ html_class: scroll-smooth
     </section>
 
     <span id="whyspecscout" class="block scroll-mt-20" aria-hidden="true"></span>
-    <section id="benefits" class="scroll-mt-20 bg-white py-20">
+    <section id="benefits" class="scroll-mt-20 bg-white py-14 md:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h2 class="max-w-3xl text-3xl font-bold text-anoraBlue">Was Sie davon haben</h2>
             <div class="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-3">
@@ -201,7 +201,7 @@ html_class: scroll-smooth
         </div>
     </section>
 
-    <section id="fit" class="scroll-mt-20 bg-gray-50 py-20">
+    <section id="fit" class="scroll-mt-20 bg-gray-50 py-14 md:py-20">
         <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-anoraBlue">Wann SpecScout für Sie passt, und wann nicht</h2>
             <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -225,7 +225,7 @@ html_class: scroll-smooth
         </div>
     </section>
 
-    <section id="developers" class="scroll-mt-20 bg-anoraBlue py-20">
+    <section id="developers" class="scroll-mt-20 bg-anoraBlue py-14 md:py-20">
         <div class="mx-auto grid grid-cols-1 max-w-7xl items-start gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
             <div>
                 <p class="text-sm font-semibold uppercase tracking-wider text-anoraTeal">Für Entwickler</p>
@@ -236,9 +236,9 @@ html_class: scroll-smooth
                     <li class="flex gap-3"><i data-lucide="clock" class="mt-1 h-5 w-5 shrink-0 text-anoraTeal"></i>Eine Suche dauert 10 bis 40 Sekunden; am besten als Hintergrundjob mit mindestens 180 Sekunden Timeout.</li>
                     <li class="flex gap-3"><i data-lucide="gauge" class="mt-1 h-5 w-5 shrink-0 text-anoraTeal"></i>Bis zu 200 Anfragen pro Minute je Schlüssel; nur abgeschlossene Suchen zählen gegen Ihr Kontingent.</li>
                 </ul>
-                <div class="mt-8 flex flex-wrap gap-3">
-                    <a href="{{ t.register_url }}" class="inline-flex items-center gap-2 rounded-brand bg-anoraOrange px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-anoraOrangeHover">Kostenlosen API-Schlüssel holen</a>
-                    <a href="api-dokumentation" class="inline-flex items-center gap-2 rounded-brand border border-white/30 px-5 py-3 text-sm font-semibold text-white transition hover:border-white">Zur API-Dokumentation (Englisch) <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+                <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                    <a href="{{ t.register_url }}" class="inline-flex w-full items-center justify-center gap-2 sm:w-auto rounded-brand bg-anoraOrange px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-anoraOrangeHover">Kostenlosen API-Schlüssel holen</a>
+                    <a href="api-dokumentation" class="inline-flex w-full items-center justify-center gap-2 sm:w-auto rounded-brand border border-white/30 px-5 py-3 text-sm font-semibold text-white transition hover:border-white">Zur API-Dokumentation (Englisch) <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
                 </div>
             </div>
             <div>
@@ -248,7 +248,7 @@ html_class: scroll-smooth
         </div>
     </section>
 
-    <section id="faq" class="scroll-mt-20 bg-white py-20">
+    <section id="faq" class="scroll-mt-20 bg-white py-14 md:py-20">
         <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-anoraBlue">Häufige Fragen</h2>
             <div class="mt-8 space-y-3">
@@ -291,7 +291,7 @@ html_class: scroll-smooth
         </div>
     </section>
 
-    <section id="contact" class="relative scroll-mt-20 overflow-hidden bg-anoraBlue py-20 text-center">
+    <section id="contact" class="relative scroll-mt-20 overflow-hidden bg-anoraBlue py-14 md:py-20 text-center">
         <div class="relative mx-auto max-w-3xl px-4">
             <h2 class="text-3xl font-bold text-white md:text-4xl">Bereit, Ihre Produktdaten zu vervollständigen?</h2>
             <p class="mt-6 text-lg text-onBlue">Testen Sie SpecScout mit 20 kostenlosen Suchen pro Monat. Für größere Kataloge und Enterprise sprechen Sie uns an.</p>

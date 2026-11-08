@@ -1,6 +1,8 @@
 open_api_scheme.json
 CLAUDE.md
 
+.env
+
 # Build output and the Tailwind binary the build downloads (python _build/build.py)
 _site/
 _build/bin/
