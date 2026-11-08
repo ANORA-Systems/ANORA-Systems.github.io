@@ -17,15 +17,15 @@
                 <a href="{{ t.login_url }}" class="hidden text-sm font-medium text-anoraBlue transition hover:text-anoraTeal md:inline-block">{{ t.login }}</a>
                 <a href="{{ t.start_free_url }}" class="hidden rounded-brand bg-anoraOrange px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-anoraOrangeHover focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraOrange focus-visible:ring-offset-2 sm:inline-block">{{ t.start_free }}</a>
 
-                <div class="flex shrink-0 rounded-md bg-gray-100 p-0.5 text-[13px] leading-5">
+                <div class="flex shrink-0 rounded-md bg-gray-100 p-0.5 text-[11px]">
 {{# each langs }}
 {{# if active }}
-                    <span class="rounded bg-white px-2.5 py-1.5 font-bold text-anoraBlue shadow-sm" aria-current="true">{{ code }}</span>
+                    <span class="rounded bg-white px-2 py-0.5 font-bold text-anoraBlue shadow-sm" aria-current="true">{{ code }}</span>
 {{ else }}
 {{# if href }}
-                    <a href="{{ href }}" hreflang="{{ hreflang }}" class="rounded px-2.5 py-1.5 font-medium text-gray-500 transition hover:text-anoraTeal">{{ code }}</a>
+                    <a href="{{ href }}" hreflang="{{ hreflang }}" class="px-2 py-0.5 font-medium text-gray-500 transition hover:text-anoraTeal">{{ code }}</a>
 {{ else }}
-                    <span class="cursor-not-allowed px-2.5 py-1.5 font-medium text-gray-300" title="{{ t.no_translation }}">{{ code }}</span>
+                    <span class="cursor-not-allowed px-2 py-0.5 font-medium text-gray-300" title="{{ t.no_translation }}">{{ code }}</span>
 {{/ if }}
 {{/ if }}
 {{/ each }}

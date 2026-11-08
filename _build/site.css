@@ -4,10 +4,14 @@
 @tailwind utilities;
 
 /* On screen only, so the printed pages and the AGB PDFs keep their layout:
-   - an email address never breaks at its hyphen ("info@anora-/systems.com");
-   - headings are balanced, so a last word never stands alone on its line. */
+   an email address never breaks at its hyphen ("info@anora-/systems.com"). */
 @media screen {
     a[href^="mailto:"] { white-space: nowrap; }
+}
+
+/* Phones and tablets: balanced headings, so a last word never stands alone on its line.
+   Not from lg on, where the desktop line breaks stay as they were. */
+@media screen and (max-width: 1023px) {
     h1, h2, h3 { text-wrap: balance; }
 }
 
