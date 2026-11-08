@@ -1,0 +1,23 @@
+{
+  "note": "Values of one live search on the dev deployment, read from its Sentry log lines (the analytics DB backup did not include it yet). Values and units as the search returned them; sources and confidence are not recorded here, so this example is used only for the listing on the Re-commerce page, not in the example box. Weight and dimensions match Lenovo's data for the Gen 2, but one of their sources was a lenovo.com page of the T14 Gen 4.",
+  "input": {
+    "product_name": "ThinkPad T14 Gen 2 Intel Core i5-1135G7 16GB 512GB SSD FHD",
+    "brand": "Lenovo",
+    "category": "Laptop"
+  },
+  "request_id": "88b43679-eb85-4ec9-b55c-4abc1e5c56da",
+  "environment": "live_development",
+  "recorded_at": "2026-10-23",
+  "duration_ms": 28968,
+  "specs": [
+    {"name": "Display size", "value": 14.0, "unit": "inch"},
+    {"name": "Display resolution", "value": [1920, 1080], "unit": null},
+    {"name": "Panel type", "value": "IPS", "unit": null},
+    {"name": "Thunderbolt or USB4", "value": true, "unit": null},
+    {"name": "HDMI port", "value": true, "unit": null},
+    {"name": "Wi-Fi standard", "value": "Wi-Fi 6", "unit": null},
+    {"name": "CPU cores", "value": 4, "unit": null},
+    {"name": "Weight", "value": 1470.0, "unit": "g"},
+    {"name": "Dimensions", "value": [17.9, 227.0, 329.0], "unit": "mm"}
+  ]
+}

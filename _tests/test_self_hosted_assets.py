@@ -1,4 +1,4 @@
-"""Every page of anora-systems.com loads its fonts, icons, styles and scripts from this repo.
+"""Every page of anora-systems.com loads its fonts, icons, styles and scripts from this site.
 
 A font, icon or script loaded from a CDN sends every visitor's IP address to that
 provider. Google Fonts loaded that way has cost German sites court rulings and warning
@@ -6,11 +6,12 @@ letters, and the privacy policy (datenschutz.html, B.2) promises the site loads 
 from other servers. The site used Google Fonts, the Tailwind CDN and Font Awesome from
 cdnjs until October 2026; see "Self-hosted assets only" in README.md.
 
-Run from the repo root (Python 3, standard library only):
+The checks run on the built site (_tests/site_build.py), which is exactly what gets published.
+Run from the repo root (Python 3.9+, standard library only):
 
     python -m unittest discover -s _tests -v
 
-The folder starts with an underscore so GitHub Pages does not publish it.
+The folder starts with an underscore so it is never published.
 """
 
 from __future__ import annotations
@@ -21,7 +22,9 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-REPO = Path(__file__).resolve().parent.parent
+from site_build import built_site
+
+SITE = built_site()
 OWN_ORIGIN = "https://anora-systems.com"
 
 # Hosts that serve fonts, icons or front-end libraries. Script code mentioning one is a runtime load.
@@ -65,11 +68,11 @@ CSS_REMOTE_IMPORT = re.compile(r"@import\s+(?:url\()?\s*['\"]?(?:https?:)?//", r
 
 
 def published_files(suffix: str) -> list[Path]:
-    """Files GitHub Pages serves: everything whose path has no part starting with '.' or '_'."""
+    """Files of the built site, skipping any whose path has a part starting with '.' or '_'."""
     return sorted(
         path
-        for path in REPO.rglob(f"*{suffix}")
-        if not any(part.startswith((".", "_")) for part in path.relative_to(REPO).parts)
+        for path in SITE.rglob(f"*{suffix}")
+        if not any(part.startswith((".", "_")) for part in path.relative_to(SITE).parts)
     )
 
 
@@ -115,7 +118,7 @@ def local_target(url: str, base: Path) -> Path | None:
     if parts.scheme or parts.netloc:
         return None
     path = unquote(parts.path)
-    target = REPO / path.lstrip("/") if path.startswith("/") else base / path
+    target = SITE / path.lstrip("/") if path.startswith("/") else base / path
     return target / "index.html" if target.is_dir() else target
 
 
@@ -129,7 +132,7 @@ class SelfHostedAssetsTest(unittest.TestCase):
                 if url.startswith("data:"):
                     continue
                 target = local_target(url, page.parent)
-                name = page.relative_to(REPO).as_posix()
+                name = page.relative_to(SITE).as_posix()
                 if target is None:
                     problems.append(f"{name} loads {url} from another server")
                 elif not target.exists():
@@ -144,7 +147,7 @@ class SelfHostedAssetsTest(unittest.TestCase):
             collector.feed(page.read_text(encoding="utf-8"))
             sources.append((page, "\n".join(collector.inline_code)))
         for path, css in sources:
-            name = path.relative_to(REPO).as_posix()
+            name = path.relative_to(SITE).as_posix()
             if CSS_REMOTE_IMPORT.search(css):
                 problems.append(f"{name} @imports a remote stylesheet")
             if path.suffix != ".css":
@@ -171,7 +174,7 @@ class SelfHostedAssetsTest(unittest.TestCase):
         self.assertEqual(problems, [])
 
     def test_scripts_fetch_no_font_or_icon_cdn(self) -> None:
-        # Only a URL is a load; Tailwind's bundled script names its CDN in a console warning.
+        # Only a URL is a load, so a host named in a comment or message would pass.
         problems = []
         scripts = [(js, js.read_text(encoding="utf-8")) for js in published_files(".js")]
         for page in published_files(".html"):
@@ -181,20 +184,29 @@ class SelfHostedAssetsTest(unittest.TestCase):
         for path, code in scripts:
             for host in FONT_AND_ICON_HOSTS:
                 if re.search(rf"(?:https?:)?//{re.escape(host)}", code):
-                    problems.append(f"{path.relative_to(REPO).as_posix()} loads from {host}")
+                    problems.append(f"{path.relative_to(SITE).as_posix()} loads from {host}")
         self.assertEqual(problems, [])
 
-    def test_every_page_links_the_self_hosted_fonts(self) -> None:
-        # Every page sets Inter in its Tailwind config; without fonts.css it falls back to Arial.
+    def test_every_page_links_the_fonts_and_the_compiled_css(self) -> None:
+        # The Tailwind config sets Inter; without fonts.css a page falls back to Arial, and
+        # without site.css it has no styles at all.
         missing = [
-            page.relative_to(REPO).as_posix()
+            f"{page.relative_to(SITE).as_posix()} does not link {stylesheet}"
             for page in published_files(".html")
-            if "assets/fonts/fonts.css" not in page.read_text(encoding="utf-8")
+            for stylesheet in ("assets/fonts/fonts.css", "assets/css/site.css")
+            if stylesheet not in page.read_text(encoding="utf-8")
         ]
-        self.assertEqual(missing, [], "These pages do not link assets/fonts/fonts.css")
+        self.assertEqual(missing, [])
+
+    def test_no_page_loads_the_tailwind_play_script(self) -> None:
+        # The play script compiled CSS in every visitor's browser; the build compiles it once.
+        self.assertEqual(
+            [p.relative_to(SITE).as_posix() for p in published_files(".html") if "tailwindcss-play" in p.read_text(encoding="utf-8")],
+            [],
+        )
 
     def test_font_stylesheet_declares_fonts_that_exist(self) -> None:
-        fonts_css = REPO / "assets" / "fonts" / "fonts.css"
+        fonts_css = SITE / "assets" / "fonts" / "fonts.css"
         faces = re.findall(r"@font-face\s*{[^}]*}", fonts_css.read_text(encoding="utf-8"))
         self.assertGreaterEqual(len(faces), 7, "Inter, Outfit and Fira Code should all be declared")
         for face in faces:

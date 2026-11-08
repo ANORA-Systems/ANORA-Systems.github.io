@@ -1,0 +1,105 @@
+---
+title: Dienstleister | Anora Systems
+nav: full
+footer: yes
+---
+<head>
+    <style>
+        @media (max-width: 639px) {
+            .provider-table thead { display: none; }
+            .provider-table, .provider-table tbody, .provider-table tr, .provider-table td { display: block; width: 100%; }
+            .provider-table tr { border-bottom: 1px solid #e5e7eb; padding: 0.25rem 0; }
+            .provider-table tr:last-child { border-bottom: 0; }
+            .provider-table td { border: 0 !important; padding: 0.25rem 0.75rem !important; }
+            .provider-table td[data-label]::before { content: attr(data-label); display: block; font-weight: 600; color: #0B1E3D; }
+        }
+        @media print {
+            @page { size: A4; margin: 16mm 18mm; }
+            body { background: #fff !important; font-size: 10.5pt; }
+            body > nav { position: static !important; box-shadow: none !important; padding: 0 0 6mm !important; }
+            body > nav img { height: 12mm !important; }
+            body > nav a + a, footer, .print-hide { display: none !important; }
+            main { padding: 0 !important; max-width: none !important; }
+            main > div { box-shadow: none !important; border: 0 !important; border-radius: 0 !important; padding: 0 !important; }
+            h1, h2, h3 { break-after: avoid; }
+            p, li { orphans: 3; widows: 3; }
+            main p, main li { color: #1f2937 !important; }
+            a { color: inherit !important; text-decoration: none !important; }
+        }
+    </style>
+</head>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
+
+        <h1 class="text-3xl md:text-4xl font-bold text-anoraBlue mb-2">Dienstleister</h1>
+        <p class="text-sm font-semibold text-anoraTeal uppercase tracking-wider mb-8">Stand: 8. November 2026</p>
+
+        <div class="bg-white p-8 md:p-12 rounded-xl shadow-sm border border-gray-100 text-gray-700 leading-relaxed space-y-10">
+
+            <section>
+                <p class="mb-4">
+                    Diese Liste nennt die externen Dienstleister, die wir für die Website anora-systems.com und für SpecScout einsetzen. Welche Daten sie erhalten und auf welcher Rechtsgrundlage, beschreibt unsere <a href="datenschutz" class="text-anoraTeal hover:underline">Datenschutzerklärung</a>; Ziffer 11(3) unserer <a href="agb" class="text-anoraTeal hover:underline">AGB</a> verweist auf diese Liste. Ändert sich ein Dienstleister, aktualisieren wir die Liste und das Datum oben.
+                </p>
+                <p class="mb-4">
+                    Übermittlungen in Länder außerhalb der EU stützen wir auf einen Angemessenheitsbeschluss der EU-Kommission, für das Vereinigte Königreich sowie für die USA nach dem EU-US Data Privacy Framework (DPF), soweit der Empfänger danach zertifiziert ist, sonst auf die Standardvertragsklauseln der EU-Kommission (SCC). Einzelheiten stehen in Abschnitt A.6 der Datenschutzerklärung.
+                </p>
+            </section>
+
+            <section id="betrieb" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">Betrieb von Website und SpecScout</h2>
+                <div class="overflow-x-auto">
+                    <table class="provider-table w-full text-sm border border-gray-200">
+                        <thead class="bg-gray-50 text-left">
+                            <tr><th scope="col" class="p-2 border-b border-gray-200">Dienstleister</th><th scope="col" class="p-2 border-b border-gray-200">Aufgabe</th><th scope="col" class="p-2 border-b border-gray-200">Ort und Übermittlung</th></tr>
+                        </thead>
+                        <tbody class="align-top">
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Hetzner Online GmbH</strong><br>Gunzenhausen, Deutschland</td><td data-label="Aufgabe" class="p-2 border-b border-gray-100">Server für SpecScout und für Kontakt- und Gesprächsanfragen von der Website</td><td data-label="Ort und Übermittlung" class="p-2 border-b border-gray-100">Server in Deutschland; keine Übermittlung außerhalb der EU</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>IONOS SE</strong><br>Montabaur, Deutschland</td><td data-label="Aufgabe" class="p-2 border-b border-gray-100">E-Mail-Postfächer und Versand aller E-Mails, auch der automatischen E-Mails von SpecScout</td><td data-label="Ort und Übermittlung" class="p-2 border-b border-gray-100">Sitz in der EU</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Functional Software, Inc. (Sentry)</strong><br>San Francisco, USA</td><td data-label="Aufgabe" class="p-2 border-b border-gray-100">Fehler- und Leistungsüberwachung unserer Server</td><td data-label="Ort und Übermittlung" class="p-2 border-b border-gray-100">Speicherung in der EU; Sitz in den USA, DPF</td></tr>
+                            <tr><td class="p-2"><strong>GitHub, Inc.</strong><br>San Francisco, USA</td><td data-label="Aufgabe" class="p-2">Auslieferung der Website (GitHub Pages); Sicherheitsprotokolle verarbeitet GitHub in eigener Verantwortung</td><td data-label="Ort und Übermittlung" class="p-2">USA; DPF</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="websuche" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">Websuche</h2>
+                <div class="overflow-x-auto">
+                    <table class="provider-table w-full text-sm border border-gray-200">
+                        <thead class="bg-gray-50 text-left">
+                            <tr><th scope="col" class="p-2 border-b border-gray-200">Dienstleister</th><th scope="col" class="p-2 border-b border-gray-200">Aufgabe</th><th scope="col" class="p-2 border-b border-gray-200">Ort und Übermittlung</th></tr>
+                        </thead>
+                        <tbody class="align-top">
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Brave Software, Inc.</strong><br>San Francisco, USA</td><td data-label="Aufgabe" class="p-2 border-b border-gray-100">Websuche über die Brave Search API</td><td data-label="Ort und Übermittlung" class="p-2 border-b border-gray-100">Erhält nur Suchbegriffe aus Produktdaten, keine personenbezogenen Daten</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>European Perspective SAS (Staan)</strong><br>Paris, Frankreich</td><td data-label="Aufgabe" class="p-2 border-b border-gray-100">Websuche über die Staan Search API</td><td data-label="Ort und Übermittlung" class="p-2 border-b border-gray-100">Sitz in der EU; erhält nur Suchbegriffe aus Produktdaten, keine personenbezogenen Daten</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Google Cloud EMEA Limited</strong><br>Dublin, Irland</td><td data-label="Aufgabe" class="p-2 border-b border-gray-100">Websuche über die Custom Search JSON API, ersatzweise</td><td data-label="Ort und Übermittlung" class="p-2 border-b border-gray-100">Verarbeitung auch in den USA durch Google LLC; DPF</td></tr>
+                            <tr><td class="p-2"><strong>Serper</strong> (serper.dev)</td><td data-label="Aufgabe" class="p-2">Websuche, ersatzweise</td><td data-label="Ort und Übermittlung" class="p-2">Erhält nur Suchbegriffe aus Produktdaten, keine personenbezogenen Daten</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="ki-modelle" class="scroll-mt-24">
+                <h2 class="text-2xl font-bold text-anoraBlue mb-4 border-b pb-2 border-gray-100">KI-Modelle</h2>
+                <p class="mb-4">
+                    Welcher Anbieter eine Anfrage beantwortet, hängt von Verfügbarkeit und Antwortzeit ab. „Ersatzweise“ heißt: Der Anbieter erhält eine Anfrage nur, wenn die vorher eingesetzten Anbieter nicht rechtzeitig antworten.
+                </p>
+                <div class="overflow-x-auto">
+                    <table class="provider-table w-full text-sm border border-gray-200">
+                        <thead class="bg-gray-50 text-left">
+                            <tr><th scope="col" class="p-2 border-b border-gray-200">Dienstleister</th><th scope="col" class="p-2 border-b border-gray-200">Aufgabe</th><th scope="col" class="p-2 border-b border-gray-200">Ort und Übermittlung</th></tr>
+                        </thead>
+                        <tbody class="align-top">
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Fireworks.ai, Inc.</strong><br>San Mateo, USA</td><td data-label="Aufgabe" class="p-2 border-b border-gray-100">Auswertung der Seiten</td><td data-label="Ort und Übermittlung" class="p-2 border-b border-gray-100">USA; SCC</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Google Cloud EMEA Limited</strong><br>Dublin, Irland</td><td data-label="Aufgabe" class="p-2 border-b border-gray-100">Gemini API: Auswertung der Seiten, Prüfung von Suchergebnissen und Links, Auswahl von Seitenabschnitten; ersatzweise KI-Entwürfe und KI-Prüfungen</td><td data-label="Ort und Übermittlung" class="p-2 border-b border-gray-100">Verarbeitung auch in den USA durch Google LLC; DPF</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Baseten Labs, Inc.</strong><br>San Francisco, USA</td><td data-label="Aufgabe" class="p-2 border-b border-gray-100">Auswertung der Seiten, ersatzweise</td><td data-label="Ort und Übermittlung" class="p-2 border-b border-gray-100">USA; SCC</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>OpenAI Ireland Ltd.</strong><br>Dublin, Irland</td><td data-label="Aufgabe" class="p-2 border-b border-gray-100">Auswertung der Seiten, ersatzweise; KI-Entwürfe und KI-Prüfungen von Spezifikationen im Dashboard</td><td data-label="Ort und Übermittlung" class="p-2 border-b border-gray-100">Verarbeitung auch in den USA; SCC</td></tr>
+                            <tr><td class="p-2 border-b border-gray-100"><strong>Cerebras Systems Inc.</strong><br>Sunnyvale, USA</td><td data-label="Aufgabe" class="p-2 border-b border-gray-100">Auswertung der Seiten, ersatzweise</td><td data-label="Ort und Übermittlung" class="p-2 border-b border-gray-100">USA; SCC</td></tr>
+                            <tr><td class="p-2"><strong>Groq UK Limited</strong><br>London, Vereinigtes Königreich</td><td data-label="Aufgabe" class="p-2">Prüfung von Suchergebnissen und Links, Auswahl von Seitenabschnitten; ersatzweise Auswertung der Seiten und KI-Entwürfe</td><td data-label="Ort und Übermittlung" class="p-2">Vereinigtes Königreich: Angemessenheitsbeschluss der EU-Kommission, zusätzlich SCC; Verarbeitung auch in den USA</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>

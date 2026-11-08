@@ -1,0 +1,20 @@
+                    <div class="group/excerpt overflow-hidden rounded-xl bg-codeBg shadow-lg ring-1 ring-black/10">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 px-4 py-2.5 text-xs text-onBlueMuted">
+                            <span class="min-w-0 break-all font-mono">{{ demo.request }}</span>
+{{# if demo.placeholder }}
+                            <span class="shrink-0 rounded-full bg-amber-400/15 px-2 py-0.5 font-medium text-amber-200">{{ t.placeholder }}</span>
+{{/ if }}
+                        </div>
+                        <!-- Below md the response does not scroll inside the page: long lines wrap, it is cut off with a fade, and the toggle below shows all of it. From md it is the scrolling box. -->
+                        <div class="relative">
+                            <pre class="code-dark max-h-72 overflow-hidden whitespace-pre-wrap p-4 text-xs leading-relaxed text-gray-400 [overflow-wrap:anywhere] group-has-[details[open]]/excerpt:max-h-none md:max-h-96 md:overflow-auto md:whitespace-pre md:[overflow-wrap:normal]"><code class="font-mono language-json">{{ demo.response_json }}</code></pre>
+                            <div class="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-codeBg to-transparent group-has-[details[open]]/excerpt:hidden md:hidden" aria-hidden="true"></div>
+                        </div>
+                        <details class="group/more border-t border-white/10 md:hidden">
+                            <summary class="flex cursor-pointer list-none items-center justify-center gap-2 px-4 py-3 text-sm font-semibold text-anoraTeal transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-anoraTeal [&::-webkit-details-marker]:hidden">
+                                <span class="group-open/more:hidden">{{ t.excerpt_more }}</span>
+                                <span class="hidden group-open/more:inline">{{ t.excerpt_less }}</span>
+                                <i data-lucide="chevron-down" class="h-4 w-4 transition-transform group-open/more:rotate-180"></i>
+                            </summary>
+                        </details>
+                    </div>

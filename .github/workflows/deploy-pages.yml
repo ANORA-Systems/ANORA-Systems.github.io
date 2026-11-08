@@ -1,0 +1,51 @@
+# Builds anora-systems.com from main and publishes it with GitHub Pages.
+# The pages in the repo are build sources (python _build/build.py), so Pages must not serve the
+# branch as it is. In the repo settings, set Pages > Build and deployment > Source to
+# "GitHub Actions" BEFORE the build reaches main: in "Deploy from a branch" mode Pages would
+# publish the raw sources.
+
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # the sitemap's lastmod dates come from the history
+
+      - name: Run tests
+        run: |
+          python -m unittest discover -s _tests -v
+          node --test
+
+      - name: Build
+        run: python _build/build.py
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

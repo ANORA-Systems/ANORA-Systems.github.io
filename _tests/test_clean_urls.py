@@ -4,9 +4,9 @@ GitHub Pages serves contact.html at /contact as well. The canonical, hreflang an
 name the clean form, so internal links must too: a link to contact.html shows the extension in
 the address bar and makes Google list the page as "Alternate page with proper canonical tag".
 To click through the site locally, run python _tools/serve.py, which resolves clean URLs the
-way GitHub Pages does; file:// cannot.
+way GitHub Pages does; file:// cannot. The checks run on the built site (_tests/site_build.py).
 
-Run from the repo root (Python 3, standard library only):
+Run from the repo root (Python 3.9+, standard library only):
 
     python -m unittest discover -s _tests -v
 """
@@ -19,7 +19,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-from test_self_hosted_assets import OWN_ORIGIN, REPO, published_files
+from test_self_hosted_assets import OWN_ORIGIN, SITE, published_files
 
 
 class LinkCollector(HTMLParser):
@@ -46,7 +46,7 @@ def link_problem(url: str, base: Path) -> str | None:
     path = unquote(parts.path)
     if path.endswith(".html"):
         return "ends in .html"
-    target = REPO / path.lstrip("/") if path.startswith("/") else base / path
+    target = SITE / path.lstrip("/") if path.startswith("/") else base / path
     if target.is_dir():
         if not path.endswith("/"):
             return "points at a folder without the trailing slash"
@@ -65,22 +65,22 @@ class CleanUrlsTest(unittest.TestCase):
             for url in collector.urls:
                 problem = link_problem(url, page.parent)
                 if problem:
-                    problems.append(f"{page.relative_to(REPO).as_posix()}: {url} {problem}")
+                    problems.append(f"{page.relative_to(SITE).as_posix()}: {url} {problem}")
         self.assertEqual(problems, [])
 
     def test_sitemap_lists_clean_urls_of_existing_pages(self) -> None:
-        sitemap = (REPO / "sitemap.xml").read_text(encoding="utf-8")
+        sitemap = (SITE / "sitemap.xml").read_text(encoding="utf-8")
         urls = re.findall(r"<loc>([^<]+)</loc>", sitemap) + re.findall(r'href="([^"]+)"', sitemap)
         self.assertTrue(urls)
-        problems = [f"{url} {link_problem(url, REPO)}" for url in urls if link_problem(url, REPO)]
+        problems = [f"{url} {link_problem(url, SITE)}" for url in urls if link_problem(url, SITE)]
         self.assertEqual(problems, [])
 
     def test_scripts_link_pages_by_clean_url(self) -> None:
         # js/call-scheduler.js runs on both contact pages, so its links have no single base folder.
         problems = [
-            f"{script.relative_to(REPO).as_posix()}: {url}"
+            f"{script.relative_to(SITE).as_posix()}: {url}"
             for script in published_files(".js")
-            if not script.is_relative_to(REPO / "assets")
+            if not script.is_relative_to(SITE / "assets")
             for url in re.findall(r'href=\\?"([^"\\]+)', script.read_text(encoding="utf-8"))
             if (url.startswith(OWN_ORIGIN) or not urlsplit(url).netloc) and urlsplit(url).path.endswith(".html")
         ]

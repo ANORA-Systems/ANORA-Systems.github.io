@@ -1,6 +1,12 @@
 open_api_scheme.json
 CLAUDE.md
 
+.env
+
+# Build output and the Tailwind binary the build downloads (python _build/build.py)
+_site/
+_build/bin/
+
 # Python bytecode from running _tests/ and the opensource/ scripts
 __pycache__/
 *.py[cod]
@@ -8,3 +14,6 @@ __pycache__/
 # Full SPDX SBOM exports must stay private (archive: Local/Anora_Code/SBOMs/)
 opensource/*SBOM*.json
 opensource/ANORA-Systems_SpecScout_API_*.json
+
+# Personal editor settings
+.vscode/

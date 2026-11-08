@@ -4,7 +4,7 @@
 // "now" and checks the slots against Berlin wall-clock times computed independently
 // with Intl, so it does not trust the code under test to check itself.
 //
-// Run from the repo root (Node 20+, no dependencies): node --test _tests/
+// Run from the repo root (Node 20+, no dependencies): node --test
 'use strict';
 
 // Visitor-day grouping uses the process time zone; pin it so results are repeatable.

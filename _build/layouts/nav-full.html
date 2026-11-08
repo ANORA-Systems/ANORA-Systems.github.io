@@ -1,0 +1,56 @@
+    <nav class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur print:!border-0" aria-label="{{ t.menu }}">
+        <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-8 print:!p-0">
+
+            <a href="{{ logo_href }}" class="flex shrink-0 items-center gap-3">
+                <img src="{{ root }}media/logo.png" alt="Anora Systems" class="h-10 w-auto md:h-12">
+                <span class="hidden h-8 w-px bg-gray-200 sm:block print:hidden" aria-hidden="true"></span>
+                <span class="hidden font-outfit text-xl tracking-tight text-anoraBlue sm:block print:hidden">Spec<span class="text-anoraTeal">Scout</span></span>
+            </a>
+
+            <!-- In print (the AGB PDFs) only the logo stays, as with the back-link header the legal pages had before 27 Oct -->
+            <div class="flex items-center gap-2 lg:gap-4 xl:gap-6 print:hidden">
+                <div data-nav-menu class="hidden items-center gap-6 xl:flex">
+{{# each nav }}
+                    <a href="{{ href }}"{{# if current }} aria-current="page" class="text-sm font-medium text-anoraTeal transition hover:text-anoraTeal"{{ else }} class="text-sm font-medium text-gray-600 transition hover:text-anoraTeal"{{/ if }}>{{ label }}</a>
+{{/ each }}
+                </div>
+
+                <a href="{{ t.login_url }}" class="hidden text-sm font-medium text-anoraBlue transition hover:text-anoraTeal md:inline-block">{{ t.login }}</a>
+                <a href="{{ t.start_free_url }}" class="hidden rounded-brand bg-anoraOrange px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-anoraOrangeHover focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraOrange focus-visible:ring-offset-2 sm:inline-block">{{ t.start_free }}</a>
+
+                <div class="flex shrink-0 rounded-md bg-gray-100 p-0.5 text-[11px]">
+{{# each langs }}
+{{# if active }}
+                    <span class="rounded bg-white px-2 py-0.5 font-bold text-anoraBlue shadow-sm" aria-current="true">{{ code }}</span>
+{{ else }}
+{{# if href }}
+                    <a href="{{ href }}" hreflang="{{ hreflang }}" class="px-2 py-0.5 font-medium text-gray-500 transition hover:text-anoraTeal">{{ code }}</a>
+{{ else }}
+                    <span class="cursor-not-allowed px-2 py-0.5 font-medium text-gray-300" title="{{ t.no_translation }}">{{ code }}</span>
+{{/ if }}
+{{/ if }}
+{{/ each }}
+                </div>
+
+                <button id="mobile-menu-btn" type="button" class="rounded-md p-2 text-gray-600 transition hover:text-anoraTeal focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraTeal xl:hidden" aria-controls="mobile-menu" aria-expanded="false" aria-label="{{ t.menu }}">
+                    <span data-menu-icon="open"><i data-lucide="menu" class="h-6 w-6"></i></span>
+                    <span data-menu-icon="close" class="hidden"><i data-lucide="x" class="h-6 w-6"></i></span>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" data-nav-menu class="absolute left-0 hidden w-full border-b border-gray-200 bg-white shadow-lg xl:hidden">
+            <div class="mx-auto max-w-7xl space-y-1 px-4 pb-6 pt-2 sm:px-6">
+{{# each nav }}
+                <a href="{{ href }}"{{# if current }} aria-current="page" class="block rounded-md px-2 py-2 text-base font-medium text-anoraTeal hover:bg-gray-50"{{ else }} class="block rounded-md px-2 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-anoraTeal"{{/ if }}>{{ label }}</a>
+{{/ each }}
+                <!-- The bar itself shows "Log in" from md and "Start free" from sm, so the menu repeats them only below that -->
+                <a href="{{ t.login_url }}" class="block rounded-md px-2 py-2 text-base font-medium text-anoraBlue hover:bg-gray-50 md:hidden">{{ t.login }}</a>
+                <div class="pt-3 sm:hidden">
+                    <a href="{{ t.start_free_url }}" class="block w-full rounded-brand bg-anoraOrange px-4 py-3 text-center text-base font-semibold text-white shadow-sm transition hover:bg-anoraOrangeHover">{{ t.start_free }}</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script src="{{ root }}js/nav-menu.js"></script>
