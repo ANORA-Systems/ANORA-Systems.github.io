@@ -126,7 +126,7 @@ html_class: scroll-smooth
                         <p class="mt-1 text-sm text-gray-600">Name the product and its brand, and say which specifications you want: inline as <code class="font-mono bg-gray-100 px-1 rounded">required_specs</code>, or later as a saved <a href="#categories" class="text-anoraTeal hover:underline font-medium">category</a>. A search takes about 10 to 40 seconds, so allow a long timeout.</p>
                         <pre class="code-dark mt-2 bg-codeBg text-gray-300 p-4 rounded-lg text-xs font-mono overflow-x-auto border border-slate-700/60"><code class="language-bash">curl -G https://api.anora-systems.com/api/v1/search \
   -H "x_api_key: $SPECSCOUT_KEY" --max-time 180 \
-  --data-urlencode "product_name=Galaxy S24 Ultra" \
+  --data-urlencode "product_name=Galaxy S25 Ultra" \
   --data-urlencode "brand=Samsung" \
   --data-urlencode 'required_specs=[
     {"name": "Display size", "description": "Diagonal of the main display", "instance": "float", "unit": "inch"},
@@ -142,7 +142,7 @@ specs = [
 response = requests.get(
     "https://api.anora-systems.com/api/v1/search",
     headers={"x_api_key": os.environ["SPECSCOUT_KEY"]},
-    params={"product_name": "Galaxy S24 Ultra", "brand": "Samsung", "required_specs": json.dumps(specs)},
+    params={"product_name": "Galaxy S25 Ultra", "brand": "Samsung", "required_specs": json.dumps(specs)},
     timeout=180,
 )
 response.raise_for_status()

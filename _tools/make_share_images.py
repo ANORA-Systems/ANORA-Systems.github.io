@@ -3,7 +3,7 @@
 The pages name media/social-share-de.png (German pages) or media/social-share-en.png (English
 pages) as og:image and twitter:image. Each image is 1200 x 630 px, the size LinkedIn, Slack and
 the other networks crop to, and is drawn from the template below: the homepage hero's headline
-and colours, plus four values of a recorded example (demo/examples.json, Galaxy S24 Ultra), shown
+and colours, plus four values of a recorded example (demo/examples.json, Galaxy S25 Ultra), shown
 the way the example search shows them. Run this after changing the hero headline, the brand
 colours or the example. Not published; folders starting with _ never are.
 
@@ -29,26 +29,26 @@ EDGE_PATHS = [
 WIDTH, HEIGHT = 1200, 630
 
 # The rows of the result card: spec name and value as the example search shows them, the
-# confidence in percent and the number of sources, all from the recorded Galaxy S24 Ultra search.
+# confidence in percent and the number of sources, all from the recorded Galaxy S25 Ultra search.
 ROWS = {
-    "de": [("Display size", "6,8 inch", 89, 4), ("RAM", "12 GB", 89, 4),
-           ("Battery capacity", "5.000 mAh", 89, 4), ("CPU", "Qualcomm Snapdragon 8 Gen 3", 75, 3)],
-    "en": [("Display size", "6.8 inch", 89, 4), ("RAM", "12 GB", 89, 4),
-           ("Battery capacity", "5,000 mAh", 89, 4), ("CPU", "Qualcomm Snapdragon 8 Gen 3", 75, 3)],
+    "de": [("Display size", "6,9 inch", 99, 8), ("Battery capacity", "5.000 mAh", 99, 7),
+           ("Chipset", "Qualcomm Snapdragon 8 Elite", 96, 5), ("Main camera resolution", "200 MP", 95, 5)],
+    "en": [("Display size", "6.9 inch", 99, 8), ("Battery capacity", "5,000 mAh", 99, 7),
+           ("Chipset", "Qualcomm Snapdragon 8 Elite", 96, 5), ("Main camera resolution", "200 MP", 95, 5)],
 }
 TEXT = {
     "de": {
         "headline": "Vollständige, filterbare Produktdaten. Ohne manuelle Recherche.",
         "subline": "Jeder Wert mit Quellen und Confidence-Wert. 20 Suchen im Monat kostenlos.",
         "card": "SpecScout · Beispielsuche",
-        "product": "Galaxy S24 Ultra · Samsung · Smartphone",
+        "product": "Galaxy S25 Ultra · Samsung · Smartphone",
         "sources": "Quellen",
     },
     "en": {
         "headline": "Complete, filterable product data. Without manual research.",
         "subline": "Every value with sources and a confidence score. 20 searches a month for free.",
         "card": "SpecScout · Example search",
-        "product": "Galaxy S24 Ultra · Samsung · Smartphone",
+        "product": "Galaxy S25 Ultra · Samsung · Smartphone",
         "sources": "sources",
     },
 }
