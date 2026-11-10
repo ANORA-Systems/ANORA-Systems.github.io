@@ -406,9 +406,10 @@ def demo_context(lang: str) -> dict:
     strip = lambda specs: [  # noqa: E731
         {key: (value or None) if key == "unit" else value for key, value in spec.items() if key != "sub_values"} for spec in specs
     ]
+    # Every spec, not a few: an excerpt of 2 found and 1 not found read as if a third were missing.
     excerpt = {
-        "specs": strip(response["specs"][:2]),
-        "not_found": strip(response["not_found"][:1]),
+        "specs": strip(response["specs"]),
+        "not_found": strip(response["not_found"]),
         "status": response["status"],
         "errors": response["errors"],
     }
