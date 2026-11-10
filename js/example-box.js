@@ -444,7 +444,7 @@
 
     // --- the form -------------------------------------------------------------------------------
 
-    function searchPanel({ examples, look, startUrl, onExpand, onCollapse }) {
+    function searchPanel({ examples, ready, look, startUrl, onExpand, onCollapse }) {
         const categoryOf = (example) => example.category[lang];
         const unique = (values) => [...new Set(values)].sort((a, b) => a.localeCompare(b));
         const form = el('form', look.form);
@@ -563,11 +563,12 @@
                 product.input.focus();
                 return;
             }
-            const match = examples.find((example) => same(example.input.product_name, name)
+            const findMatch = () => examples.find((example) => same(example.input.product_name, name)
                 && (!brand.input.value.trim() || same(example.input.brand, brand.input.value))
                 && (!category.input.value.trim() || same(categoryOf(example), category.input.value)));
 
-            // A short pause with a spinner, so the search reads as a search.
+            // A short pause with a spinner, so the search reads as a search; it also covers
+            // the examples still loading.
             const run = ++searchRun;
             const loading = el('div', look.loading);
             loading.setAttribute('role', 'status');
@@ -575,9 +576,15 @@
             result.replaceChildren(loading);
             submit.disabled = true;
             onExpand();
-            setTimeout(() => {
+            const pause = new Promise((resolve) => setTimeout(resolve, reduceMotion ? 300 : 1200 + Math.round(Math.random() * 600)));
+            Promise.all([ready, pause]).then(([loaded]) => {
                 if (run !== searchRun) return;
                 submit.disabled = false;
+                if (!loaded) {
+                    result.replaceChildren(withActions(el('p', look.note, TEXT.error)));
+                    return;
+                }
+                const match = findMatch();
                 if (!match) {
                     const note = el('p', look.note, TEXT.noExample(name));
                     const link = el('a', look.noteLink, TEXT.startFree);
@@ -587,29 +594,34 @@
                     return;
                 }
                 result.replaceChildren(withActions(resultCard(look, match, closeResult)));
-            }, reduceMotion ? 300 : 1200 + Math.round(Math.random() * 600));
+            });
         });
         return panel;
     }
 
+    // The form is built at once; the examples (a large JSON) load behind it and fill the same
+    // array the dropdowns read. `ready` settles to true once they are in, false if loading failed.
     function setUp(host, look, filter, onExpand, onCollapse) {
         const root = host.querySelector('[data-example-root]');
-        fetch(host.dataset.src)
+        const examples = [];
+        const ready = fetch(host.dataset.src)
             .then((response) => {
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 return response.json();
             })
             .then((data) => {
-                const panel = searchPanel({
-                    examples: data.examples.filter(filter),
-                    look,
-                    startUrl: host.dataset.startUrl,
-                    onExpand,
-                    onCollapse,
-                });
-                root.replaceChildren(panel);
+                examples.push(...data.examples.filter(filter));
+                return true;
             })
-            .catch(() => root.replaceChildren(el('p', 'text-sm text-gray-500', TEXT.error)));
+            .catch(() => false);
+        root.replaceChildren(searchPanel({
+            examples,
+            ready,
+            look,
+            startUrl: host.dataset.startUrl,
+            onExpand,
+            onCollapse,
+        }));
     }
 
     // The dark hero card: while it is grown, the hero grid aligns to the top so the text stays put.
