@@ -46,13 +46,17 @@ html_class: scroll-smooth
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-10">
             <div id="hero-grid" class="mx-auto grid max-w-3xl grid-cols-1 gap-12 items-center lg:max-w-none lg:grid-cols-2">
-                <div>
+                <!-- Below lg, where text and search window stack, the buttons move under the window (order-*). -->
+                <div class="contents lg:block">
+                    <div>
                     <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
                         Complete, filterable product data. Without manual research.
                     </h1>
-                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    <p class="text-xl text-gray-300 lg:mb-8 leading-relaxed">
                         <strong>SpecScout</strong> automatically extracts, validates, and structures technical specifications from the web. Hours of research, done in minutes.
                     </p>
+                    </div>
+                    <div class="order-2 -mt-4 lg:order-none lg:mt-0">
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="https://specscout.anora-systems.com/access" target="_blank" rel="noopener" class="bg-anoraOrange hover:bg-orange-600 text-white text-center px-8 py-4 rounded-md font-bold text-lg transition shadow-lg shadow-orange-900/50">
                             Start free
@@ -62,9 +66,10 @@ html_class: scroll-smooth
                         </a>
                     </div>
                     <p class="text-sm text-gray-400 mt-4">20 free searches a month.</p>
+                    </div>
                 </div>
                 
-                <div class="flex flex-col">
+                <div class="order-1 flex flex-col lg:order-none">
                     <div class="relative">
                         <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 shadow-2xl scroll-mt-24" id="examples" data-example-search data-src="../demo/examples.json" data-start-url="{{ t.start_free_url }}" data-expand-grid="hero-grid">
                             <div class="flex items-center justify-between mb-4">
@@ -170,7 +175,7 @@ html_class: scroll-smooth
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Every value is confirmed by at least two independent sources, or by an authoritative source such as the manufacturer.</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Every value comes with its sources and a confidence score.</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>When a product comes in variants (say 256 and 512 GB), all values are returned with their sources instead of a guess.</li>
-                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Similar products are filtered out.</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Similar products are filtered out automatically.</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i>Values that can't be confirmed come back as "not found".</li>
                         <li class="flex gap-2"><i data-lucide="check" class="mt-1 h-4 w-4 shrink-0 text-anoraTeal"></i><span>You decide which sites count: blacklist, trust or exclusively use sources for a brand, a category or both. <a href="api-documentation#search-settings" class="font-medium text-anoraTeal hover:underline">More in the docs</a></span></li>
                     </ul>
@@ -266,11 +271,11 @@ html_class: scroll-smooth
                 </details>
                 <details class="group rounded-xl border border-gray-200 bg-white open:shadow-sm">
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-xl p-5 font-semibold text-anoraBlue focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraTeal [&::-webkit-details-marker]:hidden">How does SpecScout make sure the values are correct?<i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-anoraTeal transition-transform group-open:rotate-180"></i></summary>
-                    <div class="px-5 pb-5 text-sm leading-relaxed text-gray-600">SpecScout compares technical specifications from several sources. A value is only returned when at least two independent sources agree, or when an authoritative source such as the manufacturer confirms it; otherwise the attribute is listed as "not found". Pages about a different model (for example the S24 Ultra when you search for the S24) are rejected. Every value comes with links to its sources, so you can check it.</div>
+                    <div class="px-5 pb-5 text-sm leading-relaxed text-gray-600">SpecScout compares technical specifications from several sources. A value is only returned when at least two independent sources agree, or when an authoritative source such as the manufacturer confirms it; otherwise the attribute is listed as "not found". Pages about a different model (for example the S24 Ultra when you search for the S24) are rejected automatically. Every value comes with links to its sources, so you can check it.</div>
                 </details>
                 <details class="group rounded-xl border border-gray-200 bg-white open:shadow-sm">
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-xl p-5 font-semibold text-anoraBlue focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraTeal [&::-webkit-details-marker]:hidden">SpecScout uses AI. Couldn't this lead to hallucinations?<i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-anoraTeal transition-transform group-open:rotate-180"></i></summary>
-                    <div class="px-5 pb-5 text-sm leading-relaxed text-gray-600">AI can make mistakes, so SpecScout never relies on a single AI answer. A value is only returned when at least two independent sources agree, or when an authoritative source such as the manufacturer confirms it, and pages about a different model are rejected. Values that can't be confirmed come back as "not found" instead of a guess, and fixed value lists restrict the AI to the values you allow. Every value comes with links to its sources, so you can check it.</div>
+                    <div class="px-5 pb-5 text-sm leading-relaxed text-gray-600">Yes. That is why SpecScout is built so that a single hallucinated answer does not end up in the result. This way, hallucinations can be detected very reliably and kept out of the result.</div>
                 </details>
                 <details class="group rounded-xl border border-gray-200 bg-white open:shadow-sm">
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-xl p-5 font-semibold text-anoraBlue focus:outline-none focus-visible:ring-2 focus-visible:ring-anoraTeal [&::-webkit-details-marker]:hidden">How do I connect SpecScout to my system?<i data-lucide="chevron-down" class="h-5 w-5 shrink-0 text-anoraTeal transition-transform group-open:rotate-180"></i></summary>
